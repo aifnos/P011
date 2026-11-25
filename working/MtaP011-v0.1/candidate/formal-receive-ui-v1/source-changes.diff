@@ -1,0 +1,200 @@
+--- candidate/formal-receive-alias-clock-v1/runtime/mta_client_executor.py
++++ candidate/formal-receive-ui-v1/runtime/mta_client_executor.py
+@@ -414,7 +414,7 @@
+     if source_pins[0][2] != JSON_SHA: _fail('source_invalid')
+     directory = paths['p011_json'][:-len('/p011_json.py')]
+     prefix, suffix = ROOT + '/client-', '/runtime'
+-    if (directory != '/var/volatile/tmp/p011-mta-formal-receive-alias-clock-v1/runtime35' and
++    if (directory != '/var/volatile/tmp/p011-mta-formal-receive-ui-v1/runtime35' and
+             not (directory.startswith(prefix) and directory.endswith(suffix) and
+                  _token(directory[len(prefix):-len(suffix)]))):
+         _fail('source_invalid')
+--- candidate/formal-receive-alias-clock-v1/runtime/mta_client_state_bridge.py
++++ candidate/formal-receive-ui-v1/runtime/mta_client_state_bridge.py
+@@ -18,7 +18,7 @@
+ import mta_transfer_session as sessions
+ import mta_client_receive_factory as receive_factories
+ 
+-PARENT_SOURCE_SHA = '129f3f87f875e7b9ea11fcf0e89b8bf65a060783b1901a2e165f0e42bbf089f0'
++PARENT_SOURCE_SHA = 'a195089707f5988ef7587283f0ec816fc4e2d57d0715047d7e51330ff03a506c'
+ CODEC_SOURCE_SHA = 'd1a8fce91ab705524f14edac8d81e8d391c0cddbf8f4ac96ee7a6446c0512278'
+ POLL_SECONDS, FINISH_SECONDS = .05, 90.0
+ _CODES = frozenset(('invalid_owner', 'wrong_worker', 'already_started', 'deployment_unavailable',
+--- candidate/formal-receive-alias-clock-v1/runtime/mta_client_receive_factory.py
++++ candidate/formal-receive-ui-v1/runtime/mta_client_receive_factory.py
+@@ -33,10 +33,10 @@
+ _DIRECTORY_TYPE = storage.DirectoryBinding
+ 
+ 
+-ASSET_ROOT = '/tmp/p011-mta-formal-receive-alias-clock-v1'
+-ASSET_PHYSICAL_ROOT = '/var/volatile/tmp/p011-mta-formal-receive-alias-clock-v1'
+-SOURCE_MANIFEST_SHA = 'e4105054fa6c6a025a8dad6edd1cfb9545b22d41b1c6c1260d5212727e3aafc4'
+-F_SHA = '129f3f87f875e7b9ea11fcf0e89b8bf65a060783b1901a2e165f0e42bbf089f0'
++ASSET_ROOT = '/tmp/p011-mta-formal-receive-ui-v1'
++ASSET_PHYSICAL_ROOT = '/var/volatile/tmp/p011-mta-formal-receive-ui-v1'
++SOURCE_MANIFEST_SHA = '5f47efc9b8249bccb28e9d9ab2ae8c6a644805de33eee03697bde9520d6adb33'
++F_SHA = 'a195089707f5988ef7587283f0ec816fc4e2d57d0715047d7e51330ff03a506c'
+ CODEC_SHA = 'd1a8fce91ab705524f14edac8d81e8d391c0cddbf8f4ac96ee7a6446c0512278'
+ WPA_SHA = 'e069aef76a089215367f502015266e9ce59cf4ebb7d7246974815ff60d67f301'
+ WPA_BYTES = 1351192
+@@ -73,7 +73,7 @@
+     ('mta_client_kernel_proof', 23702, '4ebfedf198673e3bad2f64a4bd72c581e5d6af24cef83e589b4456d2a38f8ede'),
+     ('mta_client_connection', 22494, 'ae2932252bbef16b89e6bf4614c2ebdb1721d507274dbd9b9fe4d9db1d0ff159'),
+     ('mta_client_linux_provider', 174220, '5f080f8a0d53d7232ec95c303e0e84036d22d4e0927ac98dd3195291cf6d56ba'),
+-    ('mta_client_executor', 117755, F_SHA),
++    ('mta_client_executor', 117746, F_SHA),
+     ('mta_dhcp', 15719, '631987bd7307580af069f1978e440d21fbd449ecc62c83e0e06195c330f50176'),
+     ('mta_dhcp_client_core', 12362, '13c03d181139fd9ead7ff3bf2bcbb4930669f1e795b17360da85834dc345e9fa'),
+     ('mta_dhcp_client', 24670, '794421678866d04a10ca46fa9eb7e17174f24c4d9e705cf59016b457702003a0'),
+--- candidate/formal-receive-alias-clock-v1/runtime/mta_client_receive_boot.py
++++ candidate/formal-receive-ui-v1/runtime/mta_client_receive_boot.py
+@@ -27,22 +27,22 @@
+ import time
+ import types
+ 
+-ROOT = '/tmp/p011-mta-formal-receive-alias-clock-v1'
+-PHYSICAL_ROOT = '/var/volatile/tmp/p011-mta-formal-receive-alias-clock-v1'
++ROOT = '/tmp/p011-mta-formal-receive-ui-v1'
++PHYSICAL_ROOT = '/var/volatile/tmp/p011-mta-formal-receive-ui-v1'
+ RUNTIME = ROOT + '/runtime'
+ PHYSICAL_RUNTIME = PHYSICAL_ROOT + '/runtime'
+ MAX_SOURCE = 2 * 1024 * 1024
+ LOAD_SECONDS = 10.0
+ ARM_READ = 0x88000  # P011 O_RDONLY | O_NOFOLLOW(0x8000) | O_CLOEXEC(0x80000).
+-CLIENT_MANIFEST_SHA = 'e4105054fa6c6a025a8dad6edd1cfb9545b22d41b1c6c1260d5212727e3aafc4'
+-F37_SHA = '129f3f87f875e7b9ea11fcf0e89b8bf65a060783b1901a2e165f0e42bbf089f0'
++CLIENT_MANIFEST_SHA = '5f47efc9b8249bccb28e9d9ab2ae8c6a644805de33eee03697bde9520d6adb33'
++F37_SHA = 'a195089707f5988ef7587283f0ec816fc4e2d57d0715047d7e51330ff03a506c'
+ SOURCE_SCHEMA = 'sender-state-boot-v98-source'
+ GO_ASSET_ROOT = '/var/volatile/tmp/p011-mta-go-send-v76-assets'
+ GO_ASSET_RUNTIME = GO_ASSET_ROOT + '/runtime'
+ 
+ # Immutable ordinary source pins; private F source graphs remain separate.
+ SOURCE_PINS = (
+-    ('mta_client_executor', 117755, F37_SHA),
++    ('mta_client_executor', 117746, F37_SHA),
+     ('p011_json', 8061, 'fb6c803b185283258c2312e630df8bb80d6299007e95a1f3cf31250aa0e8ca88'),
+     ('mta_protocol', 17958, '4f7c2bd46cde114f0a2a0c33b31631aa463f09e71b156d26e34daf2251dd8a57'),
+     ('mta_storage', 55562, 'ea3d3df1177019125c9b3124b8ebaf33196dd1013db95ac24580e1fe1a96c8d1'),
+@@ -57,13 +57,13 @@
+     ('mta_send_worker', 43252, 'de0dd8c2c0fb3b45923199ccc987ae057046fa0244c6a405c3a254850f7e68e7'),
+     ('mta_scan_handoff', 11515, '51af67e80cf64038160cf420ad08f4f255a15dd9577e14fdcdb44fc26711046a'),
+     ('mta_wifi', 28459, '62322b09fe4fd96bf6d49d8a2f7ac416e9a9d4dadcb3df23a6330e3205bcd017'),
+-    ('minhttp', 9305, '582ab73570e37bb67422bf2b216374ec290a038ce726c015af60e0e12d647dde'),
++    ('minhttp', 9690, 'bf5648457b19b60ad0f17320f8bd0431064f9cb4edf0d238d82136000eb57235'),
+     ('mta_client_control_frame', 20942, 'd1a8fce91ab705524f14edac8d81e8d391c0cddbf8f4ac96ee7a6446c0512278'),
+     ('mta_client_connect_handoff', 12229, 'c86ccf734d9370ce86c3532cdc58a488382a056dd6b1e2d45ab24d06f27a683d'),
+     ('mta_client_tmp_alias', 8827, '1a4a52bd0bae7add6ae42f66bd9827c43865a0170c666eaab00797d1f45f7f2f'),
+     ('mta_client_startup_readonly', 20426, '2e49f367ae1eb27e82c03ef675861639415ecbad9471a8c3a62b4999fd48ee73'),
+-    ('mta_client_receive_factory', 82684, 'f6d2f343873903a7dc77b111be3a00b03796484e6247ffc4f2988b3bd553c9da'),
+-    ('mta_client_state_bridge', 21284, '43a47ae2cf849e53e5c5d8830ab6e7269ad3c10ea2ffb7f0d730cd05fb357346'),
++    ('mta_client_receive_factory', 82666, 'd3944828b28428ac4b715c658374bc26eedc060ca2addc5631751928da0af3c5'),
++    ('mta_client_state_bridge', 21284, '1eb369f21ea26583ca255e992f2d88590dc8ef7235b58326d85de589c33483e2'),
+     ('mta_go_deployment', 26543, 'e8dc91c0a44a48d6cecf066257e79185fe590385f98300d01835edddb8114efe'),
+     ('mta_send_preparation', 28532, '0e92fc68947601d0517cfe64a22d90d50b9952529c4594a6a189970420f69814'),
+     ('mta_go_readonly_parent', 52873, '96873084af32bc8c7fe0c0a236ddb49f4b91b85677b1b9b966fe6c714c03724b'),
+@@ -267,7 +267,7 @@
+ 
+     def _source_shape(self):
+         if type(SOURCE_PINS) is not tuple or len(SOURCE_PINS) != 33 or \
+-                SOURCE_PINS[0] != ('mta_client_executor', 117755, F37_SHA): _fail('source_shape')
++                SOURCE_PINS[0] != ('mta_client_executor', 117746, F37_SHA): _fail('source_shape')
+         names = []
+         for row in SOURCE_PINS:
+             if type(row) is not tuple or len(row) != 3 or type(row[0]) is not str or \
+--- candidate/formal-receive-socket-close-v1/runtime/mta_client_service_owner.py
++++ candidate/formal-receive-ui-v1/runtime/mta_client_service_owner.py
+@@ -1,8 +1,7 @@
+ """Formal-receive-v2 original Owner: sealed startup window and one-shot trial.
+ 
+-Isolated receive-socket-close-v1 SOURCE PATCH, NOT a runnable composition.
+-The original alias-clock roots/constants/BOOT pins are intentionally unchanged;
+-this patched Owner/minhttp pair has not been connected to a sealed graph/UI.
++Receive UI v1 root/pin composition reuses the frozen socket-close source patch.
++This source graph alone does not establish UI, RF or real-phone acceptance.
+ 
+ Independent SOURCE derived from formal-receive-v1. Fixed roots are versioned;
+ old graph/results/publications remain untouched. BOOT_PIN seals the new
+@@ -39,14 +38,14 @@
+ import time
+ import types
+ 
+-ROOT = '/tmp/p011-mta-formal-receive-alias-clock-v1'
++ROOT = '/tmp/p011-mta-formal-receive-ui-v1'
+ USER_ROOT = '/mnt/data/p011-toolbox/user'
+ BLUEZ = ROOT + '/native/mta-bluez-helper'
+ NETWORK = ROOT + '/native/mta-network-helper'
+ CONNMAN = ROOT + '/mta-connman-observer'
+ CONNMAN_PIN = (46008, '5f2612224a3db35d8f0850adf10d1fece7094bff6387521c185570c4be8068e2')
+ BOOT_PATH = ROOT + '/runtime/mta_client_receive_boot.py'
+-BOOT_PIN = (19727, '914233af2a7a12974927606a8b0a5c63bd2f96aee51d61bcab937a99f8596fbe')
++BOOT_PIN = (19709, '5a08582ccb0ca7c490b9c4d05a08045eb4da8c2cdff9cf6bbb671d24b06325c7')
+ BOOT_SCHEMA = 'sender-state-boot-v98-source'
+ BOOT_MODULES = (
+     'mta_client_executor', 'p011_json', 'mta_protocol', 'mta_storage',
+@@ -113,7 +112,7 @@
+ class _LinuxIo(object):
+     def _anchors(self):
+         rows = []
+-        physical = '/var/volatile/tmp/p011-mta-formal-receive-alias-clock-v1'
++        physical = '/var/volatile/tmp/p011-mta-formal-receive-ui-v1'
+         for path, mode, target in (('/', None, None), ('/tmp', stat.S_IFLNK | 0o777, '/var/tmp'),
+                 ('/var', stat.S_IFDIR | 0o755, None),
+                 ('/var/tmp', stat.S_IFLNK | 0o777, '/var/volatile/tmp'),
+--- candidate/formal-receive-alias-clock-v1/runtime/mta_formal_receive_session.py
++++ candidate/formal-receive-ui-v1/runtime/mta_formal_receive_session.py
+@@ -22,14 +22,14 @@
+ import time
+ import types
+ 
+-STATE_ROOT = '/var/volatile/tmp/p011-mta-formal-receive-alias-clock-v1'
+-STATE_ALIAS = '/tmp/p011-mta-formal-receive-alias-clock-v1'
++STATE_ROOT = '/var/volatile/tmp/p011-mta-formal-receive-ui-v1'
++STATE_ALIAS = '/tmp/p011-mta-formal-receive-ui-v1'
+ GO_ROOT = '/var/volatile/tmp/p011-mta-go-send-v76-assets'
+ USER_ROOT = '/mnt/data/p011-toolbox/user'
+ PENDING = '/var/volatile/tmp/p011-mta-p2p-device.pending'
+ PF_KTHREAD = 0x00200000  # Linux v4.14 include/linux/sched.h.
+ ROLE_PINS = (
+-    ('mta_client_executor', 117755, '129f3f87f875e7b9ea11fcf0e89b8bf65a060783b1901a2e165f0e42bbf089f0'),
++    ('mta_client_executor', 117746, 'a195089707f5988ef7587283f0ec816fc4e2d57d0715047d7e51330ff03a506c'),
+     ('p011_json', 8061, 'fb6c803b185283258c2312e630df8bb80d6299007e95a1f3cf31250aa0e8ca88'),
+     ('mta_protocol', 17958, '4f7c2bd46cde114f0a2a0c33b31631aa463f09e71b156d26e34daf2251dd8a57'),
+     ('mta_storage', 55562, 'ea3d3df1177019125c9b3124b8ebaf33196dd1013db95ac24580e1fe1a96c8d1'),
+@@ -44,13 +44,13 @@
+     ('mta_send_worker', 43252, 'de0dd8c2c0fb3b45923199ccc987ae057046fa0244c6a405c3a254850f7e68e7'),
+     ('mta_scan_handoff', 11515, '51af67e80cf64038160cf420ad08f4f255a15dd9577e14fdcdb44fc26711046a'),
+     ('mta_wifi', 28459, '62322b09fe4fd96bf6d49d8a2f7ac416e9a9d4dadcb3df23a6330e3205bcd017'),
+-    ('minhttp', 9305, '582ab73570e37bb67422bf2b216374ec290a038ce726c015af60e0e12d647dde'),
++    ('minhttp', 9690, 'bf5648457b19b60ad0f17320f8bd0431064f9cb4edf0d238d82136000eb57235'),
+     ('mta_client_control_frame', 20942, 'd1a8fce91ab705524f14edac8d81e8d391c0cddbf8f4ac96ee7a6446c0512278'),
+     ('mta_client_connect_handoff', 12229, 'c86ccf734d9370ce86c3532cdc58a488382a056dd6b1e2d45ab24d06f27a683d'),
+     ('mta_client_tmp_alias', 8827, '1a4a52bd0bae7add6ae42f66bd9827c43865a0170c666eaab00797d1f45f7f2f'),
+     ('mta_client_startup_readonly', 20426, '2e49f367ae1eb27e82c03ef675861639415ecbad9471a8c3a62b4999fd48ee73'),
+-    ('mta_client_receive_factory', 82684, 'f6d2f343873903a7dc77b111be3a00b03796484e6247ffc4f2988b3bd553c9da'),
+-    ('mta_client_state_bridge', 21284, '43a47ae2cf849e53e5c5d8830ab6e7269ad3c10ea2ffb7f0d730cd05fb357346'),
++    ('mta_client_receive_factory', 82666, 'd3944828b28428ac4b715c658374bc26eedc060ca2addc5631751928da0af3c5'),
++    ('mta_client_state_bridge', 21284, '1eb369f21ea26583ca255e992f2d88590dc8ef7235b58326d85de589c33483e2'),
+     ('mta_go_deployment', 26543, 'e8dc91c0a44a48d6cecf066257e79185fe590385f98300d01835edddb8114efe'),
+     ('mta_send_preparation', 28532, '0e92fc68947601d0517cfe64a22d90d50b9952529c4594a6a189970420f69814'),
+     ('mta_go_readonly_parent', 52873, '96873084af32bc8c7fe0c0a236ddb49f4b91b85677b1b9b966fe6c714c03724b'),
+@@ -62,8 +62,8 @@
+     ('mta_receive_barrier', 24113, 'd2721874aa6971b0742c4ae4b1dea9ba9bee277046ddb7253c3975b3dd6bf397'),
+     ('mta_receive_trial', 64493, 'b3ffef7c593d254c375f8f4f0f97aa97cb7027db03e88861db639294dd1de13a'),
+     ('mta_service', 155732, '76f48871bb4c2a3b72bb308e9bef56b3d509f01ef45c7ac2808d210acedd6960'),
+-    ('mta_client_receive_boot', 19727, '914233af2a7a12974927606a8b0a5c63bd2f96aee51d61bcab937a99f8596fbe'),
+-    ('mta_client_service_owner', 72108, '6ac819c9af70fd38a69f0271e1ea11d983db261fc54f400a4d08e151cc619e6a'),
++    ('mta_client_receive_boot', 19709, '5a08582ccb0ca7c490b9c4d05a08045eb4da8c2cdff9cf6bbb671d24b06325c7'),
++    ('mta_client_service_owner', 78661, '4eb75d7ee5c8f800b4ea8f31dbdac38edd36bc56a36bb11e7f7ef4519dbc60fb'),
+ )
+ HELPER_PINS = (
+     ('mta-bluez-helper', 74920, 'c06398ddae281cf4a6f8a41953baf84795992f8f3e3769baebaf11f6d9964181'),
+@@ -95,7 +95,7 @@
+     ('mta_client_kernel_proof', 23702, '4ebfedf198673e3bad2f64a4bd72c581e5d6af24cef83e589b4456d2a38f8ede'),
+     ('mta_client_connection', 22494, 'ae2932252bbef16b89e6bf4614c2ebdb1721d507274dbd9b9fe4d9db1d0ff159'),
+     ('mta_client_linux_provider', 174220, '5f080f8a0d53d7232ec95c303e0e84036d22d4e0927ac98dd3195291cf6d56ba'),
+-    ('mta_client_executor', 117755, '129f3f87f875e7b9ea11fcf0e89b8bf65a060783b1901a2e165f0e42bbf089f0'),
++    ('mta_client_executor', 117746, 'a195089707f5988ef7587283f0ec816fc4e2d57d0715047d7e51330ff03a506c'),
+     ('mta_dhcp', 15719, '631987bd7307580af069f1978e440d21fbd449ecc62c83e0e06195c330f50176'),
+     ('mta_dhcp_client_core', 12362, '13c03d181139fd9ead7ff3bf2bcbb4930669f1e795b17360da85834dc345e9fa'),
+     ('mta_dhcp_client', 24670, '794421678866d04a10ca46fa9eb7e17174f24c4d9e705cf59016b457702003a0'),

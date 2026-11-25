@@ -1,0 +1,54 @@
+{
+  "additional_clock_calls": 0,
+  "additional_io_calls": 0,
+  "business_delta_count": 1,
+  "business_methods": [
+    "_live_profile"
+  ],
+  "byte_delta": 42,
+  "candidate": {
+    "bytes": 99717,
+    "path": "candidate/receive-profile-proc-dispatch-v1/runtime/mta_client_receive_factory.py",
+    "sha256": "3349e76e6da45d4948edde640e44829bb1eeb554156b91c686f2a6b655422b47"
+  },
+  "complete_ast_inverse": true,
+  "complete_byte_inverse": true,
+  "deadlines_changed": false,
+  "device_executed": false,
+  "entire_method_ast_restore": true,
+  "failure_short_circuit_preserved": true,
+  "guards_removed": false,
+  "io_boundaries_changed": false,
+  "later_definition_line_delta": 2,
+  "local_binding_delta": [
+    "current",
+    "original",
+    "code"
+  ],
+  "measured_performance_claim": false,
+  "origin": {
+    "bytes": 99675,
+    "path": "candidate/receive-profile-cache-graph-v1/runtime/mta_client_receive_factory.py",
+    "sha256": "3f0ca3d039301a221fce10b5b72cb50e0bf6d374298656879ff748de61ec5cf5"
+  },
+  "original_code_receipts_still_required": true,
+  "other_definition_bytes_unchanged": true,
+  "permission_cache_created": false,
+  "prefix_guards_and_failure_code_unchanged": true,
+  "prospective_payload_bytes": 4193810,
+  "prospective_payload_remaining": 494,
+  "publication_branch_unchanged": true,
+  "replacements": [
+    {
+      "after": "                        clock.__func__ is not functions[3]):\n                    _fail('startup_owner_changed')\n                for current, original, code in zip(\n                        (_StartupReadScope.__init__, _StartupReadScope._originals, _StartupReadScope.check_active,\n                         _StartupReadScope.alias_now, executor._ReadOwner.check, executor._ReadOwner._fixed_tmp_alias),\n                        functions, codes):\n                    if (type(current) is not types.FunctionType or current is not original or\n                            current.__code__ is not code):\n                        _fail('startup_owner_changed')\n",
+      "before": "                        clock.__func__ is not functions[3] or\n                        any(type(current) is not types.FunctionType or current is not original or\n                            current.__code__ is not code for current, original, code in zip(\n                                (_StartupReadScope.__init__, _StartupReadScope._originals, _StartupReadScope.check_active,\n                                 _StartupReadScope.alias_now, executor._ReadOwner.check, executor._ReadOwner._fixed_tmp_alias),\n                                functions, codes))):\n                    _fail('startup_owner_changed')\n",
+      "count": 1
+    }
+  ],
+  "rf_executed": false,
+  "same_order_and_fresh_tuple_inputs": true,
+  "schema": "p011-receive-profile-proc-dispatch-v1-exactsource-delta",
+  "source_payload_bytes": 4193768,
+  "startup_proc_scan_rows": 6,
+  "unchanged_clock_io_and_cache": true
+}

@@ -1,0 +1,38 @@
+{
+  "business_delta_count": 1,
+  "business_methods": [
+    "FixedStateServiceOwner._context"
+  ],
+  "byte_delta": 78,
+  "candidate": {
+    "bytes": 107104,
+    "path": "candidate/receive-owner-dispatch-v1/runtime/mta_client_service_owner.py",
+    "sha256": "22aa94d8d5ae2a1dd75c5c98635d80020b318f7071ea84c5c3cb3d85e2805adf"
+  },
+  "complete_ast_inverse": true,
+  "complete_byte_inverse": true,
+  "deadlines_changed": false,
+  "device_executed": false,
+  "failure_short_circuit_preserved": true,
+  "guards_removed": false,
+  "io_boundaries_changed": false,
+  "later_definition_line_delta": 2,
+  "measured_performance_claim": false,
+  "nine_checks_same_order": true,
+  "origin": {
+    "bytes": 107026,
+    "path": "candidate/receive-publication-progress-graph-v1/runtime/mta_client_service_owner.py",
+    "sha256": "a33b1a4c015bda42fc8ab8ba447fd5f331181df1a5b4240fc82f455dc2b74da7"
+  },
+  "original_method_code_receipts_still_required": true,
+  "other_definition_bytes_unchanged": true,
+  "replacements": [
+    {
+      "after": "                type(methods) is not tuple or len(methods) != 9):\n            _fail('filecenter_original_changed')\n        for name, value, code in methods:\n            if (type(value) is not types.FunctionType or getattr(type(self), name) is not value or\n                    value.__globals__ is not self._startup_namespace_original or value.__code__ is not code):\n                _fail('filecenter_original_changed')\n        if self.filecenter_ticket is not self._filecenter_ticket_original:\n            _fail('filecenter_original_changed')\n",
+      "before": "                type(methods) is not tuple or len(methods) != 9 or\n                any(type(value) is not types.FunctionType or getattr(type(self), name) is not value or\n                    value.__globals__ is not self._startup_namespace_original or value.__code__ is not code\n                    for name, value, code in methods) or\n                self.filecenter_ticket is not self._filecenter_ticket_original):\n            _fail('filecenter_original_changed')\n",
+      "count": 1
+    }
+  ],
+  "rf_executed": false,
+  "schema": "p011-receive-owner-dispatch-v1-exactsource-delta"
+}

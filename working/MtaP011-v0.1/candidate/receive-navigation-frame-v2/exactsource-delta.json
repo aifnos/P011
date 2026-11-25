@@ -1,0 +1,40 @@
+{
+  "candidate": [
+    "candidate/receive-navigation-frame-v2/runtime/ui_session.py",
+    95351,
+    "0c53b23051e5d79cdc392b2f89d3d21de2425028ff4f76292284a72f631cb4fe"
+  ],
+  "evidence": "MECHANICAL_GENERATED_NOT_HOST_CHECKED",
+  "generator": [
+    "candidate/receive-navigation-frame-v2/generate.py",
+    3736,
+    "9b2ab1e766ba5fb4d33506a827235d184cf2eb199f0ba9eca48f5badbe313826"
+  ],
+  "guards": {
+    "business_bytes_unchanged": true,
+    "cleanup_seconds": 60,
+    "device_executed": false,
+    "gui_rebuilt": false,
+    "gui_staged": false,
+    "public_fields": 51,
+    "runtime75_modified": false,
+    "service_seconds": 600,
+    "startup_seconds": 10,
+    "tests_executed": false,
+    "worker_line_numbers_unchanged": true
+  },
+  "replacements": [
+    {
+      "after": "CONTROL_NAME = 'p011-mta-ui-session-' + SESSION + '-receive-navigation-frame-v2'\n",
+      "before": "CONTROL_NAME = 'p011-mta-ui-session-' + SESSION + '-receive-startup-workload-v1'\n",
+      "count": 1,
+      "name": "exclusive_control_suffix"
+    }
+  ],
+  "schema": "p011-receive-navigation-frame-v2-worker-delta",
+  "source": [
+    "candidate/receive-startup-workload-v1/runtime/ui_session.py",
+    95351,
+    "8a90425b76303ae28fbd44760bd1f6623980fbf616f25bcfd67953603d275773"
+  ]
+}

@@ -1,0 +1,215 @@
+{
+  "schema": "client-receive-directory-v1-definitions",
+  "sources": [
+    {
+      "bytes": 124769,
+      "module": "mta_client_executor",
+      "path": "candidate/receive-publication-progress-graph-v1/runtime/mta_client_executor.py",
+      "sha256": "6f9b2d368dacb37ed50830067c1b7b42e59acbc5f154f0c5ba550d4263a70826"
+    },
+    {
+      "bytes": 8061,
+      "module": "p011_json",
+      "path": "runtime/p011_json.py",
+      "sha256": "fb6c803b185283258c2312e630df8bb80d6299007e95a1f3cf31250aa0e8ca88"
+    },
+    {
+      "bytes": 17958,
+      "module": "mta_protocol",
+      "path": "runtime/mta_protocol.py",
+      "sha256": "4f7c2bd46cde114f0a2a0c33b31631aa463f09e71b156d26e34daf2251dd8a57"
+    },
+    {
+      "bytes": 56595,
+      "module": "mta_storage",
+      "path": "candidate/formal-receive-durable-state-v1/runtime/mta_storage.py",
+      "sha256": "365490e2dfe8a2c65d2b38fc8ae1a49747d09ed3b127677e9fe61e69866052d0"
+    },
+    {
+      "bytes": 10987,
+      "module": "mta_files",
+      "path": "candidate/file-utf8-v67/runtime/mta_files.py",
+      "sha256": "c6316be40cf34f017d1d2160f48989a55edfa0a60a2abe6a2ff6b656773f752b"
+    },
+    {
+      "bytes": 15274,
+      "module": "mta_crypto",
+      "path": "runtime/mta_crypto.py",
+      "sha256": "6fde6a60ec327895938a59990c4734a923dd5ff68bd5ee6979791df9a607e516"
+    },
+    {
+      "bytes": 20633,
+      "module": "mta_transfer_session",
+      "path": "candidate/go-send-state-v78/runtime/mta_transfer_session.py",
+      "sha256": "e7321ad446318f96bf84b1a94f0e5e3c76b1e973e28826f1c2514527b6967859"
+    },
+    {
+      "bytes": 15719,
+      "module": "mta_dhcp",
+      "path": "runtime/mta_dhcp.py",
+      "sha256": "631987bd7307580af069f1978e440d21fbd449ecc62c83e0e06195c330f50176"
+    },
+    {
+      "bytes": 20515,
+      "module": "mta_dhcp_server",
+      "path": "runtime/mta_dhcp_server.py",
+      "sha256": "a34fdbc07a96f2ed3337872612510aa2a8b72b970a193f58b8045c0653b8d8bc"
+    },
+    {
+      "bytes": 26339,
+      "module": "mta_scoped_sockets",
+      "path": "runtime/mta_scoped_sockets.py",
+      "sha256": "b95cfbe724b43baf90511c9d2a4a39d869a40a57e78e2a87d398ea134f9f84b8"
+    },
+    {
+      "bytes": 41435,
+      "module": "mta_transport",
+      "path": "candidate/formal-receive-durable-state-v1/runtime/mta_transport.py",
+      "sha256": "9b05ef49059e9b06536de32186e7de1cfd531461d3e096eb266d49f760069f8e"
+    },
+    {
+      "bytes": 33949,
+      "module": "mta_sender",
+      "path": "runtime/mta_sender.py",
+      "sha256": "da25d3359d0759f71d8a4483680e3a3d5376c9e745e85224dbaee2a672f0670a"
+    },
+    {
+      "bytes": 43252,
+      "module": "mta_send_worker",
+      "path": "runtime/mta_send_worker.py",
+      "sha256": "de0dd8c2c0fb3b45923199ccc987ae057046fa0244c6a405c3a254850f7e68e7"
+    },
+    {
+      "bytes": 11515,
+      "module": "mta_scan_handoff",
+      "path": "runtime/mta_scan_handoff.py",
+      "sha256": "51af67e80cf64038160cf420ad08f4f255a15dd9577e14fdcdb44fc26711046a"
+    },
+    {
+      "bytes": 28459,
+      "module": "mta_wifi",
+      "path": "runtime/mta_wifi.py",
+      "sha256": "62322b09fe4fd96bf6d49d8a2f7ac416e9a9d4dadcb3df23a6330e3205bcd017"
+    },
+    {
+      "bytes": 9690,
+      "module": "minhttp",
+      "path": "candidate/formal-receive-profile-classification-clock-v1/runtime/minhttp.py",
+      "sha256": "bf5648457b19b60ad0f17320f8bd0431064f9cb4edf0d238d82136000eb57235"
+    },
+    {
+      "bytes": 21203,
+      "module": "mta_client_control_frame",
+      "path": "candidate/formal-receive-durable-state-v1/runtime/mta_client_control_frame.py",
+      "sha256": "66eae58a95eaf8344934d15aca2685de1c176b8408a56786995e9f9078c6032c"
+    },
+    {
+      "bytes": 12229,
+      "module": "mta_client_connect_handoff",
+      "path": "candidate/formal-receive-compat-v1/runtime/mta_client_connect_handoff.py",
+      "sha256": "c86ccf734d9370ce86c3532cdc58a488382a056dd6b1e2d45ab24d06f27a683d"
+    },
+    {
+      "bytes": 8827,
+      "module": "mta_client_tmp_alias",
+      "path": "candidate/client-tmp-alias-v11/runtime/mta_client_tmp_alias.py",
+      "sha256": "1a4a52bd0bae7add6ae42f66bd9827c43865a0170c666eaab00797d1f45f7f2f"
+    },
+    {
+      "bytes": 20426,
+      "module": "mta_client_startup_readonly",
+      "path": "candidate/receive-startup-readonly-v3/runtime/mta_client_startup_readonly.py",
+      "sha256": "2e49f367ae1eb27e82c03ef675861639415ecbad9471a8c3a62b4999fd48ee73"
+    },
+    {
+      "bytes": 99257,
+      "module": "mta_client_receive_factory",
+      "path": "candidate/receive-publication-progress-graph-v1/runtime/mta_client_receive_factory.py",
+      "sha256": "5fd3e85df3f76a48220564bdc96a429cfa2da513ee528d8745987f0d176eda01"
+    },
+    {
+      "bytes": 21356,
+      "module": "mta_client_state_bridge",
+      "path": "candidate/receive-publication-progress-graph-v1/runtime/mta_client_state_bridge.py",
+      "sha256": "f703eedb18b19aafbfb1d4d4326491a362c97c9e4ffa6f01fccc6f94c18da234"
+    },
+    {
+      "bytes": 26543,
+      "module": "mta_go_deployment",
+      "path": "candidate/go-send-preflight-key-v90/runtime/mta_go_deployment.py",
+      "sha256": "e8dc91c0a44a48d6cecf066257e79185fe590385f98300d01835edddb8114efe"
+    },
+    {
+      "bytes": 28532,
+      "module": "mta_send_preparation",
+      "path": "runtime/mta_send_preparation.py",
+      "sha256": "0e92fc68947601d0517cfe64a22d90d50b9952529c4594a6a189970420f69814"
+    },
+    {
+      "bytes": 52873,
+      "module": "mta_go_readonly_parent",
+      "path": "candidate/go-parent-libc-v1/runtime/mta_go_readonly_parent.py",
+      "sha256": "96873084af32bc8c7fe0c0a236ddb49f4b91b85677b1b9b966fe6c714c03724b"
+    },
+    {
+      "bytes": 45133,
+      "module": "mta_go_send_publication",
+      "path": "candidate/go-send-preflight-key-v90/runtime/mta_go_send_publication.py",
+      "sha256": "1f9d4f771d998d24677a6bc276526acaa96362a2ed508595690ad6ba19173f96"
+    },
+    {
+      "bytes": 87625,
+      "module": "mta_go_send_bridge",
+      "path": "candidate/go-send-terminal-source-v93/runtime/mta_go_send_bridge.py",
+      "sha256": "027be64bf7b1b4f6ae57d09921b821e4cc77db44c602b9a5d99d901ed5736f02"
+    },
+    {
+      "bytes": 66973,
+      "module": "mta_go_readonly_terminal_parent",
+      "path": "candidate/go-parent-libc-v1/runtime/mta_go_readonly_terminal_parent.py",
+      "sha256": "42ef91c27805d080f80706097834c6a73e4d5fe7b7683533a60fb33e59025a7a"
+    },
+    {
+      "bytes": 3971,
+      "module": "mta_receive_radio_baseline",
+      "path": "runtime/mta_receive_radio_baseline.py",
+      "sha256": "27a1cf60be3f964862904233c600af11b8d3e9468febba61d8c622fceb29824c"
+    },
+    {
+      "bytes": 15860,
+      "module": "mta_receive_network",
+      "path": "runtime/mta_receive_network.py",
+      "sha256": "1d2b2e250d63376f070816262fde601af5cd6005fb4f5877812f3d20ab8675a6"
+    },
+    {
+      "bytes": 24113,
+      "module": "mta_receive_barrier",
+      "path": "candidate/formal-receive-v3/runtime/mta_receive_barrier.py",
+      "sha256": "d2721874aa6971b0742c4ae4b1dea9ba9bee277046ddb7253c3975b3dd6bf397"
+    },
+    {
+      "bytes": 64493,
+      "module": "mta_receive_trial",
+      "path": "candidate/formal-receive-v3/runtime/mta_receive_trial.py",
+      "sha256": "b3ffef7c593d254c375f8f4f0f97aa97cb7027db03e88861db639294dd1de13a"
+    },
+    {
+      "bytes": 155732,
+      "module": "mta_service",
+      "path": "candidate/formal-receive-v3/runtime/mta_service.py",
+      "sha256": "76f48871bb4c2a3b72bb308e9bef56b3d509f01ef45c7ac2808d210acedd6960"
+    },
+    {
+      "bytes": 19697,
+      "module": "mta_client_receive_boot",
+      "path": "candidate/receive-publication-progress-graph-v1/runtime/mta_client_receive_boot.py",
+      "sha256": "77bcd4b7b6180b0aba97b68d33e8498f5c807e6b546f516948cb7f99b5a51868"
+    },
+    {
+      "bytes": 107026,
+      "module": "mta_client_service_owner",
+      "path": "candidate/receive-publication-progress-graph-v1/runtime/mta_client_service_owner.py",
+      "sha256": "a33b1a4c015bda42fc8ab8ba447fd5f331181df1a5b4240fc82f455dc2b74da7"
+    }
+  ]
+}

@@ -1,0 +1,70 @@
+{
+  "schema": "p011-receive-durable-control-bridge-source-delta-v1",
+  "evidence": "SOURCE_ONLY_NOT_TESTED_NOT_BOUND",
+  "entries": [
+    {
+      "source": [
+        "candidate/client-integrated-v37/runtime/mta_client_control_frame.py",
+        20942,
+        "d1a8fce91ab705524f14edac8d81e8d391c0cddbf8f4ac96ee7a6446c0512278"
+      ],
+      "candidate": [
+        "candidate/receive-durable-state-v1/runtime/mta_client_control_frame.py",
+        21203,
+        "66eae58a95eaf8344934d15aca2685de1c176b8408a56786995e9f9078c6032c"
+      ],
+      "replacements": [
+        {
+          "name": "saved_failed_result_contract",
+          "before": "                payload['outcome'] not in ('committed', 'refused', 'confirmation_timeout',\n                    'cancelled', 'unavailable', 'failed') or type(payload['peer_ack_verified']) is not bool or\n                not _uint(payload['file_count'], 0, 256) or\n                not _uint(payload['total_size'], 0, 512 * 1024 * 1024) or\n                payload['task_id'] != '' and not _task(payload['task_id']) or\n                payload['outcome'] != 'committed' and\n                    (payload['file_count'] != 0 or payload['total_size'] != 0 or payload['peer_ack_verified'])):\n            _fail('invalid_frame')\n",
+          "after": "                payload['outcome'] not in ('committed', 'saved_failed', 'refused', 'confirmation_timeout',\n                    'cancelled', 'unavailable', 'failed') or type(payload['peer_ack_verified']) is not bool or\n                not _uint(payload['file_count'], 0, 256) or\n                not _uint(payload['total_size'], 0, 512 * 1024 * 1024) or\n                payload['task_id'] != '' and not _task(payload['task_id']) or\n                payload['outcome'] not in ('committed', 'saved_failed') and\n                    (payload['file_count'] != 0 or payload['total_size'] != 0 or payload['peer_ack_verified'])):\n            _fail('invalid_frame')\n        if payload['outcome'] == 'saved_failed' and (sequence == 0 or payload['task_id'] == '' or\n                payload['file_count'] == 0 or payload['peer_ack_verified'] is not False):\n            _fail('invalid_frame')\n",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "source": [
+        "candidate/formal-receive-profile-classification-clock-v1/runtime/mta_client_state_bridge.py",
+        21284,
+        "849613b9e62cffdca6fe91ed6a9ba787b6c9b93a53b1a6e4df704b03d1a5b962"
+      ],
+      "candidate": [
+        "candidate/receive-durable-state-v1/runtime/mta_client_state_bridge.py",
+        21356,
+        "239e353c336b678638502d1a3dd612e6ce5110c005b1a0228f697d3af56cdc29"
+      ],
+      "replacements": [
+        {
+          "name": "saved_failed_project_file_count",
+          "before": "                'filesDone': self.result['file_count'] if self.result is not None and self.result['outcome'] == 'committed' else 0,\n",
+          "after": "                'filesDone': self.result['file_count'] if self.result is not None and self.result['outcome'] in ('committed', 'saved_failed') else 0,\n",
+          "count": 1
+        },
+        {
+          "name": "saved_failed_project_local_commit",
+          "before": "                'localCommitVerified': self.result is not None and self.result['outcome'] == 'committed',\n",
+          "after": "                'localCommitVerified': self.result is not None and self.result['outcome'] in ('committed', 'saved_failed'),\n",
+          "count": 1
+        },
+        {
+          "name": "saved_failed_run_is_failure",
+          "before": "        if self.result is not None and self.result['outcome'] == 'failed': _fail('receive_failed')\n",
+          "after": "        if self.result is not None and self.result['outcome'] in ('failed', 'saved_failed'): _fail('receive_failed')\n",
+          "count": 1
+        },
+        {
+          "name": "saved_failed_status_local_commit",
+          "before": "                'local_commit_verified': result is not None and result['outcome'] == 'committed',\n",
+          "after": "                'local_commit_verified': result is not None and result['outcome'] in ('committed', 'saved_failed'),\n",
+          "count": 1
+        }
+      ]
+    }
+  ],
+  "mechanical_executor_codec_pins_deferred": true,
+  "pre_prompt_terminals_changed": false,
+  "frame_size_or_sequence_budget_changed": false,
+  "committed_failure_suppression_changed": false,
+  "resource_close_or_restore_gate_changed": false,
+  "deployed": false
+}

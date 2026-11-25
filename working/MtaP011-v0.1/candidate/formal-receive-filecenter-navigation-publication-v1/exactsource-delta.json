@@ -1,0 +1,127 @@
+{
+  "schema": "p011-receive-filecenter-navigation-publication-v1-exact-source-delta",
+  "evidence": "source_data_only_not_executed",
+  "sources": [
+    {
+      "role": "current_anchor_runner",
+      "path": "candidate/formal-receive-startup-anchor-clock-v1/runtime/mta_formal_receive_session.py",
+      "bytes": 79238,
+      "sha256": "8bff07e82b49d5d6bd540b78dc20179ae842f417c5a3b8d12fd042770741c93b"
+    },
+    {
+      "role": "current_navigation_runner",
+      "path": "candidate/formal-receive-filecenter-navigation-anchor-v1/runtime/mta_formal_receive_session.py",
+      "bytes": 85538,
+      "sha256": "9c5786d96a20751b97cae6c5a2d95757892a14092a3a7096ce96cec3a8ccbe40"
+    },
+    {
+      "role": "current_navigation_worker",
+      "path": "candidate/formal-receive-filecenter-navigation-anchor-v1/runtime/ui_session.py",
+      "bytes": 95247,
+      "sha256": "1c8ba7b41148d1d4261ebeb1245a99d756dfbf9228abae1a7ebada539bba4547"
+    },
+    {
+      "role": "actual_publication_runner",
+      "path": "candidate/formal-receive-publication-anchor-clock-v1/runtime/mta_formal_receive_session.py",
+      "bytes": 79246,
+      "sha256": "71b42ad391844cc67b86c019f80d96ade720dbe4be73270f12ce6210bf5ba5a6"
+    },
+    {
+      "role": "actual_gui20_validator_binding",
+      "path": "candidate/formal-receive-filecenter-navigation-anchor-v1/runtime/ui_assets.py",
+      "bytes": 12642,
+      "sha256": "a620878186a3005f36febf5487675c3031c8831fd91d5e8962660ad99466c4be"
+    }
+  ],
+  "candidates": [
+    {
+      "path": "candidate/formal-receive-filecenter-navigation-publication-v1/runtime/mta_formal_receive_session.py",
+      "bytes": 85546,
+      "sha256": "521f5110bafdbde3a3539fff5f2b2a53a911a8e1008597ca646e3b0acff8ca8b"
+    },
+    {
+      "path": "candidate/formal-receive-filecenter-navigation-publication-v1/runtime/ui_session.py",
+      "bytes": 95260,
+      "sha256": "2b8c413d2fb39b3c5b03958a0b9ab59b196e626bf15eba1899dcd8365080d938"
+    }
+  ],
+  "replacements": [
+    {
+      "name": "runner_mechanical_0",
+      "file": "runtime/mta_formal_receive_session.py",
+      "before": "STATE_ROOT = '/var/volatile/tmp/p011-mta-receive-startup-anchor-clock-v1'\n",
+      "after": "STATE_ROOT = '/var/volatile/tmp/p011-mta-receive-publication-anchor-clock-v1'\n",
+      "count": 1
+    },
+    {
+      "name": "runner_mechanical_1",
+      "file": "runtime/mta_formal_receive_session.py",
+      "before": "STATE_ALIAS = '/tmp/p011-mta-receive-startup-anchor-clock-v1'\n",
+      "after": "STATE_ALIAS = '/tmp/p011-mta-receive-publication-anchor-clock-v1'\n",
+      "count": 1
+    },
+    {
+      "name": "runner_mechanical_2",
+      "file": "runtime/mta_formal_receive_session.py",
+      "before": "    ('mta_client_executor', 117757, 'fc723a7479d4b2d142b9024a2003de0eb5fcd0b907a4a0c6f91e7af2c2a7d3e2'),\n",
+      "after": "    ('mta_client_executor', 117761, '34eddfee126c771776808e64a746f2186f61065cfce9a0c2e59e23e85d67ae23'),\n",
+      "count": 2
+    },
+    {
+      "name": "runner_mechanical_3",
+      "file": "runtime/mta_formal_receive_session.py",
+      "before": "    ('mta_client_receive_factory', 91901, '0799fe739a9a3de15fd15453d7ddf6df4c49e411ea30c2c0d9911ab73b1b29c8'),\n",
+      "after": "    ('mta_client_receive_factory', 94393, '887942d83faf27f781981f426cce5890fa4894219365545901df9310887cd8d3'),\n",
+      "count": 1
+    },
+    {
+      "name": "runner_mechanical_4",
+      "file": "runtime/mta_formal_receive_session.py",
+      "before": "    ('mta_client_state_bridge', 21284, '1ddb25a97a3f0134e9bcba6c6b82551ce750e6af751f87a4fe47cf25052d273b'),\n",
+      "after": "    ('mta_client_state_bridge', 21284, '4294f71f5b5b9cbb0deb4dd7d4c380e0c1011c4c8592cdc005aee6796ae84e5f'),\n",
+      "count": 1
+    },
+    {
+      "name": "runner_mechanical_5",
+      "file": "runtime/mta_formal_receive_session.py",
+      "before": "    ('mta_client_receive_boot', 19731, '3025635ad324dfdf396f86f460fb431cfee71137ae4fe470933ab75ec00dca26'),\n",
+      "after": "    ('mta_client_receive_boot', 19739, '1ca8aae23cffca5e3ca97b66790c24a44b3e35d546710994221e279994ca8146'),\n",
+      "count": 1
+    },
+    {
+      "name": "runner_mechanical_6",
+      "file": "runtime/mta_formal_receive_session.py",
+      "before": "    ('mta_client_service_owner', 107060, 'eb6039f42b3ad7e3e69922c45b24874d805ec3d4d36a052031b2fa661139a862'),\n",
+      "after": "    ('mta_client_service_owner', 107068, '745c9569d43711d2dd3f1cf3b29b415020d7163fc7a956bf3b64347a0bda4bcb'),\n",
+      "count": 1
+    },
+    {
+      "before": "RUNNER_PIN = (85538, '9c5786d96a20751b97cae6c5a2d95757892a14092a3a7096ce96cec3a8ccbe40')\n",
+      "after": "RUNNER_PIN = (85546, '521f5110bafdbde3a3539fff5f2b2a53a911a8e1008597ca646e3b0acff8ca8b')\n",
+      "count": 1,
+      "name": "worker_mechanical_0",
+      "file": "runtime/ui_session.py"
+    },
+    {
+      "before": "STATE_ROOT = '/var/volatile/tmp/p011-mta-receive-startup-anchor-clock-v1'\n",
+      "after": "STATE_ROOT = '/var/volatile/tmp/p011-mta-receive-publication-anchor-clock-v1'\n",
+      "count": 1,
+      "name": "worker_mechanical_1",
+      "file": "runtime/ui_session.py"
+    },
+    {
+      "before": "STATE_ALIAS = '/tmp/p011-mta-receive-startup-anchor-clock-v1'\n",
+      "after": "STATE_ALIAS = '/tmp/p011-mta-receive-publication-anchor-clock-v1'\n",
+      "count": 1,
+      "name": "worker_mechanical_2",
+      "file": "runtime/ui_session.py"
+    },
+    {
+      "before": "CONTROL_NAME = 'p011-mta-ui-session-' + SESSION + '-formal-receive-filecenter-navigation-anchor-v1'\n",
+      "after": "CONTROL_NAME = 'p011-mta-ui-session-' + SESSION + '-formal-receive-filecenter-navigation-publication-v1'\n",
+      "count": 1,
+      "name": "worker_mechanical_3",
+      "file": "runtime/ui_session.py"
+    }
+  ]
+}

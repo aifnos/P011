@@ -1,0 +1,287 @@
+diff --git a/native/private-p2p-runtime-candidate-20261001-v5/runtime/mta_send_wifi.py b/native/private-p2p-runtime-candidate-20261001-v6diag/runtime/mta_send_wifi.py
+index a384d98..09c1095 100644
+--- a/native/private-p2p-runtime-candidate-20261001-v5/runtime/mta_send_wifi.py
++++ b/native/private-p2p-runtime-candidate-20261001-v6diag/runtime/mta_send_wifi.py
+@@ -1,7 +1,7 @@
+ # -*- coding: utf-8 -*-
+ """Experimental owned P2P GO lease. Does not start radios on import.
+ 
+-V5 IP-only: private GO + exact owned IPv4 sublease; no DHCP/IP sockets/BLE/files.
++V6diag: V5 gates preserved; fixed creation rejection diagnostics only; no DHCP/IP sockets/BLE/files.
+ Never controls wlan0 or the stock manager. RF writes require allow_rf=True.
+ Credentials are private return values, never journal/log data.
+ Python 3.5 / bundled JSON compatible. A host mock is NOT hardware evidence.
+@@ -23,7 +23,8 @@ import p011_json as json
+ WPA_SHA256 = 'e069aef76a089215367f502015266e9ce59cf4ebb7d7246974815ff60d67f301'
+ IP_CODEC_SHA256 = '1fa5e72817772285fd966f52c57af105950ff0d3b6ea49b202983aebfbab40c5'
+ IP_HELPER_SHA256 = '39373dba355557ee73cfac354bdbaa95eaf0ddde4e27313450edf0e74742f12c'
+-LEASE_IDENTITY = {'version': 3, 'kind': 'go_ip_only', 'runtime_marker': ip_lease.VERSION_MARKER,
++DIAGNOSTIC_RUNTIME_MARKER = 'p011-go-ip-only-v6diag-1'
++LEASE_IDENTITY = {'version': 3, 'kind': 'go_ip_only', 'runtime_marker': DIAGNOSTIC_RUNTIME_MARKER,
+                   'wpa_sha256': WPA_SHA256, 'codec_sha256': IP_CODEC_SHA256,
+                   'helper_sha256': IP_HELPER_SHA256}
+ JOURNAL_STAGES = frozenset(('create_intent', 'interface_created', 'private_process_pre_exec',
+@@ -82,6 +83,76 @@ def _failure_reason(error):
+     return ('lease_error' if isinstance(error, (LeaseError, ip_lease.IpLeaseError, ip_lease.core.IpCoreError)) else
+             'os_error' if isinstance(error, OSError) else 'unexpected_error')
+ 
++# These are process-local diagnostics, never journal ownership/credentials.
++IP_CREATION_REASONS = frozenset(('not_recorded', 'journal', 'process',
++    'interface_carrier', 'interface_identity', 'interface_l3',
++    'original_baseline', 'expiry', 'ip_transaction', 'unexpected_gate_read'))
++IP_CREATION_GATES = frozenset(('not_recorded', 'journal', 'process',
++    'interface_carrier', 'interface_identity', 'interface_l3',
++    'original_baseline', 'expiry', 'ip_transaction'))
++IP_CREATION_OBSERVATIONS = frozenset(('flags_read_valid', 'flags_up',
++    'carrier_read_valid', 'carrier_is_up', 'sysfs_identity_match', 'go_identity_match'))
++
++
++def ip_creation_diagnostic(reason='not_recorded', gate='not_recorded', observations=None):
++    # No exception args, identifiers, arbitrary keys or non-boolean values.
++    reason = reason if type(reason) is str and reason in IP_CREATION_REASONS else 'unexpected_gate_read'
++    gate = gate if type(gate) is str and gate in IP_CREATION_GATES else 'not_recorded'
++    values = {}
++    if type(observations) is dict:
++        for key in IP_CREATION_OBSERVATIONS:
++            if key in observations and type(observations[key]) is bool:
++                values[key] = observations[key]
++    return {'reason': reason, 'gate': gate, 'observations': values}
++
++
++class DiagnosticOwnedIpLease(ip_lease.OwnedIpLease):
++    """Original transaction/restore; same creation clock read and gate order."""
++    def __init__(self, transport, state, save, fresh_gate, reject, clock=time.monotonic):
++        self.reject = reject; self._diagnosing_creation = False
++        def save_observed():
++            try:
++                return save()
++            except BaseException:
++                if self._diagnosing_creation:
++                    self.reject('unexpected_gate_read', 'journal', {})
++                raise
++        ip_lease.OwnedIpLease.__init__(self, transport, state, save_observed, fresh_gate, clock)
++
++    def _gate(self, deadline, creating):
++        if not creating:
++            return ip_lease.OwnedIpLease._gate(self, deadline, creating)
++        # Expand only the original short-circuit expression. Read the clock once;
++        # do not consult a cleanup clock or invoke fresh_gate after expiry.
++        try:
++            expired = self.clock() >= deadline
++        except BaseException:
++            self.reject('unexpected_gate_read', 'expiry', {})
++            raise
++        if expired:
++            self.reject('expiry', 'expiry', {})
++            ip_lease._error('ip_epoch_or_identity_changed')
++        if self.fresh_gate(creating) is not True:
++            self.reject('ip_transaction', 'ip_transaction', {})
++            ip_lease._error('ip_epoch_or_identity_changed')
++        return True
++
++    def create(self, deadline, candidates=ip_lease.CANDIDATES):
++        self._diagnosing_creation = True
++        try:
++            return ip_lease.OwnedIpLease.create(self, deadline, candidates)
++        except BaseException as error:
++            # Fixed source-defined codes only; no free-text error inference.
++            code = error.code if type(error) is ip_lease.IpLeaseError else None
++            baseline_codes = ('ip_precreate_baseline_changed', 'ip_prewrite_baseline_changed',
++                              'ip_lifetime_not_supported')
++            reason = 'original_baseline' if code in baseline_codes else 'ip_transaction'
++            self.reject(reason, reason, {})
++            raise
++        finally:
++            self._diagnosing_creation = False
++
++
+ def _journal_envelope(state):
+     required = {'version', 'kind', 'identity', 'stage', 'name', 'baseline', 'deadline', 'owned', 'process', 'ip'}
+     if type(state) is not dict or set(state) not in (required, required | {'cleanup_result'}) or \
+@@ -622,6 +693,65 @@ class LinuxBackend:
+                 'ipv4': ip_lease.snapshot_data(ipv4)}
+ 
+     def ip_identity_gate(self, owned, creating):
++        if not creating:
++            return self._ip_identity_gate_original(owned, creating)
++        observations = {}
++        self.ip_creation_gate_info = ip_creation_diagnostic()
++        read_gate = 'journal'
++        def rejected(reason, gate):
++            self.ip_creation_gate_info = ip_creation_diagnostic(reason, gate, observations)
++            return False
++        if not self.allow_rf or self.guard.fd is None:
++            return rejected('journal', 'journal')
++        read_gate = 'interface_identity'
++        try:
++            rows = [row for row in self.nl.interfaces() if row.get('name') == owned['name']]
++            same = bool(len(rows) == 1 and _origin_match(owned, rows[0]) and rows[0].get('iftype') == P2P_GO)
++            observations['go_identity_match'] = same
++            if not same:
++                return rejected('interface_identity', read_gate)
++            read_gate = 'original_baseline'
++            if any(_digest(path) != pin for path, pin in STOCK_PINS.items()):
++                return rejected('original_baseline', read_gate)
++        except BaseException:
++            self.ip_creation_gate_info = ip_creation_diagnostic('unexpected_gate_read', read_gate, observations)
++            raise
++        try:
++            read_gate = 'interface_carrier'
++            root = '/sys/class/net/' + owned['name']
++            with open(root + '/flags') as handle: flags = handle.read(33).strip()
++            with open(root + '/carrier') as handle: carrier = handle.read(4).strip()
++            with open(root + '/ifindex') as handle: index = handle.read(16).strip()
++            flags_valid = bool(re.match(r'^0x[0-9a-fA-F]{1,8}\Z', flags))
++            carrier_valid = carrier in ('0', '1')
++            index_same = bool(re.match(r'^[0-9]{1,10}\Z', index) and int(index) == owned['ifindex'])
++            observations['flags_read_valid'] = flags_valid
++            if flags_valid: observations['flags_up'] = bool(int(flags, 16) & 1)
++            observations['carrier_read_valid'] = carrier_valid
++            if carrier_valid: observations['carrier_is_up'] = carrier == '1'
++            observations['sysfs_identity_match'] = index_same
++            # Exactly V5's required values. Diagnostic observations do not authorize.
++            if not flags_valid or not int(flags, 16) & 1 or carrier != '1':
++                return rejected('interface_carrier', read_gate)
++            if not index_same:
++                return rejected('interface_identity', 'interface_identity')
++            read_gate = 'interface_identity'
++            fresh = [row for row in self.nl.interfaces() if row.get('name') == owned['name']]
++            same = bool(len(fresh) == 1 and _origin_match(owned, fresh[0]) and fresh[0].get('iftype') == P2P_GO)
++            observations['go_identity_match'] = same
++            if not same:
++                return rejected('interface_identity', read_gate)
++            read_gate = 'interface_l3'
++            ipv6 = [row for row in _address_dump(owned['ifindex']) if row['family'] == 6]
++            allowed = bool(_only_link_local(ipv6) and _owned_routes_safe(owned['name'], allow_ipv4=True))
++            if not allowed:
++                return rejected('interface_l3', read_gate)
++            self.ip_creation_gate_info = ip_creation_diagnostic(observations=observations)
++            return True
++        except (OSError, ValueError, LeaseError):
++            return rejected('unexpected_gate_read', read_gate)
++
++    def _ip_identity_gate_original(self, owned, creating):
+         if not self.allow_rf or self.guard.fd is None: return False
+         rows = [row for row in self.nl.interfaces() if row.get('name') == owned['name']]
+         if not (len(rows) == 1 and _origin_match(owned, rows[0]) and
+@@ -789,6 +919,7 @@ class GoLease:
+         self.backend = backend; self.journal = journal; self.clock = clock
+         self.state = None; self.credentials = None
+         self.last_phase = 'not_started'; self.failure_info = None
++        self.ip_creation_gate_info = ip_creation_diagnostic()
+ 
+     def _phase(self, phase):
+         if phase not in FAILURE_PHASES: raise LeaseError('invalid_failure_phase')
+@@ -891,14 +1022,71 @@ class GoLease:
+             with self._lock():
+                 self._ip_sublease().create(self.state['deadline'])
+             return {'event': 'private_go_ip_ready', 'ttl': ttl, 'credentials_not_logged': True,
+-                    'ip_ready': True, 'dhcp_ready': False, 'send_available': False}
++                    'ip_ready': True, 'dhcp_ready': False, 'send_available': False,
++                    'ip_creation_gate': ip_creation_diagnostic()}
+         except BaseException as error:
+             self.failure_info = failure_diagnostic(self.last_phase, error)
++            self.failure_info['ip_creation_gate'] = ip_creation_diagnostic(
++                self.ip_creation_gate_info['reason'], self.ip_creation_gate_info['gate'],
++                self.ip_creation_gate_info['observations'])
+             self.stop(); raise
+ 
+     def expired(self): return self.state is not None and self.clock() >= self.state['deadline']
+ 
++    def _ip_creation_reject(self, reason, gate, observations=None):
++        # Keep the earliest contemporaneous failure, including when cleanup runs.
++        if self.ip_creation_gate_info['reason'] == 'not_recorded':
++            self.ip_creation_gate_info = ip_creation_diagnostic(reason, gate, observations)
++
+     def _ip_gate(self, creating):
++        if not creating:
++            return self._ip_gate_original(creating)
++        gate = 'journal'; observations = {}
++        try:
++            current = _read_private_json(self.journal)
++            if current.get('identity') != LEASE_IDENTITY or current.get('owned') != self.state.get('owned') or \
++                    current.get('ip') != self.state.get('ip'):
++                self._ip_creation_reject('journal', gate, observations); return False
++            if current.get('stage') != 'go_ready':
++                self._ip_creation_reject('journal', gate, observations); return False
++            gate = 'expiry'
++            if self.expired():
++                self._ip_creation_reject('expiry', gate, observations); return False
++            gate = 'process'
++            if not self.backend.ip_process_gate(self.state.get('process'), creating):
++                self._ip_creation_reject('process', gate, observations); return False
++            gate = 'interface_identity'
++            if not self.backend.ip_identity_gate(self.state['owned'], creating):
++                report = getattr(self.backend, 'ip_creation_gate_info', {})
++                if type(report) is not dict: report = {}
++                safe = ip_creation_diagnostic(report.get('reason', 'interface_identity'),
++                    report.get('gate', gate), report.get('observations'))
++                if safe['reason'] == 'not_recorded':
++                    safe = ip_creation_diagnostic('interface_identity', gate, safe['observations'])
++                self._ip_creation_reject(safe['reason'], safe['gate'], safe['observations'])
++                return False
++            report = getattr(self.backend, 'ip_creation_gate_info', {})
++            if type(report) is dict:
++                observations = ip_creation_diagnostic(observations=report.get('observations'))['observations']
++            gate = 'original_baseline'
++            actual = self.backend.snapshot(exclude_owned=self.state['owned'])
++            expected = dict(self.state['baseline'])
++            for key in ('ipv4', 'route_digest'):
++                actual.pop(key, None); expected.pop(key, None)
++            if actual != expected:
++                self._ip_creation_reject('original_baseline', gate, observations); return False
++            return True
++        except BaseException:
++            if gate == 'interface_identity':
++                report = getattr(self.backend, 'ip_creation_gate_info', {})
++                if type(report) is dict:
++                    safe = ip_creation_diagnostic('unexpected_gate_read', report.get('gate', gate),
++                        report.get('observations'))
++                    gate = safe['gate']; observations = safe['observations']
++            self._ip_creation_reject('unexpected_gate_read', gate, observations)
++            raise
++
++    def _ip_gate_original(self, creating):
+         current = _read_private_json(self.journal)
+         if current.get('identity') != LEASE_IDENTITY or current.get('owned') != self.state.get('owned') or \
+                 current.get('ip') != self.state.get('ip'):
+@@ -916,8 +1104,8 @@ class GoLease:
+         return actual == expected
+ 
+     def _ip_sublease(self):
+-        return ip_lease.OwnedIpLease(self.backend.ip_transport, self.state,
+-            lambda: self._save(locked=True), self._ip_gate, self.clock)
++        return DiagnosticOwnedIpLease(self.backend.ip_transport, self.state,
++            lambda: self._save(locked=True), self._ip_gate, self._ip_creation_reject, self.clock)
+ 
+     def _ip_stage(self):
+         value = self.state.get('ip')
+@@ -1138,7 +1326,7 @@ class SendWifiBackend:
+ 
+ def main():
+     import argparse
+-    parser = argparse.ArgumentParser(description='Explicit private P011 V5 GO-IP-only trial; no DHCP/IP sockets/BLE/files')
++    parser = argparse.ArgumentParser(description='Explicit private P011 V6diag rejection-only trial; V5 gates preserved; no DHCP/IP sockets/BLE/files')
+     parser.add_argument('--trial', action='store_true'); parser.add_argument('--recover', action='store_true')
+     parser.add_argument('--run-dir', required=True); parser.add_argument('--binary', required=True)
+     parser.add_argument('--caps-probe', required=True); parser.add_argument('--ttl', type=int, default=20)
+@@ -1152,7 +1340,8 @@ def main():
+     except BaseException as error:
+         result = {'event': 'private_go_ip_trial_failed', 'reason': _failure_reason(error),
+                   'cleanup': {'complete': True, 'no_radio_mutation': True}, 'complete': False,
+-                  'diagnostics': {'events': [], 'diagnostic_invalid': False, 'raw_diagnostics_not_logged': True}}
++                  'diagnostics': {'events': [], 'diagnostic_invalid': False, 'raw_diagnostics_not_logged': True},
++                  'ip_creation_gate': ip_creation_diagnostic()}
+         result.update(failure_diagnostic('backend_construct', error))
+         print(json.dumps(result)); return 1
+     lease = GoLease(backend, os.path.join(args.run_dir, 'p2p-lease.json')); result = None
+@@ -1182,6 +1371,9 @@ def main():
+         backend.close()
+     result['diagnostics'] = diagnostics
+     result['ip_control_socket_closed'] = bool(backend.ip_transport.closed)
++    if 'ip_creation_gate' not in result:
++        result['ip_creation_gate'] = ip_creation_diagnostic(lease.ip_creation_gate_info['reason'],
++            lease.ip_creation_gate_info['gate'], lease.ip_creation_gate_info['observations'])
+     print(json.dumps(result)); return 0 if result.get('complete') else 1
+ 
+ if __name__ == '__main__':

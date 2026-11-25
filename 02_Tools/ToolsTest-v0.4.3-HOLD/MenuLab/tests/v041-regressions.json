@@ -1,0 +1,199 @@
+{
+  "scope": "Host fixtures/static rules, not Windows/P011 execution",
+  "cases": [
+    {
+      "name": "Python3.5 syntax:tools_metrics.py",
+      "passed": true
+    },
+    {
+      "name": "Python3.5 syntax:tools_services.py",
+      "passed": true
+    },
+    {
+      "name": "Python3.5 syntax:tools_bridge.py",
+      "passed": true
+    },
+    {
+      "name": "Python3.5 syntax:p011_json.py",
+      "passed": true
+    },
+    {
+      "name": "Python3.5 syntax:menu_policy.py",
+      "passed": true
+    },
+    {
+      "name": "Python3.5 syntax:menu_trial.py",
+      "passed": true
+    },
+    {
+      "name": "No Item.data redeclaration:AdbPage.qml",
+      "passed": true
+    },
+    {
+      "name": "No old app.data reference:AdbPage.qml",
+      "passed": true
+    },
+    {
+      "name": "No Item.data redeclaration:BrowserPage.qml",
+      "passed": true
+    },
+    {
+      "name": "No old app.data reference:BrowserPage.qml",
+      "passed": true
+    },
+    {
+      "name": "No Item.data redeclaration:InfoList.qml",
+      "passed": true
+    },
+    {
+      "name": "No old app.data reference:InfoList.qml",
+      "passed": true
+    },
+    {
+      "name": "No Item.data redeclaration:ToolButton.qml",
+      "passed": true
+    },
+    {
+      "name": "No old app.data reference:ToolButton.qml",
+      "passed": true
+    },
+    {
+      "name": "No Item.data redeclaration:KeyboardPanel.qml",
+      "passed": true
+    },
+    {
+      "name": "No old app.data reference:KeyboardPanel.qml",
+      "passed": true
+    },
+    {
+      "name": "No Item.data redeclaration:RadioPage.qml",
+      "passed": true
+    },
+    {
+      "name": "No old app.data reference:RadioPage.qml",
+      "passed": true
+    },
+    {
+      "name": "No Item.data redeclaration:SshPage.qml",
+      "passed": true
+    },
+    {
+      "name": "No old app.data reference:SshPage.qml",
+      "passed": true
+    },
+    {
+      "name": "No Item.data redeclaration:ToolboxPage.qml",
+      "passed": true
+    },
+    {
+      "name": "No old app.data reference:ToolboxPage.qml",
+      "passed": true
+    },
+    {
+      "name": "No Item.data redeclaration:Trend.qml",
+      "passed": true
+    },
+    {
+      "name": "No old app.data reference:Trend.qml",
+      "passed": true
+    },
+    {
+      "name": "No Item.data redeclaration:ToolText.qml",
+      "passed": true
+    },
+    {
+      "name": "No old app.data reference:ToolText.qml",
+      "passed": true
+    },
+    {
+      "name": "No Item.data redeclaration:BatteryPage.qml",
+      "passed": true
+    },
+    {
+      "name": "No old app.data reference:BatteryPage.qml",
+      "passed": true
+    },
+    {
+      "name": "No Item.data redeclaration:MediaPage.qml",
+      "passed": true
+    },
+    {
+      "name": "No old app.data reference:MediaPage.qml",
+      "passed": true
+    },
+    {
+      "name": "Real firmware [property] debug=0",
+      "passed": true
+    },
+    {
+      "name": "Real firmware [property] debug=1",
+      "passed": true
+    },
+    {
+      "name": "Only one property byte separates templates",
+      "passed": true
+    },
+    {
+      "name": "Mode-table debug fields deliberately unchanged",
+      "passed": true
+    },
+    {
+      "name": "ADB saved=1 with real multiple mode fields",
+      "passed": true
+    },
+    {
+      "name": "Real firmware config changed exactly to stock off template",
+      "passed": true
+    },
+    {
+      "name": "Real firmware config restored byte-exactly",
+      "passed": true
+    },
+    {
+      "name": "Ambiguous/missing property rejected:764ae8d5",
+      "passed": true
+    },
+    {
+      "name": "Ambiguous/missing property rejected:c3c1e51d",
+      "passed": true
+    },
+    {
+      "name": "Ambiguous/missing property rejected:6332ce2e",
+      "passed": true
+    },
+    {
+      "name": "Exit race resolves to zombie, not exe mismatch",
+      "passed": true
+    },
+    {
+      "name": "Live unreadable exe remains UNKNOWN, not absent",
+      "passed": true
+    },
+    {
+      "name": "Terminated leader with live thread remains alive",
+      "passed": true
+    },
+    {
+      "name": "No H helper/alias collision",
+      "passed": true
+    },
+    {
+      "name": "Result contract includes Zip/ReportHtml/Summary",
+      "passed": true
+    },
+    {
+      "name": "Fallback raw ZIP supplied",
+      "passed": true
+    },
+    {
+      "name": "Premature host exit never reports CHECK_OK after start",
+      "passed": true
+    },
+    {
+      "name": "Stop response distinguishes failed restore",
+      "passed": true
+    }
+  ],
+  "count": 48,
+  "all_passed": true
+}

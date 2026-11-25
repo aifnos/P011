@@ -1,0 +1,55 @@
+{
+  "schema": "receive-durable-state-v1-executor-host-contract",
+  "evidence": "SOURCE_ONLY_PREPARED_NOT_EXECUTED",
+  "test": "tests/test_receive_durable_executor_v1.py",
+  "selector": "ReceiveDurableExecutorV1Tests.test_bound_failure_original_pipe_and_parent_contract",
+  "stdout_marker": "RECEIVE_DURABLE_EXECUTOR_FIXTURE_CONTRACT=1",
+  "new_methods": 1,
+  "old_methods": 0,
+  "domains": 30,
+  "independent_source_audit": {
+    "executor": "complete forward and inverse replacement proof using executor-exactsource-delta.json",
+    "codec": "pinned original/candidate and complete forward/inverse proof using exactsource-control-bridge-delta.json",
+    "storage_transport": "reuse helper definition audit for complete forward/inverse exact-source delta; no earlier test method executes",
+    "parent_finish": "AST method equality to original selected Executor; not executed",
+    "generic_emit_receive": "AST method equality to original selected Executor cancellation gates"
+  },
+  "actual_layers": [
+    "fresh Linux held directory and archive file descriptors",
+    "ZIP CRC, fsync, publication and late cancellation",
+    "ReceiverTransport._run_impl",
+    "ClientExecutor._confirm_receive",
+    "ClientExecutor._run_native_receive exception branch",
+    "ClientExecutor._retain_saved_failure and _emit_saved_failure",
+    "immutable codec ConnectRequest, ReceivePrompt and claimed ReceiveDecision",
+    "real Linux held pipes mapped only to logical stdin/stdout numbers",
+    "ParentExecutor._receive_event"
+  ],
+  "explicit_fixtures": [
+    "IP and peer admitted identity and peer closed_facts",
+    "Owner constructor and synchronous transport composition instead of native admission",
+    "Executor receive-root constant retargeted only to fresh fixture-owned root",
+    "receive-directory admission collaborator returns a declared metadata fixture",
+    "WSS/connect/download/check/socket lifecycle boundaries from pinned helper definitions",
+    "accepted decision bytes supplied by HOST after actual prompt write",
+    "clock, short-write, pipe-change, not-ready and metadata/provenance fault injection",
+    "Parent admitted CONNECT/reply tickets with actual immutable Parent prompt identity"
+  ],
+  "scope_exclusions": [
+    "real native Owner.run admission, active lock or RF permission",
+    "Owner finally replacing Storage exception with a distinct cleanup exception",
+    "Parent.start, Parent.finish, F.run and actual child process",
+    "full 35-module native chain, State, service and UI",
+    "network, TLS, device, phone, peer completion ACK and restoration proof"
+  ],
+  "original_exception_identity_required": true,
+  "saved_failed_never_committed": true,
+  "single_diagnostic_attempt_required": true,
+  "prior_receive_frames_must_be_sent_exactly": true,
+  "original_clock_and_pipe_bounds_retained": true,
+  "selected_graph_changed": false,
+  "device": false,
+  "phone": false,
+  "rf": false,
+  "deployed": false
+}

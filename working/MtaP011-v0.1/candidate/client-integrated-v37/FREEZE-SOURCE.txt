@@ -1,0 +1,56 @@
+CLIENT INTEGRATED V37 - FIXED HOST SOURCE MAP, NOT DEPLOYMENT ADMISSION
+
+This later record supersedes only the pre-freeze manifest/composition status in
+INTEGRATION-SOURCE.txt. That earlier source-review note remains unchanged.
+No source import, AST, checker, test, algorithm, device or network action was
+performed by this author. Root owns the first affected combined HOST method.
+
+New fixed map:
+  host/client_integrated_v37_source_manifest.json
+  SHA256 4b9ea54997194ca895a3459cf88cd715b2ccc05e46c55b533920f8182314d07a
+  Bytes 8077; schema client-integrated-v37-host; exactly 35 ordered source rows.
+
+Parent source graph:
+  host/client_parent_cap_v33_source_manifest.json
+  SHA256 2b13ba05acb3dd4984f7d2c5740349f4d90f1980ebde4014aa63f62a515f721a
+  Bytes 8080; all 29 non-replaced rows remain exact parent records in order.
+
+Additional fixed refusal source provenance:
+  host/client_budget_refusal_v36_source_manifest.json
+  SHA256 676d2058feb1b2fc94aa1a686b7a8a2b42475dfff3028eec3ab05e0647079e29
+  Bytes 8080. Only its exact Pending and Coordination sources are selected;
+  integrated Store was previously merged from its exact two known-refusal hunks.
+
+Six replacements from the parent graph (full pins / bytes):
+  mta_client_executor
+    candidate/client-integrated-v37/runtime/mta_client_executor.py
+    f3f7c9fb54e46f82b4321152dfac6f4ab9b037943c403d76716f8254700bb17e / 105182
+  mta_client_control_frame
+    candidate/client-integrated-v37/runtime/mta_client_control_frame.py
+    d1a8fce91ab705524f14edac8d81e8d391c0cddbf8f4ac96ee7a6446c0512278 / 20942
+  mta_client_linux_provider
+    candidate/client-integrated-v37/runtime/mta_client_linux_provider.py
+    5f080f8a0d53d7232ec95c303e0e84036d22d4e0927ac98dd3195291cf6d56ba / 174220
+  mta_client_store
+    candidate/client-integrated-v37/runtime/mta_client_store.py
+    bc51d3c64d3c92a87da331c740d93cea7466c535c5a81969422a45b8c5b68f63 / 74676
+  mta_client_pending
+    candidate/client-budget-refusal-v36/runtime/mta_client_pending.py
+    deaf62f9830b951584b36100de0f88548bcd6356b7327c3be0fa8578b65aba8a / 53132
+  mta_client_coordination
+    candidate/client-budget-refusal-v36/runtime/mta_client_coordination.py
+    5b8a4295a5479cb5693182085fc8d35c6041bb0f14d9efb660ec11f024a5eeb3 / 36295
+
+Key unchanged rows:
+  Core d3b51493d3ae778aeb72c1304dc50e5a6221428f7775bc7a28d15a3f19abeaaa / 71315
+  TwoPhase c227989ec5188c272ad0a212974d569572704d3bb07c4c61c72670abcd0981a5 / 27606
+  Proc ede5953c33ba4c17d3aecb1fffe8a9358589497b37e3109034d5e1de3eadb3d6 / 39384
+  No quota, resource profile, cap, mutation phase or callback stage was changed.
+
+Separate State integration, not a source-map authority:
+  Bridge 0f7ae69c36a65bb8b4c0fc5f63300efe4c71c8f2af4c1ed2eddeb286c98c0d0c / 19534
+  State c27a6978fb91fd414da96c57577e7030e059583bc10aad40b26dd0924505a2ab / 57929
+  trusted factory defaults None; receive_available and send_available remain
+  False. No physical preparer, GUI admission, RF launch, phone or restoration
+  acceptance is asserted. Separate reviewed component HOST results do not
+  constitute a combined v37 HOST PASS or actual P011 interoperability.

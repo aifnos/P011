@@ -1,0 +1,157 @@
+{
+  "changed_payload": [
+    "Bridge.qml",
+    "FormalEntry.qml",
+    "Z03.mta-ui-candidate",
+    "mta/MtaPage.qml"
+  ],
+  "changed_staged_files": 5,
+  "entry_replacements": [
+    {
+      "complete_byte_inverse": true,
+      "occurrences": 1,
+      "path": "Bridge.qml"
+    },
+    {
+      "complete_byte_inverse": true,
+      "occurrences": 2,
+      "path": "FormalEntry.qml"
+    }
+  ],
+  "guardian": {
+    "candidate": [
+      "candidate/formal-send-status-package-v3/runtime/ui_guardian.py",
+      43994,
+      "c36560f4d481677ce61ec9cbed5910f4f202e381215a4cd5f2eb564965712998"
+    ],
+    "origin": [
+      "candidate/formal-send-preflight-ui-v1/runtime/ui_guardian.py",
+      43996,
+      "8df81808cbd6e32848e5698a5adc486f1027daf8270e5841f83f852d3513b3c1"
+    ],
+    "replacements": [
+      {
+        "after": "SESSION = '6d4fb1fd4af949cbb3515870'",
+        "before": "SESSION = 'c69296a193ff43ce8e5b901d'",
+        "name": "SESSION"
+      },
+      {
+        "after": "CONTROL_NAME = 'p011-mta-ui-session-' + SESSION + '-formal-send-status-package-v3'",
+        "before": "CONTROL_NAME = 'p011-mta-ui-session-' + SESSION + '-formal-send-preflight-native-v1'",
+        "name": "CONTROL_NAME"
+      }
+    ]
+  },
+  "nav_root_only_complete_inverse": true,
+  "ordinary_graph_changed": false,
+  "other_399_original": true,
+  "page_replacements": [
+    {
+      "after": "    property var lifetime: ({alive: true, epoch: 0})\n    property var statusPresentationFence: ({}) // Local presentation only; never backend authority.\n",
+      "before": "    property var lifetime: ({alive: true, epoch: 0})\n",
+      "count": 1,
+      "name": "presentation_fence_property"
+    },
+    {
+      "after": "    function refresh() {\n        if (statusPending || actionPending || leaving) return;\n        var fence = statusPresentationFence;\n        statusPending = true;\n        request(\"/v1/status\", null, function(ok, value) {\n            if (fence !== statusPresentationFence) return;\n            statusPending = false;\n            if (ok) applyStatus(value);\n            else { backendOnline = false; connectionReason = String(value.reason || value.error || \"\u8fde\u63a5\u4e2d\u65ad\uff0c\u4f20\u8f93\u72b6\u6001\u5f85\u6838\u5b9e\"); }\n        });\n    }\n",
+      "before": "    function refresh() {\n        if (statusPending || leaving) return;\n        statusPending = true;\n        request(\"/v1/status\", null, function(ok, value) {\n            statusPending = false;\n            if (ok) applyStatus(value);\n            else { backendOnline = false; connectionReason = String(value.reason || value.error || \"\u8fde\u63a5\u4e2d\u65ad\uff0c\u4f20\u8f93\u72b6\u6001\u5f85\u6838\u5b9e\"); }\n        });\n    }\n",
+      "count": 1,
+      "name": "refresh_presentation_fence"
+    },
+    {
+      "after": "        // A pre-action GET may finish later, but cannot present an older snapshot.\n        statusPresentationFence = {};\n        var fence = statusPresentationFence;\n        statusPending = false;\n        actionPending = true; actionObserved(action);\n        request(\"/v1/action\", body, function(ok, value) {\n            if (fence !== statusPresentationFence) return;\n            actionPending = false;\n",
+      "before": "        actionPending = true; actionObserved(action);\n        request(\"/v1/action\", body, function(ok, value) {\n            actionPending = false;\n",
+      "count": 1,
+      "name": "action_presentation_fence"
+    },
+    {
+      "after": "        leaving = true; lifetime.epoch++; statusPresentationFence = {};\n",
+      "before": "        leaving = true; lifetime.epoch++;\n",
+      "count": 1,
+      "name": "leave_presentation_fence"
+    },
+    {
+      "after": "        // Late replies from an old token/service must not re-enable actions.\n        lifetime.epoch++; statusPresentationFence = {};\n",
+      "before": "        // Late replies from an old token/service must not re-enable actions.\n        lifetime.epoch++;\n",
+      "count": 1,
+      "name": "reset_presentation_fence"
+    }
+  ],
+  "page_source": [
+    "candidate/formal-send-status-presentation-v1/exactsource-delta.json",
+    3589,
+    "2525a8e170129c7ab4682f33c8b99e4c320b1e22b2ff36796d3bc95dc2862bf6"
+  ],
+  "qrc_same_slot": true,
+  "runtime_complete_byte_ast_inverse": true,
+  "runtime_definition_bytes_and_lines_unchanged": true,
+  "schema": "p011-formal-send-status-package-v3-exactsource-delta",
+  "validator": {
+    "candidate": [
+      "candidate/formal-send-status-package-v3/runtime/ui_assets.py",
+      12526,
+      "430308223593d5d783c1ec1d29a90dcbe82606b33690fc263572b8353d9fd4e8"
+    ],
+    "origin": [
+      "candidate/formal-send-picker-package-v1/runtime/ui_assets.py",
+      12526,
+      "7bf8bd1e239ab8cf21a6662ea9217de3e2bef634fb20f31880482abbaca4fd21"
+    ],
+    "replacements": [
+      {
+        "after": "SESSION = '6d4fb1fd4af949cbb3515870'",
+        "before": "SESSION = 'c69296a193ff43ce8e5b901d'",
+        "name": "SESSION"
+      },
+      {
+        "after": "MANIFEST_PIN = (1603, '5f0e30136af76a1fb998ed2e2b17e8727a623edf1fcd0c3ce02f1d49272b34ba')",
+        "before": "MANIFEST_PIN = (1603, 'fe3733cb856e1065a9c82e34c5ce962c5097e2f732cd9bdcf2627b70499874e0')",
+        "name": "MANIFEST_PIN"
+      },
+      {
+        "after": "PINS = (\n    ('Bridge.qml', 2560, '9018ae4e798684fbc100bf34fcfb6d88a41ae0d8e95bd0a9ded2680a2d0597f1'),\n    ('FormalEntry.qml', 4080, 'ae35b100ea7b1049bdd7abecde39b0f04c87d32d1fd420a33e6490b9d1a73f86'),\n    ('ReceiveComposition.qml', 402, 'a739489cfaf77f9500e3ac3585f34d9fadf152de92770a2ced525bfbb41eb360'),\n    ('Z03.mta-ui-candidate', 4103844, '9caf72924d110186a9e4f89e872bb1ca9debb096f9ece6c34263c00aba95d7cf'),\n    ('mta/MtaButton.qml', 758, '7e1d4e378b8e3293e617f4dc432cce3c70ae7fe377f2ea26950aa9bb11393bff'),\n    ('mta/MtaHost.qml', 6602, 'dcb6178f6d3179b7bab61e6818ae21a02443c902446f6b203c82bd16b8b479c3'),\n    ('mta/MtaKeyboard.qml', 5345, '2de31e8cde68ab6ff76f4da85c386d5cddb466cccefb809987dddfce2f8c40cc'),\n    ('mta/MtaLabel.qml', 352, '77caf248c2f83ed50f5221082084e5af360d08fc917df98eb84449e24903bd75'),\n    ('mta/MtaPage.qml', 27307, '667b3e54c9fc7dbbd41e4fe8533e9926eab7a1942b6220248626bb30acf0f6fc'),\n    ('mta/MtaTheme.js', 262, '5848aa8bf1dab57cfe590dd80da1122eb819c75c1f208f69ad4184bf669a99ff'),\n    ('toolbox/Button.qml', 666, 'bc8878dfd7c50512934bb9a9a0aab2e54ed84ac86967d3db49d38cd87f3b6216'),\n    ('toolbox/ExtensionPage.qml', 10110, 'e7fac81643238b1e3aa0233bd4af0a8dfb0fbfc8ebe05562b44d84ecb7c74581'),\n    ('toolbox/FilesPage.qml', 11640, 'fd34d837b5790b950a41e86fc5cd23b4dd8458932379b59f37e4a42474939865'),\n    ('toolbox/Label.qml', 270, '7a6d83a7ee45b450db32db224ac372e7d4fbdba57553a71c7230a02e77674376'),\n    ('toolbox/MtaEmbedded.qml', 6544, '5c3fe62973da460bebd779f3c15ca2d9906f8ee52513e7fe4a4cb3b1d8982b89'),\n    ('toolbox/NativeIcon.qml', 2000, '59ff989674ff862f661e2e8ccdf804eeda0e27cfbd229729219e92141d7d0b1d'),\n    ('toolbox/Theme.js', 245, '792bd479b18abb45cd3a71ac8e393ec32064755ffdb605e098691e77681b31ad'),\n    ('toolbox/VideoPane.qml', 706, '2e076a699b1dae83b316130db6f0df2ec69025d25ddcdd6dee78ddc438b7b230'),\n)",
+        "before": "PINS = (\n    ('Bridge.qml', 2560, '7b8a899e73b1d682374de6dd8585b927b8478c7fe41b0cd0a2e29275a2d832ee'),\n    ('FormalEntry.qml', 4080, 'f83df3553a8bbf19d69570a0cced61e24de34b94e35b639342c472040c6d1518'),\n    ('ReceiveComposition.qml', 402, 'a739489cfaf77f9500e3ac3585f34d9fadf152de92770a2ced525bfbb41eb360'),\n    ('Z03.mta-ui-candidate', 4103844, '22e56e86b27263048d9d009e24b6b79e16ca9f60cf978ce50d4fc0d3a33f955b'),\n    ('mta/MtaButton.qml', 758, '7e1d4e378b8e3293e617f4dc432cce3c70ae7fe377f2ea26950aa9bb11393bff'),\n    ('mta/MtaHost.qml', 6602, 'dcb6178f6d3179b7bab61e6818ae21a02443c902446f6b203c82bd16b8b479c3'),\n    ('mta/MtaKeyboard.qml', 5345, '2de31e8cde68ab6ff76f4da85c386d5cddb466cccefb809987dddfce2f8c40cc'),\n    ('mta/MtaLabel.qml', 352, '77caf248c2f83ed50f5221082084e5af360d08fc917df98eb84449e24903bd75'),\n    ('mta/MtaPage.qml', 26769, '1084ea1a5a906bbf0f56ea20df031ea9b4a1fd0931879e80cd6dfb475f7eabc2'),\n    ('mta/MtaTheme.js', 262, '5848aa8bf1dab57cfe590dd80da1122eb819c75c1f208f69ad4184bf669a99ff'),\n    ('toolbox/Button.qml', 666, 'bc8878dfd7c50512934bb9a9a0aab2e54ed84ac86967d3db49d38cd87f3b6216'),\n    ('toolbox/ExtensionPage.qml', 10110, 'e7fac81643238b1e3aa0233bd4af0a8dfb0fbfc8ebe05562b44d84ecb7c74581'),\n    ('toolbox/FilesPage.qml', 11640, 'fd34d837b5790b950a41e86fc5cd23b4dd8458932379b59f37e4a42474939865'),\n    ('toolbox/Label.qml', 270, '7a6d83a7ee45b450db32db224ac372e7d4fbdba57553a71c7230a02e77674376'),\n    ('toolbox/MtaEmbedded.qml', 6544, '5c3fe62973da460bebd779f3c15ca2d9906f8ee52513e7fe4a4cb3b1d8982b89'),\n    ('toolbox/NativeIcon.qml', 2000, '59ff989674ff862f661e2e8ccdf804eeda0e27cfbd229729219e92141d7d0b1d'),\n    ('toolbox/Theme.js', 245, '792bd479b18abb45cd3a71ac8e393ec32064755ffdb605e098691e77681b31ad'),\n    ('toolbox/VideoPane.qml', 706, '2e076a699b1dae83b316130db6f0df2ec69025d25ddcdd6dee78ddc438b7b230'),\n)",
+        "name": "PINS"
+      }
+    ]
+  },
+  "worker": {
+    "candidate": [
+      "candidate/formal-send-status-package-v3/runtime/ui_session.py",
+      46416,
+      "adc1561cd32d53257c5df123c4516c63e38198a7c08a04be0fc51249d2893c25"
+    ],
+    "origin": [
+      "candidate/formal-send-preflight-ui-v1/runtime/ui_session.py",
+      46418,
+      "eb1f076560b8061a48b7138a747e805fd9fa32fad86d7d2a025e428d555ab9b7"
+    ],
+    "replacements": [
+      {
+        "after": "SESSION = '6d4fb1fd4af949cbb3515870'",
+        "before": "SESSION = 'c69296a193ff43ce8e5b901d'",
+        "name": "SESSION"
+      },
+      {
+        "after": "CONTROL_NAME = 'p011-mta-ui-session-' + SESSION + '-formal-send-status-package-v3'",
+        "before": "CONTROL_NAME = 'p011-mta-ui-session-' + SESSION + '-formal-send-preflight-native-v1'",
+        "name": "CONTROL_NAME"
+      },
+      {
+        "after": "GUARDIAN_PIN = (43994, 'c36560f4d481677ce61ec9cbed5910f4f202e381215a4cd5f2eb564965712998')",
+        "before": "GUARDIAN_PIN = (43996, '8df81808cbd6e32848e5698a5adc486f1027daf8270e5841f83f852d3513b3c1')",
+        "name": "GUARDIAN_PIN"
+      },
+      {
+        "after": "ASSETS_PIN = (12526, '430308223593d5d783c1ec1d29a90dcbe82606b33690fc263572b8353d9fd4e8')",
+        "before": "ASSETS_PIN = (12526, '7bf8bd1e239ab8cf21a6662ea9217de3e2bef634fb20f31880482abbaca4fd21')",
+        "name": "ASSETS_PIN"
+      },
+      {
+        "after": "SENDER_ASSET_SEAL = (SESSION, ASSETS, (1603, '5f0e30136af76a1fb998ed2e2b17e8727a623edf1fcd0c3ce02f1d49272b34ba'))",
+        "before": "SENDER_ASSET_SEAL = (SESSION, ASSETS, (1603, 'fe3733cb856e1065a9c82e34c5ce962c5097e2f732cd9bdcf2627b70499874e0'))",
+        "name": "SENDER_ASSET_SEAL"
+      }
+    ]
+  }
+}

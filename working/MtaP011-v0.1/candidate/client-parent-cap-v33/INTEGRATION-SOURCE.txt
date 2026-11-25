@@ -1,0 +1,75 @@
+P011 CLIENT parent absolute cap v33 — SOURCE ONLY
+
+本候选未执行 import、AST、HOST 方法、ADB、设备或无线操作。旧候选及其回执不变。
+冻结图：host/client_parent_cap_v33_source_manifest.json，35 源；以 v32 manifest
+80b9a606f69c25b45387ea7dc640708d50dfafe16f8e1c9b6978645af6451b96 为父，
+只更换 Core/Store/TwoPhase/Provider/F 五源，其余 30 源、顺序与 pin 不变。
+
+1. 修复的因果断点
+
+原 State bridge 在 min(Session._task_deadline, Handoff.deadline) 退出并发 CANCEL，
+但 Parent 原启动只传 --ttl 300；F 稍后首次发行 issued_at+300。
+CONNECT 在 INIT ready 后才发送，不能依靠 CONNECT 或及时 CANCEL 约束首次 RF。
+本候选把原绝对 cap 在首 RF 前传入首次发行；没有把剩余时间换成新的 TTL。
+
+2. 实际接线（保持原 owner/worker/clock/epoch）
+
+ParentExecutor.start(ttl=300) 无新增公开期限参数。
+仅已绑定实际 ReceiveConnectHandoff 的 Parent，在原 State.lock 中复核 Handoff，
+捕获 Session._task_deadline 与 Handoff.deadline 原值，保留对象/clock/op/epoch，
+生成 min 原 cap 的 repr(float) 文本。spawn 前再次复核同原件，不能从 UI/HTTP 取新 until。
+无 Handoff 的独立 HOST 调用保留原 7 参数路径；不构成 State 接收准入。
+
+私有启动参数顺序：
+  python -B executor --execute-client-init --run-token TOKEN
+  --manifest-sha256 SHA --ttl 300.0 --parent-until CANONICAL_FLOAT_TEXT
+
+main 仅接受固定 7 或 9 参数；9 参数只允许 execute，严格解析有限正数及 canonical repr。
+实际 F actor argv digest 包含相同两个新增参数，顺序与 Parent 原 Popen 参数一致。
+F Loader/read_self 取 min(原局部期限, 原 cap)，但不据 cap 或哈希宣告无线权限。
+F assemble -> Provider assemble -> Store 私有 _parent_until_v33 原件，均在 lease.start 前。
+
+TwoPhase start 仍只接受 exact profile 最大 TTL：trial20 或 formal300。
+准备期取 min(now+PREPARATION_SECONDS, 原 cap)。
+首次一次 issued_at 后取 min(issued_at+固定 profile max, 原 cap)，再保存 prepared。
+后续 Journal/watchdog/native producer 沿用同一个 deadline，不再 now+300。
+Journal schema6、四字段原发行 tuple、后续 key/CAS/replace 原件等值均保持。
+Store 在首次发行及 session_issued_v28 核验精确 min 等式，不只检查 deadline<=cap。
+cap=None 保原独立路径；trial profile 非 None cap 拒绝。
+
+watchdog 仍只 --until 原 record.deadline，不接受 --parent-until 额外参数。
+为传递原 float 精度，原十进制格式兼容仍在，同时允许 exact repr(float)（包括科学计数）。
+watchdog 原 remaining<=300 检查保留，不新发 active deadline。
+恢复 60 秒及 Parent finish 90 秒未收紧为 expired active cap，不因此删除/关闭不明原件。
+
+3. 五源接口与 pin
+
+mta_p2p_client_init.py /71315
+  d3b51493d3ae778aeb72c1304dc50e5a6221428f7775bc7a28d15a3f19abeaaa
+  仅新增纯 _parent_until_v33 / _session_deadline_v33；无新 Profile/Journal 字段。
+mta_client_store.py /73163
+  01cc73b2f347e19f2f79b152502aca53fb50ea070ea8189b98b812bb580e65fe
+  ctor 私有 cap；纯 parent_until_v33(profile)；首次/原发行精确 min gate。
+mta_client_two_phase_lease.py /27606
+  c227989ec5188c272ad0a212974d569572704d3bb07c4c61c72670abcd0981a5
+  准备及首次发行期限读取原 Store cap；restore 不变。
+mta_client_linux_provider.py /160318
+  bc234788d865f363f2b74234180dc05bf90431cedb5c5c85cdf897cd70c5ff1c
+  assemble 新增私有 cap 转发 Store；_now/session_specs 原发行消费保持。
+mta_client_executor.py /105020
+  d55e1f55f52ab869ae5ad82c8979d1ef4aae5bc36489d11630d3c76ec45a5083
+  Parent 原 cap 捕获；argv/main/actual entry identity/Loader/F cap 转发。
+
+独立批准的一行 SOURCE 修正：Provider.poll_executor_stop_v32 不再要求
+control.io is provider._io；F 默认 _LinuxIo 与 Provider 默认 _ArmIo 本来是不同原件。
+仍要求 control.io is actual_executor.io、retained input facts 与 actual Owner fresh FD。
+这个 IO 身份缺口与共享原 cap 是两个归因，不能把一个测试结果当另一个已通过。
+
+4. 交付时仍为 false / 未接入
+
+本轮 AST/HOST_first_pass/device_pass/phone_interop 均 false（未执行，非测试失败结论）。
+生产 State receive_available 保持 False，未改 QML、原 runtime 或启用接收。
+State bridge r2 当前仍固定旧 F f499 来源；部署新 v33 前须根审新 exact F pin，
+在新的隔离 bridge/部署图中明确更新，不删 pin 或开放未来任意工厂版本。
+trusted 部署 factory、实际 P011 admission/init/restore 及小米15 Ultra 真实互通未证明。
+同图 35 源组合 HOST 首方法由 root 执行并保留首次 raw，不重跑本子任务以前的方法。

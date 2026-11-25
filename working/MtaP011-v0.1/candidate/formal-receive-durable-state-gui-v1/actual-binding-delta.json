@@ -1,0 +1,39 @@
+{
+  "schema": "p011-receive-durable-gui-v1-actual-binding",
+  "evidence": "ACTUAL_PC_BUILD_READBACK_ONLY",
+  "source": [
+    "candidate/formal-receive-durable-state-gui-v1/runtime/ui_assets.py.in",
+    10917,
+    "1bde9f77ff72785c87cb130d16e72d1a6d257fd469e37a080dd0dd930e26ac37"
+  ],
+  "candidate": [
+    "candidate/formal-receive-durable-state-gui-v1/runtime/ui_assets.py",
+    12798,
+    "67e3d2d1bd7654cde6993d9746c8dd2cb3447676f0fb0f4bb2dec4a2ffb8d1bb"
+  ],
+  "bundle": "out/mta-ui-receive-durable-state-gui-v1-559c72ccf8f8ff1b7fc83fb6",
+  "replacements": [
+    {
+      "before": "# UNBOUND PC template only. This .py.in is not a deployable validator.\n# ROOT must bind actual fresh bundle identities with apply_patch after PC build/readback.\n",
+      "after": "# Bound to the actual PC-built/read-back GUI20; device validation is still unrun.\n# Original validator IO, inventory, deadline and closure logic are unchanged.\n",
+      "count": 1
+    },
+    {
+      "before": "SESSION = '@UNBOUND_SESSION@'",
+      "after": "SESSION = '559c72ccf8f8ff1b7fc83fb6'",
+      "count": 1
+    },
+    {
+      "before": "MANIFEST_PIN = None  # UNBOUND until the actual fresh SOURCE.sha256 is read back.\nPINS = None  # UNBOUND until the actual fresh 19 payload files are read back.\n",
+      "after": "MANIFEST_PIN = (1691, 'c7b28ae564fb3b86daab4588c9b4bfd0fe46525eddd57be905b456c0fe549c22')\nPINS = (\n    ('Bridge.qml', 2560, 'fd3aa34b4d1f768998cca41306c1b1168743a39b4cbfddb6dc76dc2cd54aa625'),\n    ('FormalEntry.qml', 5757, '9d0abee7b828f0ed561dca1b9b3a0b190132b11f02862a702876436da86fce2b'),\n    ('NavigationTest.qml', 8731, 'efb77831d309e2deba30f646521be8d747efb8e4e05cfc72d25b8e3da0df2216'),\n    ('ReceiveComposition.qml', 420, 'ea295bccae4dd3ad4afa3110acbea158da10c9febe2290fc809e8e0fe3b84c66'),\n    ('Z03.mta-ui-candidate', 4103844, '2ed44fa6d904e255409f919c6d587e22e52d53dd8b70c12b85eac8287462a22b'),\n    ('mta/MtaButton.qml', 758, '7e1d4e378b8e3293e617f4dc432cce3c70ae7fe377f2ea26950aa9bb11393bff'),\n    ('mta/MtaHost.qml', 1683, 'd7c336fd5aa5803d394685d1c33ad66deb1afa4de2c6e75f1ddf1632f27e66e4'),\n    ('mta/MtaKeyboard.qml', 5345, '2de31e8cde68ab6ff76f4da85c386d5cddb466cccefb809987dddfce2f8c40cc'),\n    ('mta/MtaLabel.qml', 352, '77caf248c2f83ed50f5221082084e5af360d08fc917df98eb84449e24903bd75'),\n    ('mta/MtaPage.qml', 28426, 'b5f69f032395999c5bd2bdbb3759e7cb47859baee0a87fe462341b1b99ff0755'),\n    ('mta/MtaTheme.js', 262, '5848aa8bf1dab57cfe590dd80da1122eb819c75c1f208f69ad4184bf669a99ff'),\n    ('toolbox/Button.qml', 666, 'bc8878dfd7c50512934bb9a9a0aab2e54ed84ac86967d3db49d38cd87f3b6216'),\n    ('toolbox/ExtensionPage.qml', 9955, '3647a4070d68e9ce5918a40432e05a075a9dfbf8c9ebf99599d3c4cb5ee27bbc'),\n    ('toolbox/FilesPage.qml', 11973, '4d4deb4c57a0e90360e2f95b9ee55dfcf43e0cbe464e3441823418a43feff867'),\n    ('toolbox/Label.qml', 270, '7a6d83a7ee45b450db32db224ac372e7d4fbdba57553a71c7230a02e77674376'),\n    ('toolbox/MtaEmbedded.qml', 6805, '2c5e508d2b2f31f872089061596092993ee0d0cc4794983abc73fec3396a6565'),\n    ('toolbox/NativeIcon.qml', 2000, '59ff989674ff862f661e2e8ccdf804eeda0e27cfbd229729219e92141d7d0b1d'),\n    ('toolbox/Theme.js', 245, '792bd479b18abb45cd3a71ac8e393ec32064755ffdb605e098691e77681b31ad'),\n    ('toolbox/VideoPane.qml', 736, 'd83b52d208d53565519ec5a6af067dbcacfeabc6a3fb216d6cc4e9e7df102210'),\n)\n",
+      "count": 1
+    },
+    {
+      "before": "    print('UNBOUND_RECEIVE_DURABLE_STATE_GUI_V1_TEMPLATE validation=false service=false credentials=false radio=false')\n\n\n",
+      "after": "    print('SOURCE_RECEIVE_DURABLE_STATE_GUI_V1_ASSETS validation=false service=false credentials=false radio=false')\n\n",
+      "count": 1
+    }
+  ],
+  "device_executed": false,
+  "worker_connected": false
+}

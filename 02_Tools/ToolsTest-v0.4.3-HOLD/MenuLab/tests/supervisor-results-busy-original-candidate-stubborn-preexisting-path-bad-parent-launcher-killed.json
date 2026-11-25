@@ -1,0 +1,64 @@
+{
+  "scope": "Host Linux fake-process tests, NOT P011/Qt/Windows",
+  "cases": [
+    {
+      "case": "busy-original",
+      "pass": true,
+      "evidence": [
+        "13:50:55 CHECK_OK: original PID=1360, restart-loop PID=1359; hashes and Wayland verified.",
+        "13:50:56 GUARDIAN_ARMED: timeout and rollback run ON the pen, not in PowerShell.",
+        "13:50:56 RESTART_LOOP_PAUSED",
+        "13:50:56 ORIGINAL_TERM_SENT: waiting for exit; original app is never SIGKILLed.",
+        "13:51:04 ERROR: RuntimeError: Original Z03 did not exit in 8 seconds; candidate NOT started.",
+        "13:51:05 WORKER_EXIT: 1",
+        "13:51:05 RESTORING_STOCK",
+        "13:51:05 TEMP_MENU_ALIAS_REMOVED",
+        "13:51:05 RESTART_LOOP_RESUMED: PID=1359",
+        "13:51:07 RESTORED_STOCK_PROCESS: PID=1360; original files unchanged. Visual recovery still needs user confirmation."
+      ]
+    },
+    {
+      "case": "candidate-stubborn",
+      "pass": true,
+      "evidence": [
+        "13:51:07 CHECK_OK: original PID=1392, restart-loop PID=1391; hashes and Wayland verified.",
+        "13:51:07 GUARDIAN_ARMED: timeout and rollback run ON the pen, not in PowerShell.",
+        "13:51:08 RESTART_LOOP_PAUSED",
+        "13:51:08 ORIGINAL_TERM_SENT: waiting for exit; original app is never SIGKILLed.",
+        "13:51:08 CANDIDATE_RUNNING: PID=1413; test window=1s; inspect the pen screen now.",
+        "13:51:09 TEST_WINDOW_ENDED: guardian will restore stock.",
+        "13:51:09 WORKER_EXIT: 0",
+        "13:51:09 RESTORING_STOCK",
+        "13:51:14 CANDIDATE_FORCE_EXIT: PID=1413 (not original app)",
+        "13:51:14 TEMP_MENU_ALIAS_REMOVED",
+        "13:51:14 RESTART_LOOP_RESUMED: PID=1391",
+        "13:51:16 RESTORED_STOCK_PROCESS: PID=1414; original files unchanged. Visual recovery still needs user confirmation."
+      ]
+    },
+    {
+      "case": "preexisting-path",
+      "pass": true
+    },
+    {
+      "case": "bad-parent",
+      "pass": true
+    },
+    {
+      "case": "launcher-killed",
+      "pass": true,
+      "evidence": [
+        "13:51:17 CHECK_OK: original PID=1450, restart-loop PID=1449; hashes and Wayland verified.",
+        "13:51:17 GUARDIAN_ARMED: timeout and rollback run ON the pen, not in PowerShell.",
+        "13:51:18 RESTART_LOOP_PAUSED",
+        "13:51:18 ORIGINAL_TERM_SENT: waiting for exit; original app is never SIGKILLed.",
+        "13:51:18 CANDIDATE_RUNNING: PID=1471; test window=30s; inspect the pen screen now.",
+        "13:51:18 ERROR: RuntimeError: Stock restart-loop changed/resumed unexpectedly.",
+        "13:51:18 WORKER_EXIT: 1",
+        "13:51:18 RESTORING_STOCK",
+        "13:51:18 TEMP_MENU_ALIAS_REMOVED",
+        "13:51:18 ORIGINAL_LAUNCHER_RESTARTED: PID=1472; unchanged stock script.",
+        "13:51:20 RESTORED_STOCK_PROCESS: PID=1473; original files unchanged. Visual recovery still needs user confirmation."
+      ]
+    }
+  ]
+}

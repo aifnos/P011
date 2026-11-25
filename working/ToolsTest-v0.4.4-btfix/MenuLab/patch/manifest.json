@@ -1,0 +1,60 @@
+{
+  "firmware": "z031_v2.1.2-20221124_143128-user",
+  "original_sha256": "e6760ad70cc17b089fd3dded68e58feb545a6b77f3f653b90d7427104b626997",
+  "original_size": 4001256,
+  "qml_resource": "/NaviPanel.qml",
+  "original_qml_sha256": "68915d92ca6cc084779e106d65e1c62b2e7bb64d735c0676298795d7ce04f42b",
+  "record_offset": 1860188,
+  "record_offset_hex": "0x1c625c",
+  "original_record_size": 1584,
+  "new_payload_size": 1556,
+  "unused_padding": 24,
+  "block_sha256": "881d7426f5d01caf4dcf6cde63b0c206dedbca1208c9205a3b92760e734d3f8a",
+  "embedded_qml_sha256": "41a5c0eece5dbf67d0ddf73bcfc6927b2eca49912b739066a987fbfcb377c6b8",
+  "candidate_sha256": "85cd5475459ba33a7f3010c861208c9555d0637be1380f07806e86c477d25b6c",
+  "candidate_size": 4001256,
+  "other_resources_unchanged": 398,
+  "changed_resources": [
+    "/ZybQmlFiles/ZybSet/SetBtPage.qml",
+    "/NaviPanel.qml"
+  ],
+  "executable_sections_unchanged": [
+    {
+      "index": 11,
+      "offset": 97332,
+      "length": 12
+    },
+    {
+      "index": 12,
+      "offset": 97344,
+      "length": 15428
+    },
+    {
+      "index": 13,
+      "offset": 112776,
+      "length": 1519680
+    },
+    {
+      "index": 14,
+      "offset": 1632456,
+      "length": 8
+    }
+  ],
+  "external_page": "file:///mnt/data/p011-menu/ToolboxPage.qml",
+  "device_tested": false,
+  "bluetooth_patch": {
+    "qml_resource": "/ZybQmlFiles/ZybSet/SetBtPage.qml",
+    "record_offset": 2220581,
+    "record_offset_hex": "0x21e225",
+    "original_record_size": 3992,
+    "original_payload_size": 3988,
+    "original_qml_sha256": "8b37d58f19c686891942c387bf448e16bad13d1d2b560d54609b227747a59901",
+    "embedded_qml_file": "patch/SetBtPage.embedded.qml",
+    "resource_block_file": "patch/SetBtPage.resource-block.bin",
+    "embedded_qml_sha256": "cffc5df7c0c1aa720dc1d0de2cdfd6f9ee4a713d39642e32756ddd20c43bea38",
+    "block_sha256": "829189be955620be72ae1f1cbf301ce0d6460236ed3b4fb69813d05f0862a2b4",
+    "new_payload_size": 3933,
+    "unused_padding": 55,
+    "device_tested": false
+  }
+}

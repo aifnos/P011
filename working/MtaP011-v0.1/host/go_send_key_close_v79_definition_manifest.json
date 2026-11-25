@@ -1,0 +1,29 @@
+{
+  "schema": "go-send-key-close-v79-definitions",
+  "sources": [
+    {
+      "module": "p011_json",
+      "path": "runtime/p011_json.py",
+      "bytes": 8061,
+      "sha256": "fb6c803b185283258c2312e630df8bb80d6299007e95a1f3cf31250aa0e8ca88"
+    },
+    {
+      "module": "mta_protocol",
+      "path": "runtime/mta_protocol.py",
+      "bytes": 17958,
+      "sha256": "4f7c2bd46cde114f0a2a0c33b31631aa463f09e71b156d26e34daf2251dd8a57"
+    },
+    {
+      "module": "mta_crypto",
+      "path": "runtime/mta_crypto.py",
+      "bytes": 15274,
+      "sha256": "6fde6a60ec327895938a59990c4734a923dd5ff68bd5ee6979791df9a607e516"
+    },
+    {
+      "module": "mta_go_send_bridge",
+      "path": "candidate/go-send-key-close-v79/runtime/mta_go_send_bridge.py",
+      "bytes": 63045,
+      "sha256": "49d4a28c2156b8b99d0ac5965ec4f3cd4bdf617dddfbfcca90073e08e6a50cb4"
+    }
+  ]
+}

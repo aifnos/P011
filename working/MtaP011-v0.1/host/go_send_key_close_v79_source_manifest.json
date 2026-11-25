@@ -1,0 +1,41 @@
+{
+  "schema": "go-send-key-close-v79-host-source",
+  "sources": [
+    {
+      "path": "runtime/p011_json.py",
+      "bytes": 8061,
+      "sha256": "fb6c803b185283258c2312e630df8bb80d6299007e95a1f3cf31250aa0e8ca88",
+      "python35_target": true
+    },
+    {
+      "path": "runtime/mta_protocol.py",
+      "bytes": 17958,
+      "sha256": "4f7c2bd46cde114f0a2a0c33b31631aa463f09e71b156d26e34daf2251dd8a57",
+      "python35_target": true
+    },
+    {
+      "path": "runtime/mta_crypto.py",
+      "bytes": 15274,
+      "sha256": "6fde6a60ec327895938a59990c4734a923dd5ff68bd5ee6979791df9a607e516",
+      "python35_target": true
+    },
+    {
+      "path": "candidate/go-send-key-close-v79/runtime/mta_go_send_bridge.py",
+      "bytes": 63045,
+      "sha256": "49d4a28c2156b8b99d0ac5965ec4f3cd4bdf617dddfbfcca90073e08e6a50cb4",
+      "python35_target": true
+    },
+    {
+      "path": "host/go_send_key_close_v79_definition_manifest.json",
+      "bytes": 868,
+      "sha256": "f770f7d5fd698ba939b336877fc3ccd31a2fc043b8f4740559b38a3e86bac593",
+      "python35_target": false
+    },
+    {
+      "path": "tests/test_go_send_key_close_v79.py",
+      "bytes": 22738,
+      "sha256": "595bfd8e0cacec39f4e69829cbad7ed376fd0f421d063759509675d7138cca52",
+      "python35_target": false
+    }
+  ]
+}

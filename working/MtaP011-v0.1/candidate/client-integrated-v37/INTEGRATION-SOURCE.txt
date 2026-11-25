@@ -1,0 +1,148 @@
+CLIENT INTEGRATED V37 - SOURCE ONLY / NOT A FROZEN DEPLOYMENT GRAPH
+
+Scope and execution boundary
+  Only immutable candidate source was copied/edited with apply_patch. This
+  author performed read-only text, diff, size and SHA-256 checks. No import,
+  AST, test, business method, ADB, target, radio or network action was performed.
+  No v37 manifest exists or is authorized by this note. In particular, this is
+  not a manifest containing v36, nor proof of complete integrated execution.
+  Root owns the first affected execution and raw-result reconciliation.
+
+Current exact products (SHA-256 / bytes)
+  candidate/client-integrated-v37/runtime/mta_client_executor.py
+    f3f7c9fb54e46f82b4321152dfac6f4ab9b037943c403d76716f8254700bb17e / 105182
+  candidate/client-integrated-v37/runtime/mta_client_control_frame.py
+    d1a8fce91ab705524f14edac8d81e8d391c0cddbf8f4ac96ee7a6446c0512278 / 20942
+  candidate/client-integrated-v37/runtime/mta_client_linux_provider.py
+    5f080f8a0d53d7232ec95c303e0e84036d22d4e0927ac98dd3195291cf6d56ba / 174220
+  candidate/client-integrated-v37/runtime/mta_client_store.py
+    bc51d3c64d3c92a87da331c740d93cea7466c535c5a81969422a45b8c5b68f63 / 74676
+  candidate/client-state-bridge-v37/runtime/mta_client_state_bridge.py
+    0f7ae69c36a65bb8b4c0fc5f63300efe4c71c8f2af4c1ed2eddeb286c98c0d0c / 19534
+
+Unchanged required cap leaves (not copied or altered by this integration)
+  candidate/client-parent-cap-v33/runtime/mta_p2p_client_init.py
+    d3b51493d3ae778aeb72c1304dc50e5a6221428f7775bc7a28d15a3f19abeaaa / 71315
+  candidate/client-parent-cap-v33/runtime/mta_client_two_phase_lease.py
+    c227989ec5188c272ad0a212974d569572704d3bb07c4c61c72670abcd0981a5 / 27606
+  candidate/client-state-integration-v32/runtime/mta_service.py
+    c27a6978fb91fd414da96c57577e7030e059583bc10aad40b26dd0924505a2ab / 57929
+
+Executor: COMPLETE narrow delta from fixed cap33
+  Base: candidate/client-parent-cap-v33/runtime/mta_client_executor.py
+    d55e1f55f52ab869ae5ad82c8979d1ef4aae5bc36489d11630d3c76ec45a5083 / 105020
+  Hunk 1 (line 37): CONNECT_CODEC_SHA replaces the old 3cf4 codec pin with
+    d1a8fce91ab705524f14edac8d81e8d391c0cddbf8f4ac96ee7a6446c0512278.
+  Hunk 2 (line 1457): Parent._receive_event, result before any prompt:
+    if (event['sequence'] != 0 or payload['outcome'] not in codec.PRE_PROMPT_TERMINALS or
+            payload['task_id'] != '' or self.receive_reply_ticket is not None or
+            self.receive_counts != {'download': 0, 'files': 0}):
+        _fail('frame_invalid')
+  This is the reviewed v34 strict pre-prompt contract only. Codec accepts only
+  failed/cancelled/unavailable with seq0/taskempty, zero bytes/files and no ACK;
+  committed/refused/confirmation_timeout retain their prompt/decision checks.
+  No other executor text differs. In particular, original Parent cap capture,
+  canonical argv, authenticated entry, assembly and watchdog path are retained.
+
+Codec: COMPLETE delta
+  Byte-identical copy of candidate/client-terminal-v34/runtime/mta_client_control_frame.py.
+  Source SHA/bytes are identical above; no behavior delta or enum was added.
+
+Provider: COMPLETE narrow delta from fixed perf35
+  Base: candidate/client-status-v35/runtime/mta_client_linux_provider.py
+    3393663e4e286bd327708cd6e9ed3505cbcd133c89319906a38f70e4000e229b / 174159
+  Exactly two assemble changes (lines 2594 and 2599):
+    def assemble(manifest, _connect_binding=None, _parent_until_v33=None):
+    ...
+        _session_profile=core.FORMAL_SESSION_PROFILE, _parent_until_v33=_parent_until_v33)
+  No other Provider text differs. All perf35 once-only read-only STATUS middle
+  gate logic is unchanged. Both actual send-entry/post-packet full contexts,
+  mutation/event/poll gates and original cleanup contracts remain present.
+  No v36 Provider/Pending/Coord/Proc change was merged into this file.
+
+Store: COMPLETE narrow delta from fixed cap33
+  Base: candidate/client-parent-cap-v33/runtime/mta_client_store.py
+    01cc73b2f347e19f2f79b152502aca53fb50ea070ea8189b98b812bb580e65fe / 73163
+  Imported exact two source hunks from candidate/client-budget-refusal-v36/runtime/mta_client_store.py
+    a2123b1cb22c5cd357787b17b5f76989f6377861f0ff63e8348f5de431303b20 / 73037
+  The v36 baseline is candidate/client-peer-v29-r2/runtime/mta_client_store.py
+    f328dcaa95ecfc5288c85a3715ecfdbdbdb8e83c83797b91cde3e334d188f4a2 / 71524.
+  Hunk 1 (line 640) adds the exact _known_refusal_v36 helper:
+    - Exact ResourceBudgetError/safe_exhaustion only; no preexisting unknown,
+      pending lock/file/proc, write or publication fact may be washed clean.
+    - Actual original budget context, preparation/network lane, exhausted bit,
+      reason, owner and overrun must agree.
+    - Pre-marker refusal remains only the original before-create case.
+    - Existing marker requires exact original marker/binding/ticket known and
+      ready, then consumes marker._consume_refusal_store_v36(error, self).
+    - Any exception returns False; no new observation, RF grant or close.
+  Hunk 2 (line 664) _report consumes that helper instead of the older broad
+  exact-error-only condition. Known denial still raises the actual error and
+  fails the business call; all other failures retain original sticky unknown.
+  Reverse diff against the v36 source leaves ONLY cap33 constructor/private
+  parent_until, pure context/accessor/_parent_issuance and session_issued/first
+  issuance hunks. The fixed four issuance facts are unchanged. No quota, TTL,
+  resource lane, refund or cleanup bypass was added.
+
+Bridge: COMPLETE narrow delta from fixed v32-r2 bridge
+  Base: candidate/client-state-bridge-v32-r2/runtime/mta_client_state_bridge.py
+    d513d4f37de10b3cc96487319109fd86c01cd1a5c0501015a77fc36ab072eafa / 19144
+  Only module scope wording, exact Parent/codec SHA constants, and a comment
+  above the unchanged ParentExecutor.start(parent, 300) call differ.
+  The Parent constructor/start public signature is unchanged. The actual
+  pinned Parent captures original Session/Handoff cap under State.lock, then
+  sends canonical --parent-until in authenticated argv before first F RF.
+  No UI/HTTP/caller new deadline or compatibility boolean is introduced.
+  Original State caller-codec handoff type stays distinct from F's pinned codec
+  domain; Parent cross-validates the actual wire. No type shortcut was added.
+  deployment_factory=None remains the default. Bridge status remains
+  send_available=False, receive_available=False, phone_tested=False.
+
+State / admission remains explicitly unavailable
+  Existing service __init__ trusted_receive_deployment_factory=None is intact.
+  receive_available=False (line 244) and send_available=False remain intact;
+  callable factory presence is not readiness. State and QML were not changed.
+  The physical trusted deployment preparer and actual P011 Handoff startup /
+  restore admission are not implemented or certified by this integration.
+  Legacy gateway/default TCP/plain recovery fallback were not reintroduced.
+
+Remaining composition / evidence items
+  - v36 Pending/Coord/Proc producer-original refusal propagation must be fixed
+    and reviewed as exact sources before any complete v37 map is assembled.
+    Copying Store alone does not implement or prove that end-to-end path.
+  - Root reported the unique perf35-r2 HOST method PASS; its successful modeled
+    budget/closure evidence is not a v37 integrated or exception-path PASS.
+  - Narrow v34 HOST result does not verify a complete 35-source deployment.
+  - Cap33 leaf source/AST checks do not prove the combined runtime original cap.
+  - No imports/AST/tests/complete manifest were run or built by this author.
+  - No physical Parent spawn/wait, Linux RF/socket/TCP/TLS, P011 restoration,
+    Xiaomi15Ultra original-client interoperability or production ready claim.
+
+STATUS ticket SOURCE review and smallest negative boundary plan
+  Provider lines 1484-1489 consume the original once before live FD checks;
+  failed validation never resets claimed. Lines 1519-1535 finally revoke and
+  clear active on send, receive, parse, post-full or checkpoint failure, retaining
+  original history. Lines 1563 onward inventory the actual recv return before
+  parsing/post-full; bad flags/credentials retain receive unknown. These are
+  ticket-continuity facts, never physical-close or restore evidence.
+  No new definite SOURCE defect was found in the final consumption/finally path.
+
+  A. One small native no-I/O rejection method, not a new full simulation graph:
+     manifest=None native Provider plus tripwire IO; wrong/nonactive/copy ticket,
+     poll=True, reply=False, command_event=True, already-claimed original-shaped
+     invalid active record, bool/short send_return must all reject before recv
+     or full-context calls. An intentionally invalid active row is only a
+     rejection fixture, not an actual producer-issued positive readiness fact.
+     This covers early dispatch/one-use checks only, not valid live issuance.
+  B. Next independently affected integrated method may use the existing native
+     original STATUS send/recv hook to inject ONE changed fact, not fabricate a
+     ScopeProof: exact original-until expiry, lost held mutex, epoch/canonical
+     replacement, or recv exception. Each is a separate fault attribution;
+     do not rerun the already-passed perf35-r2 method merely for this note.
+     Required observations: original until unchanged, native history record
+     revoked, active None, no second receive/receipt/result, real incoming and
+     unknown inventory preserved. Any physical close/recovery assertion must
+     still use actual original FD/owner/native once-close/closed_facts, not the
+     revoked flag or an error code. No quota/TTL increase or mutation-gate cut.
+
+No negative method is implemented or executed by this note.

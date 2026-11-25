@@ -1,0 +1,106 @@
+{
+  "schema": 1,
+  "evidence": "SOURCE_COPY_NOT_DEVICE_PASS",
+  "files": [
+    {
+      "source": "ToolboxNext-v0.5.1-native/device/ExtensionPage.qml",
+      "source_sha256": "63b20c3e28b6d76a837a5cd332ae39af729190463edead5c9cc999e5aab2eb7c",
+      "target": "ToolboxMta-v0.1/device/ExtensionPage.qml"
+    },
+    {
+      "source": "ToolboxNext-v0.5.1-native/device/FilesPage.qml",
+      "source_sha256": "b1b9181094dcbf452157122b75dc0a1d6b39253e8546cc83be77be964e336311",
+      "target": "ToolboxMta-v0.1/device/FilesPage.qml"
+    },
+    {
+      "source": "ToolboxNext-v0.5.1-native/device/GamesPage.qml",
+      "source_sha256": "abcbe1d9ae2b5b497f871c47a74b044644e565f1694b20dc9e1e939a479e0298",
+      "target": "ToolboxMta-v0.1/device/GamesPage.qml"
+    },
+    {
+      "source": "ToolboxNext-v0.5.1-native/device/DashboardPage.qml",
+      "source_sha256": "9322d1d721306b9926c25251f056b28a43112a9ec3d220ec0ac82a828351d30e",
+      "target": "ToolboxMta-v0.1/device/DashboardPage.qml"
+    },
+    {
+      "source": "ToolboxNext-v0.5.1-native/device/VideoPane.qml",
+      "source_sha256": "e09873e298aa6b762051ab866ca82ea5b44f0d2988ab97e6ad6719c947934651",
+      "target": "ToolboxMta-v0.1/device/VideoPane.qml"
+    },
+    {
+      "source": "ToolboxNext-v0.5.1-native/device/Theme.js",
+      "source_sha256": "308cc441d29a5d39e61e0418ad0b4dfbb3efa2be6ce0bf6e80577c73479d2edb",
+      "target": "ToolboxMta-v0.1/device/Theme.js"
+    },
+    {
+      "source": "ToolboxNext-v0.5.1-native/device/NativeIcon.qml",
+      "source_sha256": "e66e0bd713d23bff411c67440f26c26eb992cb45e96d9ba80ab33782689e015d",
+      "target": "ToolboxMta-v0.1/device/NativeIcon.qml"
+    },
+    {
+      "source": "ToolboxNext-v0.5.1-native/device/Label.qml",
+      "source_sha256": "4f109dd7591c7363dc95883ca2c13cf43c3b9c9f461d72238d1567a52bd949fc",
+      "target": "ToolboxMta-v0.1/device/Label.qml"
+    },
+    {
+      "source": "ToolboxNext-v0.5.1-native/device/Button.qml",
+      "source_sha256": "ef4f1f83c198ae40e56982eec7d1ee87d36185fae9bbf1b15ea8853b64dcb015",
+      "target": "ToolboxMta-v0.1/device/Button.qml"
+    },
+    {
+      "source": "ToolboxNext-v0.5.1-native/device/Games.js",
+      "source_sha256": "0f9940c1a26d55f4eb5cd6eb12e82d5c52b2805cc027606f6c8ce98852cc418d",
+      "target": "ToolboxMta-v0.1/device/Games.js"
+    },
+    {
+      "source": "ToolboxNext-v0.5.1-native/runtime/server.py",
+      "source_sha256": "4611ed5921bb2e593fdc36d0c7a6a352ecdaac48b246cc98a8ab1c5ea89a2ee0",
+      "target": "ToolboxMta-v0.1/runtime/mta_toolbox_server.py"
+    },
+    {
+      "source": "ToolboxNext-v0.5.1-native/runtime/storage.py",
+      "source_sha256": "6c045805a937b07d271b4f64ccbb704be5efd74ec782518f97432821b33a085c",
+      "target": "ToolboxMta-v0.1/runtime/mta_toolbox_storage.py"
+    },
+    {
+      "source": "ToolboxNext-v0.5.1-native/runtime/metrics.py",
+      "source_sha256": "e56808ec3bc7c751e5dff43a053294595bb719cad658a44eb378932142b7a679",
+      "target": "ToolboxMta-v0.1/runtime/mta_toolbox_metrics.py"
+    },
+    {
+      "source": "ToolboxNext-v0.5.1-native/runtime/audio.py",
+      "source_sha256": "c4ea432c8c6e972a28134f352fa75ff773827fd4a41e205865c9309f96a63432",
+      "target": "ToolboxMta-v0.1/runtime/mta_toolbox_audio.py"
+    },
+    {
+      "source": "ToolboxNext-v0.5.1-native/runtime/minhttp.py",
+      "source_sha256": "6f8ec322fe8bb9522b9cc5ab1b52d844c17d366eaf7e176634b5760089bc3f93",
+      "target": "ToolboxMta-v0.1/runtime/mta_toolbox_minhttp.py"
+    },
+    {
+      "source": "ToolboxNext-v0.5.1-native/runtime/p011_json.py",
+      "source_sha256": "e32cf4433b966714a16e725e405052fa905715ce108b80199f8d50904abe5c7c",
+      "target": "ToolboxMta-v0.1/runtime/mta_toolbox_json.py"
+    },
+    {
+      "source": "ToolboxNext-v0.5.1-native/web/index.html",
+      "source_sha256": "036f247a2aa91cf19029b0642711bb178fa2568a1117fe22e93379408b80d4e1",
+      "target": "ToolboxMta-v0.1/web/index.html"
+    },
+    {
+      "source": "ToolboxNext-v0.5.1-native/web/transfer.js",
+      "source_sha256": "1f0e44df33bcfdeba63fa6d19498e4836faf85fbcffa5eb4ed82d8ee134d1d6e",
+      "target": "ToolboxMta-v0.1/web/transfer.js"
+    },
+    {
+      "source": "ToolboxNext-v0.5.1-native/web/transfer.css",
+      "source_sha256": "5035bed2478ec377b204003c6307160a8d6a7d4987718ff87a95e738a1286c65",
+      "target": "ToolboxMta-v0.1/web/transfer.css"
+    },
+    {
+      "source": "ToolboxNext-v0.5.1-native/web/favicon.svg",
+      "source_sha256": "444bb1308a4e925a2cd794acbabf7690e3a81e590baf33c7d59124fd34173e1d",
+      "target": "ToolboxMta-v0.1/web/favicon.svg"
+    }
+  ]
+}

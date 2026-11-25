@@ -1,0 +1,172 @@
+{
+  "scope": "Host checks and Linux fake processes only. Not Windows or P011 UI testing.",
+  "version": "0.3",
+  "python35_syntax_checked": [
+    "menu_policy.py",
+    "menu_trial.py",
+    "p011_json.py"
+  ],
+  "reviewed_resource_patch_unchanged": true,
+  "candidate_sha256_unchanged": "98080970543b50f3c4e57896bdd912a3270a09802cac610f7e65a6f50cd839cf",
+  "external_page_hashes_match": true,
+  "qml_brackets_strings_checked": true,
+  "qml_engine_tested": false,
+  "powershell_lexical_checks_only": [
+    "Start-P011.ps1",
+    "Host/ResultTools.ps1",
+    "MenuLab/P011-MenuTest.ps1"
+  ],
+  "windows_batch_or_powershell_execution_tested": false,
+  "p011_ui_or_capture_tested": false,
+  "simulated_rollback_case_count": 10,
+  "simulated_rollback_cases": [
+    {
+      "case": "busy-original",
+      "pass": true,
+      "evidence": [
+        "13:50:55 CHECK_OK: original PID=1360, restart-loop PID=1359; hashes and Wayland verified.",
+        "13:50:56 GUARDIAN_ARMED: timeout and rollback run ON the pen, not in PowerShell.",
+        "13:50:56 RESTART_LOOP_PAUSED",
+        "13:50:56 ORIGINAL_TERM_SENT: waiting for exit; original app is never SIGKILLed.",
+        "13:51:04 ERROR: RuntimeError: Original Z03 did not exit in 8 seconds; candidate NOT started.",
+        "13:51:05 WORKER_EXIT: 1",
+        "13:51:05 RESTORING_STOCK",
+        "13:51:05 TEMP_MENU_ALIAS_REMOVED",
+        "13:51:05 RESTART_LOOP_RESUMED: PID=1359",
+        "13:51:07 RESTORED_STOCK_PROCESS: PID=1360; original files unchanged. Visual recovery still needs user confirmation."
+      ]
+    },
+    {
+      "case": "candidate-stubborn",
+      "pass": true,
+      "evidence": [
+        "13:51:07 CHECK_OK: original PID=1392, restart-loop PID=1391; hashes and Wayland verified.",
+        "13:51:07 GUARDIAN_ARMED: timeout and rollback run ON the pen, not in PowerShell.",
+        "13:51:08 RESTART_LOOP_PAUSED",
+        "13:51:08 ORIGINAL_TERM_SENT: waiting for exit; original app is never SIGKILLed.",
+        "13:51:08 CANDIDATE_RUNNING: PID=1413; test window=1s; inspect the pen screen now.",
+        "13:51:09 TEST_WINDOW_ENDED: guardian will restore stock.",
+        "13:51:09 WORKER_EXIT: 0",
+        "13:51:09 RESTORING_STOCK",
+        "13:51:14 CANDIDATE_FORCE_EXIT: PID=1413 (not original app)",
+        "13:51:14 TEMP_MENU_ALIAS_REMOVED",
+        "13:51:14 RESTART_LOOP_RESUMED: PID=1391",
+        "13:51:16 RESTORED_STOCK_PROCESS: PID=1414; original files unchanged. Visual recovery still needs user confirmation."
+      ]
+    },
+    {
+      "case": "preexisting-path",
+      "pass": true
+    },
+    {
+      "case": "bad-parent",
+      "pass": true
+    },
+    {
+      "case": "launcher-killed",
+      "pass": true,
+      "evidence": [
+        "13:51:17 CHECK_OK: original PID=1450, restart-loop PID=1449; hashes and Wayland verified.",
+        "13:51:17 GUARDIAN_ARMED: timeout and rollback run ON the pen, not in PowerShell.",
+        "13:51:18 RESTART_LOOP_PAUSED",
+        "13:51:18 ORIGINAL_TERM_SENT: waiting for exit; original app is never SIGKILLed.",
+        "13:51:18 CANDIDATE_RUNNING: PID=1471; test window=30s; inspect the pen screen now.",
+        "13:51:18 ERROR: RuntimeError: Stock restart-loop changed/resumed unexpectedly.",
+        "13:51:18 WORKER_EXIT: 1",
+        "13:51:18 RESTORING_STOCK",
+        "13:51:18 TEMP_MENU_ALIAS_REMOVED",
+        "13:51:18 ORIGINAL_LAUNCHER_RESTARTED: PID=1472; unchanged stock script.",
+        "13:51:20 RESTORED_STOCK_PROCESS: PID=1473; original files unchanged. Visual recovery still needs user confirmation."
+      ]
+    },
+    {
+      "case": "normal",
+      "pass": true,
+      "evidence": [
+        "13:50:09 CHECK_OK: original PID=1172, restart-loop PID=1171; hashes and Wayland verified.",
+        "13:50:10 GUARDIAN_ARMED: timeout and rollback run ON the pen, not in PowerShell.",
+        "13:50:10 RESTART_LOOP_PAUSED",
+        "13:50:10 ORIGINAL_TERM_SENT: waiting for exit; original app is never SIGKILLed.",
+        "13:50:10 CANDIDATE_RUNNING: PID=1193; test window=1s; inspect the pen screen now.",
+        "13:50:11 TEST_WINDOW_ENDED: guardian will restore stock.",
+        "13:50:11 WORKER_EXIT: 0",
+        "13:50:11 RESTORING_STOCK",
+        "13:50:11 TEMP_MENU_ALIAS_REMOVED",
+        "13:50:11 RESTART_LOOP_RESUMED: PID=1171",
+        "13:50:14 RESTORED_STOCK_PROCESS: PID=1194; original files unchanged. Visual recovery still needs user confirmation."
+      ]
+    },
+    {
+      "case": "crash",
+      "pass": true,
+      "evidence": [
+        "13:50:14 CHECK_OK: original PID=1206, restart-loop PID=1205; hashes and Wayland verified.",
+        "13:50:14 GUARDIAN_ARMED: timeout and rollback run ON the pen, not in PowerShell.",
+        "13:50:15 RESTART_LOOP_PAUSED",
+        "13:50:15 ORIGINAL_TERM_SENT: waiting for exit; original app is never SIGKILLed.",
+        "13:50:15 CANDIDATE_RUNNING: PID=1227; test window=1s; inspect the pen screen now.",
+        "13:50:15 CANDIDATE_EXITED: code=23; guardian will restore stock.",
+        "13:50:16 WORKER_EXIT: 0",
+        "13:50:16 RESTORING_STOCK",
+        "13:50:16 TEMP_MENU_ALIAS_REMOVED",
+        "13:50:16 RESTART_LOOP_RESUMED: PID=1205",
+        "13:50:18 RESTORED_STOCK_PROCESS: PID=1228; original files unchanged. Visual recovery still needs user confirmation."
+      ]
+    },
+    {
+      "case": "stop",
+      "pass": true,
+      "evidence": [
+        "13:50:18 CHECK_OK: original PID=1240, restart-loop PID=1239; hashes and Wayland verified.",
+        "13:50:19 GUARDIAN_ARMED: timeout and rollback run ON the pen, not in PowerShell.",
+        "13:50:19 RESTART_LOOP_PAUSED",
+        "13:50:19 ORIGINAL_TERM_SENT: waiting for exit; original app is never SIGKILLed.",
+        "13:50:19 CANDIDATE_RUNNING: PID=1261; test window=30s; inspect the pen screen now.",
+        "13:50:19 GUARDIAN_STOP_REQUEST",
+        "13:50:19 STOP_REQUEST_RECEIVED",
+        "13:50:19 RESTORING_STOCK",
+        "13:50:19 TEMP_MENU_ALIAS_REMOVED",
+        "13:50:19 RESTART_LOOP_RESUMED: PID=1239",
+        "13:50:22 RESTORED_STOCK_PROCESS: PID=1262; original files unchanged. Visual recovery still needs user confirmation."
+      ]
+    },
+    {
+      "case": "worker-killed",
+      "pass": true,
+      "evidence": [
+        "13:50:22 CHECK_OK: original PID=1274, restart-loop PID=1273; hashes and Wayland verified.",
+        "13:50:22 GUARDIAN_ARMED: timeout and rollback run ON the pen, not in PowerShell.",
+        "13:50:23 RESTART_LOOP_PAUSED",
+        "13:50:23 ORIGINAL_TERM_SENT: waiting for exit; original app is never SIGKILLed.",
+        "13:50:23 CANDIDATE_RUNNING: PID=1295; test window=30s; inspect the pen screen now.",
+        "13:50:23 WORKER_EXIT: -9",
+        "13:50:23 RESTORING_STOCK",
+        "13:50:23 TEMP_MENU_ALIAS_REMOVED",
+        "13:50:23 RESTART_LOOP_RESUMED: PID=1273",
+        "13:50:25 RESTORED_STOCK_PROCESS: PID=1296; original files unchanged. Visual recovery still needs user confirmation."
+      ]
+    },
+    {
+      "case": "guardian-killed",
+      "pass": true,
+      "evidence": [
+        "13:50:26 CHECK_OK: original PID=1308, restart-loop PID=1307; hashes and Wayland verified.",
+        "13:50:26 GUARDIAN_ARMED: timeout and rollback run ON the pen, not in PowerShell.",
+        "13:50:27 RESTART_LOOP_PAUSED",
+        "13:50:27 ORIGINAL_TERM_SENT: waiting for exit; original app is never SIGKILLed.",
+        "13:50:27 CANDIDATE_RUNNING: PID=1329; test window=30s; inspect the pen screen now.",
+        "13:50:27 RESTORING_STOCK",
+        "13:50:27 TEMP_MENU_ALIAS_REMOVED",
+        "13:50:27 RESTART_LOOP_RESUMED: PID=1307",
+        "13:50:29 RESTORED_STOCK_PROCESS: PID=1330; original files unchanged. Visual recovery still needs user confirmation."
+      ]
+    }
+  ],
+  "font_files_distributed": false,
+  "notes": [
+    "Tests use temporary fake executables, never the real Z03.",
+    "Original vendor resource patch and instruction bytes unchanged from v0.2 candidate.",
+    "Added QML grabToImage requests capture only the toolbox element, not the physical screen.",
+    "Offline hashes validate consistency, not authenticity or hardware safety."
+  ]
+}

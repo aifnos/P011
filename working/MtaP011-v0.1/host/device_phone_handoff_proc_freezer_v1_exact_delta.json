@@ -1,0 +1,232 @@
+{
+  "schema": "p011-phone-handoff-proc-freezer-v1-exact-carrier-delta",
+  "evidence": "LOCAL_MECHANICAL_CLONE_AND_READBACK_NOT_SOURCE_OR_DEVICE_EXECUTED",
+  "source": [
+    "host/device_phone_handoff_durable_window_v1_check.py",
+    32689,
+    "f0c95bb94ee5f7e4a247f4aa38e41be2a3780a31a585dde431884b5017b1bd38"
+  ],
+  "candidate": [
+    "host/device_phone_handoff_proc_freezer_v1_check.py",
+    34359,
+    "9aa1d6b4460e9566e0600dac245f70caf34e7842b299db55f8dedfeb3711af4c"
+  ],
+  "definitions": [
+    "host/formal_receive_proc_freezer_v1_definitions.py",
+    114824,
+    "3eb522f95f199a1efea2c2d1505a76ab6677f7f1f419e54d64d5a0866cafc21a"
+  ],
+  "ordinary_runner": [
+    "candidate/receive-proc-freezer-v1/runtime/mta_formal_receive_session.py",
+    79279,
+    "68573f0c9053db3df42f71647d9765a6af9bda56f4913daeef52b79e907f1894"
+  ],
+  "replacements": [
+    {
+      "name": "host_description",
+      "before": "Default SOURCE; explicit original phone observer on durable75/window v1.",
+      "after": "Default SOURCE; explicit original phone observer on Proc/freezer75 v1.",
+      "count": 1
+    },
+    {
+      "name": "new_host_identity",
+      "before": "SELF = 'host/device_phone_handoff_durable_window_v1_check.py'",
+      "after": "SELF = 'host/device_phone_handoff_proc_freezer_v1_check.py'",
+      "count": 1
+    },
+    {
+      "name": "new_independent_commands",
+      "before": "CMDS = ('HOST_MTA_PHONE_HANDOFF_DURABLE_WINDOW_V1_CHECK.cmd',\n        'TEST_MTA_PHONE_HANDOFF_DURABLE_WINDOW_V1.cmd')",
+      "after": "CMDS = ('HOST_MTA_PHONE_HANDOFF_PROC_FREEZER_V1_CHECK.cmd',\n        'TEST_MTA_PHONE_HANDOFF_PROC_FREEZER_V1.cmd')",
+      "count": 1
+    },
+    {
+      "name": "actual_definitions_pin",
+      "before": "DEFINITIONS = ('host/formal_receive_durable_state_v1_definitions.py', 45031,\n    'b98c66604bdb250820630f1844e5ea4b0af9bbd260e05388478034e37254e43b')",
+      "after": "DEFINITIONS = ('host/formal_receive_proc_freezer_v1_definitions.py', 114824,\n    '3eb522f95f199a1efea2c2d1505a76ab6677f7f1f419e54d64d5a0866cafc21a')",
+      "count": 1
+    },
+    {
+      "name": "frozen_host_mother_pin",
+      "before": "INPUTS = {}",
+      "after": "HOST_MOTHER = ('host/device_phone_handoff_durable_window_v1_check.py', 32689,\n    'f0c95bb94ee5f7e4a247f4aa38e41be2a3780a31a585dde431884b5017b1bd38')\nINPUTS = {}",
+      "count": 1
+    },
+    {
+      "name": "current_scope_readme_only",
+      "before": "READ_ME = (b'Durable75/window v1 original phone handshake/cancel diagnostic only.\\n'\n    b'Default SOURCE: no ADB/runtime/phone/RF. Explicit --check-device only after Root obtains\\n'\n    b'fresh baseline and new phone readiness; notify click only after actual native READY.\\n'\n    b'Flat164 provenance/new9 closures; actual75/4191752 within4MiB, separate FC9/113690.\\n'\n    b'Pure frozen selectors only: no historical main, graph verifier, suite or generator.\\n'\n    b'Phone26305/trace14820, parsers, READY15/one120s/peer15 cancel and finalizer unchanged.\\n'\n    b'Startup10, Publication120, Owner600+cleanup60, alarm780/host790; no renewal.\\n'\n    b'Current durable root/bindings reused; no old classification root or GUI staging.\\n'\n    b'Whole carrier byte inverses preserve actual75 encoding outside the Runner/window overlay.\\n'\n    b'Window scalar projection is retained values only, not a new clock, deadline or permission.\\n'\n    b'Original native Windows identity/metadata gates retained; bounded returned input prefixes\\n'\n    b'and pin-rejected inputs saved. Raw stdout/stderr, exits and exceptions remain private.\\n'\n    b'Parsed COMPONENT retained before strict TRIAL; None/malformed Trial stays FAIL.\\n'\n    b'Original smoke PASS/closed/pending predicates unchanged; captured+cancelled is classification,\\n'\n    b'not phone compatibility/CONNECT/TLS/file-transfer/full-network-restoration acceptance.\\n'\n    b'Real Parent/F may initialize network; no accept/send/answer/file/HTTP/UI/Disconnect or cleanup.\\n'\n    b'Private source ZIP/readback and private result ZIP/readback precede public commit.\\n')",
+      "after": "READ_ME = (b'Proc/freezer75 v1 original phone handshake/cancel diagnostic only.\\n'\n    b'Default SOURCE: no ADB/runtime/phone/RF. Explicit --check-device only after Root obtains\\n'\n    b'fresh baseline and new phone readiness; notify click only after actual native READY.\\n'\n    b'Flat208 provenance/new8 mechanical+1 business closures; actual75/4191766 within4MiB, separate FC9/113690.\\n'\n    b'Pure frozen selectors only: no historical main, graph verifier, suite or generator.\\n'\n    b'Phone26305/trace14820, parsers, READY15/one120s/peer15 cancel and finalizer unchanged.\\n'\n    b'Startup10, Publication120, Owner600+cleanup60, alarm780/host790; no renewal.\\n'\n    b'New p011-mta-rx-freezer-v1 root/bindings; no old classification root or GUI staging.\\n'\n    b'Whole byte/AST inverses preserve frozen phone outside Runner/role bindings and the same scalar projection.\\n'\n    b'Ordinary Proc/freezer Runner is used; retained window scalar projection adds no clock, deadline or permission.\\n'\n    b'Original native Windows identity/metadata gates retained; bounded returned input prefixes\\n'\n    b'and pin-rejected inputs saved. Raw stdout/stderr, exits and exceptions remain private.\\n'\n    b'Parsed COMPONENT retained before strict TRIAL; None/malformed Trial stays FAIL.\\n'\n    b'Original smoke PASS/closed/pending predicates unchanged; captured+cancelled is classification,\\n'\n    b'not phone compatibility/CONNECT/TLS/file-transfer/full-network-restoration acceptance.\\n'\n    b'Real Parent/F may initialize network; no accept/send/answer/file/HTTP/UI/Disconnect or cleanup.\\n'\n    b'Private source ZIP/readback and private result ZIP/readback precede public commit.\\n')",
+      "count": 1
+    },
+    {
+      "name": "ordinary_runner_role_bindings_and_original_projection_only",
+      "before": "def compose(definitions, helpers, payload, advert, progress, diagnostic, window):\n    old = fixed(OLD_PHONE_CARRIER)\n    fixed(OLD_PHONE_RUNNER)\n    base = bounded(definitions.make_source(helpers, INPUTS, payload, False))\n    phone = bounded(progress.make_source(definitions, advert, diagnostic, helpers, INPUTS, payload))\n    old_runner = runner_block(definitions, helpers, OLD_PHONE_RUNNER)\n    durable_runner = runner_block(definitions, helpers, definitions.RUNNER)\n    old_roles, durable_roles = assignment_region(old, 'ARTIFACT_ROWS'), assignment_region(base, 'ARTIFACT_ROWS')\n    need(old.count(old_runner) == old.count(old_roles) == phone.count(durable_runner) ==\n         phone.count(durable_roles) == 1, 'phone_graph_regions_unique')\n    expected = old.replace(old_runner, durable_runner, 1).replace(old_roles, durable_roles, 1)\n    need(phone == expected and phone.replace(durable_roles, old_roles, 1).replace(\n         durable_runner, old_runner, 1) == old, 'phone_current_graph_complete_byte_inverse')\n    need(definitions.RUNNER == window.OLD_CORE, 'window_runner_base')\n    new_runner = runner_block(definitions, helpers, window.NEW_CORE)\n    anchor = b'detail=fixed_error_details(smoke._RETAINED.failures)\\n'\n    addition = b'retained=smoke._RETAINED\\n' + window.PROJECTION\n    need(phone.count(anchor) == 1, 'window_projection_anchor')\n    program = bounded(phone.replace(durable_runner, new_runner, 1).replace(anchor, addition+anchor, 1))\n    need(program.count(new_runner) == program.count(addition+anchor) == 1 and\n         program.replace(addition+anchor, anchor, 1).replace(new_runner, durable_runner, 1) == phone and\n         assignment_region(program, 'ARTIFACT_ROWS') == durable_roles,\n         'window_complete_carrier_inverse_runtime75_unchanged')\n    return base, phone, program",
+      "after": "def compose(definitions, helpers, payload, advert, progress, diagnostic, window):\n    old = fixed(OLD_PHONE_CARRIER)\n    fixed(OLD_PHONE_RUNNER)\n    base = bounded(definitions.make_source(helpers, INPUTS, payload, False))\n    phone = bounded(progress.make_source(definitions, advert, diagnostic, helpers, INPUTS, payload))\n    old_runner = runner_block(definitions, helpers, OLD_PHONE_RUNNER)\n    current_runner = runner_block(definitions, helpers, definitions.RUNNER)\n    old_roles, current_roles = assignment_region(old, 'ARTIFACT_ROWS'), assignment_region(base, 'ARTIFACT_ROWS')\n    need(old.count(old_runner) == old.count(old_roles) == phone.count(current_runner) ==\n         phone.count(current_roles) == 1, 'phone_graph_regions_unique')\n    expected = old.replace(old_runner, current_runner, 1).replace(old_roles, current_roles, 1)\n    inverse = phone.replace(current_roles, old_roles, 1).replace(current_runner, old_runner, 1)\n    need(phone == expected and inverse == old, 'phone_current_graph_complete_byte_inverse')\n    need(ast.dump(ast.parse(phone.decode('ascii'), feature_version=(3, 5)), include_attributes=False) ==\n         ast.dump(ast.parse(expected.decode('ascii'), feature_version=(3, 5)), include_attributes=False) and\n         ast.dump(ast.parse(inverse.decode('ascii'), feature_version=(3, 5)), include_attributes=False) ==\n         ast.dump(ast.parse(old.decode('ascii'), feature_version=(3, 5)), include_attributes=False),\n         'phone_current_graph_complete_ast_inverse')\n    need(definitions.RUNNER[1:] == (79279,\n        '68573f0c9053db3df42f71647d9765a6af9bda56f4913daeef52b79e907f1894'),\n        'ordinary_proc_freezer_runner')\n    anchor = b'detail=fixed_error_details(smoke._RETAINED.failures)\\n'\n    addition = b'retained=smoke._RETAINED\\n' + window.PROJECTION\n    need(phone.count(anchor) == 1, 'window_projection_anchor')\n    program = bounded(phone.replace(anchor, addition+anchor, 1))\n    projected_inverse = program.replace(addition+anchor, anchor, 1)\n    need(program.count(current_runner) == program.count(addition+anchor) == 1 and\n         projected_inverse == phone and assignment_region(program, 'ARTIFACT_ROWS') == current_roles,\n         'window_scalar_complete_carrier_inverse_runtime75_unchanged')\n    need(ast.dump(ast.parse(projected_inverse.decode('ascii'), feature_version=(3, 5)),\n         include_attributes=False) == ast.dump(ast.parse(phone.decode('ascii'), feature_version=(3, 5)),\n         include_attributes=False), 'window_scalar_complete_ast_inverse')\n    return base, phone, program",
+      "count": 1
+    },
+    {
+      "name": "new_fresh_result_namespace",
+      "before": "'phone-handoff-durable-window-v1-'",
+      "after": "'phone-handoff-proc-freezer-v1-'",
+      "count": 1
+    },
+    {
+      "name": "new_result_schema",
+      "before": "schema='p011-phone-handoff-durable-window-v1'",
+      "after": "schema='p011-phone-handoff-proc-freezer-v1'",
+      "count": 1
+    },
+    {
+      "name": "selected_actual_runner_report",
+      "before": "selected_graph='durable-state-v1', window_runner_selected=True,",
+      "after": "selected_graph='proc-freezer-v1', window_runner_selected=False,\n        ordinary_proc_freezer_runner_configured=True,",
+      "count": 1
+    },
+    {
+      "name": "retained_host_mother_without_execution",
+      "before": "        own = read_fixed(SELF)\n",
+      "after": "        own = read_fixed(SELF)\n        fixed(HOST_MOTHER)\n",
+      "count": 1
+    },
+    {
+      "name": "graph_namespace_label",
+      "before": "types.ModuleType('current_durable_phone_graph')",
+      "after": "types.ModuleType('current_proc_freezer_phone_graph')",
+      "count": 1
+    },
+    {
+      "name": "actual_new_graph_roots_and_provenance",
+      "before": "        need(definitions.STATE_ALIAS == '/tmp/p011-mta-rx-durable-v1' and\n             definitions.STATE_ROOT == '/var/volatile/tmp/p011-mta-rx-durable-v1' and\n             definitions.PAYLOAD_BYTES == 4191752 and len(definitions.ORIGIN_SOURCE_PINS) == 164,\n             'actual_current_graph')",
+      "after": "        need(definitions.STATE_ALIAS == '/tmp/p011-mta-rx-freezer-v1' and\n             definitions.STATE_ROOT == '/var/volatile/tmp/p011-mta-rx-freezer-v1' and\n             definitions.PAYLOAD_BYTES == 4191766 and len(definitions.ORIGIN_SOURCE_PINS) == 208,\n             'actual_current_graph')",
+      "count": 1
+    },
+    {
+      "name": "actual75_same_four_mib_cap",
+      "before": "             len({row[0] for row in payload}) == 75 and sum(row[2] for row in payload) == 4191752 <= 4194304,",
+      "after": "             len({row[0] for row in payload}) == 75 and sum(row[2] for row in payload) == 4191766 <= 4194304,",
+      "count": 1
+    },
+    {
+      "name": "current_exact_source_closures_and_7_68_roles",
+      "before": "        need(definitions.verify_inputs(INPUTS) == 9, 'new_flat_nine_closures')",
+      "after": "        need(definitions.verify_inputs(INPUTS) == definitions.MECHANICAL_CLOSURE_COUNT == 8 and\n             definitions.BUSINESS_CLOSURE_COUNT == 1 and\n             definitions.CHANGED_PAYLOAD_ROLES == ('mta_client_executor', 'mta_client_state_bridge',\n                'mta_client_receive_factory', 'mta_client_receive_boot', 'mta_client_service_owner',\n                'runtime35/mta_client_proc', 'runtime35/mta_client_executor') and\n             len(definitions.ORIGINAL_PAYLOAD_ROWS) == 75,\n             'new_flat_eight_mechanical_one_business_and_7_changed_68_exact')",
+      "count": 1
+    },
+    {
+      "name": "select_only_frozen_window_scalar",
+      "before": "        window = select_pure(WINDOW_SELECTOR, ('need', 'digest', 'replay', 'function_bytes', 'verify_overlay_inputs'),\n            ('CORE_HOST', 'OLD_CORE', 'OLD_NAV', 'PREFIX', 'NEW_CORE', 'NEW_NAV', 'GENERATOR', 'DELTA',\n             'GENERATION', 'EDITS', 'GUARDS', 'PROJECTION', 'FACTS'))\n        window.verify_overlay_inputs(fixed, INPUTS)",
+      "after": "        window = select_pure(WINDOW_SELECTOR, (), ('PROJECTION',))\n        need(type(window.PROJECTION) is bytes and len(window.PROJECTION) <= 4096,\n             'original_retained_scalar_projection')",
+      "count": 1
+    },
+    {
+      "name": "actual_byte_totals_and_roles_report",
+      "before": "            payload_bytes=4191752, payload_remaining_bytes=2552, filecenter_sources=9, filecenter_bytes=113690,\n            flat_origin_pins=164, mechanical_closures=9, observer_closures=1,",
+      "after": "            payload_bytes=4191766, payload_remaining_bytes=2538, filecenter_sources=9, filecenter_bytes=113690,\n            flat_origin_pins=208, mechanical_closures=8, business_closures=1, observer_closures=1,\n            changed_payload_roles=7, exact_payload_roles=68,",
+      "count": 1
+    },
+    {
+      "name": "actual_byte_and_ast_inverse_scope_report",
+      "before": "            carrier_graph_full_inverse_verified=True, carrier_window_full_inverse_verified=True,\n            runtime75_encoding_unchanged=True, window_overlay=dict(window.FACTS))",
+      "after": "            carrier_graph_full_inverse_verified=True, carrier_graph_ast_inverse_verified=True,\n            carrier_window_full_inverse_verified=True, carrier_window_ast_inverse_verified=True,\n            runtime75_encoding_unchanged_by_projection=True, window_scalar_projection_only=True,\n            ordinary_runner_bytes=definitions.RUNNER[1], ordinary_runner_sha256=definitions.RUNNER[2])",
+      "count": 1
+    },
+    {
+      "name": "new_target_argv_label",
+      "before": "p011-phone-handoff-durable-window-v1; ",
+      "after": "p011-phone-handoff-proc-freezer-v1; ",
+      "count": 1
+    }
+  ],
+  "commands": [
+    {
+      "source": [
+        "HOST_MTA_PHONE_HANDOFF_DURABLE_WINDOW_V1_CHECK.cmd",
+        260,
+        "369b28fee6d3ac7a95eb413146d9b8533b613dc2e32c7b0278c4fb19412e789e"
+      ],
+      "candidate": [
+        "HOST_MTA_PHONE_HANDOFF_PROC_FREEZER_V1_CHECK.cmd",
+        258,
+        "ddccc9ce42d930c62d170c781204b1b42d05008ddb80e6696677789bfd347a24"
+      ],
+      "before": "host\\device_phone_handoff_durable_window_v1_check.py",
+      "after": "host\\device_phone_handoff_proc_freezer_v1_check.py",
+      "count": 1
+    },
+    {
+      "source": [
+        "TEST_MTA_PHONE_HANDOFF_DURABLE_WINDOW_V1.cmd",
+        384,
+        "4bf5b94b942d3f635305bf56b2ecc796485b14a8855fdb2329233b066bfc5233"
+      ],
+      "candidate": [
+        "TEST_MTA_PHONE_HANDOFF_PROC_FREEZER_V1.cmd",
+        382,
+        "526a4fdb15af8253db603e2003a7a4029fd47c86dc7f8fb981ec973dbdcf60d8"
+      ],
+      "before": "host\\device_phone_handoff_durable_window_v1_check.py",
+      "after": "host\\device_phone_handoff_proc_freezer_v1_check.py",
+      "count": 1
+    }
+  ],
+  "expected_source_facts": {
+    "origin_pins": 208,
+    "mechanical_closures": 8,
+    "business_closures": 1,
+    "payload_roles": 75,
+    "changed_payload_roles": 7,
+    "exact_payload_roles": 68,
+    "payload_bytes": 4191766,
+    "payload_cap": 4194304,
+    "remaining_bytes": 2538,
+    "filecenter_roles": 9,
+    "filecenter_bytes": 113690,
+    "filecenter_cap": 131072,
+    "state_alias": "/tmp/p011-mta-rx-freezer-v1",
+    "state_root": "/var/volatile/tmp/p011-mta-rx-freezer-v1",
+    "phone_bytes": 26305,
+    "trace_bytes": 14820,
+    "ready_preparation_seconds": 15,
+    "opportunity_seconds": 120,
+    "handshake_seconds": 15,
+    "startup_seconds": 10,
+    "owner_activity_seconds": 600,
+    "owner_cleanup_seconds": 60,
+    "remote_alarm_seconds": 780,
+    "host_timeout_seconds": 790,
+    "carrier_cap": 2097152,
+    "carrier_line_cap": 256
+  },
+  "guards": {
+    "source_complete_byte_forward_verified": true,
+    "source_complete_byte_inverse_verified": true,
+    "command_complete_byte_forward_inverse_verified": true,
+    "actual_candidate_readback": true,
+    "source_ast_inverse_basis": "Complete restored bytes equal the frozen mother; Python AST checks not executed by author.",
+    "phone_target_byte_and_ast_inverse_enforced_in_compose": true,
+    "original_phone_interfaces_and_parsers_exact": true,
+    "original_native_io_gate_bytes_exact": true,
+    "original_collect_receipts_exact": true,
+    "original_bounded_caps_exact": true,
+    "original_device_dispatch_parse_close_and_pass_predicates_exact": true,
+    "only_original_window_projection_selected": true,
+    "old_window_runner_not_selected": true,
+    "new_definitions_current_verify_inputs_only": true,
+    "historical_graph_verifier_not_called": true,
+    "previous_main_suite_generator_not_called": true,
+    "added_clock_reads": 0,
+    "added_sampling_loops": 0,
+    "new_deadlines": false,
+    "new_permission": false,
+    "trial_none_or_malformed_stays_fail": true,
+    "raw_stdout_stderr_and_exit_separation_retained": true,
+    "original_sealer_retained": true,
+    "old_files_and_pass_records_untouched": true,
+    "source_mode_executed": false,
+    "device_mode_executed": false,
+    "python_executed": false,
+    "test_executed": false,
+    "rf_executed": false,
+    "phone_acceptance": false
+  }
+}

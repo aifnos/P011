@@ -1,0 +1,48 @@
+{
+  "generator": [
+    "candidate/receive-window-clock-ui-v1/generate.py",
+    5010,
+    "7dc84f00ea512e90e5345d616ec3fc0a34453c127646a54a3a881758540de544"
+  ],
+  "guards": {
+    "business_bytes_unchanged": true,
+    "cleanup_seconds": 60,
+    "device_executed": false,
+    "gui_rebuilt": false,
+    "gui_staged": false,
+    "navigation_seconds": 20,
+    "public_fields": 51,
+    "ready_seconds": 10,
+    "runtime75_modified": false,
+    "service_seconds": 600,
+    "tests_executed": false
+  },
+  "host_checked": false,
+  "outputs": [
+    [
+      "candidate/receive-window-clock-ui-v1/exactsource-delta.json",
+      1723,
+      "1e2a753ec48ee77f1a2301c9666159d01ed3885fdef5c4a083e27838631d1fdc"
+    ],
+    [
+      "candidate/receive-window-clock-ui-v1/runtime/ui_session.py",
+      95350,
+      "ed08e5fa40f44170e9d5e7c64c3944e23ab91e3eb17472e4cb8e7f4a5fa9d997"
+    ]
+  ],
+  "phone_tested": false,
+  "schema": "p011-receive-window-clock-ui-v1-generation",
+  "sources": [
+    [
+      "candidate/formal-receive-durable-ui-v1/runtime/ui_session.py",
+      95352,
+      "7690e2c87f8438c3422986d180381858e7e47588ee60c725c9eb8f73dd628972"
+    ],
+    [
+      "candidate/receive-window-clock-v1/runtime/mta_formal_receive_navigation_session.py",
+      88850,
+      "2aa5c840d9df5293fe10d385060821269d5170da4261b751c49af091ccf31f48"
+    ]
+  ],
+  "status": "MECHANICAL_GENERATED_NOT_HOST_CHECKED"
+}

@@ -1,0 +1,78 @@
+{
+  "version": 1,
+  "kind": "platform-v13-source-only",
+  "files": [
+    {
+      "path": "candidate/client-connect-v13/runtime/mta_client_control_frame.py",
+      "role": "target",
+      "sha256": "b20d72f17197132820d3be765cbc2e3c2a41d8256e4bdaeeb5e23f441c065b4f",
+      "bytes": 11615
+    },
+    {
+      "path": "candidate/client-connect-v13/runtime/mta_client_connect_handoff.py",
+      "role": "target",
+      "sha256": "aeade54eac7ed055936d7004087aa2a30a731ee7742365080cbd037264a58cc4",
+      "bytes": 10533
+    },
+    {
+      "path": "candidate/client-kernel-proof-v13/runtime/mta_client_kernel_proof.py",
+      "role": "target",
+      "sha256": "14dbe98d59e8319812e62d75907196b78fbde348f40003942476ecb9ee9c0f93",
+      "bytes": 20077
+    },
+    {
+      "path": "candidate/state-platform-budget-v13/mta_service.py",
+      "role": "target",
+      "sha256": "7b1a6692318beed037c7585efb0084cf6cf049ab03843a3fb9ebf5b31a5166b9",
+      "bytes": 57307
+    },
+    {
+      "path": "tests/test_client_control_frame_v13.py",
+      "role": "test",
+      "sha256": "74c74c45857acd0d73ace7fafb73082016a70b993240203275885eeb6407b71d",
+      "bytes": 15113
+    },
+    {
+      "path": "tests/test_client_connect_handoff_v13.py",
+      "role": "test",
+      "sha256": "23b332d22f9dcc74e73279ce06d19a5113f0a34780311c7b6009b88f6e8fff3e",
+      "bytes": 11272
+    },
+    {
+      "path": "tests/test_client_kernel_proof_v13.py",
+      "role": "test",
+      "sha256": "84646f200055b57a942560b3c219cb2ba3c32548d0073ca1bf16a3f6e0e68a45",
+      "bytes": 16287
+    },
+    {
+      "path": "tests/test_state_platform_budget_v13.py",
+      "role": "test",
+      "sha256": "729296e785fbaf1b51e20969478e9452a05dab4d5dc56673d8239fdddc9f7eeb",
+      "bytes": 13792
+    },
+    {
+      "path": "docs/CLIENT_CONTROL_FRAME_V13_REVIEW.md",
+      "role": "doc",
+      "sha256": "de12cce90542a644fa01ceb048aa75919ff35a6d2e4dc263ffec1593ae0db773",
+      "bytes": 4089
+    },
+    {
+      "path": "docs/CLIENT_CONNECT_HANDOFF_V13_REVIEW.md",
+      "role": "doc",
+      "sha256": "69d8c63ca852211b4e8a61fbf587ee7405e339e9a95e9d8c41f04b0c9223aa24",
+      "bytes": 3813
+    },
+    {
+      "path": "docs/CLIENT_KERNEL_PROOF_V13_REVIEW.md",
+      "role": "doc",
+      "sha256": "bcb7430dd84df38b89e63a9f50937acb1c23a34deea012ed46360f82400f7c30",
+      "bytes": 8008
+    },
+    {
+      "path": "docs/STATE_PLATFORM_BUDGET_V13_REVIEW.md",
+      "role": "doc",
+      "sha256": "0c2ae72d2e37bbe99a334ad9b12fc21d25ffe19f2b4ff4638c95bd756f4f558b",
+      "bytes": 5043
+    }
+  ]
+}

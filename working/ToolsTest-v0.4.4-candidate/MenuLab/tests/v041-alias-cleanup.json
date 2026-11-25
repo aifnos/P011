@@ -1,0 +1,35 @@
+{
+  "scope": "Host mocks, no actual filesystem aliases removed; production call requires verified stock topology and hashes",
+  "cases": [
+    {
+      "name": "dangling menu alias",
+      "passed": true
+    },
+    {
+      "name": "older boot valid menu alias",
+      "passed": true
+    },
+    {
+      "name": "current boot menu alias preserved",
+      "passed": true
+    },
+    {
+      "name": "unknown boot menu alias preserved",
+      "passed": true
+    },
+    {
+      "name": "real directory preserved",
+      "passed": true
+    },
+    {
+      "name": "unrelated alias preserved",
+      "passed": true
+    },
+    {
+      "name": "non-root alias preserved",
+      "passed": true
+    }
+  ],
+  "count": 7,
+  "all_passed": true
+}

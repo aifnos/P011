@@ -1,0 +1,38 @@
+{
+  "schema": "receive-durable-result-v1-exactsource",
+  "changes": [
+    {
+      "original": "candidate/receive-directory-fd-v1/runtime/mta_storage.py",
+      "candidate": "candidate/receive-durable-result-v1/runtime/mta_storage.py",
+      "edits": [
+        {
+          "before": "        self._bound_failure, self._root_fd = None, None\n",
+          "after": "        self._bound_failure, self._root_fd = None, None\n        self._durable_result = None\n"
+        },
+        {
+          "before": "    def _bound_space(self, needed):\n",
+          "after": "    def durable_result(self):\n        \"\"\"Historical durable publication, not success/closure/peer authority.\n\n        Only the bound lane records this after actual CRC, directory binding\n        and fsync checks. A fresh plain copy cannot renew a cap or imply that\n        the directory is currently intact. Late failure/cancel remains failure.\n        \"\"\"\n        value = self._durable_result\n        if value is None:\n            return None\n        task, directory, files, count, size = value\n        return dict(taskId=task, directory=directory, files=list(files),\n                    fileCount=count, totalSize=size, peer_ack_verified=False)\n\n    def _bound_space(self, needed):\n"
+        },
+        {
+          "before": "                for entry in result_entries:\n                    entry['published'] = True\n                for row in reversed(self._bound_rows):\n",
+          "after": "                for entry in result_entries:\n                    entry['published'] = True\n                # Retain the actual durable point before fallible close/cancel.\n                # This never turns the following failure into a successful run.\n                self._durable_result = (task_id,\n                    os.path.join(self.root, _public_name(result_dir['name'])),\n                    tuple(committed), len(committed), total)\n                for row in reversed(self._bound_rows):\n"
+        }
+      ]
+    },
+    {
+      "original": "candidate/receive-directory-clock-v2/runtime/mta_transport.py",
+      "candidate": "candidate/receive-durable-result-v1/runtime/mta_transport.py",
+      "edits": [
+        {
+          "before": "from mta_storage import DirectoryBinding\n",
+          "after": "from mta_storage import DirectoryBinding, SafeZipReceiver\n"
+        },
+        {
+          "before": "                result=self.receiver.receive(resource.path,request['taskId'],self.cancelled,\n                    progress=file_progress,expected_files=request['fileCount'],\n                    expected_bytes=request['totalSize'],archive_resource=resource)\n",
+          "after": "                original_receiver,original_binding=self.receiver,self.directory_binding\n                before=(SafeZipReceiver.durable_result(original_receiver)\n                    if type(original_receiver) is SafeZipReceiver else None)\n                try:\n                    result=original_receiver.receive(resource.path,request['taskId'],self.cancelled,\n                        progress=file_progress,expected_files=request['fileCount'],\n                        expected_bytes=request['totalSize'],archive_resource=resource)\n                except BaseException:\n                    # Only a new same-request publication from this bound call.\n                    # Keep the original failure, never fabricate a peer ACK.\n                    if (before is None and self.receiver is original_receiver and\n                            self.directory_binding is original_binding and\n                            type(original_receiver) is SafeZipReceiver and\n                            original_receiver.directory_binding is original_binding):\n                        saved=SafeZipReceiver.durable_result(original_receiver)\n                        if (saved is not None and saved['taskId']==request['taskId'] and\n                                saved['fileCount']==request['fileCount'] and\n                                saved['totalSize']==request['totalSize']):\n                            self.local_commit_result=saved\n                    raise\n"
+        }
+      ]
+    }
+  ],
+  "scope": "Storage historical durable publication and Transport retention only. Executor/IPC/Bridge/UI and actual selected graph unchanged. Not deployed; no device or phone evidence."
+}

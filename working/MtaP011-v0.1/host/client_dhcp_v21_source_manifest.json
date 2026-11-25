@@ -1,0 +1,11 @@
+{
+  "schema": "client-dhcp-v21-source-only",
+  "base_checker_sha256": "1dc9fb303f206bd36314ab17243a88741157a7ba77faa88934bb8416931b4e17",
+  "base_manifest_sha256": "9c547fe0b30b899dc1b11beeb67d8815c4e98bd7db8da8c12a2d12cf775beec5",
+  "sources": [
+    {"module": "mta_dhcp", "path": "runtime/mta_dhcp.py", "sha256": "631987bd7307580af069f1978e440d21fbd449ecc62c83e0e06195c330f50176", "bytes": 15719},
+    {"module": "mta_dhcp_client_core", "path": "runtime/mta_dhcp_client_core.py", "sha256": "13c03d181139fd9ead7ff3bf2bcbb4930669f1e795b17360da85834dc345e9fa", "bytes": 12362},
+    {"module": "mta_dhcp_client", "path": "candidate/client-dhcp-v21/runtime/mta_dhcp_client.py", "sha256": "794421678866d04a10ca46fa9eb7e17174f24c4d9e705cf59016b457702003a0", "bytes": 24670},
+    {"module": "mta_client_dora", "path": "candidate/client-dhcp-v21/runtime/mta_client_dora.py", "sha256": "0a0e521704c89467cee7bdaf8e656d684fb697016261143b6e82370594db083d", "bytes": 25546}
+  ]
+}

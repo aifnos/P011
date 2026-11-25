@@ -1,0 +1,100 @@
+TRUSTED CLIENT PREPARER - MINIMUM SOURCE PLAN ONLY
+
+No implementation/import/test/ADB/RF or device/environment mutation in this
+record. It is a read-only review of actual code, not a ready deployment plan.
+
+Actual existing types and constraints
+  The runtime type is executor.LoadedDeployment, not LoadedConfig; a search of
+  current workspace Python source found no LoadedConfig definition/use.
+  candidate/client-integrated-v37/runtime/mta_client_executor.py:
+    L21-L23: only ROOT=/tmp/p011-mta-client-rfinit, authenticated physical alias
+      /var/volatile/tmp/p011-mta-client-rfinit, and existing
+      /mnt/data/p011-toolbox/user/Received are accepted.
+    L205-L346: _ReadOwner checks original anchors, metadata, bounded bytes,
+      fixed pins and actual once-close/EBADF inventory.
+    L349-L363: _receive_directory only observes existing directories; exact
+      root uid/gid and private 0700 user/Received; it never creates them.
+    L376-L472: DeploymentLoader one attempt, original cap, exact 35 sources,
+      version3 deployment schema, same running F module domain, actual binaries,
+      receive metadata, and retained original read/close facts.
+  Loader.load executes pinned module definitions; it is source authentication,
+  not a claim that arbitrary executable code is a pure data read or RF admission.
+  Do not clone F classes a second time or reuse a foreign already-imported F.
+
+  candidate/client-connect-v13/runtime/mta_client_connect_handoff.py:
+    L43-L75: constructor on actual State/Session worker after native helper/key.
+    L87-L113: original objects, epochs, consent, clock/deadline, and
+      state.receive_available is True are required.
+    L115-L155: helper-reader captures one original native GATT event.
+    L157-L187: same worker decrypts actual crypto output once.
+    L189-L221: claim_frame creates one binding/wire from actual GATT session,
+      original nonce/epochs and pinned codec, not an external plain-info input.
+  AES-CTR source binding is not cryptographic sender authentication.
+
+  candidate/client-state-bridge-v37/runtime/mta_client_state_bridge.py:
+    L208-L225: factory(handoff) is called only after actual decrypt; must return
+      exact LoadedDeployment from same F domain and pass exact loader.authenticate.
+    L230-L241: actual Parent is retained, captures original State/Handoff cap
+      before F RF; caller supplies no new until. UI never writes its pipes.
+  Service's receive gate remains False, so merely supplying a callable factory
+  cannot make the Handoff path available; physical startup/restore admission is
+  a distinct unresolved condition, not something this source plan bypasses.
+
+Existing code to reuse, not archived entry points to run
+  host/client_init_tmp_alias_v11_p011.py:
+    L60-L203 StageIo/StageOwner: fixed authenticated tmp alias, original dir-FDs,
+      EXCL publication, exact modes, fsync+readback, before-action inventory,
+      known once-close/EBADF, strict layout. Stage.stage is L178-L193.
+    It is a TARGET string with globals/check dependencies; extract reviewed
+      definitions into a small fixed preparer rather than import its driver or
+      execute its entire generated TARGET. Its current Stage.stage demands an
+      empty private root, refuses existing layouts and never cleans old stages.
+  host/client_init_prepare_v10_p011.py:
+    _read/_encoded/build_source offer fixed byte packaging and private raw
+      provenance patterns. TARGET later calls Parent.start(ttl=20), with old
+      version1 deployment and 19-source graph. v11 wraps that old 20-source flow.
+      Neither archived main is a v37 no-RF staging entry by merely changing pins.
+  host/client_retained_stage_v12_readonly.py:
+    L189 ReadOwner and L413-L416 retain actual read/FD inventory and explicitly
+      project restoration_verified=False/rf_requested=False/availability=False.
+    Its current plan/schema/codec bind a historical v11 run; reuse the bounded
+      read/inventory pattern in a new fixed entry, not its historical main/data.
+  host/device_prepare.py remains legacy WifiBackend preparation and is not a
+      trusted native v37 factory or original CLIENT init/restore admission.
+
+Minimum future 2-3 source接点, with separate steps
+  1. New fixed HOST stage/record entry, bound only to the frozen v37 map and
+     independently reviewed native WPA/Python/baseline inputs. Package exact
+     35 module bytes; no arbitrary module/path/candidate selection. After new
+     explicit device-write authorization, fixed StageOwner semantics may create
+     one new private run and publish static sources/candidate/WPA only. Never
+     overwrite, purge or adopt an old retained stage; conflicting/pending rows
+     block and remain recorded. This author has not created target directories.
+     End with readback/close records and rf_requested=False; no Parent.start,
+     lease.start, scan, association, DHCP, IP, TLS or legacy restore invocation.
+  2. Small private trusted runtime factory/helper: reuse actual _ReadOwner and
+     loader rather than add a cap/grant wrapper. Separate static-source
+     authentication (non-ready source-bundle record) from live deployment.
+     Version3 requires connect_binding, so without the real captured Handoff it
+     is not valid to fabricate a ready LoadedDeployment or GATT/session/nonce.
+     On factory(actual_handoff), under original owner/worker/epoch/cap, finalize
+     the private deployment once with that actual binding metadata and sources;
+     load/authenticate same F module original, retain constructor/read tickets
+     before action and close facts. Missing fixed Received directory or unread
+     old pending/retained run is refusal, not automatic mkdir/chmod/cleanup.
+     Static staging and loader hashes do not grant network authority.
+  3. Trusted startup composition only after actual reviewed P011 init/restore
+     admission: inject that exact factory into existing State/Bridge and retain
+     their original cancel/choice/result/finish contracts. No public HTTP/UI
+     boolean or factory-presence shortcut; do not remove Handoff._check or flip
+     State.receive_available for a modeled/source result. The root must decide
+     the actual startup admission procedure before this third接点 is runnable.
+
+Source/record-only output boundary
+  Separate static bundle bytes/hash, directory/read inventory and physical
+  actor/radio observations; no raw credentials or GATT binding in public ZIP.
+  Public fields can report source/staging facts, but must retain
+  rf_requested=False, receive_available=False, phone_tested=False and no
+  restoration claim until independent real owners/receipt/closure prove them.
+  A valid checksum, returned LoadedDeployment or empty close list alone cannot
+  authorize RF or certify init/restore. Raw failures and original stage remain.

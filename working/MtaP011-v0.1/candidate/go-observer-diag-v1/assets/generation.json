@@ -1,0 +1,304 @@
+{
+  "facts": {
+    "alias": "/tmp/p011-mta-go-observer-diag-v1",
+    "changed_asset_count": 3,
+    "device_accessed": false,
+    "diagnostic_max_bytes": 512,
+    "diagnostic_single_fixed_fd2_attempt": true,
+    "exact_original_function_or_code_identity_certified": false,
+    "exception_layers": 4,
+    "frame_projection": "namespace_bound_name_and_original_lineno",
+    "load_count": 38,
+    "original_proc_unchanged": true,
+    "parent_inline_only": {
+      "bytes": 52882,
+      "not_in_asset_files": true,
+      "sha256": "9ef36a53b80427af03e1bcc51b198e08917eebe22ce1545b53fa88f8bac58b06",
+      "source": "candidate/go-observer-diag-v1/runtime/mta_go_readonly_parent.py"
+    },
+    "rf_requested": false,
+    "root": "/var/volatile/tmp/p011-mta-go-observer-diag-v1",
+    "runtime_pins": {
+      "mta_go_readonly_entry": {
+        "bytes": 151251,
+        "sha256": "930775277dc3b6872ee8b34d7ae0ffc9aeac2dc098b3597a474c3dbecc98c53b"
+      },
+      "mta_go_readonly_loader": {
+        "bytes": 36543,
+        "sha256": "18de54e9dd3db344aaff522a873bc1094798eda6766b1a80259a71999dff919d"
+      },
+      "mta_go_readonly_parent": {
+        "bytes": 52882,
+        "sha256": "9ef36a53b80427af03e1bcc51b198e08917eebe22ce1545b53fa88f8bac58b06"
+      },
+      "mta_go_readonly_preflight": {
+        "bytes": 64948,
+        "sha256": "a10d6c9ff9ec4bf4b2d542120b19af3e36a111caf1153eaa8bc7d842aaa245eb"
+      }
+    },
+    "schema": "p011-go-observer-diag-v1-source-facts",
+    "scope": "SOURCE_ONLY_NOT_STAGED_NOT_RUN",
+    "source_bytes": 1548449,
+    "source_count": 41,
+    "source_inputs": [
+      [
+        "candidate/go-observer-libc-v1/assets/observer-source-catalog.json",
+        15861,
+        "8aaadd3f5a32b184bb851b422781ae8038d699d3e9555cb479cd49f4d090648a"
+      ],
+      [
+        "runtime/p011_json.py",
+        8061,
+        "fb6c803b185283258c2312e630df8bb80d6299007e95a1f3cf31250aa0e8ca88"
+      ],
+      [
+        "runtime/mta_ip.py",
+        22049,
+        "1fa5e72817772285fd966f52c57af105950ff0d3b6ea49b202983aebfbab40c5"
+      ],
+      [
+        "candidate/client-tmp-alias-v11/runtime/mta_client_tmp_alias.py",
+        8827,
+        "1a4a52bd0bae7add6ae42f66bd9827c43865a0170c666eaab00797d1f45f7f2f"
+      ],
+      [
+        "candidate/client-parent-cap-v33/runtime/mta_p2p_client_init.py",
+        71315,
+        "d3b51493d3ae778aeb72c1304dc50e5a6221428f7775bc7a28d15a3f19abeaaa"
+      ],
+      [
+        "candidate/client-session-v28/runtime/mta_client_resource_budget.py",
+        16215,
+        "56d6dbe2370279b1572a563e67fd3313bf942c0baa78fbd8e36cd973ba09839e"
+      ],
+      [
+        "candidate/client-proc-deadline-v25/runtime/mta_client_proc.py",
+        39384,
+        "ede5953c33ba4c17d3aecb1fffe8a9358589497b37e3109034d5e1de3eadb3d6"
+      ],
+      [
+        "runtime/mta_client_caps.py",
+        11821,
+        "c1792c2294fed5da16ec4a676423fbcbe53d44e9bc4ddadc1bc26fd45afe046c"
+      ],
+      [
+        "runtime/mta_client_caps_transport.py",
+        19614,
+        "df6b4cf3ede6039c684c6b689a8b61ffe1ba5b87259bb4a5581aa5c3ece84420"
+      ],
+      [
+        "candidate/client-readonly-proc-vanish-v51/runtime/mta_client_baseline.py",
+        31338,
+        "e950877bd99ee7907c66ee237e3140960ac8e4d64f979310b82bfdab2fa271ea"
+      ],
+      [
+        "candidate/client-session-v28/runtime/mta_client_journal_codec.py",
+        17450,
+        "2ffeca6b59498c9e2dfa4b9906bbe55db909d5d5e1d448fa0c795490996fe14a"
+      ],
+      [
+        "candidate/client-budget-refusal-v36/runtime/mta_client_coordination.py",
+        36295,
+        "5b8a4295a5479cb5693182085fc8d35c6041bb0f14d9efb660ec11f024a5eeb3"
+      ],
+      [
+        "candidate/client-resource-v23/runtime/mta_client_files.py",
+        28938,
+        "30c07bb4a5a28ce02aa76f35650ee1c87af63617f445e554c3fd7f73a2705864"
+      ],
+      [
+        "candidate/client-budget-refusal-v36/runtime/mta_client_pending.py",
+        53132,
+        "deaf62f9830b951584b36100de0f88548bcd6356b7327c3be0fa8578b65aba8a"
+      ],
+      [
+        "candidate/client-integrated-v37/runtime/mta_client_store.py",
+        74676,
+        "bc51d3c64d3c92a87da331c740d93cea7466c535c5a81969422a45b8c5b68f63"
+      ],
+      [
+        "candidate/client-transfer-v30-r2/runtime/mta_client_process_owner.py",
+        34361,
+        "c144bc197a8fd1d4fbbfc358ba0172a84f5c9070058732189e4709c8c801ffeb"
+      ],
+      [
+        "runtime/mta_client_launch_registration.py",
+        21679,
+        "833d46f5717e0b7e9db0c5392a0eb93d812d039b4b946a57d49d5903534a1aa0"
+      ],
+      [
+        "candidate/client-parent-cap-v33/runtime/mta_client_two_phase_lease.py",
+        27606,
+        "c227989ec5188c272ad0a212974d569572704d3bb07c4c61c72670abcd0981a5"
+      ],
+      [
+        "runtime/mta_p2p_client_ctrl.py",
+        18712,
+        "793b784f1b39eca18001aa65a1f0d6cdbd6de466dc58b3cf2ada167f71d902b5"
+      ],
+      [
+        "candidate/client-proc-deadline-v25/runtime/mta_client_wpa_status.py",
+        39133,
+        "47074a5af8d9f75746fa7cd72e1e42b50c8402fcbb612963f6523c875fe1c269"
+      ],
+      [
+        "runtime/mta_protocol.py",
+        17958,
+        "4f7c2bd46cde114f0a2a0c33b31631aa463f09e71b156d26e34daf2251dd8a57"
+      ],
+      [
+        "candidate/client-integrated-v37/runtime/mta_client_control_frame.py",
+        20942,
+        "d1a8fce91ab705524f14edac8d81e8d391c0cddbf8f4ac96ee7a6446c0512278"
+      ],
+      [
+        "candidate/client-association-v16/runtime/mta_client_kernel_proof.py",
+        23702,
+        "4ebfedf198673e3bad2f64a4bd72c581e5d6af24cef83e589b4456d2a38f8ede"
+      ],
+      [
+        "candidate/client-durable-connect-v19/runtime/mta_client_connection.py",
+        22494,
+        "ae2932252bbef16b89e6bf4614c2ebdb1721d507274dbd9b9fe4d9db1d0ff159"
+      ],
+      [
+        "candidate/client-integrated-v37/runtime/mta_client_linux_provider.py",
+        174220,
+        "5f080f8a0d53d7232ec95c303e0e84036d22d4e0927ac98dd3195291cf6d56ba"
+      ],
+      [
+        "candidate/client-integrated-v37/runtime/mta_client_executor.py",
+        105182,
+        "f3f7c9fb54e46f82b4321152dfac6f4ab9b037943c403d76716f8254700bb17e"
+      ],
+      [
+        "runtime/mta_dhcp.py",
+        15719,
+        "631987bd7307580af069f1978e440d21fbd449ecc62c83e0e06195c330f50176"
+      ],
+      [
+        "runtime/mta_dhcp_client_core.py",
+        12362,
+        "13c03d181139fd9ead7ff3bf2bcbb4930669f1e795b17360da85834dc345e9fa"
+      ],
+      [
+        "candidate/client-dhcp-v21/runtime/mta_dhcp_client.py",
+        24670,
+        "794421678866d04a10ca46fa9eb7e17174f24c4d9e705cf59016b457702003a0"
+      ],
+      [
+        "candidate/client-session-v28/runtime/mta_client_dora.py",
+        48149,
+        "f17f8405b28799fda8ee8f3ea9d280f871cceb1e0c6b999fc855bcb652ab2f7e"
+      ],
+      [
+        "candidate/client-session-v28-r2/runtime/mta_client_dynamic_ip.py",
+        32427,
+        "01476613eb965a05cd5441dfbfea53f15ce763da12213b76791ecdb23152199a"
+      ],
+      [
+        "candidate/client-peer-v29-r3/runtime/mta_client_peer.py",
+        31242,
+        "f8a15d046b505a8c5117a5be19d2ee59f38096759be1b29a0310535ceea08ec9"
+      ],
+      [
+        "runtime/mta_scoped_sockets.py",
+        26339,
+        "b95cfbe724b43baf90511c9d2a4a39d869a40a57e78e2a87d398ea134f9f84b8"
+      ],
+      [
+        "runtime/mta_storage.py",
+        14335,
+        "3c5c5f65ef0c8eb9a0256a99f931faff40558484bb908e89acee1c1c0aa3b4d6"
+      ],
+      [
+        "candidate/client-transfer-v30/runtime/mta_transport.py",
+        35209,
+        "77d9cd45936318315cf3343ab1bd2594c6a3381e33a7d0fdcfd853916063eefa"
+      ],
+      [
+        "candidate/client-transfer-v30-r3/runtime/mta_client_transfer.py",
+        30747,
+        "8633b2a1156c3012ec613e776eaee7e9339c14c76cffff9c8e5ff75646f35184"
+      ],
+      [
+        "candidate/client-readonly-proc-vanish-v51/runtime/mta_client_readonly_baseline.py",
+        13934,
+        "c2052c39fdad148d25f83743476b95a51a88e7f9e16ec2235c91d4de6adc9aad"
+      ],
+      [
+        "candidate/go-send-observer-v85/runtime/mta_snapshot_data.py",
+        17217,
+        "cb5e8f16c78cc4c879a8986dd9c2ab8ed5e6c055f105baad3ce60eb9a10d2a26"
+      ],
+      [
+        "candidate/go-observer-libc-v1/runtime/mta_go_readonly_preflight.py",
+        64948,
+        "802ad7c3b80ea6e9ea4678a4112bd2ec95be08cff5fe6684e1162f127ae55f44"
+      ],
+      [
+        "candidate/go-observer-libc-v1/runtime/mta_go_readonly_loader.py",
+        36543,
+        "8e60e8f86a0cd4a261ca65f657739e9189137cf37dc04f4af1495263ce1b8e56"
+      ],
+      [
+        "candidate/go-send-terminal-channel-v94/runtime/mta_observer_packet.py",
+        48253,
+        "004ff5616924a4529ce3a3f710ac83a8d2dedbd55ae2edb790998a68f68fe40f"
+      ],
+      [
+        "candidate/go-observer-libc-v1/runtime/mta_go_readonly_entry.py",
+        45310,
+        "b97328b01617ce1944d3576bb4c0e22160414120c737b336e2509004d0031ffa"
+      ],
+      [
+        "candidate/go-observer-libc-v1/runtime/mta_go_readonly_parent.py",
+        52881,
+        "a950577490c576698b3186efe87c6a8da773b21128f836d51b5b26a7bb5d45d6"
+      ]
+    ],
+    "stager_included": false,
+    "stderr_identity_nonblocking_closure_certified": false,
+    "successful_packet_unchanged": true,
+    "target_definitions_executed": 0,
+    "tb_frames_per_layer": 8,
+    "tb_frames_total": 32,
+    "terminal_definitions_unchanged": true,
+    "tests_invoked": 0,
+    "unchanged_asset_count": 38
+  },
+  "generated_by": "host/go_observer_diag_v1_source.py",
+  "outputs": [
+    {
+      "bytes": 64948,
+      "path": "candidate/go-observer-diag-v1/runtime/mta_go_readonly_preflight.py",
+      "sha256": "a10d6c9ff9ec4bf4b2d542120b19af3e36a111caf1153eaa8bc7d842aaa245eb"
+    },
+    {
+      "bytes": 36543,
+      "path": "candidate/go-observer-diag-v1/runtime/mta_go_readonly_loader.py",
+      "sha256": "18de54e9dd3db344aaff522a873bc1094798eda6766b1a80259a71999dff919d"
+    },
+    {
+      "bytes": 151251,
+      "path": "candidate/go-observer-diag-v1/runtime/mta_go_readonly_entry.py",
+      "sha256": "930775277dc3b6872ee8b34d7ae0ffc9aeac2dc098b3597a474c3dbecc98c53b"
+    },
+    {
+      "bytes": 52882,
+      "path": "candidate/go-observer-diag-v1/runtime/mta_go_readonly_parent.py",
+      "sha256": "9ef36a53b80427af03e1bcc51b198e08917eebe22ce1545b53fa88f8bac58b06"
+    },
+    {
+      "bytes": 15862,
+      "path": "candidate/go-observer-diag-v1/assets/observer-source-catalog.json",
+      "sha256": "aeb4cc01d992f9a39ec1fb57ecaea57b4a8e3aef4ac5b5bf2a995fa2836eedea"
+    },
+    {
+      "bytes": 901153,
+      "path": "candidate/go-observer-diag-v1/assets/delta.json",
+      "sha256": "5721e7f9be82de2708f7325e23549097def08e8abff16ed23fcc7b9328ddb257"
+    }
+  ],
+  "schema": "p011-go-observer-diag-v1-generation"
+}

@@ -1,0 +1,87 @@
+CLIENT STATIC STAGE V38 — SOURCE ONLY / NOT PHYSICAL READY
+
+本项新增两个隔离源码；没有执行脚本、import、AST、测试、PC 打包、ADB、设备或无线动作。
+旧 v10/v11 driver、v37 图、Bridge、State 与所有历史回执未修改。未建立新的设备准入。
+
+固定源码身份
+------------
+host/client_static_stage_v38.py
+  bytes 10402
+  SHA256 b5659c2af52a4af99fc28882d2f53c73847d584a2f92201f77f3ab1e34142bdf
+candidate/client-static-stage-v38/runtime/mta_client_static_stage.py
+  bytes 16620
+  SHA256 5f942117e91a9417a1472d73417781e70f196f3eca8147321df21671f2f704d1
+host/client_integrated_v37_source_manifest.json
+  bytes 8077
+  SHA256 4b9ea54997194ca895a3459cf88cd715b2ccc05e46c55b533920f8182314d07a
+  parent 2b13ba05acb3dd4984f7d2c5740349f4d90f1980ebde4014aa63f62a515f721a
+native/private-p2p-candidate-20261001-v2/mta-wpa-supplicant
+  bytes 1351192
+  SHA256 e069aef76a089215367f502015266e9ce59cf4ebb7d7246974815ff60d67f301
+
+HOST 默认流程与分层
+------------------
+L76 source_check 仅检查固定 manifest 的 35 个源及原 WPA。所有源均按其固定字节与 SHA、
+非符号链接/普通文件/打开前后与原 FD 元数据读取；StageOwner 的 SOURCE_PINS 常量仅
+用 ast.literal_eval 读取。未来运行这个函数不会 import/exec 任何候选模块或旧 driver。
+本次作者也没有运行 source_check，故这里只交付实现，不宣称该方法 PASS。
+
+L124 build_package 是显式 --package 的 PC 本地写入，默认不运行。只在 results 下新建
+专属目录，以 ZIP x 模式写入 39 个固定成员：35 源 + WPA + candidate.json +
+source-map.json + stage_owner_source.py。实现保留顺序、CRC、每成员原 bytes 读回检查。
+没有 deployment.json、GATT/AES 凭证、connect_binding、LoadedDeployment 或 RF grant。
+包是源码数据，不是安装、恢复或互通结果。该分支本次未执行，也未生成包。
+
+L161 execute_stage_unavailable 要求同时给 reviewed driver SHA 与显式 positive transport
+ID，但不枚举、选择或调用 ADB；source 检查后返回 baseline_adapter_unavailable，main
+返回 2。不存在 callable/BOOL/旧 main fallback。所有 physical/RF/ready/send/receive/phone/
+restore 结果均保持 False。本次没有调用该入口。
+
+独立 StageOwner 复用与窄差异
+----------------------------
+以 host/client_init_tmp_alias_v11_p011.py L60 的 _STAGE_OWNER 字面源码定义为来源。
+读取并复制定义文本，不 import/exec 旧 driver，因其 main/旧 20 源图与 RF 入口不可复用。
+
+保留原 dir-FD + FixedTmpAnchor、root/目录身份、固定 private root、EXCL 文件、
+fsync/逐 bytes 读回、0400 源/0500 WPA、最后布局、原 FD onceclose + EBADF 库存。
+新增固定 v37 35 源/WPA bytes+pins、fixed token32、120 秒原 absolute cap、same worker/PID、
+私有 writes/pending 库存及严格类型 source 数据。stage L232 只允许 client-<hex32> 新目录；
+原 managed root 必须为空，旧留存 stage 导致 stage_exists，不清空/删除/替换旧数据。
+写出 static-source.json 而非 deployment.json；其记录仅 data provenance/not-ready。
+close L257 仅按原库存关闭，未知或身份不明仍 pending；关闭不是无线/原厂恢复证明。
+
+该低层 publisher 是内部定义，不是物理前置准入；没有 driver 现在可调用它到设备。
+不得因源码定义存在绕过下列缺口，不得由 UI/HTTP 提供任意目标目录或 deadline grant。
+
+明确未完成项 / 不能物理执行的理由
+--------------------------------
+1. 尚无被此 driver 实际绑定的 ARM read-only baseline/identity/PENDING producer。
+   candidate/client-proc-deadline-v25/runtime/mta_client_baseline.py L32 默认 read flags
+   含 O_NOFOLLOW 0x20000，而实际 ARM 是 0x8000。不能直接默认构造当设备基线。
+   v37 Provider L499 _AuthenticatedCollector/L467 _ObservationIo 已有 ARM override，
+   但它依赖 actual provider/Store/Proc 原库存与 reader budget，不能为 stage 手改门/monkeypatch。
+   新物理入口因这一接线缺失明确不可用，而不是用历史快照/传入 bool 代替。
+2. 后续实际 preflight 必须先新枚举显式 transport，核 current device identity、current
+   stock/control_engine/launch 原件与 full native baseline，包括 IPv4 addresses/routes/rules、
+   link/WCN/radio/stock actors、原 PROC boot generation、PENDING/marker；取得只读 producer
+   原返回、原 IO 库存/onceclose 与 before/after 事实。失败/超时/unknown 应拒绝写入。
+3. stage 前后必须同一 actual owner/session/transport 复查完整基线与 stock 原件，并分别
+   证明只读 FD/child 和 StageOwner 的原 FD 关闭。不把 Stop、字节 hash 或 source flag 当恢复。
+4. 本 logical turn root 的三组 current readonly 证据来自
+   results/device-state-readonly-20261002-150246-bf516ac6；cb8d/364b/7bce 是其实际 current
+   backup v2.4.0 对照，不是从旧 driver 猜测。AGENTS e676 原历史固定身份保持原样。
+   但历史证据不能跳过 physical staging 前的新 identity/stock/full baseline gate，也未覆盖
+   完整 addresses/rules、原 marker/full restore 或任何 P2P/手机互通。
+5. 原生 F 必须在 staging 之后重新采集其实际 RF baseline。外围只读 driver 的闭合事实
+   不授权 Parent.start，不伪造 Handoff/GATT/connect_binding，不构造假的 LoadedDeployment。
+6. /mnt/data/p011-toolbox/user/Received 与所有用户目录完全不接触；需要创建用户目录的
+   后续功能需另明确授权与实际固定路径 owner。当前 State factory=None 与 receive gate=False
+   均未改。手机小米15 Ultra 的实际互通、GO/RF、TLS、收发与恢复验收全部未发生。
+7. HOST modeled full 179s/零 clock 推进不建立设备300秒性能。原生 readonly Proc/baseline
+   CPU/wall/内存短采样须另设无 RF 入口并单独审查，本项没有运行或宣称物理达标。
+
+后续最小审查顺序
+----------------
+先 ROOT 完整 SOURCE 审核这两个新模块与固定 pins；如需首次 PC-only source/package
+调用由 ROOT 明确执行并保留 raw。再单独审 native ARM readonly adapter 接点和闭合合同；
+在该接线满足之前不提供可运行物理 stage 入口，不开放 State，不改变既有 F/Provider。

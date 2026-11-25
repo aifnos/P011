@@ -1,0 +1,50 @@
+{
+  "schema": "p011-receive-durable-state-source-delta-v1",
+  "evidence": "SOURCE_ONLY_NOT_EXECUTED",
+  "source": [
+    "candidate/formal-receive-filecenter-ui-v1/device/mta/MtaPage.qml",
+    27441,
+    "6f87bdfc8e3b00a85642dd849963219962c47b563d71bf65c291d1e73bcb77b2"
+  ],
+  "candidate": [
+    "candidate/receive-durable-state-v1/device/mta/MtaPage.qml",
+    28426,
+    "b5f69f032395999c5bd2bdbb3759e7cb47859baee0a87fe462341b1b99ff0755"
+  ],
+  "bindings": [
+    [
+      "out/mta-ui-receive-filecenter-navigation-gui-v1-a87de5c1d0e0b90b35bb2a91/mta/MtaPage.qml",
+      27441,
+      "6f87bdfc8e3b00a85642dd849963219962c47b563d71bf65c291d1e73bcb77b2"
+    ],
+    [
+      "candidate/formal-receive-filecenter-navigation-anchor-v1/runtime/ui_assets.py",
+      12642,
+      "a620878186a3005f36febf5487675c3031c8831fd91d5e8962660ad99466c4be"
+    ]
+  ],
+  "replacements": [
+    {
+      "name": "strict_durable_receive_failure_data",
+      "before": "    function friendlyState() {\n",
+      "after": "    function durableReceiveFailure() {\n        var lifecycle = status.receiveLifecycle || {}, result = lifecycle.result || {};\n        return backendOnline && tab === \"receive\" && !sending &&\n                lifecycle.local_commit_verified === true && result.outcome === \"saved_failed\";\n    }\n    function friendlyState() {\n",
+      "count": 1
+    },
+    {
+      "name": "durable_failure_title_without_state_authority",
+      "before": "        if (currentState === \"idle\" && !capability(\"receive\") && !capability(\"send\")) return \"互传暂不可用\";\n",
+      "after": "        if (durableReceiveFailure() && !hasRequest) return (restoring || status.restorePending === true) ?\n                \"文件已保存，恢复待核验\" : \"文件已保存，但传输取消/失败\";\n        if (currentState === \"idle\" && !capability(\"receive\") && !capability(\"send\")) return \"互传暂不可用\";\n",
+      "count": 1
+    },
+    {
+      "name": "durable_failure_info_preserves_restoration_pending",
+      "before": "        if (restoring) return \"传输已结束，正在还原本次网络设置\";\n",
+      "after": "        var durableFailure = durableReceiveFailure();\n        if (restoring) return durableFailure ?\n                \"文件已保存，但传输取消/失败；原网络恢复仍待核验，请勿重复传输\" :\n                \"传输已结束，正在还原本次网络设置\";\n        if (durableFailure) return status.restorePending === true ?\n                \"文件已保存，但传输取消/失败；原网络恢复仍待核验，请勿重复传输\" :\n                \"文件已保存，但传输取消/失败；可到文件中心查看，请勿重复传输\";\n",
+      "count": 1
+    }
+  ],
+  "runtime_source_only": true,
+  "deployed": false,
+  "actions_changed": false,
+  "native_changed": false
+}

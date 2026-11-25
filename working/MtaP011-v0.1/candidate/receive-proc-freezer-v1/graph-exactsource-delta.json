@@ -1,0 +1,573 @@
+{
+  "business": [
+    {
+      "candidate": [
+        "candidate/receive-proc-freezer-v1/runtime/mta_client_proc.py",
+        39398,
+        "2894a8ffb1e361bd1f4785e6da2b0df9e5ee8bff7711e21ee745ae3cd1f9653d"
+      ],
+      "generation": [
+        "candidate/receive-proc-freezer-v1/proc-generation.json",
+        1446,
+        "ba1887f08a17f6a04e02a8256719fadb40c2900fc63dbdc243f1cc00753304ad"
+      ],
+      "name": "mta_client_proc",
+      "proof": [
+        "candidate/receive-proc-freezer-v1/proc-exactsource-delta.json",
+        1512,
+        "0f047d009c25e068b7e260a53543273cc0ef83233f2f69eebccabbcc32088fc0"
+      ],
+      "replacements": [
+        {
+          "after": "        return self.pid, self.start, self.comm, self.flags & ~0x40000000, self.ppid\n",
+          "before": "        return self.pid, self.start, self.comm, self.flags, self.ppid\n",
+          "count": 1,
+          "name": "stable_key_masks_only_pf_freezer_skip"
+        }
+      ],
+      "source": [
+        "candidate/client-proc-deadline-v25/runtime/mta_client_proc.py",
+        39384,
+        "ede5953c33ba4c17d3aecb1fffe8a9358589497b37e3109034d5e1de3eadb3d6"
+      ]
+    }
+  ],
+  "evidence": "MECHANICAL_GENERATED_NOT_HOST_CHECKED",
+  "guards": {
+    "atomic_functions_unchanged": true,
+    "changed_payload_roles": 7,
+    "cleanup_seconds": 60,
+    "client_rfinit_unchanged": true,
+    "current_window_logic_unchanged": true,
+    "device_tested": false,
+    "filecenter_cap": 131072,
+    "filecenter_count": 9,
+    "filecenter_unchanged": true,
+    "gui20_unchanged": true,
+    "headless_line_cap": 256,
+    "historical_generator_called": false,
+    "historical_verifier_called": false,
+    "native_unchanged": true,
+    "navigation_display_seconds": 20,
+    "navigation_failure_line": 1560,
+    "navigation_observer_line": 817,
+    "ordinary_changed_roles": 5,
+    "ordinary_count": 35,
+    "original_result_fields": 51,
+    "owner_seconds": 600,
+    "payload_cap": 4194304,
+    "payload_role_count": 75,
+    "phone_tested": false,
+    "prepare_seconds": 120,
+    "private_changed_roles": 2,
+    "private_count": 35,
+    "proc_mask": 1073741824,
+    "ready_seconds": 10,
+    "restoration_verified": false,
+    "rf_started": false,
+    "source_check_executed": false,
+    "startup_host_seconds": 250,
+    "startup_remote_alarm_seconds": 240,
+    "startup_seconds": 10,
+    "target_source_cap": 2097152,
+    "tests_executed": false,
+    "ui_line_cap": 2048,
+    "unchanged_payload_roles": 68,
+    "wire_cap": 6291456,
+    "worker_run_fixed_line": 1246
+  },
+  "manifests": [
+    {
+      "candidate": [
+        "host/formal_receive_proc_freezer_v1_definition_manifest.json",
+        7912,
+        "1f58907a64a16f3ac979a68532220d05738cc8f6b4b0e7a2953b261a08c0ec6f"
+      ],
+      "changes": [
+        {
+          "after": {
+            "bytes": 124768,
+            "module": "mta_client_executor",
+            "path": "candidate/receive-proc-freezer-v1/runtime/mta_client_executor.py",
+            "sha256": "4b43d778473a4c2bd484be7a25e68a5a320dd78cede5d7d0c137d392f3478ecc"
+          },
+          "before": {
+            "bytes": 124768,
+            "module": "mta_client_executor",
+            "path": "candidate/formal-receive-durable-state-v1/runtime/mta_client_executor.py",
+            "sha256": "e9c18a3368cd1e10641e8ddf7cae1e98cfacad858917d1a7084531ba67873008"
+          },
+          "name": "mta_client_executor"
+        },
+        {
+          "after": {
+            "bytes": 21356,
+            "module": "mta_client_state_bridge",
+            "path": "candidate/receive-proc-freezer-v1/runtime/mta_client_state_bridge.py",
+            "sha256": "89832b90bd8bb173ed52fa9087ba09e850d1fbbb946813384865c8540d0f0850"
+          },
+          "before": {
+            "bytes": 21356,
+            "module": "mta_client_state_bridge",
+            "path": "candidate/formal-receive-durable-state-v1/runtime/mta_client_state_bridge.py",
+            "sha256": "d7d01552fa007d807ea8cd9d8e972e15ebbbc13013fa9175e7ac53904254bc35"
+          },
+          "name": "mta_client_state_bridge"
+        },
+        {
+          "after": {
+            "bytes": 97757,
+            "module": "mta_client_receive_factory",
+            "path": "candidate/receive-proc-freezer-v1/runtime/mta_client_receive_factory.py",
+            "sha256": "051b1f6d1e1823be652f59695628d41f9d11c3d1da1896149dc4cfe3c7b207cb"
+          },
+          "before": {
+            "bytes": 97757,
+            "module": "mta_client_receive_factory",
+            "path": "candidate/formal-receive-durable-state-v1/runtime/mta_client_receive_factory.py",
+            "sha256": "6db5950043ba9fac63712ad6af4ece5062d805714f6b04136ce04af95cb8e2af"
+          },
+          "name": "mta_client_receive_factory"
+        },
+        {
+          "after": {
+            "bytes": 19695,
+            "module": "mta_client_receive_boot",
+            "path": "candidate/receive-proc-freezer-v1/runtime/mta_client_receive_boot.py",
+            "sha256": "5321af05bacde54904439747634fe3d45ec3081d5165212fbcfcab7b1f95d91a"
+          },
+          "before": {
+            "bytes": 19695,
+            "module": "mta_client_receive_boot",
+            "path": "candidate/formal-receive-durable-state-v1/runtime/mta_client_receive_boot.py",
+            "sha256": "9d7dea20a0544d8b43ddfaebcc80cc579072cc9ae14863f001576a2f20e0d3a1"
+          },
+          "name": "mta_client_receive_boot"
+        },
+        {
+          "after": {
+            "bytes": 107024,
+            "module": "mta_client_service_owner",
+            "path": "candidate/receive-proc-freezer-v1/runtime/mta_client_service_owner.py",
+            "sha256": "90f28f3472747168d9ab2a36869cfc84c520bbf2fd95eff0433449f640c46fc7"
+          },
+          "before": {
+            "bytes": 107024,
+            "module": "mta_client_service_owner",
+            "path": "candidate/formal-receive-durable-state-v1/runtime/mta_client_service_owner.py",
+            "sha256": "1bd7a77f22216e0b8653973f4d86a15e620de8088a17a8e851226a785777074d"
+          },
+          "name": "mta_client_service_owner"
+        }
+      ],
+      "private": false,
+      "source": [
+        "host/formal_receive_durable_state_v1_definition_manifest.json",
+        7952,
+        "2c9883367f8d61e0936ae7bf82841de04a59753795b908aada7ace5656bc6ebd"
+      ]
+    },
+    {
+      "candidate": [
+        "host/formal_receive_proc_freezer_v1_private_source_manifest.json",
+        8160,
+        "ab8b9f5cb173d62c0850ac89c546701b12036453892772a9143fd89d5f86bedf"
+      ],
+      "changes": [
+        {
+          "after": {
+            "bytes": 39398,
+            "module": "mta_client_proc",
+            "path": "candidate/receive-proc-freezer-v1/runtime/mta_client_proc.py",
+            "sha256": "2894a8ffb1e361bd1f4785e6da2b0df9e5ee8bff7711e21ee745ae3cd1f9653d"
+          },
+          "before": {
+            "bytes": 39384,
+            "module": "mta_client_proc",
+            "path": "candidate/client-proc-deadline-v25/runtime/mta_client_proc.py",
+            "sha256": "ede5953c33ba4c17d3aecb1fffe8a9358589497b37e3109034d5e1de3eadb3d6"
+          },
+          "name": "mta_client_proc"
+        },
+        {
+          "after": {
+            "bytes": 124768,
+            "module": "mta_client_executor",
+            "path": "candidate/receive-proc-freezer-v1/runtime/mta_client_executor.py",
+            "sha256": "4b43d778473a4c2bd484be7a25e68a5a320dd78cede5d7d0c137d392f3478ecc"
+          },
+          "before": {
+            "bytes": 124768,
+            "module": "mta_client_executor",
+            "path": "candidate/formal-receive-durable-state-v1/runtime/mta_client_executor.py",
+            "sha256": "e9c18a3368cd1e10641e8ddf7cae1e98cfacad858917d1a7084531ba67873008"
+          },
+          "name": "mta_client_executor"
+        }
+      ],
+      "private": true,
+      "source": [
+        "host/formal_receive_durable_state_v1_private_source_manifest.json",
+        8169,
+        "7a11e023d97b5b54235e6cdf7d1a014f814b4ff5192a40e503d693d8a234cc0d"
+      ]
+    }
+  ],
+  "mechanical": [
+    {
+      "candidate": [
+        "candidate/receive-proc-freezer-v1/runtime/mta_client_executor.py",
+        124768,
+        "4b43d778473a4c2bd484be7a25e68a5a320dd78cede5d7d0c137d392f3478ecc"
+      ],
+      "functions_unchanged": false,
+      "name": "mta_client_executor",
+      "replacements": [
+        {
+          "after": "    if (directory != '/var/volatile/tmp/p011-mta-rx-freezer-v1/runtime35' and\n",
+          "before": "    if (directory != '/var/volatile/tmp/p011-mta-rx-durable-v1/runtime35' and\n",
+          "count": 1,
+          "name": "private_runtime_isolation_root"
+        }
+      ],
+      "source": [
+        "candidate/formal-receive-durable-state-v1/runtime/mta_client_executor.py",
+        124768,
+        "e9c18a3368cd1e10641e8ddf7cae1e98cfacad858917d1a7084531ba67873008"
+      ]
+    },
+    {
+      "candidate": [
+        "candidate/receive-proc-freezer-v1/runtime/mta_client_state_bridge.py",
+        21356,
+        "89832b90bd8bb173ed52fa9087ba09e850d1fbbb946813384865c8540d0f0850"
+      ],
+      "functions_unchanged": true,
+      "name": "mta_client_state_bridge",
+      "replacements": [
+        {
+          "after": "PARENT_SOURCE_SHA = '4b43d778473a4c2bd484be7a25e68a5a320dd78cede5d7d0c137d392f3478ecc'\n",
+          "before": "PARENT_SOURCE_SHA = 'e9c18a3368cd1e10641e8ddf7cae1e98cfacad858917d1a7084531ba67873008'\n",
+          "count": 1,
+          "name": "executor_parent_sha"
+        }
+      ],
+      "source": [
+        "candidate/formal-receive-durable-state-v1/runtime/mta_client_state_bridge.py",
+        21356,
+        "d7d01552fa007d807ea8cd9d8e972e15ebbbc13013fa9175e7ac53904254bc35"
+      ]
+    },
+    {
+      "candidate": [
+        "candidate/receive-proc-freezer-v1/runtime/mta_client_receive_factory.py",
+        97757,
+        "051b1f6d1e1823be652f59695628d41f9d11c3d1da1896149dc4cfe3c7b207cb"
+      ],
+      "functions_unchanged": true,
+      "name": "mta_client_receive_factory",
+      "replacements": [
+        {
+          "after": "ASSET_ROOT = '/tmp/p011-mta-rx-freezer-v1'\n",
+          "before": "ASSET_ROOT = '/tmp/p011-mta-rx-durable-v1'\n",
+          "count": 1,
+          "name": "ASSET_ROOT_isolation_root"
+        },
+        {
+          "after": "ASSET_PHYSICAL_ROOT = '/var/volatile/tmp/p011-mta-rx-freezer-v1'\n",
+          "before": "ASSET_PHYSICAL_ROOT = '/var/volatile/tmp/p011-mta-rx-durable-v1'\n",
+          "count": 1,
+          "name": "ASSET_PHYSICAL_ROOT_isolation_root"
+        },
+        {
+          "after": "SOURCE_MANIFEST_SHA = 'ab8b9f5cb173d62c0850ac89c546701b12036453892772a9143fd89d5f86bedf'\n",
+          "before": "SOURCE_MANIFEST_SHA = '7a11e023d97b5b54235e6cdf7d1a014f814b4ff5192a40e503d693d8a234cc0d'\n",
+          "count": 1,
+          "name": "private_manifest_sha"
+        },
+        {
+          "after": "F_SHA = '4b43d778473a4c2bd484be7a25e68a5a320dd78cede5d7d0c137d392f3478ecc'\n",
+          "before": "F_SHA = 'e9c18a3368cd1e10641e8ddf7cae1e98cfacad858917d1a7084531ba67873008'\n",
+          "count": 1,
+          "name": "executor_sha"
+        },
+        {
+          "after": "    ('mta_client_proc', 39398, '2894a8ffb1e361bd1f4785e6da2b0df9e5ee8bff7711e21ee745ae3cd1f9653d'),\n",
+          "before": "    ('mta_client_proc', 39384, 'ede5953c33ba4c17d3aecb1fffe8a9358589497b37e3109034d5e1de3eadb3d6'),\n",
+          "count": 1,
+          "name": "mta_client_proc_source_tuple"
+        }
+      ],
+      "source": [
+        "candidate/formal-receive-durable-state-v1/runtime/mta_client_receive_factory.py",
+        97757,
+        "6db5950043ba9fac63712ad6af4ece5062d805714f6b04136ce04af95cb8e2af"
+      ]
+    },
+    {
+      "candidate": [
+        "candidate/receive-proc-freezer-v1/runtime/mta_client_receive_boot.py",
+        19695,
+        "5321af05bacde54904439747634fe3d45ec3081d5165212fbcfcab7b1f95d91a"
+      ],
+      "functions_unchanged": true,
+      "name": "mta_client_receive_boot",
+      "replacements": [
+        {
+          "after": "ROOT = '/tmp/p011-mta-rx-freezer-v1'\n",
+          "before": "ROOT = '/tmp/p011-mta-rx-durable-v1'\n",
+          "count": 1,
+          "name": "ROOT_isolation_root"
+        },
+        {
+          "after": "PHYSICAL_ROOT = '/var/volatile/tmp/p011-mta-rx-freezer-v1'\n",
+          "before": "PHYSICAL_ROOT = '/var/volatile/tmp/p011-mta-rx-durable-v1'\n",
+          "count": 1,
+          "name": "PHYSICAL_ROOT_isolation_root"
+        },
+        {
+          "after": "CLIENT_MANIFEST_SHA = 'ab8b9f5cb173d62c0850ac89c546701b12036453892772a9143fd89d5f86bedf'\n",
+          "before": "CLIENT_MANIFEST_SHA = '7a11e023d97b5b54235e6cdf7d1a014f814b4ff5192a40e503d693d8a234cc0d'\n",
+          "count": 1,
+          "name": "private_manifest_sha"
+        },
+        {
+          "after": "F37_SHA = '4b43d778473a4c2bd484be7a25e68a5a320dd78cede5d7d0c137d392f3478ecc'\n",
+          "before": "F37_SHA = 'e9c18a3368cd1e10641e8ddf7cae1e98cfacad858917d1a7084531ba67873008'\n",
+          "count": 1,
+          "name": "executor_sha"
+        },
+        {
+          "after": "    ('mta_client_receive_factory', 97757, '051b1f6d1e1823be652f59695628d41f9d11c3d1da1896149dc4cfe3c7b207cb'),\n",
+          "before": "    ('mta_client_receive_factory', 97757, '6db5950043ba9fac63712ad6af4ece5062d805714f6b04136ce04af95cb8e2af'),\n",
+          "count": 1,
+          "name": "mta_client_receive_factory_source_tuple"
+        },
+        {
+          "after": "    ('mta_client_state_bridge', 21356, '89832b90bd8bb173ed52fa9087ba09e850d1fbbb946813384865c8540d0f0850'),\n",
+          "before": "    ('mta_client_state_bridge', 21356, 'd7d01552fa007d807ea8cd9d8e972e15ebbbc13013fa9175e7ac53904254bc35'),\n",
+          "count": 1,
+          "name": "mta_client_state_bridge_source_tuple"
+        }
+      ],
+      "source": [
+        "candidate/formal-receive-durable-state-v1/runtime/mta_client_receive_boot.py",
+        19695,
+        "9d7dea20a0544d8b43ddfaebcc80cc579072cc9ae14863f001576a2f20e0d3a1"
+      ]
+    },
+    {
+      "candidate": [
+        "candidate/receive-proc-freezer-v1/runtime/mta_client_service_owner.py",
+        107024,
+        "90f28f3472747168d9ab2a36869cfc84c520bbf2fd95eff0433449f640c46fc7"
+      ],
+      "functions_unchanged": false,
+      "name": "mta_client_service_owner",
+      "replacements": [
+        {
+          "after": "ROOT = '/tmp/p011-mta-rx-freezer-v1'\n",
+          "before": "ROOT = '/tmp/p011-mta-rx-durable-v1'\n",
+          "count": 1,
+          "name": "ROOT_isolation_root"
+        },
+        {
+          "after": "        physical = '/var/volatile/tmp/p011-mta-rx-freezer-v1'\n",
+          "before": "        physical = '/var/volatile/tmp/p011-mta-rx-durable-v1'\n",
+          "count": 1,
+          "name": "held_physical_isolation_root"
+        },
+        {
+          "after": "BOOT_PIN = (19695, '5321af05bacde54904439747634fe3d45ec3081d5165212fbcfcab7b1f95d91a')\n",
+          "before": "BOOT_PIN = (19695, '9d7dea20a0544d8b43ddfaebcc80cc579072cc9ae14863f001576a2f20e0d3a1')\n",
+          "count": 1,
+          "name": "boot_pin"
+        }
+      ],
+      "source": [
+        "candidate/formal-receive-durable-state-v1/runtime/mta_client_service_owner.py",
+        107024,
+        "1bd7a77f22216e0b8653973f4d86a15e620de8088a17a8e851226a785777074d"
+      ]
+    },
+    {
+      "candidate": [
+        "candidate/receive-proc-freezer-v1/runtime/mta_formal_receive_session.py",
+        79279,
+        "68573f0c9053db3df42f71647d9765a6af9bda56f4913daeef52b79e907f1894"
+      ],
+      "functions_unchanged": true,
+      "name": "mta_formal_receive_session",
+      "replacements": [
+        {
+          "after": "STATE_ROOT = '/var/volatile/tmp/p011-mta-rx-freezer-v1'\n",
+          "before": "STATE_ROOT = '/var/volatile/tmp/p011-mta-rx-durable-v1'\n",
+          "count": 1,
+          "name": "STATE_ROOT_isolation_root"
+        },
+        {
+          "after": "STATE_ALIAS = '/tmp/p011-mta-rx-freezer-v1'\n",
+          "before": "STATE_ALIAS = '/tmp/p011-mta-rx-durable-v1'\n",
+          "count": 1,
+          "name": "STATE_ALIAS_isolation_root"
+        },
+        {
+          "after": "    ('mta_client_executor', 124768, '4b43d778473a4c2bd484be7a25e68a5a320dd78cede5d7d0c137d392f3478ecc'),\n",
+          "before": "    ('mta_client_executor', 124768, 'e9c18a3368cd1e10641e8ddf7cae1e98cfacad858917d1a7084531ba67873008'),\n",
+          "count": 2,
+          "name": "mta_client_executor_source_tuple"
+        },
+        {
+          "after": "    ('mta_client_state_bridge', 21356, '89832b90bd8bb173ed52fa9087ba09e850d1fbbb946813384865c8540d0f0850'),\n",
+          "before": "    ('mta_client_state_bridge', 21356, 'd7d01552fa007d807ea8cd9d8e972e15ebbbc13013fa9175e7ac53904254bc35'),\n",
+          "count": 1,
+          "name": "mta_client_state_bridge_source_tuple"
+        },
+        {
+          "after": "    ('mta_client_receive_factory', 97757, '051b1f6d1e1823be652f59695628d41f9d11c3d1da1896149dc4cfe3c7b207cb'),\n",
+          "before": "    ('mta_client_receive_factory', 97757, '6db5950043ba9fac63712ad6af4ece5062d805714f6b04136ce04af95cb8e2af'),\n",
+          "count": 1,
+          "name": "mta_client_receive_factory_source_tuple"
+        },
+        {
+          "after": "    ('mta_client_receive_boot', 19695, '5321af05bacde54904439747634fe3d45ec3081d5165212fbcfcab7b1f95d91a'),\n",
+          "before": "    ('mta_client_receive_boot', 19695, '9d7dea20a0544d8b43ddfaebcc80cc579072cc9ae14863f001576a2f20e0d3a1'),\n",
+          "count": 1,
+          "name": "mta_client_receive_boot_source_tuple"
+        },
+        {
+          "after": "    ('mta_client_service_owner', 107024, '90f28f3472747168d9ab2a36869cfc84c520bbf2fd95eff0433449f640c46fc7'),\n",
+          "before": "    ('mta_client_service_owner', 107024, '1bd7a77f22216e0b8653973f4d86a15e620de8088a17a8e851226a785777074d'),\n",
+          "count": 1,
+          "name": "mta_client_service_owner_source_tuple"
+        },
+        {
+          "after": "    ('mta_client_proc', 39398, '2894a8ffb1e361bd1f4785e6da2b0df9e5ee8bff7711e21ee745ae3cd1f9653d'),\n",
+          "before": "    ('mta_client_proc', 39384, 'ede5953c33ba4c17d3aecb1fffe8a9358589497b37e3109034d5e1de3eadb3d6'),\n",
+          "count": 1,
+          "name": "mta_client_proc_source_tuple"
+        }
+      ],
+      "source": [
+        "candidate/receive-window-clock-v1/runtime/mta_formal_receive_session.py",
+        79279,
+        "88c3dc8daac2f4315affb7f439e01a7a60a9c764053019fe9043f891b676a5aa"
+      ]
+    },
+    {
+      "candidate": [
+        "candidate/receive-proc-freezer-v1/runtime/mta_formal_receive_navigation_session.py",
+        88850,
+        "9d2244fb49058077d947f95b514c921b2fd62c2285c00147edce07523c2a8963"
+      ],
+      "functions_unchanged": true,
+      "name": "mta_formal_receive_navigation_session",
+      "replacements": [
+        {
+          "after": "STATE_ROOT = '/var/volatile/tmp/p011-mta-rx-freezer-v1'\n",
+          "before": "STATE_ROOT = '/var/volatile/tmp/p011-mta-rx-durable-v1'\n",
+          "count": 1,
+          "name": "STATE_ROOT_isolation_root"
+        },
+        {
+          "after": "STATE_ALIAS = '/tmp/p011-mta-rx-freezer-v1'\n",
+          "before": "STATE_ALIAS = '/tmp/p011-mta-rx-durable-v1'\n",
+          "count": 1,
+          "name": "STATE_ALIAS_isolation_root"
+        },
+        {
+          "after": "    ('mta_client_executor', 124768, '4b43d778473a4c2bd484be7a25e68a5a320dd78cede5d7d0c137d392f3478ecc'),\n",
+          "before": "    ('mta_client_executor', 124768, 'e9c18a3368cd1e10641e8ddf7cae1e98cfacad858917d1a7084531ba67873008'),\n",
+          "count": 2,
+          "name": "mta_client_executor_source_tuple"
+        },
+        {
+          "after": "    ('mta_client_state_bridge', 21356, '89832b90bd8bb173ed52fa9087ba09e850d1fbbb946813384865c8540d0f0850'),\n",
+          "before": "    ('mta_client_state_bridge', 21356, 'd7d01552fa007d807ea8cd9d8e972e15ebbbc13013fa9175e7ac53904254bc35'),\n",
+          "count": 1,
+          "name": "mta_client_state_bridge_source_tuple"
+        },
+        {
+          "after": "    ('mta_client_receive_factory', 97757, '051b1f6d1e1823be652f59695628d41f9d11c3d1da1896149dc4cfe3c7b207cb'),\n",
+          "before": "    ('mta_client_receive_factory', 97757, '6db5950043ba9fac63712ad6af4ece5062d805714f6b04136ce04af95cb8e2af'),\n",
+          "count": 1,
+          "name": "mta_client_receive_factory_source_tuple"
+        },
+        {
+          "after": "    ('mta_client_receive_boot', 19695, '5321af05bacde54904439747634fe3d45ec3081d5165212fbcfcab7b1f95d91a'),\n",
+          "before": "    ('mta_client_receive_boot', 19695, '9d7dea20a0544d8b43ddfaebcc80cc579072cc9ae14863f001576a2f20e0d3a1'),\n",
+          "count": 1,
+          "name": "mta_client_receive_boot_source_tuple"
+        },
+        {
+          "after": "    ('mta_client_service_owner', 107024, '90f28f3472747168d9ab2a36869cfc84c520bbf2fd95eff0433449f640c46fc7'),\n",
+          "before": "    ('mta_client_service_owner', 107024, '1bd7a77f22216e0b8653973f4d86a15e620de8088a17a8e851226a785777074d'),\n",
+          "count": 1,
+          "name": "mta_client_service_owner_source_tuple"
+        },
+        {
+          "after": "    ('mta_client_proc', 39398, '2894a8ffb1e361bd1f4785e6da2b0df9e5ee8bff7711e21ee745ae3cd1f9653d'),\n",
+          "before": "    ('mta_client_proc', 39384, 'ede5953c33ba4c17d3aecb1fffe8a9358589497b37e3109034d5e1de3eadb3d6'),\n",
+          "count": 1,
+          "name": "mta_client_proc_source_tuple"
+        }
+      ],
+      "source": [
+        "candidate/receive-window-clock-v1/runtime/mta_formal_receive_navigation_session.py",
+        88850,
+        "2aa5c840d9df5293fe10d385060821269d5170da4261b751c49af091ccf31f48"
+      ]
+    },
+    {
+      "candidate": [
+        "candidate/receive-proc-freezer-v1/runtime/ui_session.py",
+        100157,
+        "06196ee0567dd5e3076638a3821974985e5b771497922eb0ee7ecdf916ab0697"
+      ],
+      "functions_unchanged": true,
+      "name": "ui_session",
+      "replacements": [
+        {
+          "after": "RUNNER_PIN = (88850, '9d2244fb49058077d947f95b514c921b2fd62c2285c00147edce07523c2a8963')\n",
+          "before": "RUNNER_PIN = (88850, '2aa5c840d9df5293fe10d385060821269d5170da4261b751c49af091ccf31f48')\n",
+          "count": 1,
+          "name": "navigation_runner_pin"
+        },
+        {
+          "after": "STATE_ROOT = '/var/volatile/tmp/p011-mta-rx-freezer-v1'\n",
+          "before": "STATE_ROOT = '/var/volatile/tmp/p011-mta-rx-durable-v1'\n",
+          "count": 1,
+          "name": "STATE_ROOT_isolation_root"
+        },
+        {
+          "after": "STATE_ALIAS = '/tmp/p011-mta-rx-freezer-v1'\n",
+          "before": "STATE_ALIAS = '/tmp/p011-mta-rx-durable-v1'\n",
+          "count": 1,
+          "name": "STATE_ALIAS_isolation_root"
+        },
+        {
+          "after": "CONTROL_NAME = 'p011-mta-ui-session-' + SESSION + '-receive-proc-freezer-v1'\n",
+          "before": "CONTROL_NAME = 'p011-mta-ui-session-' + SESSION + '-receive-navigation-atomic-v1'\n",
+          "count": 1,
+          "name": "exclusive_control_suffix"
+        }
+      ],
+      "source": [
+        "candidate/receive-navigation-atomic-v1/runtime/ui_session.py",
+        100162,
+        "cde8ae626632e5d86acb2cc741b7d22eb18582b58ed6d6fd48160c008b62225e"
+      ]
+    }
+  ],
+  "root": {
+    "after": "p011-mta-rx-freezer-v1",
+    "before": "p011-mta-rx-durable-v1"
+  },
+  "schema": "p011-receive-proc-freezer-v1-graph-delta",
+  "totals": {
+    "filecenter_bytes": 113690,
+    "original_payload_bytes": 4191752,
+    "payload_bytes": 4191766,
+    "payload_remaining": 2538
+  }
+}

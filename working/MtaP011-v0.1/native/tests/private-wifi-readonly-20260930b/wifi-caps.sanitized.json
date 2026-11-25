@@ -1,0 +1,90 @@
+{
+  "supplicant_global_capabilities": {
+    "unknown_value_count": 0,
+    "values": [
+      "ap"
+    ],
+    "query_ok": true
+  },
+  "supplicant_registered_interfaces": {
+    "count": 0,
+    "query_ok": true,
+    "error_name": null
+  },
+  "supplicant_root_api": {
+    "has_p2p_interface_namespace": false,
+    "query_ok": false,
+    "has_get_interface": false
+  },
+  "wpa_modes": {
+    "not_p2p_absence_proof": true,
+    "values": [
+      "AP"
+    ],
+    "query_ok": true
+  },
+  "supplicant_existing_interface": {
+    "error_name": "fi.w1.wpa_supplicant1.InterfaceUnknown",
+    "found": false,
+    "query_ok": false
+  },
+  "read_only": true,
+  "wpa_cli_help": {
+    "not_server_build_proof": true,
+    "client_p2p_find": false,
+    "client_p2p_group_add": false,
+    "query_ok": true
+  },
+  "nl80211": {
+    "phys": [
+      {
+        "combinations_present": true,
+        "commands": {
+          "start_ap": true,
+          "new_interface": true,
+          "start_p2p_device": true
+        },
+        "index": 0,
+        "combinations": [
+          {
+            "limits": [
+              {
+                "max": 1,
+                "types": [
+                  "station",
+                  "ap"
+                ]
+              },
+              {
+                "max": 1,
+                "types": [
+                  "p2p_client",
+                  "p2p_go"
+                ]
+              },
+              {
+                "max": 1,
+                "types": [
+                  "p2p_device"
+                ]
+              }
+            ],
+            "num_channels": 2,
+            "max_interfaces": 3,
+            "station_plus_go_same_channel": true
+          }
+        ],
+        "iftypes": [
+          "ap",
+          "p2p_client",
+          "p2p_device",
+          "p2p_go",
+          "station"
+        ],
+        "iftypes_present": true,
+        "software_iftypes": []
+      }
+    ],
+    "query_ok": true
+  }
+}

@@ -1,0 +1,82 @@
+{
+  "business_closure_count": 1,
+  "changed_payload_roles": [
+    "mta_client_executor",
+    "mta_client_receive_factory",
+    "mta_client_state_bridge",
+    "mta_client_receive_boot",
+    "mta_client_service_owner",
+    "runtime35/mta_client_executor"
+  ],
+  "definitions_and_report_pins_omitted_to_avoid_cycles": true,
+  "definitions_path": "host/formal_receive_owner_dispatch_v1_definitions.py",
+  "device_tested": false,
+  "exact_payload_roles": 69,
+  "generator": [
+    "candidate/receive-owner-dispatch-graph-v1/generate_graph.py",
+    22754,
+    "89bc3ebad927497ab5aa60e28d63c19642a80ad96015484c007750143b0007c2"
+  ],
+  "headless_only": true,
+  "mechanical_closure_count": 6,
+  "navigation_ui_outputs": false,
+  "old_main_build_verify_called": false,
+  "old_tests_replayed": 0,
+  "output_pins": [
+    [
+      "candidate/receive-owner-dispatch-graph-v1/graph-exactsource-delta.json",
+      23002,
+      "857ea664ae3add265b29bc7ccf830bf49704a106828ecfe81c55223c738394a7"
+    ],
+    [
+      "candidate/receive-owner-dispatch-graph-v1/runtime/mta_client_executor.py",
+      124769,
+      "70bce902dc5ff64036edac68b65ac42bc160dcb98fe29631240924535e88c606"
+    ],
+    [
+      "candidate/receive-owner-dispatch-graph-v1/runtime/mta_client_receive_boot.py",
+      19697,
+      "e5aa90e096bf6c3e560c1435391aed18c7ab76910ff2a02f053959a2903aa262"
+    ],
+    [
+      "candidate/receive-owner-dispatch-graph-v1/runtime/mta_client_receive_factory.py",
+      99257,
+      "0103f047e9598767f9e9162cf8833f0420c171f7552c31ed28e107e6a91c6cb0"
+    ],
+    [
+      "candidate/receive-owner-dispatch-graph-v1/runtime/mta_client_service_owner.py",
+      107104,
+      "d3be260601881f64b3623706da36ded31ee707598956be632bf1ce71f2616e8d"
+    ],
+    [
+      "candidate/receive-owner-dispatch-graph-v1/runtime/mta_client_state_bridge.py",
+      21356,
+      "45690369157954bf98688e6295daa4f55346dc14944a830798cd006c335fa9d9"
+    ],
+    [
+      "candidate/receive-owner-dispatch-graph-v1/runtime/mta_formal_receive_session.py",
+      79281,
+      "7a337bbe1221f78b598129a25e14f10acf2a92731797583cc1819d375f4718df"
+    ],
+    [
+      "host/formal_receive_owner_dispatch_v1_definition_manifest.json",
+      7952,
+      "d826569eb0b5304e9f22d5f7821fde6e23e0584974d94adb1a666e0b8d15595d"
+    ],
+    [
+      "host/formal_receive_owner_dispatch_v1_private_source_manifest.json",
+      8168,
+      "614d9b5afa5bb0973c822950786ce5b2ff4ea9abfdfa492d441217665a14315e"
+    ]
+  ],
+  "owner_business_growth": 78,
+  "payload_bytes": 4193350,
+  "payload_remaining": 954,
+  "phone_tested": false,
+  "private_roles_exact": 34,
+  "proc_native_fc9_unchanged": true,
+  "root": "p011-mta-rx-dispatch-v1",
+  "schema": "p011-receive-owner-dispatch-v1-graph-generation",
+  "source_origin_count": 245,
+  "status": "MECHANICALLY_DERIVED_NOT_NEW_DEVICE_TESTED"
+}

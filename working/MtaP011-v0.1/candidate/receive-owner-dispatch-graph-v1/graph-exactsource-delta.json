@@ -1,0 +1,448 @@
+{
+  "business": {
+    "candidate": [
+      "candidate/receive-owner-dispatch-v1/runtime/mta_client_service_owner.py",
+      107104,
+      "22aa94d8d5ae2a1dd75c5c98635d80020b318f7071ea84c5c3cb3d85e2805adf"
+    ],
+    "edits": [
+      {
+        "after": "def _context(self):\n        # Guard the actual new helpers before a mutable class attribute can run.\n        cls, methods = self._startup_owner_type_original, self.filecenter_owner_methods\n        own = self.filecenter_owner_module\n        if (type(self) is not cls or cls.__init__.__globals__ is not self._startup_namespace_original or\n                own is not self._filecenter_owner_module_original or\n                own is not None and (type(own) is not types.ModuleType or\n                    own.__dict__ is not self._startup_namespace_original or\n                    own.FixedStateServiceOwner is not cls) or\n                methods is not self._filecenter_owner_methods_original or\n                type(methods) is not tuple or len(methods) != 9):\n            _fail('filecenter_original_changed')\n        for name, value, code in methods:\n            if (type(value) is not types.FunctionType or getattr(type(self), name) is not value or\n                    value.__globals__ is not self._startup_namespace_original or value.__code__ is not code):\n                _fail('filecenter_original_changed')\n        if self.filecenter_ticket is not self._filecenter_ticket_original:\n            _fail('filecenter_original_changed')\n        if (self.io is not self.original_io or self.until is not self.original_until or\n                self.loader._original_until is not self.original_until or self.loader.clock is not self.clock or\n                sys.modules.get('mta_client_receive_boot') is not self.boot or\n                self.network_observer_spec is not self._network_observer_spec_original or\n                type(self.receive_trial_requested) is not bool or\n                self.receive_trial_requested is not self._receive_trial_requested_original or\n                self.receive_barrier is not self._receive_barrier_original or\n                self.receive_trial is not self._receive_trial_original or\n                self._receive_barrier_ticket is not self._receive_barrier_ticket_original or\n                self._receive_trial_ticket is not self._receive_trial_ticket_original or\n                self.receive_trial_revoke_rows is not self._receive_trial_revoke_rows_original or\n                self.pid is not None and self.io.pid() != self.pid): _fail('owner_changed')",
+        "before": "def _context(self):\n        # Guard the actual new helpers before a mutable class attribute can run.\n        cls, methods = self._startup_owner_type_original, self.filecenter_owner_methods\n        own = self.filecenter_owner_module\n        if (type(self) is not cls or cls.__init__.__globals__ is not self._startup_namespace_original or\n                own is not self._filecenter_owner_module_original or\n                own is not None and (type(own) is not types.ModuleType or\n                    own.__dict__ is not self._startup_namespace_original or\n                    own.FixedStateServiceOwner is not cls) or\n                methods is not self._filecenter_owner_methods_original or\n                type(methods) is not tuple or len(methods) != 9 or\n                any(type(value) is not types.FunctionType or getattr(type(self), name) is not value or\n                    value.__globals__ is not self._startup_namespace_original or value.__code__ is not code\n                    for name, value, code in methods) or\n                self.filecenter_ticket is not self._filecenter_ticket_original):\n            _fail('filecenter_original_changed')\n        if (self.io is not self.original_io or self.until is not self.original_until or\n                self.loader._original_until is not self.original_until or self.loader.clock is not self.clock or\n                sys.modules.get('mta_client_receive_boot') is not self.boot or\n                self.network_observer_spec is not self._network_observer_spec_original or\n                type(self.receive_trial_requested) is not bool or\n                self.receive_trial_requested is not self._receive_trial_requested_original or\n                self.receive_barrier is not self._receive_barrier_original or\n                self.receive_trial is not self._receive_trial_original or\n                self._receive_barrier_ticket is not self._receive_barrier_ticket_original or\n                self._receive_trial_ticket is not self._receive_trial_ticket_original or\n                self.receive_trial_revoke_rows is not self._receive_trial_revoke_rows_original or\n                self.pid is not None and self.io.pid() != self.pid): _fail('owner_changed')",
+        "count": 1,
+        "name": "owner_context_dispatch"
+      }
+    ],
+    "seed_delta": [
+      "candidate/receive-owner-dispatch-v1/exactsource-delta.json",
+      2189,
+      "49d87f845578545103ab516c46a25e39a62dc3c0bd9003c205b42254ac7203dc"
+    ],
+    "seed_delta_expected": {
+      "business_delta_count": 1,
+      "business_methods": [
+        "FixedStateServiceOwner._context"
+      ],
+      "byte_delta": 78,
+      "candidate": {
+        "bytes": 107104,
+        "path": "candidate/receive-owner-dispatch-v1/runtime/mta_client_service_owner.py",
+        "sha256": "22aa94d8d5ae2a1dd75c5c98635d80020b318f7071ea84c5c3cb3d85e2805adf"
+      },
+      "complete_ast_inverse": true,
+      "complete_byte_inverse": true,
+      "deadlines_changed": false,
+      "device_executed": false,
+      "failure_short_circuit_preserved": true,
+      "guards_removed": false,
+      "io_boundaries_changed": false,
+      "later_definition_line_delta": 2,
+      "measured_performance_claim": false,
+      "nine_checks_same_order": true,
+      "origin": {
+        "bytes": 107026,
+        "path": "candidate/receive-publication-progress-graph-v1/runtime/mta_client_service_owner.py",
+        "sha256": "a33b1a4c015bda42fc8ab8ba447fd5f331181df1a5b4240fc82f455dc2b74da7"
+      },
+      "original_method_code_receipts_still_required": true,
+      "other_definition_bytes_unchanged": true,
+      "replacements": [
+        {
+          "after": "                type(methods) is not tuple or len(methods) != 9):\n            _fail('filecenter_original_changed')\n        for name, value, code in methods:\n            if (type(value) is not types.FunctionType or getattr(type(self), name) is not value or\n                    value.__globals__ is not self._startup_namespace_original or value.__code__ is not code):\n                _fail('filecenter_original_changed')\n        if self.filecenter_ticket is not self._filecenter_ticket_original:\n            _fail('filecenter_original_changed')\n",
+          "before": "                type(methods) is not tuple or len(methods) != 9 or\n                any(type(value) is not types.FunctionType or getattr(type(self), name) is not value or\n                    value.__globals__ is not self._startup_namespace_original or value.__code__ is not code\n                    for name, value, code in methods) or\n                self.filecenter_ticket is not self._filecenter_ticket_original):\n            _fail('filecenter_original_changed')\n",
+          "count": 1
+        }
+      ],
+      "rf_executed": false,
+      "schema": "p011-receive-owner-dispatch-v1-exactsource-delta"
+    },
+    "source": [
+      "candidate/receive-publication-progress-graph-v1/runtime/mta_client_service_owner.py",
+      107026,
+      "a33b1a4c015bda42fc8ab8ba447fd5f331181df1a5b4240fc82f455dc2b74da7"
+    ]
+  },
+  "business_inputs": [
+    [
+      "candidate/receive-owner-dispatch-v1/runtime/mta_client_service_owner.py",
+      107104,
+      "22aa94d8d5ae2a1dd75c5c98635d80020b318f7071ea84c5c3cb3d85e2805adf"
+    ],
+    [
+      "candidate/receive-owner-dispatch-v1/generate.py",
+      9170,
+      "0a1219c79bcf53283873a2c79128e0da6ec4d8330f50852adc126dfd46405b40"
+    ],
+    [
+      "candidate/receive-owner-dispatch-v1/exactsource-delta.json",
+      2189,
+      "49d87f845578545103ab516c46a25e39a62dc3c0bd9003c205b42254ac7203dc"
+    ]
+  ],
+  "changed_roles": [
+    "mta_client_executor",
+    "mta_client_receive_factory",
+    "mta_client_state_bridge",
+    "mta_client_receive_boot",
+    "mta_client_service_owner",
+    "runtime35/mta_client_executor"
+  ],
+  "manifests": [
+    {
+      "candidate": [
+        "host/formal_receive_owner_dispatch_v1_definition_manifest.json",
+        7952,
+        "d826569eb0b5304e9f22d5f7821fde6e23e0584974d94adb1a666e0b8d15595d"
+      ],
+      "changes": [
+        [
+          0,
+          {
+            "bytes": 124769,
+            "module": "mta_client_executor",
+            "path": "candidate/receive-publication-progress-graph-v1/runtime/mta_client_executor.py",
+            "sha256": "6f9b2d368dacb37ed50830067c1b7b42e59acbc5f154f0c5ba550d4263a70826"
+          },
+          {
+            "bytes": 124769,
+            "module": "mta_client_executor",
+            "path": "candidate/receive-owner-dispatch-graph-v1/runtime/mta_client_executor.py",
+            "sha256": "70bce902dc5ff64036edac68b65ac42bc160dcb98fe29631240924535e88c606"
+          }
+        ],
+        [
+          20,
+          {
+            "bytes": 99257,
+            "module": "mta_client_receive_factory",
+            "path": "candidate/receive-publication-progress-graph-v1/runtime/mta_client_receive_factory.py",
+            "sha256": "5fd3e85df3f76a48220564bdc96a429cfa2da513ee528d8745987f0d176eda01"
+          },
+          {
+            "bytes": 99257,
+            "module": "mta_client_receive_factory",
+            "path": "candidate/receive-owner-dispatch-graph-v1/runtime/mta_client_receive_factory.py",
+            "sha256": "0103f047e9598767f9e9162cf8833f0420c171f7552c31ed28e107e6a91c6cb0"
+          }
+        ],
+        [
+          21,
+          {
+            "bytes": 21356,
+            "module": "mta_client_state_bridge",
+            "path": "candidate/receive-publication-progress-graph-v1/runtime/mta_client_state_bridge.py",
+            "sha256": "f703eedb18b19aafbfb1d4d4326491a362c97c9e4ffa6f01fccc6f94c18da234"
+          },
+          {
+            "bytes": 21356,
+            "module": "mta_client_state_bridge",
+            "path": "candidate/receive-owner-dispatch-graph-v1/runtime/mta_client_state_bridge.py",
+            "sha256": "45690369157954bf98688e6295daa4f55346dc14944a830798cd006c335fa9d9"
+          }
+        ],
+        [
+          33,
+          {
+            "bytes": 19697,
+            "module": "mta_client_receive_boot",
+            "path": "candidate/receive-publication-progress-graph-v1/runtime/mta_client_receive_boot.py",
+            "sha256": "77bcd4b7b6180b0aba97b68d33e8498f5c807e6b546f516948cb7f99b5a51868"
+          },
+          {
+            "bytes": 19697,
+            "module": "mta_client_receive_boot",
+            "path": "candidate/receive-owner-dispatch-graph-v1/runtime/mta_client_receive_boot.py",
+            "sha256": "e5aa90e096bf6c3e560c1435391aed18c7ab76910ff2a02f053959a2903aa262"
+          }
+        ],
+        [
+          34,
+          {
+            "bytes": 107026,
+            "module": "mta_client_service_owner",
+            "path": "candidate/receive-publication-progress-graph-v1/runtime/mta_client_service_owner.py",
+            "sha256": "a33b1a4c015bda42fc8ab8ba447fd5f331181df1a5b4240fc82f455dc2b74da7"
+          },
+          {
+            "bytes": 107104,
+            "module": "mta_client_service_owner",
+            "path": "candidate/receive-owner-dispatch-graph-v1/runtime/mta_client_service_owner.py",
+            "sha256": "d3be260601881f64b3623706da36ded31ee707598956be632bf1ce71f2616e8d"
+          }
+        ]
+      ],
+      "private": false,
+      "source": [
+        "host/formal_receive_publication_progress_v1_definition_manifest.json",
+        7982,
+        "c3a31a284e12ff312352ec04c7bfc5b5dee3f82cbc958547b16374c6a74dead7"
+      ]
+    },
+    {
+      "candidate": [
+        "host/formal_receive_owner_dispatch_v1_private_source_manifest.json",
+        8168,
+        "614d9b5afa5bb0973c822950786ce5b2ff4ea9abfdfa492d441217665a14315e"
+      ],
+      "changes": [
+        [
+          24,
+          {
+            "bytes": 124769,
+            "module": "mta_client_executor",
+            "path": "candidate/receive-publication-progress-graph-v1/runtime/mta_client_executor.py",
+            "sha256": "6f9b2d368dacb37ed50830067c1b7b42e59acbc5f154f0c5ba550d4263a70826"
+          },
+          {
+            "bytes": 124769,
+            "module": "mta_client_executor",
+            "path": "candidate/receive-owner-dispatch-graph-v1/runtime/mta_client_executor.py",
+            "sha256": "70bce902dc5ff64036edac68b65ac42bc160dcb98fe29631240924535e88c606"
+          }
+        ]
+      ],
+      "private": true,
+      "source": [
+        "host/formal_receive_publication_progress_v1_private_source_manifest.json",
+        8174,
+        "90dfcefeeb13b91d613203af89a11630a44b0af03117973918436a84274cfd0b"
+      ]
+    }
+  ],
+  "mechanical": [
+    {
+      "candidate": [
+        "candidate/receive-owner-dispatch-graph-v1/runtime/mta_client_executor.py",
+        124769,
+        "70bce902dc5ff64036edac68b65ac42bc160dcb98fe29631240924535e88c606"
+      ],
+      "edits": [
+        {
+          "after": "    if (directory != '/var/volatile/tmp/p011-mta-rx-dispatch-v1/runtime35' and\n",
+          "before": "    if (directory != '/var/volatile/tmp/p011-mta-rx-progress-v1/runtime35' and\n",
+          "count": 1,
+          "name": "private_runtime_root"
+        }
+      ],
+      "functions_unchanged": false,
+      "name": "mta_client_executor",
+      "source": [
+        "candidate/receive-publication-progress-graph-v1/runtime/mta_client_executor.py",
+        124769,
+        "6f9b2d368dacb37ed50830067c1b7b42e59acbc5f154f0c5ba550d4263a70826"
+      ]
+    },
+    {
+      "candidate": [
+        "candidate/receive-owner-dispatch-graph-v1/runtime/mta_client_state_bridge.py",
+        21356,
+        "45690369157954bf98688e6295daa4f55346dc14944a830798cd006c335fa9d9"
+      ],
+      "edits": [
+        {
+          "after": "PARENT_SOURCE_SHA = '70bce902dc5ff64036edac68b65ac42bc160dcb98fe29631240924535e88c606'\n",
+          "before": "PARENT_SOURCE_SHA = '6f9b2d368dacb37ed50830067c1b7b42e59acbc5f154f0c5ba550d4263a70826'\n",
+          "count": 1,
+          "name": "PARENT_SOURCE_SHA_constant"
+        }
+      ],
+      "functions_unchanged": true,
+      "name": "mta_client_state_bridge",
+      "source": [
+        "candidate/receive-publication-progress-graph-v1/runtime/mta_client_state_bridge.py",
+        21356,
+        "f703eedb18b19aafbfb1d4d4326491a362c97c9e4ffa6f01fccc6f94c18da234"
+      ]
+    },
+    {
+      "candidate": [
+        "candidate/receive-owner-dispatch-graph-v1/runtime/mta_client_receive_factory.py",
+        99257,
+        "0103f047e9598767f9e9162cf8833f0420c171f7552c31ed28e107e6a91c6cb0"
+      ],
+      "edits": [
+        {
+          "after": "ASSET_ROOT = '/tmp/p011-mta-rx-dispatch-v1'\n",
+          "before": "ASSET_ROOT = '/tmp/p011-mta-rx-progress-v1'\n",
+          "count": 1,
+          "name": "ASSET_ROOT_constant"
+        },
+        {
+          "after": "ASSET_PHYSICAL_ROOT = '/var/volatile/tmp/p011-mta-rx-dispatch-v1'\n",
+          "before": "ASSET_PHYSICAL_ROOT = '/var/volatile/tmp/p011-mta-rx-progress-v1'\n",
+          "count": 1,
+          "name": "ASSET_PHYSICAL_ROOT_constant"
+        },
+        {
+          "after": "SOURCE_MANIFEST_SHA = '614d9b5afa5bb0973c822950786ce5b2ff4ea9abfdfa492d441217665a14315e'\n",
+          "before": "SOURCE_MANIFEST_SHA = '90dfcefeeb13b91d613203af89a11630a44b0af03117973918436a84274cfd0b'\n",
+          "count": 1,
+          "name": "SOURCE_MANIFEST_SHA_constant"
+        },
+        {
+          "after": "F_SHA = '70bce902dc5ff64036edac68b65ac42bc160dcb98fe29631240924535e88c606'\n",
+          "before": "F_SHA = '6f9b2d368dacb37ed50830067c1b7b42e59acbc5f154f0c5ba550d4263a70826'\n",
+          "count": 1,
+          "name": "F_SHA_constant"
+        }
+      ],
+      "functions_unchanged": true,
+      "name": "mta_client_receive_factory",
+      "source": [
+        "candidate/receive-publication-progress-graph-v1/runtime/mta_client_receive_factory.py",
+        99257,
+        "5fd3e85df3f76a48220564bdc96a429cfa2da513ee528d8745987f0d176eda01"
+      ]
+    },
+    {
+      "candidate": [
+        "candidate/receive-owner-dispatch-graph-v1/runtime/mta_client_receive_boot.py",
+        19697,
+        "e5aa90e096bf6c3e560c1435391aed18c7ab76910ff2a02f053959a2903aa262"
+      ],
+      "edits": [
+        {
+          "after": "ROOT = '/tmp/p011-mta-rx-dispatch-v1'\n",
+          "before": "ROOT = '/tmp/p011-mta-rx-progress-v1'\n",
+          "count": 1,
+          "name": "ROOT_constant"
+        },
+        {
+          "after": "PHYSICAL_ROOT = '/var/volatile/tmp/p011-mta-rx-dispatch-v1'\n",
+          "before": "PHYSICAL_ROOT = '/var/volatile/tmp/p011-mta-rx-progress-v1'\n",
+          "count": 1,
+          "name": "PHYSICAL_ROOT_constant"
+        },
+        {
+          "after": "CLIENT_MANIFEST_SHA = '614d9b5afa5bb0973c822950786ce5b2ff4ea9abfdfa492d441217665a14315e'\n",
+          "before": "CLIENT_MANIFEST_SHA = '90dfcefeeb13b91d613203af89a11630a44b0af03117973918436a84274cfd0b'\n",
+          "count": 1,
+          "name": "CLIENT_MANIFEST_SHA_constant"
+        },
+        {
+          "after": "F37_SHA = '70bce902dc5ff64036edac68b65ac42bc160dcb98fe29631240924535e88c606'\n",
+          "before": "F37_SHA = '6f9b2d368dacb37ed50830067c1b7b42e59acbc5f154f0c5ba550d4263a70826'\n",
+          "count": 1,
+          "name": "F37_SHA_constant"
+        },
+        {
+          "after": "    ('mta_client_receive_factory', 99257, '0103f047e9598767f9e9162cf8833f0420c171f7552c31ed28e107e6a91c6cb0'),\n",
+          "before": "    ('mta_client_receive_factory', 99257, '5fd3e85df3f76a48220564bdc96a429cfa2da513ee528d8745987f0d176eda01'),\n",
+          "count": 1,
+          "name": "mta_client_receive_factory_tuple"
+        },
+        {
+          "after": "    ('mta_client_state_bridge', 21356, '45690369157954bf98688e6295daa4f55346dc14944a830798cd006c335fa9d9'),\n",
+          "before": "    ('mta_client_state_bridge', 21356, 'f703eedb18b19aafbfb1d4d4326491a362c97c9e4ffa6f01fccc6f94c18da234'),\n",
+          "count": 1,
+          "name": "mta_client_state_bridge_tuple"
+        }
+      ],
+      "functions_unchanged": true,
+      "name": "mta_client_receive_boot",
+      "source": [
+        "candidate/receive-publication-progress-graph-v1/runtime/mta_client_receive_boot.py",
+        19697,
+        "77bcd4b7b6180b0aba97b68d33e8498f5c807e6b546f516948cb7f99b5a51868"
+      ]
+    },
+    {
+      "candidate": [
+        "candidate/receive-owner-dispatch-graph-v1/runtime/mta_client_service_owner.py",
+        107104,
+        "d3be260601881f64b3623706da36ded31ee707598956be632bf1ce71f2616e8d"
+      ],
+      "edits": [
+        {
+          "after": "ROOT = '/tmp/p011-mta-rx-dispatch-v1'\n",
+          "before": "ROOT = '/tmp/p011-mta-rx-progress-v1'\n",
+          "count": 1,
+          "name": "ROOT_constant"
+        },
+        {
+          "after": "BOOT_PIN = (19697, 'e5aa90e096bf6c3e560c1435391aed18c7ab76910ff2a02f053959a2903aa262')\n",
+          "before": "BOOT_PIN = (19697, '77bcd4b7b6180b0aba97b68d33e8498f5c807e6b546f516948cb7f99b5a51868')\n",
+          "count": 1,
+          "name": "BOOT_PIN_constant"
+        },
+        {
+          "after": "        physical = '/var/volatile/tmp/p011-mta-rx-dispatch-v1'\n",
+          "before": "        physical = '/var/volatile/tmp/p011-mta-rx-progress-v1'\n",
+          "count": 1,
+          "name": "held_physical_root"
+        }
+      ],
+      "functions_unchanged": false,
+      "name": "mta_client_service_owner",
+      "source": [
+        "candidate/receive-owner-dispatch-v1/runtime/mta_client_service_owner.py",
+        107104,
+        "22aa94d8d5ae2a1dd75c5c98635d80020b318f7071ea84c5c3cb3d85e2805adf"
+      ]
+    },
+    {
+      "candidate": [
+        "candidate/receive-owner-dispatch-graph-v1/runtime/mta_formal_receive_session.py",
+        79281,
+        "7a337bbe1221f78b598129a25e14f10acf2a92731797583cc1819d375f4718df"
+      ],
+      "edits": [
+        {
+          "after": "STATE_ROOT = '/var/volatile/tmp/p011-mta-rx-dispatch-v1'\n",
+          "before": "STATE_ROOT = '/var/volatile/tmp/p011-mta-rx-progress-v1'\n",
+          "count": 1,
+          "name": "STATE_ROOT_constant"
+        },
+        {
+          "after": "STATE_ALIAS = '/tmp/p011-mta-rx-dispatch-v1'\n",
+          "before": "STATE_ALIAS = '/tmp/p011-mta-rx-progress-v1'\n",
+          "count": 1,
+          "name": "STATE_ALIAS_constant"
+        },
+        {
+          "after": "    ('mta_client_executor', 124769, '70bce902dc5ff64036edac68b65ac42bc160dcb98fe29631240924535e88c606'),\n",
+          "before": "    ('mta_client_executor', 124769, '6f9b2d368dacb37ed50830067c1b7b42e59acbc5f154f0c5ba550d4263a70826'),\n",
+          "count": 2,
+          "name": "mta_client_executor_tuple"
+        },
+        {
+          "after": "    ('mta_client_receive_factory', 99257, '0103f047e9598767f9e9162cf8833f0420c171f7552c31ed28e107e6a91c6cb0'),\n",
+          "before": "    ('mta_client_receive_factory', 99257, '5fd3e85df3f76a48220564bdc96a429cfa2da513ee528d8745987f0d176eda01'),\n",
+          "count": 1,
+          "name": "mta_client_receive_factory_tuple"
+        },
+        {
+          "after": "    ('mta_client_state_bridge', 21356, '45690369157954bf98688e6295daa4f55346dc14944a830798cd006c335fa9d9'),\n",
+          "before": "    ('mta_client_state_bridge', 21356, 'f703eedb18b19aafbfb1d4d4326491a362c97c9e4ffa6f01fccc6f94c18da234'),\n",
+          "count": 1,
+          "name": "mta_client_state_bridge_tuple"
+        },
+        {
+          "after": "    ('mta_client_receive_boot', 19697, 'e5aa90e096bf6c3e560c1435391aed18c7ab76910ff2a02f053959a2903aa262'),\n",
+          "before": "    ('mta_client_receive_boot', 19697, '77bcd4b7b6180b0aba97b68d33e8498f5c807e6b546f516948cb7f99b5a51868'),\n",
+          "count": 1,
+          "name": "mta_client_receive_boot_tuple"
+        },
+        {
+          "after": "    ('mta_client_service_owner', 107104, 'd3be260601881f64b3623706da36ded31ee707598956be632bf1ce71f2616e8d'),\n",
+          "before": "    ('mta_client_service_owner', 107026, 'a33b1a4c015bda42fc8ab8ba447fd5f331181df1a5b4240fc82f455dc2b74da7'),\n",
+          "count": 1,
+          "name": "mta_client_service_owner_tuple"
+        }
+      ],
+      "functions_unchanged": true,
+      "name": "mta_formal_receive_session",
+      "source": [
+        "candidate/receive-publication-progress-graph-v1/runtime/mta_formal_receive_session.py",
+        79281,
+        "c867b9eb52a4cf6ac81367163f22d6d5bfbbed88595313802100960746119410"
+      ]
+    }
+  ],
+  "payload_bytes": 4193350,
+  "private_roles_exact": 34,
+  "proc_native_fc9_unchanged": true,
+  "root": "p011-mta-rx-dispatch-v1",
+  "schema": "p011-receive-owner-dispatch-v1-graph-delta",
+  "unchanged_payload_roles": 69
+}

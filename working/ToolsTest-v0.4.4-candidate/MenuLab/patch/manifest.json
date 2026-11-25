@@ -1,0 +1,44 @@
+{
+  "firmware": "z031_v2.1.2-20221124_143128-user",
+  "original_sha256": "e6760ad70cc17b089fd3dded68e58feb545a6b77f3f653b90d7427104b626997",
+  "original_size": 4001256,
+  "qml_resource": "/NaviPanel.qml",
+  "original_qml_sha256": "68915d92ca6cc084779e106d65e1c62b2e7bb64d735c0676298795d7ce04f42b",
+  "record_offset": 1860188,
+  "record_offset_hex": "0x1c625c",
+  "original_record_size": 1584,
+  "new_payload_size": 1556,
+  "unused_padding": 24,
+  "block_sha256": "881d7426f5d01caf4dcf6cde63b0c206dedbca1208c9205a3b92760e734d3f8a",
+  "embedded_qml_sha256": "41a5c0eece5dbf67d0ddf73bcfc6927b2eca49912b739066a987fbfcb377c6b8",
+  "candidate_sha256": "98080970543b50f3c4e57896bdd912a3270a09802cac610f7e65a6f50cd839cf",
+  "candidate_size": 4001256,
+  "other_resources_unchanged": 399,
+  "changed_resources": [
+    "/NaviPanel.qml"
+  ],
+  "executable_sections_unchanged": [
+    {
+      "index": 11,
+      "offset": 97332,
+      "length": 12
+    },
+    {
+      "index": 12,
+      "offset": 97344,
+      "length": 15428
+    },
+    {
+      "index": 13,
+      "offset": 112776,
+      "length": 1519680
+    },
+    {
+      "index": 14,
+      "offset": 1632456,
+      "length": 8
+    }
+  ],
+  "external_page": "file:///mnt/data/p011-menu/ToolboxPage.qml",
+  "device_tested": false
+}

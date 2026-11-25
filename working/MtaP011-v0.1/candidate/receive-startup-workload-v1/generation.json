@@ -1,0 +1,40 @@
+{
+  "generator": [
+    "candidate/receive-startup-workload-v1/generate.py",
+    4290,
+    "9d08ab923e7ddc1930aa7305b0b7bd62ea395d5ad554bb03e58fbe9633fed27c"
+  ],
+  "guards": {
+    "business_bytes_unchanged": true,
+    "cleanup_seconds": 60,
+    "device_executed": false,
+    "gui_rebuilt": false,
+    "gui_staged": false,
+    "public_fields": 51,
+    "runtime75_modified": false,
+    "service_seconds": 600,
+    "startup_seconds": 10,
+    "tests_executed": false
+  },
+  "host_checked": false,
+  "outputs": [
+    [
+      "candidate/receive-startup-workload-v1/exactsource-delta.json",
+      1221,
+      "4a03e840d604e60b17cded1dca50c5ac936dcb8bf2c7079e7665b384cc5b781c"
+    ],
+    [
+      "candidate/receive-startup-workload-v1/runtime/ui_session.py",
+      95351,
+      "8a90425b76303ae28fbd44760bd1f6623980fbf616f25bcfd67953603d275773"
+    ]
+  ],
+  "phone_tested": false,
+  "schema": "p011-receive-startup-workload-v1-generation",
+  "source": [
+    "candidate/receive-window-clock-ui-v1/runtime/ui_session.py",
+    95350,
+    "ed08e5fa40f44170e9d5e7c64c3944e23ab91e3eb17472e4cb8e7f4a5fa9d997"
+  ],
+  "status": "MECHANICAL_GENERATED_NOT_HOST_CHECKED"
+}

@@ -1,0 +1,87 @@
+{
+  "scope": "Host Linux fake-process tests, NOT P011/Qt/Windows",
+  "cases": [
+    {
+      "case": "normal",
+      "pass": true,
+      "evidence": [
+        "13:50:09 CHECK_OK: original PID=1172, restart-loop PID=1171; hashes and Wayland verified.",
+        "13:50:10 GUARDIAN_ARMED: timeout and rollback run ON the pen, not in PowerShell.",
+        "13:50:10 RESTART_LOOP_PAUSED",
+        "13:50:10 ORIGINAL_TERM_SENT: waiting for exit; original app is never SIGKILLed.",
+        "13:50:10 CANDIDATE_RUNNING: PID=1193; test window=1s; inspect the pen screen now.",
+        "13:50:11 TEST_WINDOW_ENDED: guardian will restore stock.",
+        "13:50:11 WORKER_EXIT: 0",
+        "13:50:11 RESTORING_STOCK",
+        "13:50:11 TEMP_MENU_ALIAS_REMOVED",
+        "13:50:11 RESTART_LOOP_RESUMED: PID=1171",
+        "13:50:14 RESTORED_STOCK_PROCESS: PID=1194; original files unchanged. Visual recovery still needs user confirmation."
+      ]
+    },
+    {
+      "case": "crash",
+      "pass": true,
+      "evidence": [
+        "13:50:14 CHECK_OK: original PID=1206, restart-loop PID=1205; hashes and Wayland verified.",
+        "13:50:14 GUARDIAN_ARMED: timeout and rollback run ON the pen, not in PowerShell.",
+        "13:50:15 RESTART_LOOP_PAUSED",
+        "13:50:15 ORIGINAL_TERM_SENT: waiting for exit; original app is never SIGKILLed.",
+        "13:50:15 CANDIDATE_RUNNING: PID=1227; test window=1s; inspect the pen screen now.",
+        "13:50:15 CANDIDATE_EXITED: code=23; guardian will restore stock.",
+        "13:50:16 WORKER_EXIT: 0",
+        "13:50:16 RESTORING_STOCK",
+        "13:50:16 TEMP_MENU_ALIAS_REMOVED",
+        "13:50:16 RESTART_LOOP_RESUMED: PID=1205",
+        "13:50:18 RESTORED_STOCK_PROCESS: PID=1228; original files unchanged. Visual recovery still needs user confirmation."
+      ]
+    },
+    {
+      "case": "stop",
+      "pass": true,
+      "evidence": [
+        "13:50:18 CHECK_OK: original PID=1240, restart-loop PID=1239; hashes and Wayland verified.",
+        "13:50:19 GUARDIAN_ARMED: timeout and rollback run ON the pen, not in PowerShell.",
+        "13:50:19 RESTART_LOOP_PAUSED",
+        "13:50:19 ORIGINAL_TERM_SENT: waiting for exit; original app is never SIGKILLed.",
+        "13:50:19 CANDIDATE_RUNNING: PID=1261; test window=30s; inspect the pen screen now.",
+        "13:50:19 GUARDIAN_STOP_REQUEST",
+        "13:50:19 STOP_REQUEST_RECEIVED",
+        "13:50:19 RESTORING_STOCK",
+        "13:50:19 TEMP_MENU_ALIAS_REMOVED",
+        "13:50:19 RESTART_LOOP_RESUMED: PID=1239",
+        "13:50:22 RESTORED_STOCK_PROCESS: PID=1262; original files unchanged. Visual recovery still needs user confirmation."
+      ]
+    },
+    {
+      "case": "worker-killed",
+      "pass": true,
+      "evidence": [
+        "13:50:22 CHECK_OK: original PID=1274, restart-loop PID=1273; hashes and Wayland verified.",
+        "13:50:22 GUARDIAN_ARMED: timeout and rollback run ON the pen, not in PowerShell.",
+        "13:50:23 RESTART_LOOP_PAUSED",
+        "13:50:23 ORIGINAL_TERM_SENT: waiting for exit; original app is never SIGKILLed.",
+        "13:50:23 CANDIDATE_RUNNING: PID=1295; test window=30s; inspect the pen screen now.",
+        "13:50:23 WORKER_EXIT: -9",
+        "13:50:23 RESTORING_STOCK",
+        "13:50:23 TEMP_MENU_ALIAS_REMOVED",
+        "13:50:23 RESTART_LOOP_RESUMED: PID=1273",
+        "13:50:25 RESTORED_STOCK_PROCESS: PID=1296; original files unchanged. Visual recovery still needs user confirmation."
+      ]
+    },
+    {
+      "case": "guardian-killed",
+      "pass": true,
+      "evidence": [
+        "13:50:26 CHECK_OK: original PID=1308, restart-loop PID=1307; hashes and Wayland verified.",
+        "13:50:26 GUARDIAN_ARMED: timeout and rollback run ON the pen, not in PowerShell.",
+        "13:50:27 RESTART_LOOP_PAUSED",
+        "13:50:27 ORIGINAL_TERM_SENT: waiting for exit; original app is never SIGKILLed.",
+        "13:50:27 CANDIDATE_RUNNING: PID=1329; test window=30s; inspect the pen screen now.",
+        "13:50:27 RESTORING_STOCK",
+        "13:50:27 TEMP_MENU_ALIAS_REMOVED",
+        "13:50:27 RESTART_LOOP_RESUMED: PID=1307",
+        "13:50:29 RESTORED_STOCK_PROCESS: PID=1330; original files unchanged. Visual recovery still needs user confirmation."
+      ]
+    }
+  ]
+}

@@ -1,0 +1,111 @@
+CLIENT STATIC STAGE v40 -- SOURCE-ONLY DELIVERY
+
+This document is not an execution, deployment, RF or phone-test receipt.
+No import/AST/test/ADB/device method was executed by this author for v40.
+ROOT owns the independent source review, first checker and first explicit
+physical staging call. Old sources, prior FAIL/PASS evidence and all retained
+device stages remain untouched by this SOURCE work.
+
+Frozen product sources
+  candidate/client-static-stage-v40/runtime/mta_client_static_stage.py
+  SHA256 e0b4b1d596ca629024cebef6fbee53218bbbc26ad53a1a2d163d36d6bb40c3e0
+  28860 bytes
+  host/client_static_stage_v40_p011.py
+  SHA256 661d3392088690d1e8db3cf42f3a30a8b7ca71193353c5bf83e2545b9f096bd6
+  27969 bytes; hard-pins the preceding Stage source.
+
+The two source graphs are deliberately different
+  Loaded/read-only definitions: original host/client_integrated_v37_source_manifest.json
+  SHA256 4b9ea54997194ca895a3459cf88cd715b2ccc05e46c55b533920f8182314d07a
+  35 definitions, including the original Pending deaf62f...; no main is called.
+  Actual read-only leaf: original client-readonly-baseline-v39
+  SHA256 cd4c3ef940ef12783dd0b91aba2805a4f4cbe50f2fe2bdccbddaa1db32f4b7ff
+  13811 bytes. Its original source identity 4b9 is not patched or relabelled.
+  Staged candidate byte graph: host/client_refusal_prescreen_v38_source_manifest.json
+  SHA256 0ea4db9b3ac41d1036d5796602db48b7740f6c51f1f0281604d6d8ebeb19319c
+  35 byte payloads, 34 unchanged. The replacement Pending is
+  SHA256 14e85b8297868a7a07d964a598bc3cbc665e1e6cf19d615466e165386a27f524
+  57246 bytes. It is never executed by this staging path.
+  Both map identities are named separately in candidate/source/public records.
+  Original native WPA SHA256
+  e069aef76a089215367f502015266e9ce59cf4ebb7d7246974815ff60d67f301
+  1351192 bytes; it is published as a file, never started.
+
+Default PC source checker
+  Invoke host/client_static_stage_v40_p011.py with no physical arguments.
+  It reads only fixed/pinned PC inputs, verifies both graphs and their one-row
+  difference, reads the WPA/leaf/Stage bytes, and checks Stage literal constants.
+  Only fixed PC source-reader definitions b5659c... execute with a private module
+  name; no archived main or target/candidate constructor executes. No ADB or
+  automatic packaging/target writes occur in the default path.
+
+Physical entry, after ROOT review only
+  The sole explicit entry uses all three flags together:
+    --stage-sources
+    --expected-driver-sha256 <exact frozen HOST SHA above>
+    --transport-id <freshly enumerated positive P011 transport ID>
+  No ID is guessed or stored. The fixed ADB executable is pinned to
+  b4a6b455702684652cccf7b46258b29e653538904359a58fd4931cf3ef286b3f.
+  One fresh enumeration must show exactly one matching product:sprdtrum,
+  model:sprdisk target, excluding emulators. Then exactly one explicit -t
+  shell invocation consumes a fixed-length stdin payload; no retry/fallback.
+  Base64 literals are at most 512 ASCII characters; header lines at most 1024.
+  Every encoded source/leaf/Stage/Pending/WPA byte sequence is roundtrip checked.
+  HOST timeout is 150 seconds. Timeout/non-return is retained, not repaired.
+
+Actual target task and write boundary
+  Original 120-second stage cap is captured once before the first factory.
+  StaticStagingTask retains that original deadline, worker, PID and clock.
+  Each of two private original cd4c ReadonlyBaselineOwner phases gets exactly
+  min(original_stage_until, once_phase_now + 30); collection stays original 10s.
+  Each owner is constructed within this same task and retained before collect.
+  No saved PASS, deserialized snapshot, external owner or approval bool is an
+  input. Original return identity, neutral Store/Proc accounting, stock/device
+  platform, PENDING before/after and actual collector/Proc inventory closure
+  are checked. Full original Snapshot.key must remain equal across both phases.
+
+  StageOwner is constructed after the first original read closes and is retained
+  by the task before any Stage syscall. It uses existing FixedTmpAnchor and
+  actual parent FD/inode/uid=gid=0/mode0700. The fixed rfinit ROOT must already
+  exist with safe ownership/mode; it is not created, repaired or chmoded.
+  Up to 4096 original names are observed with anchored nofollow metadata,
+  including mtime/ctime. No old child subtree is opened or traversed. At least
+  one free entry slot is required before new creation.
+  Only client-<new 32hex token> is mkdir-created under that original parent FD.
+  EEXIST fails; an existing run is never opened as the new owned run.
+  Only its runtime/native/ctrl directories and fixed source/WPA/static records
+  are created. Files use EXCL/NOFOLLOW/CLOEXEC, hashes, full byte readback/fsync,
+  fixed 0400 source/record or 0500 native mode, and once-close plus actual EBADF.
+  Global PENDING is additionally probed under the authenticated tmp FD.
+  Final root set must be original entries plus exactly the new run; every old
+  entry metadata must remain identical. Only directory identity is compared
+  for the parent itself, since our mkdir legitimately changes its link/time.
+  New layouts and sealed file metadata are checked again after the second
+  native read. All retained original FDs close once, even when the task is late.
+  Static success is set only after actual closure and the final original cap.
+
+Failure and publication
+  Any unknown, late return, changed baseline/entry/alias or native close failure
+  rejects static success. Partial NEW files/directories are retained; no rm,
+  recursive cleanup, overwrite, automatic restart or second staging attempt.
+  Original raw stdout/stderr, HOST return/timeout, remote exit and STARTED marker
+  are distinct. Non-return saves original exception privately and explicit
+  empty/not-observed placeholders, not fabricated zero exits. Only exact whole
+  payload echo and CRCRLF/CRLF are normalized in derived views; raw is preserved.
+  Public ZIP has result.json/source-pins.json/README.txt/SHA256SUMS.txt with CRC
+  and byte readback. Identifier/IP/process/old-entry/raw source evidence stays
+  private. The physical new run token is private, not a public ready capability.
+
+Explicit limits and remaining work
+  No device-wide flock/exclusive lease is acquired. Fresh baseline/PENDING/entry
+  observations do not prove atomicity or absence of all concurrent root writers.
+  The code does not read old subtree content and cannot certify all its bytes;
+  it never targets those subtrees for a write. Concurrent observed changes fail.
+  candidate.json/static-source.json are not deployment.json. There is no GATT
+  binding, LoadedDeployment, Handoff, Parent/F/watchdog launch, RF grant,
+  Receive-root creation, device recovery/restore proof or Xiaomi phone result.
+  device_exclusive_lease/rf_admission/source_factory_ready/deployment_available/
+  send_available/receive_available/phone_tested remain false.
+  Future formal execution must independently acquire its original locks, fresh
+  complete baseline/identity/source graph and authenticated deployment/handoff.
+  Root-reviewed SOURCE/checker or static staging PASS cannot replace that work.

@@ -1,0 +1,160 @@
+{
+  "entries": [
+    {
+      "candidate": [
+        "candidate/formal-receive-durable-ui-v1/runtime/mta_formal_receive_session.py",
+        88773,
+        "a5dffa34a9dac7fdcc240dd59e1472448dbe7f076ec5d1240804401cbaa1c0a3"
+      ],
+      "name": "ui_runner",
+      "replacements": [
+        {
+          "after": "    def original_receive_ui_cancelled_empty(self):\n        \"\"\"Observe the original unclaimed cancel outcome; never grant work.\n\n        This is distinct from original_receive_ui_idle(): the once-owned Trial\n        must already be revoked specifically by cancel. It cannot renew a cap,\n        reset the Gate, accept a Session or claim physical RF restoration.\n        State then Trial lock order matches the original action/status path.\n        Only retained fields/binds and the original HTTP thread are observed.\n        \"\"\"\n        # Private diagnostic DATA only: the first false group of this call and\n        # the groups already true. No later term is evaluated for diagnosis.\n        passed, group = (), 'owner'\n        try:\n            self._navigation_cancelled_diagnostic = None\n            owner, loader, module = self.owner, self.loader, self.owner_module\n            if (type(self) is not FixedSession or owner is None or loader is None or\n                    type(module) is not types.ModuleType or\n                    type(owner) is not module.FixedStateServiceOwner or\n                    owner._startup_owner_type_original is not module.FixedStateServiceOwner or\n                    owner._startup_namespace_original is not module.__dict__ or\n                    module.FixedStateServiceOwner.__init__.__globals__ is not module.__dict__ or\n                    owner.loader is not loader or owner.worker is not self.worker or\n                    owner.pid != self.pid or owner.until is not self.until or\n                    owner.original_until is not self.until or loader._original_until is not self.until or\n                    self.receive_trial_requested is not True or\n                    self._receive_trial_requested_original is not True or\n                    owner.receive_trial_requested is not True or\n                    owner._receive_trial_requested_original is not True or\n                    owner.start_complete is not True or owner.stop_called is not False or\n                    owner.close_called is not False or\n                    owner.threads is not owner._threads_original or\n                    type(owner.threads) is not list or not owner.threads):\n                self._navigation_cancelled_diagnostic = (group, passed, 'false')\n                return False\n            passed += (group,)\n            group = 'http'\n            http_ticket = owner.threads[0]\n            http_thread = owner.thread\n            if (type(http_ticket) is not dict or type(http_thread) is not threading.Thread or\n                    http_ticket.get('thread') is not http_thread or\n                    http_ticket.get('thread_original') is not http_thread or\n                    any(http_ticket.get(key) is not True for key in ('initialized', 'called', 'returned')) or\n                    http_ticket.get('unknown') is not False or http_ticket.get('failure') is not None or\n                    http_thread.is_alive() is not True):\n                self._navigation_cancelled_diagnostic = (group, passed, 'false')\n                return False\n            passed += (group,)\n            group = 'types'\n            service = loader.modules.get('mta_service')\n            gate_module = loader.modules.get('mta_receive_trial')\n            state, trial = owner.state, owner.receive_trial\n            if (type(service) is not types.ModuleType or owner.service is not service or\n                    sys.modules.get('mta_service') is not service or type(state) is not service.State or\n                    state is not owner._state_original or type(gate_module) is not types.ModuleType or\n                    sys.modules.get('mta_receive_trial') is not gate_module or\n                    type(trial) is not gate_module.FixedReceiveTrial or\n                    trial is not owner._receive_trial_original or trial._lock is not trial._lock_original):\n                self._navigation_cancelled_diagnostic = (group, passed, 'false')\n                return False\n            passed += (group,)\n            group = 'bound_trial'\n            with state.lock:\n                with trial._lock_original:\n                    if not (service.State._receive_trial_exact(state) is True and\n                        trial is state._receive_trial_original and trial.requested is True):\n                        self._navigation_cancelled_diagnostic = (group, passed, 'false')\n                        return False\n                    passed += (group,)\n                    group = 'trial_cancel'\n                    if not (\n                        trial.revoked is True and trial.revoke_reason == 'cancelled' and\n                        trial.reason == 'cancelled' and trial.expired is False and trial.failure is None):\n                        self._navigation_cancelled_diagnostic = (group, passed, 'false')\n                        return False\n                    passed += (group,)\n                    group = 'trial_empty'\n                    if not (\n                        type(trial.claim_count) is int and trial.claim_count == 0 and\n                        trial.claimed_operation is None and trial._claimed_operation_original is None and\n                        trial.session is None and trial._session_original is None):\n                        self._navigation_cancelled_diagnostic = (group, passed, 'false')\n                        return False\n                    passed += (group,)\n                    group = 'epochs'\n                    if not (\n                        type(state.native_epoch) is int and type(trial._epoch) is int and\n                        state.native_epoch == trial._epoch == 0):\n                        self._navigation_cancelled_diagnostic = (group, passed, 'false')\n                        return False\n                    passed += (group,)\n                    group = 'inventory'\n                    if not (\n                        state.state == 'idle' and state.closing is False and\n                        state.receive_available is False and state.send_available is False and\n                        state.scan_available is False and state.operation is None and state.session is None):\n                        self._navigation_cancelled_diagnostic = (group, passed, 'false')\n                        return False\n                    passed += (group,)\n                    group = 'resources'\n                    if not (\n                        all(getattr(state, name) is None for name in\n                            ('helper', 'key', 'crypto', 'lease', 'transport', 'worker', 'request')) and\n                        state.discoverable is False and state.scanning is False and\n                        state.wifi_restore_pending is False and state.radio_restore_pending is False and\n                        state.accepted is False):\n                        self._navigation_cancelled_diagnostic = (group, passed, 'false')\n                        return False\n                    passed += (group,)\n                    group = 'collections'\n                    if not (\n                        all(type(getattr(state, name)) is list and not getattr(state, name)\n                            for name in ('history', 'received')) and\n                        all(type(getattr(state, name)) is dict and not getattr(state, name)\n                            for name in ('devices', 'peer_seen', 'transfer', 'event_counts'))):\n                        self._navigation_cancelled_diagnostic = (group, passed, 'false')\n                        return False\n                    passed += (group,)\n                    group = 'probes'\n                    if not (\n                        state.radio_restore_probes is trial._restore_probes and\n                        type(state.radio_restore_probes) is list and not state.radio_restore_probes and\n                        state.probe_actors is owner.probe_rows and state.probe_actors is trial.probes and\n                        type(state.probe_actors) is list and len(state.probe_actors) == 2 and\n                        len(trial._probe_prefix) == 2 and\n                        all(a is b and type(a) is dict and a.get('closed') is True\n                            for a, b in zip(state.probe_actors, trial._probe_prefix))):\n                        self._navigation_cancelled_diagnostic = (group, passed, 'false')\n                        return False\n                    passed += (group,)\n                    group = 'events'\n                    if not (\n                        type(state.cancelled) is threading.Event and\n                        type(state.decision) is threading.Event and\n                        threading.Event.is_set(state.cancelled) is True and\n                        threading.Event.is_set(state.decision) is True):\n                        self._navigation_cancelled_diagnostic = (group, passed, 'false')\n                        return False\n                    passed += (group,)\n                    self._navigation_cancelled_diagnostic = ('none', passed, 'true')\n                    group = 'lock_exit'\n                    return True\n        except (AttributeError, KeyError, TypeError, ValueError, RuntimeError) as error:\n            kind = ('attribute' if type(error) is AttributeError else\n                    'key' if type(error) is KeyError else\n                    'type' if type(error) is TypeError else\n                    'value' if type(error) is ValueError else\n                    'runtime' if type(error) is RuntimeError else 'bounded_exception')\n            self._navigation_cancelled_diagnostic = (group, passed, kind)\n            return False\n\n    def load_owner(self):\n",
+          "before": "    def load_owner(self):\n",
+          "count": 1,
+          "name": "unchanged_navigation_observer_insertion"
+        }
+      ],
+      "source": [
+        "candidate/formal-receive-durable-state-v1/runtime/mta_formal_receive_session.py",
+        79202,
+        "38b7345454df94b1f5742d8c2f6a91a4cd8d0b1262909d4deacea2d48456008e"
+      ]
+    },
+    {
+      "candidate": [
+        "candidate/formal-receive-durable-ui-v1/runtime/ui_session.py",
+        95352,
+        "7690e2c87f8438c3422986d180381858e7e47588ee60c725c9eb8f73dd628972"
+      ],
+      "name": "ui_worker",
+      "replacements": [
+        {
+          "after": "RUNNER_PIN = (88773, 'a5dffa34a9dac7fdcc240dd59e1472448dbe7f076ec5d1240804401cbaa1c0a3')",
+          "before": "RUNNER_PIN = (88825, '421e8aa52f224e3a1f6d5ee9508af7bb2f49efc7d246a5bf59315b01e45e4ae3')",
+          "count": 1,
+          "name": "actual_navigation_runner_pin"
+        },
+        {
+          "after": "VALIDATOR_PIN = (12798, '67e3d2d1bd7654cde6993d9746c8dd2cb3447676f0fb0f4bb2dec4a2ffb8d1bb')",
+          "before": "VALIDATOR_PIN = (12642, 'a620878186a3005f36febf5487675c3031c8831fd91d5e8962660ad99466c4be')",
+          "count": 1,
+          "name": "actual_gui20_validator_pin"
+        },
+        {
+          "after": "SESSION = '559c72ccf8f8ff1b7fc83fb6'",
+          "before": "SESSION = 'a87de5c1d0e0b90b35bb2a91'",
+          "count": 1,
+          "name": "actual_gui20_session"
+        },
+        {
+          "after": "CONTROL_NAME = 'p011-mta-ui-session-' + SESSION + '-formal-receive-durable-ui-v1'",
+          "before": "CONTROL_NAME = 'p011-mta-ui-session-' + SESSION + '-formal-receive-filecenter-navigation-classification-v3'",
+          "count": 1,
+          "name": "independent_control_suffix"
+        },
+        {
+          "after": "STATE_ROOT = '/var/volatile/tmp/p011-mta-rx-durable-v1'",
+          "before": "STATE_ROOT = '/var/volatile/tmp/p011-mta-receive-profile-classification-clock-v1'",
+          "count": 1,
+          "name": "actual_state_physical_root"
+        },
+        {
+          "after": "STATE_ALIAS = '/tmp/p011-mta-rx-durable-v1'",
+          "before": "STATE_ALIAS = '/tmp/p011-mta-receive-profile-classification-clock-v1'",
+          "count": 1,
+          "name": "actual_state_alias"
+        }
+      ],
+      "source": [
+        "candidate/formal-receive-filecenter-navigation-classification-v3/runtime/ui_session.py",
+        95430,
+        "2d607a1b68ce640d0c981b76342b654a9190933ed65cc459813ffea41ef7e02a"
+      ]
+    }
+  ],
+  "evidence": "MECHANICAL_READBACK_NOT_SOURCE_CHECKED",
+  "generator": [
+    "candidate/formal-receive-durable-ui-v1/generate_mechanical.py",
+    10893,
+    "b1d13651880bcd49ebafbc36b2a54a1c7006d4b1d1e1c95e68791d6962da711f"
+  ],
+  "guards": {
+    "business_logic_changed": false,
+    "cleanup_seconds": 60,
+    "device_executed": false,
+    "display_origin": "launched",
+    "filecenter_source_cap": 131072,
+    "filecenter_sources": 9,
+    "frozen_core_changed": false,
+    "frozen_gui_changed": false,
+    "guardian_margins": [
+      68,
+      135
+    ],
+    "navigation_display_seconds": 20,
+    "ordinary_roles": 35,
+    "original_preflight_privateassets_stage_retained": true,
+    "owner_seconds": 600,
+    "private_roles": 35,
+    "public_ui_fields": 51,
+    "ready_seconds": 10,
+    "resource_gates_changed": false,
+    "runtime_roles": 75,
+    "source_check_executed": false,
+    "tests_executed": false
+  },
+  "observer": {
+    "candidate_range": {
+      "bytes": 9571,
+      "end_byte_exclusive": 58778,
+      "end_line_exclusive": 966,
+      "sha256": "a030215a7fb95f9524c11b6afd5998cfba7f26a241ae26a88b8156d6f2a6560c",
+      "start_byte": 49207,
+      "start_line": 816
+    },
+    "insertion_anchor": "    def load_owner(self):\n",
+    "original_range": {
+      "bytes": 9571,
+      "end_byte_exclusive": 58830,
+      "end_line_exclusive": 966,
+      "sha256": "a030215a7fb95f9524c11b6afd5998cfba7f26a241ae26a88b8156d6f2a6560c",
+      "start_byte": 49259,
+      "start_line": 816
+    },
+    "source": [
+      "candidate/formal-receive-filecenter-navigation-classification-v3/runtime/mta_formal_receive_session.py",
+      88825,
+      "421e8aa52f224e3a1f6d5ee9508af7bb2f49efc7d246a5bf59315b01e45e4ae3"
+    ],
+    "unchanged_bytes": true
+  },
+  "schema": "p011-formal-receive-durable-ui-v1-mechanical-delta",
+  "sources": [
+    [
+      "candidate/formal-receive-profile-classification-clock-v1/runtime/mta_formal_receive_session.py",
+      79254,
+      "3fe23e4e9d9e1c9900985ee04153ce4b479ca1f2bc194458b91a702cd4f8258f"
+    ],
+    [
+      "candidate/formal-receive-filecenter-navigation-classification-v3/runtime/mta_formal_receive_session.py",
+      88825,
+      "421e8aa52f224e3a1f6d5ee9508af7bb2f49efc7d246a5bf59315b01e45e4ae3"
+    ],
+    [
+      "candidate/formal-receive-filecenter-navigation-classification-v3/runtime/ui_session.py",
+      95430,
+      "2d607a1b68ce640d0c981b76342b654a9190933ed65cc459813ffea41ef7e02a"
+    ],
+    [
+      "candidate/formal-receive-durable-state-v1/runtime/mta_formal_receive_session.py",
+      79202,
+      "38b7345454df94b1f5742d8c2f6a91a4cd8d0b1262909d4deacea2d48456008e"
+    ],
+    [
+      "candidate/formal-receive-durable-state-gui-v1/runtime/ui_assets.py",
+      12798,
+      "67e3d2d1bd7654cde6993d9746c8dd2cb3447676f0fb0f4bb2dec4a2ffb8d1bb"
+    ]
+  ]
+}

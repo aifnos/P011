@@ -1,0 +1,114 @@
+{
+  "schema": "p011-receive-proc-freezer-v2-host-report-delta",
+  "evidence": "MECHANICAL_CLONE_AND_READBACK_NOT_PYTHON_EXECUTED",
+  "source": [
+    "host/receive_proc_freezer_v1_host_check.py",
+    11476,
+    "42e0157a2d1b05e091c6a10669924b05a350e7ceccd29898296b851c15d49616"
+  ],
+  "candidate": [
+    "host/receive_proc_freezer_v2_host_check.py",
+    11564,
+    "94352f2c8eb17fbb56f634b66ed2b34bea442a2ad272cee7c7a59e18922e9d9b"
+  ],
+  "oneclick": [
+    "HOST_MTA_RECEIVE_PROC_FREEZER_V2_CONTRACT_CHECK.cmd",
+    262,
+    "0e8d5800c38ea77cda1e83ccd0948e0021b561c1aa2640977c4b4b72c7635093"
+  ],
+  "replacements": [
+    {
+      "before": "SELF = 'host/receive_proc_freezer_v1_host_check.py'",
+      "after": "SELF = 'host/receive_proc_freezer_v2_host_check.py'",
+      "count": 1,
+      "purpose": "new_host_identity"
+    },
+    {
+      "before": "ONECLICK = ('HOST_MTA_RECEIVE_PROC_FREEZER_V1_CONTRACT_CHECK.cmd', 262,\n            'aa731493450b187b22732495d8bd25b15e0c1ed8444a6f1c8017db2692866962')",
+      "after": "ONECLICK = ('HOST_MTA_RECEIVE_PROC_FREEZER_V2_CONTRACT_CHECK.cmd', 262,\n            '0e8d5800c38ea77cda1e83ccd0948e0021b561c1aa2640977c4b4b72c7635093')",
+      "count": 1,
+      "purpose": "actual_new_oneclick_pin"
+    },
+    {
+      "before": "'receive-proc-freezer-v1-host-'",
+      "after": "'receive-proc-freezer-v2-host-'",
+      "count": 1,
+      "purpose": "fresh_v2_run_namespace"
+    },
+    {
+      "before": "schema='p011-receive-proc-freezer-v1-affected-host'",
+      "after": "schema='p011-receive-proc-freezer-v2-affected-host'",
+      "count": 1,
+      "purpose": "v2_report_schema"
+    },
+    {
+      "before": "child_reads_private_snapshot=True",
+      "after": "child_reads_private_snapshot_configured=True",
+      "count": 1,
+      "purpose": "scope_not_execution"
+    },
+    {
+      "before": "child_python_isolated=True",
+      "after": "child_python_isolated_configured=True",
+      "count": 1,
+      "purpose": "scope_not_execution"
+    },
+    {
+      "before": "actual_frozen_v25_and_new_module_definitions=True",
+      "after": "actual_frozen_v25_and_new_module_definitions_configured=True",
+      "count": 1,
+      "purpose": "scope_not_execution"
+    },
+    {
+      "before": "actual_proc_reader=True",
+      "after": "actual_proc_reader_configured=True",
+      "count": 1,
+      "purpose": "scope_not_execution"
+    },
+    {
+      "before": "actual_durable_store_resource_budget=True",
+      "after": "actual_durable_store_resource_budget_configured=True",
+      "count": 1,
+      "purpose": "scope_not_execution"
+    },
+    {
+      "before": "original_fakefs_selected_ast=True",
+      "after": "original_fakefs_selected_ast_configured=True",
+      "count": 1,
+      "purpose": "scope_not_execution"
+    },
+    {
+      "before": "synthetic_clock=True",
+      "after": "synthetic_clock_configured=True",
+      "count": 1,
+      "purpose": "scope_not_execution"
+    },
+    {
+      "before": "physical_os_operations_blocked=True",
+      "after": "physical_os_operations_blocked_configured=True",
+      "count": 1,
+      "purpose": "scope_not_execution"
+    }
+  ],
+  "guards": {
+    "complete_inverse": true,
+    "actual_candidate_readback": true,
+    "oneclick_readback": true,
+    "original_v1_host_test_oneclick_unchanged": true,
+    "existing_v1_pass_results_untouched": true,
+    "original_test_pin_unchanged": true,
+    "selector_unchanged": true,
+    "child_command_and_timeout_unchanged": true,
+    "pass_predicate_unchanged": true,
+    "input_capture_and_gate_unchanged": true,
+    "sealer_and_seal_logic_unchanged": true,
+    "verified_case_counts_and_checked_fields_still_depend_on_passed": true,
+    "eight_scope_true_fields_labeled_configured": true,
+    "python_executed": false,
+    "tests_rerun": false,
+    "device_executed": false,
+    "rf_executed": false,
+    "report_fault_case_executed": false,
+    "source_validation_executed": false
+  }
+}

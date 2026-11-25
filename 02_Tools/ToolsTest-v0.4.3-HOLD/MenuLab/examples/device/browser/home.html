@@ -1,0 +1,4 @@
+<!doctype html><html lang="zh-CN"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>P011 本地主页</title>
+<style>html,body{margin:0;background:#0f0f0f;color:white;font:18px/1.45 sans-serif}main{padding:12px 22px}h1{font-size:26px;margin:0 0 7px;color:#12cfa7}p{margin:5px 0;color:#b6b8bf}.line{display:flex;gap:12px}.card{flex:1;border-radius:6px;padding:12px;background:#303135}button{border:0;border-radius:5px;background:#12cfa7;padding:7px 20px;font-size:18px;color:#0f0f0f}.hint{font-size:15px}</style>
+<main><h1>浏览器 · 本地主页</h1><div class="line"><div class="card">渲染与交互测试 <button onclick="this.textContent='点击成功 '+(++window.n)">点我</button></div><div class="card" id="clock"></div></div><p class="hint">点击顶栏地址框输入网址。联网需要确认；不连接 root 命令桥，不自动下载文件。</p></main>
+<script>window.n=0;setInterval(function(){document.getElementById('clock').textContent='设备时间 '+new Date().toLocaleTimeString();},1000);</script></html>

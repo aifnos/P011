@@ -1,0 +1,64 @@
+{
+  "scope": "Linux host unit tests and mocked D-Bus; no Windows or P011 hardware run",
+  "tests": [
+    {
+      "name": "python35 grammar radio_check",
+      "passed": true
+    },
+    {
+      "name": "python35 grammar local encoder",
+      "passed": true
+    },
+    {
+      "name": "proc stat parser current host self",
+      "passed": true
+    },
+    {
+      "name": "JSON output roundtrip",
+      "passed": true
+    },
+    {
+      "name": "MAC masking",
+      "passed": true
+    },
+    {
+      "name": "password masking",
+      "passed": true
+    },
+    {
+      "name": "PSK masking",
+      "passed": true
+    },
+    {
+      "name": "ANSI removed",
+      "passed": true
+    },
+    {
+      "name": "missing file preserved as error",
+      "passed": true
+    },
+    {
+      "name": "absent ConnMan not activated; BlueZ snapshot filtered",
+      "passed": true
+    },
+    {
+      "name": "present ConnMan queried by unique name only",
+      "passed": true
+    },
+    {
+      "name": "read command success",
+      "passed": true
+    },
+    {
+      "name": "read command timeout bounded",
+      "passed": true
+    },
+    {
+      "name": "imports without standard json",
+      "passed": true
+    }
+  ],
+  "passed": 14,
+  "windows_executed": false,
+  "p011_executed": false
+}

@@ -1,0 +1,452 @@
+{
+  "business": {
+    "candidate": [
+      "candidate/receive-scope-dispatch-v1/runtime/mta_client_receive_factory.py",
+      99371,
+      "7c4ee1b5dabf869301be940e0330968b683bde2e8d7d45add83f63c474c70f15"
+    ],
+    "edits": [
+      {
+        "after": "def _originals(self, active):\n        if (self._alias_functions is not _STARTUP_ALIAS_ORIGINALS or\n                self._alias_codes is not _STARTUP_ALIAS_CODES or\n                self._alias_pins is not self._alias_pins_original or SOURCE_PINS is not self._alias_pins_original or\n                self.owner.lock is not self._alias_lock or type(self) is not _StartupReadScope or\n                self.owner_methods is not self._alias_owner_methods or\n                type(self._alias_owner_methods) is not tuple or len(self._alias_owner_methods) != 4 or\n                self._alias_owner_codes is not self._alias_owner_codes_original or\n                type(self._alias_owner_codes) is not tuple or len(self._alias_owner_codes) != 4):\n            _fail('startup_owner_changed')\n        for current, original, code in zip(\n                (self.owner_type._context, self.owner_type._now, self.owner_type._startup_readonly, self.owner_type.close),\n                self._alias_owner_methods, self._alias_owner_codes):\n            if current is not original or current.__code__ is not code:\n                _fail('startup_owner_changed')\n        for current, original, code in zip(\n                (_StartupReadScope.__init__, _StartupReadScope._originals, _StartupReadScope.check_active,\n                 _StartupReadScope.alias_now, executor._ReadOwner.check, executor._ReadOwner._fixed_tmp_alias),\n                self._alias_functions, self._alias_codes):\n            if current is not original or current.__code__ is not code:\n                _fail('startup_owner_changed')\n        if (getattr(self._alias_clock, '__self__', None) is not self or\n                getattr(self._alias_clock, '__func__', None) is not self._alias_functions[3]):\n            _fail('startup_owner_changed')\n        if self.files is not None and hasattr(self.files, 'alias_owner') and (\n                type(self.files) is not _Files or self.files.attempt is not self or\n                type(self.files.alias_owner) is not _F_ORIGINALS[4] or\n                self.files.alias_owner.io is not self.files.io or\n                self.files.alias_owner.clock is not self._alias_clock or\n                self.files.alias_owner.deadline is not self.original_prepare_until):\n            _fail('startup_owner_changed')\n        owner = self.owner\n        actual_type, namespace = _startup_owner_type(owner)\n        if (actual_type is not self.owner_type or namespace is not self.owner_namespace or\n                type(self.factory) is not FixedReceiveDeploymentFactory or\n                self.factory._startup_scope is not self or\n                owner.startup_scope is not self or owner._startup_scope_original is not self or\n                owner.factory is not self.factory or owner._startup_factory_original is not self.factory or\n                owner._startup_namespace_original is not self.owner_namespace or\n                tuple((self.owner_type._context, self.owner_type._now,\n                       self.owner_type._startup_readonly, self.owner_type.close)) != self.owner_methods or\n                owner.loader is not self.loader or owner.clock is not self.clock or self.clock is not time.monotonic or\n                owner.worker is not self.worker or threading.current_thread() is not self.worker or\n                owner.pid != self.pid or os.getpid() != self.pid or\n                self.until is not self.original_until or owner.original_until is not self.original_until or\n                self.source_manifest_sha is not self._source_manifest_sha_original or\n                self.source_manifest_sha != SOURCE_MANIFEST_SHA or\n                owner.until is not self.original_until or self.loader._original_until is not self.original_until or\n                owner.state is not self.state or owner._state_original is not self.state or\n                owner.service is not self.service or type(self.state) is not self.service.State or\n                self.state._trusted_receive_deployment_factory is not self.factory or\n                self.state._original_service_until is not self.original_until or\n                self.state._service_until_original is not self.original_until or\n                storage.DirectoryBinding is not _DIRECTORY_TYPE or\n                type(self.received_directory) is not _DIRECTORY_TYPE or\n                self.received_directory is not self._received_directory_original or\n                owner.received_directory is not self.received_directory or\n                owner._received_directory_original is not self.received_directory or\n                self.state._original_received_binding is not self.received_directory or\n                self.state._received_binding_original is not self.received_directory or\n                self.received_directory.root != executor.RECEIVE_ROOT or\n                self.received_directory.absolute_until is not self.original_until or\n                self.received_directory.clock is not self.clock or\n                owner._startup_module_original is not self.startup_module or\n                owner._startup_collect_original is not self.collect_creator or\n                owner._startup_collection_type_original is not self.collection_type or\n                type(self.startup_module) is not types.ModuleType or\n                self.loader.modules.get('mta_client_startup_readonly') is not self.startup_module or\n                sys.modules.get('mta_client_startup_readonly') is not self.startup_module or\n                self.startup_module.collect is not self.collect_creator or\n                self.startup_module.StartupCollection is not self.collection_type or\n                self.payloads is not self._payloads_original or\n                self.private_modules is not self._private_modules_original or\n                self.files is not self._files_original or\n                sys.modules.get('mta_client_executor') is not executor or\n                tuple((executor, executor.DeploymentLoader, executor.LoadedDeployment,\n                       executor.ClientExecutor, executor._ReadOwner)) != _F_ORIGINALS):\n            _fail('startup_owner_changed')\n        owner._context()\n        if active:\n            if (owner.started is not True or owner.state_complete is not True or\n                    owner.startup_called is not True or owner.close_called is not False or\n                    owner.server_called is not False or owner.server is not None or owner.thread is not None or\n                    self.close_called or owner.start_complete or self.state.closing or\n                    self.state.receive_available is not False or self.state.send_available is not False or\n                    self.state.wifi_restore_pending is not False or self.state.radio_restore_pending is not False or\n                    self.state.probe_actors is not owner.probe_rows or\n                    self.service.State._probes_closed(self.state) is not True):\n                _fail('startup_window_changed')\n            # The actual collector must observe /proc task inventory. These\n            # source-order checks neither assume nor certify a single thread.\n            if self.received_directory.check() is not self.received_directory:\n                _fail('startup_owner_changed')\n            if self.module_originals is not None:\n                for name, module, definitions in self.module_originals:\n                    if self.private_modules.get(name) is not module or module.__dict__ is not definitions:\n                        _fail('startup_source_changed')\n            if self._profile_original is not None and (\n                    self.profile is not self._profile_original or\n                    self.profile.get('baseline_manifest') is not BASELINE_MANIFEST or\n                    self.profile.get('status_manifest') is not self._status_manifest_original or\n                    tuple(sorted(self._status_manifest_original.items())) != self._status_items_original):\n                _fail('startup_profile_changed')",
+        "before": "def _originals(self, active):\n        if (self._alias_functions is not _STARTUP_ALIAS_ORIGINALS or\n                self._alias_codes is not _STARTUP_ALIAS_CODES or\n                self._alias_pins is not self._alias_pins_original or SOURCE_PINS is not self._alias_pins_original or\n                self.owner.lock is not self._alias_lock or type(self) is not _StartupReadScope or\n                self.owner_methods is not self._alias_owner_methods or\n                type(self._alias_owner_methods) is not tuple or len(self._alias_owner_methods) != 4 or\n                self._alias_owner_codes is not self._alias_owner_codes_original or\n                type(self._alias_owner_codes) is not tuple or len(self._alias_owner_codes) != 4 or\n                any(current is not original or current.__code__ is not code for current, original, code in zip(\n                    (self.owner_type._context, self.owner_type._now, self.owner_type._startup_readonly, self.owner_type.close),\n                    self._alias_owner_methods, self._alias_owner_codes)) or\n                any(current is not original or current.__code__ is not code for current, original, code in zip(\n                    (_StartupReadScope.__init__, _StartupReadScope._originals, _StartupReadScope.check_active,\n                     _StartupReadScope.alias_now, executor._ReadOwner.check, executor._ReadOwner._fixed_tmp_alias),\n                    self._alias_functions, self._alias_codes)) or\n                getattr(self._alias_clock, '__self__', None) is not self or\n                getattr(self._alias_clock, '__func__', None) is not self._alias_functions[3]):\n            _fail('startup_owner_changed')\n        if self.files is not None and hasattr(self.files, 'alias_owner') and (\n                type(self.files) is not _Files or self.files.attempt is not self or\n                type(self.files.alias_owner) is not _F_ORIGINALS[4] or\n                self.files.alias_owner.io is not self.files.io or\n                self.files.alias_owner.clock is not self._alias_clock or\n                self.files.alias_owner.deadline is not self.original_prepare_until):\n            _fail('startup_owner_changed')\n        owner = self.owner\n        actual_type, namespace = _startup_owner_type(owner)\n        if (actual_type is not self.owner_type or namespace is not self.owner_namespace or\n                type(self.factory) is not FixedReceiveDeploymentFactory or\n                self.factory._startup_scope is not self or\n                owner.startup_scope is not self or owner._startup_scope_original is not self or\n                owner.factory is not self.factory or owner._startup_factory_original is not self.factory or\n                owner._startup_namespace_original is not self.owner_namespace or\n                tuple((self.owner_type._context, self.owner_type._now,\n                       self.owner_type._startup_readonly, self.owner_type.close)) != self.owner_methods or\n                owner.loader is not self.loader or owner.clock is not self.clock or self.clock is not time.monotonic or\n                owner.worker is not self.worker or threading.current_thread() is not self.worker or\n                owner.pid != self.pid or os.getpid() != self.pid or\n                self.until is not self.original_until or owner.original_until is not self.original_until or\n                self.source_manifest_sha is not self._source_manifest_sha_original or\n                self.source_manifest_sha != SOURCE_MANIFEST_SHA or\n                owner.until is not self.original_until or self.loader._original_until is not self.original_until or\n                owner.state is not self.state or owner._state_original is not self.state or\n                owner.service is not self.service or type(self.state) is not self.service.State or\n                self.state._trusted_receive_deployment_factory is not self.factory or\n                self.state._original_service_until is not self.original_until or\n                self.state._service_until_original is not self.original_until or\n                storage.DirectoryBinding is not _DIRECTORY_TYPE or\n                type(self.received_directory) is not _DIRECTORY_TYPE or\n                self.received_directory is not self._received_directory_original or\n                owner.received_directory is not self.received_directory or\n                owner._received_directory_original is not self.received_directory or\n                self.state._original_received_binding is not self.received_directory or\n                self.state._received_binding_original is not self.received_directory or\n                self.received_directory.root != executor.RECEIVE_ROOT or\n                self.received_directory.absolute_until is not self.original_until or\n                self.received_directory.clock is not self.clock or\n                owner._startup_module_original is not self.startup_module or\n                owner._startup_collect_original is not self.collect_creator or\n                owner._startup_collection_type_original is not self.collection_type or\n                type(self.startup_module) is not types.ModuleType or\n                self.loader.modules.get('mta_client_startup_readonly') is not self.startup_module or\n                sys.modules.get('mta_client_startup_readonly') is not self.startup_module or\n                self.startup_module.collect is not self.collect_creator or\n                self.startup_module.StartupCollection is not self.collection_type or\n                self.payloads is not self._payloads_original or\n                self.private_modules is not self._private_modules_original or\n                self.files is not self._files_original or\n                sys.modules.get('mta_client_executor') is not executor or\n                tuple((executor, executor.DeploymentLoader, executor.LoadedDeployment,\n                       executor.ClientExecutor, executor._ReadOwner)) != _F_ORIGINALS):\n            _fail('startup_owner_changed')\n        owner._context()\n        if active:\n            if (owner.started is not True or owner.state_complete is not True or\n                    owner.startup_called is not True or owner.close_called is not False or\n                    owner.server_called is not False or owner.server is not None or owner.thread is not None or\n                    self.close_called or owner.start_complete or self.state.closing or\n                    self.state.receive_available is not False or self.state.send_available is not False or\n                    self.state.wifi_restore_pending is not False or self.state.radio_restore_pending is not False or\n                    self.state.probe_actors is not owner.probe_rows or\n                    self.service.State._probes_closed(self.state) is not True):\n                _fail('startup_window_changed')\n            # The actual collector must observe /proc task inventory. These\n            # source-order checks neither assume nor certify a single thread.\n            if self.received_directory.check() is not self.received_directory:\n                _fail('startup_owner_changed')\n            if self.module_originals is not None:\n                for name, module, definitions in self.module_originals:\n                    if self.private_modules.get(name) is not module or module.__dict__ is not definitions:\n                        _fail('startup_source_changed')\n            if self._profile_original is not None and (\n                    self.profile is not self._profile_original or\n                    self.profile.get('baseline_manifest') is not BASELINE_MANIFEST or\n                    self.profile.get('status_manifest') is not self._status_manifest_original or\n                    tuple(sorted(self._status_manifest_original.items())) != self._status_items_original):\n                _fail('startup_profile_changed')",
+        "count": 1,
+        "name": "scope_originals_dispatch"
+      }
+    ],
+    "seed_delta": [
+      "candidate/receive-scope-dispatch-v1/exactsource-delta.json",
+      3469,
+      "be87cdbd4830f79164787277d4c189b577fb7854d6ee125bd2d4e14434a4d768"
+    ],
+    "seed_delta_expected": {
+      "business_delta_count": 1,
+      "business_methods": [
+        "_StartupReadScope._originals"
+      ],
+      "byte_delta": 114,
+      "candidate": {
+        "bytes": 99371,
+        "path": "candidate/receive-scope-dispatch-v1/runtime/mta_client_receive_factory.py",
+        "sha256": "7c4ee1b5dabf869301be940e0330968b683bde2e8d7d45add83f63c474c70f15"
+      },
+      "complete_ast_inverse": true,
+      "complete_byte_inverse": true,
+      "deadlines_changed": false,
+      "device_executed": false,
+      "failure_short_circuit_preserved": true,
+      "guards_removed": false,
+      "io_boundaries_changed": false,
+      "later_definition_line_delta": 5,
+      "measured_performance_claim": false,
+      "origin": {
+        "bytes": 99257,
+        "path": "candidate/receive-owner-dispatch-graph-v1/runtime/mta_client_receive_factory.py",
+        "sha256": "0103f047e9598767f9e9162cf8833f0420c171f7552c31ed28e107e6a91c6cb0"
+      },
+      "original_code_receipts_still_required": true,
+      "other_definition_bytes_unchanged": true,
+      "owner_scan_rows": 4,
+      "replacements": [
+        {
+          "after": "                type(self._alias_owner_codes) is not tuple or len(self._alias_owner_codes) != 4):\n            _fail('startup_owner_changed')\n        for current, original, code in zip(\n                (self.owner_type._context, self.owner_type._now, self.owner_type._startup_readonly, self.owner_type.close),\n                self._alias_owner_methods, self._alias_owner_codes):\n            if current is not original or current.__code__ is not code:\n                _fail('startup_owner_changed')\n        for current, original, code in zip(\n                (_StartupReadScope.__init__, _StartupReadScope._originals, _StartupReadScope.check_active,\n                 _StartupReadScope.alias_now, executor._ReadOwner.check, executor._ReadOwner._fixed_tmp_alias),\n                self._alias_functions, self._alias_codes):\n            if current is not original or current.__code__ is not code:\n                _fail('startup_owner_changed')\n        if (getattr(self._alias_clock, '__self__', None) is not self or\n                getattr(self._alias_clock, '__func__', None) is not self._alias_functions[3]):\n            _fail('startup_owner_changed')\n",
+          "before": "                type(self._alias_owner_codes) is not tuple or len(self._alias_owner_codes) != 4 or\n                any(current is not original or current.__code__ is not code for current, original, code in zip(\n                    (self.owner_type._context, self.owner_type._now, self.owner_type._startup_readonly, self.owner_type.close),\n                    self._alias_owner_methods, self._alias_owner_codes)) or\n                any(current is not original or current.__code__ is not code for current, original, code in zip(\n                    (_StartupReadScope.__init__, _StartupReadScope._originals, _StartupReadScope.check_active,\n                     _StartupReadScope.alias_now, executor._ReadOwner.check, executor._ReadOwner._fixed_tmp_alias),\n                    self._alias_functions, self._alias_codes)) or\n                getattr(self._alias_clock, '__self__', None) is not self or\n                getattr(self._alias_clock, '__func__', None) is not self._alias_functions[3]):\n            _fail('startup_owner_changed')\n",
+          "count": 1
+        }
+      ],
+      "rf_executed": false,
+      "same_order_and_eager_tuple_inputs": true,
+      "schema": "p011-receive-scope-dispatch-v1-exactsource-delta",
+      "scope_scan_rows": 6,
+      "unchanged_predicates_and_clock_tail": true
+    },
+    "source": [
+      "candidate/receive-owner-dispatch-graph-v1/runtime/mta_client_receive_factory.py",
+      99257,
+      "0103f047e9598767f9e9162cf8833f0420c171f7552c31ed28e107e6a91c6cb0"
+    ]
+  },
+  "business_inputs": [
+    [
+      "candidate/receive-scope-dispatch-v1/runtime/mta_client_receive_factory.py",
+      99371,
+      "7c4ee1b5dabf869301be940e0330968b683bde2e8d7d45add83f63c474c70f15"
+    ],
+    [
+      "candidate/receive-scope-dispatch-v1/generate.py",
+      11297,
+      "52fb3a632d170bbd0b8617203de66069a23de065311da79a4a70fd86b35ec2ab"
+    ],
+    [
+      "candidate/receive-scope-dispatch-v1/exactsource-delta.json",
+      3469,
+      "be87cdbd4830f79164787277d4c189b577fb7854d6ee125bd2d4e14434a4d768"
+    ]
+  ],
+  "changed_roles": [
+    "mta_client_executor",
+    "mta_client_receive_factory",
+    "mta_client_state_bridge",
+    "mta_client_receive_boot",
+    "mta_client_service_owner",
+    "runtime35/mta_client_executor"
+  ],
+  "manifests": [
+    {
+      "candidate": [
+        "host/formal_receive_scope_dispatch_v1_definition_manifest.json",
+        7952,
+        "548816ee90f71bc030270b6e1c1b29d847b6e289440261d37c9c365bc09bc3e6"
+      ],
+      "changes": [
+        [
+          0,
+          {
+            "bytes": 124769,
+            "module": "mta_client_executor",
+            "path": "candidate/receive-owner-dispatch-graph-v1/runtime/mta_client_executor.py",
+            "sha256": "70bce902dc5ff64036edac68b65ac42bc160dcb98fe29631240924535e88c606"
+          },
+          {
+            "bytes": 124769,
+            "module": "mta_client_executor",
+            "path": "candidate/receive-scope-dispatch-graph-v1/runtime/mta_client_executor.py",
+            "sha256": "345762f64d63977d0c8f1ee1c2f4d5ee0368e0c11b5888863b1edbbad83fb8c2"
+          }
+        ],
+        [
+          20,
+          {
+            "bytes": 99257,
+            "module": "mta_client_receive_factory",
+            "path": "candidate/receive-owner-dispatch-graph-v1/runtime/mta_client_receive_factory.py",
+            "sha256": "0103f047e9598767f9e9162cf8833f0420c171f7552c31ed28e107e6a91c6cb0"
+          },
+          {
+            "bytes": 99371,
+            "module": "mta_client_receive_factory",
+            "path": "candidate/receive-scope-dispatch-graph-v1/runtime/mta_client_receive_factory.py",
+            "sha256": "0c5269ed0e62b69626b59a3dfcb3214c61572e654d70d85e428a703fd5ecca0a"
+          }
+        ],
+        [
+          21,
+          {
+            "bytes": 21356,
+            "module": "mta_client_state_bridge",
+            "path": "candidate/receive-owner-dispatch-graph-v1/runtime/mta_client_state_bridge.py",
+            "sha256": "45690369157954bf98688e6295daa4f55346dc14944a830798cd006c335fa9d9"
+          },
+          {
+            "bytes": 21356,
+            "module": "mta_client_state_bridge",
+            "path": "candidate/receive-scope-dispatch-graph-v1/runtime/mta_client_state_bridge.py",
+            "sha256": "8ab5dc13989a7096a8f7573316ccf56c450d0111f67f3e0fa0d15315fef38a55"
+          }
+        ],
+        [
+          33,
+          {
+            "bytes": 19697,
+            "module": "mta_client_receive_boot",
+            "path": "candidate/receive-owner-dispatch-graph-v1/runtime/mta_client_receive_boot.py",
+            "sha256": "e5aa90e096bf6c3e560c1435391aed18c7ab76910ff2a02f053959a2903aa262"
+          },
+          {
+            "bytes": 19697,
+            "module": "mta_client_receive_boot",
+            "path": "candidate/receive-scope-dispatch-graph-v1/runtime/mta_client_receive_boot.py",
+            "sha256": "c7c4d0410a27bb94d51ba5e7e2023b0e340f9efd2141d95fe44ec22ac540f367"
+          }
+        ],
+        [
+          34,
+          {
+            "bytes": 107104,
+            "module": "mta_client_service_owner",
+            "path": "candidate/receive-owner-dispatch-graph-v1/runtime/mta_client_service_owner.py",
+            "sha256": "d3be260601881f64b3623706da36ded31ee707598956be632bf1ce71f2616e8d"
+          },
+          {
+            "bytes": 107104,
+            "module": "mta_client_service_owner",
+            "path": "candidate/receive-scope-dispatch-graph-v1/runtime/mta_client_service_owner.py",
+            "sha256": "4c46913a4bb5f1fe1e1d1c055215606137d53e9c66c7a077286ce77c06f71786"
+          }
+        ]
+      ],
+      "private": false,
+      "source": [
+        "host/formal_receive_owner_dispatch_v1_definition_manifest.json",
+        7952,
+        "d826569eb0b5304e9f22d5f7821fde6e23e0584974d94adb1a666e0b8d15595d"
+      ]
+    },
+    {
+      "candidate": [
+        "host/formal_receive_scope_dispatch_v1_private_source_manifest.json",
+        8168,
+        "52f0360b3fb0138b8fa6fd5589bb2d9f29e68d47e601e6d63ff5ebf60e3942ca"
+      ],
+      "changes": [
+        [
+          24,
+          {
+            "bytes": 124769,
+            "module": "mta_client_executor",
+            "path": "candidate/receive-owner-dispatch-graph-v1/runtime/mta_client_executor.py",
+            "sha256": "70bce902dc5ff64036edac68b65ac42bc160dcb98fe29631240924535e88c606"
+          },
+          {
+            "bytes": 124769,
+            "module": "mta_client_executor",
+            "path": "candidate/receive-scope-dispatch-graph-v1/runtime/mta_client_executor.py",
+            "sha256": "345762f64d63977d0c8f1ee1c2f4d5ee0368e0c11b5888863b1edbbad83fb8c2"
+          }
+        ]
+      ],
+      "private": true,
+      "source": [
+        "host/formal_receive_owner_dispatch_v1_private_source_manifest.json",
+        8168,
+        "614d9b5afa5bb0973c822950786ce5b2ff4ea9abfdfa492d441217665a14315e"
+      ]
+    }
+  ],
+  "measured_owner_context_preserved": true,
+  "mechanical": [
+    {
+      "candidate": [
+        "candidate/receive-scope-dispatch-graph-v1/runtime/mta_client_executor.py",
+        124769,
+        "345762f64d63977d0c8f1ee1c2f4d5ee0368e0c11b5888863b1edbbad83fb8c2"
+      ],
+      "edits": [
+        {
+          "after": "    if (directory != '/var/volatile/tmp/p011-mta-rx-scope-v0001/runtime35' and\n",
+          "before": "    if (directory != '/var/volatile/tmp/p011-mta-rx-dispatch-v1/runtime35' and\n",
+          "count": 1,
+          "name": "private_runtime_root"
+        }
+      ],
+      "functions_unchanged": false,
+      "name": "mta_client_executor",
+      "source": [
+        "candidate/receive-owner-dispatch-graph-v1/runtime/mta_client_executor.py",
+        124769,
+        "70bce902dc5ff64036edac68b65ac42bc160dcb98fe29631240924535e88c606"
+      ]
+    },
+    {
+      "candidate": [
+        "candidate/receive-scope-dispatch-graph-v1/runtime/mta_client_state_bridge.py",
+        21356,
+        "8ab5dc13989a7096a8f7573316ccf56c450d0111f67f3e0fa0d15315fef38a55"
+      ],
+      "edits": [
+        {
+          "after": "PARENT_SOURCE_SHA = '345762f64d63977d0c8f1ee1c2f4d5ee0368e0c11b5888863b1edbbad83fb8c2'\n",
+          "before": "PARENT_SOURCE_SHA = '70bce902dc5ff64036edac68b65ac42bc160dcb98fe29631240924535e88c606'\n",
+          "count": 1,
+          "name": "PARENT_SOURCE_SHA_constant"
+        }
+      ],
+      "functions_unchanged": true,
+      "name": "mta_client_state_bridge",
+      "source": [
+        "candidate/receive-owner-dispatch-graph-v1/runtime/mta_client_state_bridge.py",
+        21356,
+        "45690369157954bf98688e6295daa4f55346dc14944a830798cd006c335fa9d9"
+      ]
+    },
+    {
+      "candidate": [
+        "candidate/receive-scope-dispatch-graph-v1/runtime/mta_client_receive_factory.py",
+        99371,
+        "0c5269ed0e62b69626b59a3dfcb3214c61572e654d70d85e428a703fd5ecca0a"
+      ],
+      "edits": [
+        {
+          "after": "ASSET_ROOT = '/tmp/p011-mta-rx-scope-v0001'\n",
+          "before": "ASSET_ROOT = '/tmp/p011-mta-rx-dispatch-v1'\n",
+          "count": 1,
+          "name": "ASSET_ROOT_constant"
+        },
+        {
+          "after": "ASSET_PHYSICAL_ROOT = '/var/volatile/tmp/p011-mta-rx-scope-v0001'\n",
+          "before": "ASSET_PHYSICAL_ROOT = '/var/volatile/tmp/p011-mta-rx-dispatch-v1'\n",
+          "count": 1,
+          "name": "ASSET_PHYSICAL_ROOT_constant"
+        },
+        {
+          "after": "SOURCE_MANIFEST_SHA = '52f0360b3fb0138b8fa6fd5589bb2d9f29e68d47e601e6d63ff5ebf60e3942ca'\n",
+          "before": "SOURCE_MANIFEST_SHA = '614d9b5afa5bb0973c822950786ce5b2ff4ea9abfdfa492d441217665a14315e'\n",
+          "count": 1,
+          "name": "SOURCE_MANIFEST_SHA_constant"
+        },
+        {
+          "after": "F_SHA = '345762f64d63977d0c8f1ee1c2f4d5ee0368e0c11b5888863b1edbbad83fb8c2'\n",
+          "before": "F_SHA = '70bce902dc5ff64036edac68b65ac42bc160dcb98fe29631240924535e88c606'\n",
+          "count": 1,
+          "name": "F_SHA_constant"
+        }
+      ],
+      "functions_unchanged": true,
+      "name": "mta_client_receive_factory",
+      "source": [
+        "candidate/receive-scope-dispatch-v1/runtime/mta_client_receive_factory.py",
+        99371,
+        "7c4ee1b5dabf869301be940e0330968b683bde2e8d7d45add83f63c474c70f15"
+      ]
+    },
+    {
+      "candidate": [
+        "candidate/receive-scope-dispatch-graph-v1/runtime/mta_client_receive_boot.py",
+        19697,
+        "c7c4d0410a27bb94d51ba5e7e2023b0e340f9efd2141d95fe44ec22ac540f367"
+      ],
+      "edits": [
+        {
+          "after": "ROOT = '/tmp/p011-mta-rx-scope-v0001'\n",
+          "before": "ROOT = '/tmp/p011-mta-rx-dispatch-v1'\n",
+          "count": 1,
+          "name": "ROOT_constant"
+        },
+        {
+          "after": "PHYSICAL_ROOT = '/var/volatile/tmp/p011-mta-rx-scope-v0001'\n",
+          "before": "PHYSICAL_ROOT = '/var/volatile/tmp/p011-mta-rx-dispatch-v1'\n",
+          "count": 1,
+          "name": "PHYSICAL_ROOT_constant"
+        },
+        {
+          "after": "CLIENT_MANIFEST_SHA = '52f0360b3fb0138b8fa6fd5589bb2d9f29e68d47e601e6d63ff5ebf60e3942ca'\n",
+          "before": "CLIENT_MANIFEST_SHA = '614d9b5afa5bb0973c822950786ce5b2ff4ea9abfdfa492d441217665a14315e'\n",
+          "count": 1,
+          "name": "CLIENT_MANIFEST_SHA_constant"
+        },
+        {
+          "after": "F37_SHA = '345762f64d63977d0c8f1ee1c2f4d5ee0368e0c11b5888863b1edbbad83fb8c2'\n",
+          "before": "F37_SHA = '70bce902dc5ff64036edac68b65ac42bc160dcb98fe29631240924535e88c606'\n",
+          "count": 1,
+          "name": "F37_SHA_constant"
+        },
+        {
+          "after": "    ('mta_client_receive_factory', 99371, '0c5269ed0e62b69626b59a3dfcb3214c61572e654d70d85e428a703fd5ecca0a'),\n",
+          "before": "    ('mta_client_receive_factory', 99257, '0103f047e9598767f9e9162cf8833f0420c171f7552c31ed28e107e6a91c6cb0'),\n",
+          "count": 1,
+          "name": "mta_client_receive_factory_tuple"
+        },
+        {
+          "after": "    ('mta_client_state_bridge', 21356, '8ab5dc13989a7096a8f7573316ccf56c450d0111f67f3e0fa0d15315fef38a55'),\n",
+          "before": "    ('mta_client_state_bridge', 21356, '45690369157954bf98688e6295daa4f55346dc14944a830798cd006c335fa9d9'),\n",
+          "count": 1,
+          "name": "mta_client_state_bridge_tuple"
+        }
+      ],
+      "functions_unchanged": true,
+      "name": "mta_client_receive_boot",
+      "source": [
+        "candidate/receive-owner-dispatch-graph-v1/runtime/mta_client_receive_boot.py",
+        19697,
+        "e5aa90e096bf6c3e560c1435391aed18c7ab76910ff2a02f053959a2903aa262"
+      ]
+    },
+    {
+      "candidate": [
+        "candidate/receive-scope-dispatch-graph-v1/runtime/mta_client_service_owner.py",
+        107104,
+        "4c46913a4bb5f1fe1e1d1c055215606137d53e9c66c7a077286ce77c06f71786"
+      ],
+      "edits": [
+        {
+          "after": "ROOT = '/tmp/p011-mta-rx-scope-v0001'\n",
+          "before": "ROOT = '/tmp/p011-mta-rx-dispatch-v1'\n",
+          "count": 1,
+          "name": "ROOT_constant"
+        },
+        {
+          "after": "BOOT_PIN = (19697, 'c7c4d0410a27bb94d51ba5e7e2023b0e340f9efd2141d95fe44ec22ac540f367')\n",
+          "before": "BOOT_PIN = (19697, 'e5aa90e096bf6c3e560c1435391aed18c7ab76910ff2a02f053959a2903aa262')\n",
+          "count": 1,
+          "name": "BOOT_PIN_constant"
+        },
+        {
+          "after": "        physical = '/var/volatile/tmp/p011-mta-rx-scope-v0001'\n",
+          "before": "        physical = '/var/volatile/tmp/p011-mta-rx-dispatch-v1'\n",
+          "count": 1,
+          "name": "held_physical_root"
+        }
+      ],
+      "functions_unchanged": false,
+      "name": "mta_client_service_owner",
+      "source": [
+        "candidate/receive-owner-dispatch-graph-v1/runtime/mta_client_service_owner.py",
+        107104,
+        "d3be260601881f64b3623706da36ded31ee707598956be632bf1ce71f2616e8d"
+      ]
+    },
+    {
+      "candidate": [
+        "candidate/receive-scope-dispatch-graph-v1/runtime/mta_formal_receive_session.py",
+        79281,
+        "70a348bbe1288edbd3fdf2f26c774289372bd81510a4d15809a0e5ff8e1905a7"
+      ],
+      "edits": [
+        {
+          "after": "STATE_ROOT = '/var/volatile/tmp/p011-mta-rx-scope-v0001'\n",
+          "before": "STATE_ROOT = '/var/volatile/tmp/p011-mta-rx-dispatch-v1'\n",
+          "count": 1,
+          "name": "STATE_ROOT_constant"
+        },
+        {
+          "after": "STATE_ALIAS = '/tmp/p011-mta-rx-scope-v0001'\n",
+          "before": "STATE_ALIAS = '/tmp/p011-mta-rx-dispatch-v1'\n",
+          "count": 1,
+          "name": "STATE_ALIAS_constant"
+        },
+        {
+          "after": "    ('mta_client_executor', 124769, '345762f64d63977d0c8f1ee1c2f4d5ee0368e0c11b5888863b1edbbad83fb8c2'),\n",
+          "before": "    ('mta_client_executor', 124769, '70bce902dc5ff64036edac68b65ac42bc160dcb98fe29631240924535e88c606'),\n",
+          "count": 2,
+          "name": "mta_client_executor_tuple"
+        },
+        {
+          "after": "    ('mta_client_receive_factory', 99371, '0c5269ed0e62b69626b59a3dfcb3214c61572e654d70d85e428a703fd5ecca0a'),\n",
+          "before": "    ('mta_client_receive_factory', 99257, '0103f047e9598767f9e9162cf8833f0420c171f7552c31ed28e107e6a91c6cb0'),\n",
+          "count": 1,
+          "name": "mta_client_receive_factory_tuple"
+        },
+        {
+          "after": "    ('mta_client_state_bridge', 21356, '8ab5dc13989a7096a8f7573316ccf56c450d0111f67f3e0fa0d15315fef38a55'),\n",
+          "before": "    ('mta_client_state_bridge', 21356, '45690369157954bf98688e6295daa4f55346dc14944a830798cd006c335fa9d9'),\n",
+          "count": 1,
+          "name": "mta_client_state_bridge_tuple"
+        },
+        {
+          "after": "    ('mta_client_receive_boot', 19697, 'c7c4d0410a27bb94d51ba5e7e2023b0e340f9efd2141d95fe44ec22ac540f367'),\n",
+          "before": "    ('mta_client_receive_boot', 19697, 'e5aa90e096bf6c3e560c1435391aed18c7ab76910ff2a02f053959a2903aa262'),\n",
+          "count": 1,
+          "name": "mta_client_receive_boot_tuple"
+        },
+        {
+          "after": "    ('mta_client_service_owner', 107104, '4c46913a4bb5f1fe1e1d1c055215606137d53e9c66c7a077286ce77c06f71786'),\n",
+          "before": "    ('mta_client_service_owner', 107104, 'd3be260601881f64b3623706da36ded31ee707598956be632bf1ce71f2616e8d'),\n",
+          "count": 1,
+          "name": "mta_client_service_owner_tuple"
+        }
+      ],
+      "functions_unchanged": true,
+      "name": "mta_formal_receive_session",
+      "source": [
+        "candidate/receive-owner-dispatch-graph-v1/runtime/mta_formal_receive_session.py",
+        79281,
+        "7a337bbe1221f78b598129a25e14f10acf2a92731797583cc1819d375f4718df"
+      ]
+    }
+  ],
+  "payload_bytes": 4193464,
+  "private_roles_exact": 34,
+  "proc_native_fc9_unchanged": true,
+  "root": "p011-mta-rx-scope-v0001",
+  "schema": "p011-receive-scope-dispatch-v1-graph-delta",
+  "unchanged_payload_roles": 69
+}

@@ -1,0 +1,249 @@
+{
+  "scope": "Offline Python model + static source checks only. Not Windows PowerShell or P011 execution.",
+  "observed_file_sha256": "163bf8c27f465b23615fe0f2b440a5360b92425a246587c0173db5dc0afaae84",
+  "observed_raw_hex": "30 0d 0d 0a 0d 0d 0a 5f 5f 50 30 31 31 5f 52 45 4d 4f 54 45 5f 45 58 49 54 5f 5f 3d 30 0d 0d 0a",
+  "observed_raw_escaped": "b'0\\r\\r\\n\\r\\r\\n__P011_REMOTE_EXIT__=0\\r\\r\\n'",
+  "old_pattern_match_count": 0,
+  "new_model_identity": {
+    "uid_text": "0",
+    "remote_exit": 0
+  },
+  "model_cases": [
+    {
+      "case": "LF",
+      "pass_": true,
+      "accepted": true,
+      "expected": [
+        "0",
+        0
+      ]
+    },
+    {
+      "case": "CRLF",
+      "pass_": true,
+      "accepted": true,
+      "expected": [
+        "0",
+        0
+      ]
+    },
+    {
+      "case": "CAPTURED_CRCRLF",
+      "pass_": true,
+      "accepted": true,
+      "expected": [
+        "0",
+        0
+      ]
+    },
+    {
+      "case": "TRIPLE_CRLF",
+      "pass_": true,
+      "accepted": true,
+      "expected": [
+        "0",
+        0
+      ]
+    },
+    {
+      "case": "CR_ONLY",
+      "pass_": true,
+      "accepted": true,
+      "expected": [
+        "0",
+        0
+      ]
+    },
+    {
+      "case": "FINAL_NO_NEWLINE",
+      "pass_": true,
+      "accepted": true,
+      "expected": [
+        "0",
+        0
+      ]
+    },
+    {
+      "case": "TRAILING_BLANKS",
+      "pass_": true,
+      "accepted": true,
+      "expected": [
+        "0",
+        0
+      ]
+    },
+    {
+      "case": "EMPTY_BODY",
+      "pass_": true,
+      "accepted": true,
+      "expected": [
+        "",
+        0
+      ]
+    },
+    {
+      "case": "NONZERO_PRESERVED",
+      "pass_": true,
+      "accepted": true,
+      "expected": [
+        "failure",
+        7
+      ]
+    },
+    {
+      "case": "EXIT_255",
+      "pass_": true,
+      "accepted": true,
+      "expected": [
+        "x",
+        255
+      ]
+    },
+    {
+      "case": "EXACT_NONCE",
+      "pass_": true,
+      "accepted": true,
+      "expected": [
+        "0",
+        0
+      ]
+    },
+    {
+      "case": "NO_MARKER",
+      "pass_": true,
+      "accepted": false,
+      "expected": null
+    },
+    {
+      "case": "DUPLICATE",
+      "pass_": true,
+      "accepted": false,
+      "expected": null
+    },
+    {
+      "case": "OUT_OF_RANGE",
+      "pass_": true,
+      "accepted": false,
+      "expected": null
+    },
+    {
+      "case": "BAD_STATUS",
+      "pass_": true,
+      "accepted": false,
+      "expected": null
+    },
+    {
+      "case": "NEGATIVE_STATUS",
+      "pass_": true,
+      "accepted": false,
+      "expected": null
+    },
+    {
+      "case": "UNICODE_DIGIT",
+      "pass_": true,
+      "accepted": false,
+      "expected": null
+    },
+    {
+      "case": "NOT_FINAL",
+      "pass_": true,
+      "accepted": false,
+      "expected": null
+    },
+    {
+      "case": "INLINE_MARKER",
+      "pass_": true,
+      "accepted": false,
+      "expected": null
+    },
+    {
+      "case": "WRONG_NONCE",
+      "pass_": true,
+      "accepted": false,
+      "expected": null
+    },
+    {
+      "case": "TRUNCATED_STATUS",
+      "pass_": true,
+      "accepted": false,
+      "expected": null
+    },
+    {
+      "case": "VALID_PLUS_MALFORMED",
+      "pass_": true,
+      "accepted": false,
+      "expected": null
+    }
+  ],
+  "unchanged_device_and_candidate_files": [
+    {
+      "file": "MenuLab/runtime/p011_json.py",
+      "sha256": "e32cf4433b966714a16e725e405052fa905715ce108b80199f8d50904abe5c7c"
+    },
+    {
+      "file": "MenuLab/runtime/menu_trial.py",
+      "sha256": "20b8f2e67446141660fede4a38ea74b3e7e8b835f5cc15ac54a7130c9e8f2302"
+    },
+    {
+      "file": "MenuLab/runtime/menu_policy.py",
+      "sha256": "833b35ec47f54719099ec450fc419d0dcae5e1f564dbfd56b46e5eb7924f0157"
+    },
+    {
+      "file": "MenuLab/examples/device/TimerPage.qml",
+      "sha256": "4c4ff00f3b5538bb7a1220ded7df003b597f85e85db782670bf6f68ca9d054bd"
+    },
+    {
+      "file": "MenuLab/examples/device/MenuCapture.js",
+      "sha256": "229e99e0aba800a922105b3aabd40526e2467eeb9c76f73369e9d9fce688eff1"
+    },
+    {
+      "file": "MenuLab/examples/device/ToolboxPage.qml",
+      "sha256": "a5e521acaa5a360edd230a221cb5e7183b787ac459adf93bb7c6dd0041d65407"
+    },
+    {
+      "file": "MenuLab/examples/device/DeviceInfoPage.qml",
+      "sha256": "1e50aa8af6031c2e0919abb9af2aa52b5e112a38474849e2914292bcfe60de2d"
+    },
+    {
+      "file": "MenuLab/examples/device/ClockPage.qml",
+      "sha256": "162e51c637483720556cd959d6624faa0a08da56b372ee41e5481c5840e88d23"
+    },
+    {
+      "file": "MenuLab/patch/NaviPanel.diff",
+      "sha256": "4254a3eba9f0d1fb490847a60560cd05fd9ee8870b17384fef98f341358bae71"
+    },
+    {
+      "file": "MenuLab/patch/NaviPanel.embedded.qml",
+      "sha256": "41a5c0eece5dbf67d0ddf73bcfc6927b2eca49912b739066a987fbfcb377c6b8"
+    },
+    {
+      "file": "MenuLab/patch/manifest.json",
+      "sha256": "f4eb08f241e89b44633053a318d6fa52323dd7bb4da852822c1337429466bb9f"
+    },
+    {
+      "file": "MenuLab/patch/NaviPanel.readable.qml",
+      "sha256": "96d7840991944355f43fd66976f1b7a729cb61ac1ffb014f8d29e8edcbc9cb96"
+    },
+    {
+      "file": "MenuLab/patch/NaviPanel.resource-block.bin",
+      "sha256": "881d7426f5d01caf4dcf6cde63b0c206dedbca1208c9205a3b92760e734d3f8a"
+    }
+  ],
+  "preserved_checks": [
+    "host adb exit",
+    "exact per-call marker",
+    "one terminal marker",
+    "nonzero remote exit",
+    "root UID",
+    "original/candidate integrity",
+    "supervisor logic"
+  ],
+  "unchanged_python35_grammar_passed": [
+    "p011_json.py",
+    "menu_trial.py",
+    "menu_policy.py"
+  ],
+  "windows_powershell_execution": false,
+  "actual_device_execution": false,
+  "startup_selftest_added": "22 PowerShell cases run on the user host automatically before any adb call"
+}

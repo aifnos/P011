@@ -1,0 +1,54 @@
+{
+  "schema": "go-readonly-parent-cleanup-v92-host-source",
+  "runtime_source_count": 1,
+  "sources": [
+    {
+      "path": "runtime/p011_json.py",
+      "bytes": 8061,
+      "sha256": "fb6c803b185283258c2312e630df8bb80d6299007e95a1f3cf31250aa0e8ca88",
+      "python35_target": false
+    },
+    {
+      "path": "runtime/mta_ip.py",
+      "bytes": 22049,
+      "sha256": "1fa5e72817772285fd966f52c57af105950ff0d3b6ea49b202983aebfbab40c5",
+      "python35_target": false
+    },
+    {
+      "path": "candidate/client-parent-cap-v33/runtime/mta_p2p_client_init.py",
+      "bytes": 71315,
+      "sha256": "d3b51493d3ae778aeb72c1304dc50e5a6221428f7775bc7a28d15a3f19abeaaa",
+      "python35_target": false
+    },
+    {
+      "path": "candidate/go-send-observer-v85/runtime/mta_snapshot_data.py",
+      "bytes": 17217,
+      "sha256": "cb5e8f16c78cc4c879a8986dd9c2ab8ed5e6c055f105baad3ce60eb9a10d2a26",
+      "python35_target": false
+    },
+    {
+      "path": "candidate/go-send-observer-entry-v87/runtime/mta_observer_packet.py",
+      "bytes": 13223,
+      "sha256": "6f2c882058ee30a630ac30e1a5b4e9277d04ee2e71c108b58966a0574bf74e7a",
+      "python35_target": false
+    },
+    {
+      "path": "candidate/go-send-observer-entry-v87-r2/runtime/mta_go_readonly_entry.py",
+      "bytes": 25537,
+      "sha256": "41ec9d93147b875bb38363f15e545962459e4eaba161ccc5fb7759ce6c5c7df9",
+      "python35_target": false
+    },
+    {
+      "path": "candidate/go-send-observer-parent-v92/runtime/mta_go_readonly_parent.py",
+      "bytes": 50693,
+      "sha256": "417af52e6424320d1421f74110526e70edbdd0210e8f42e789ec1ed1e3b84cfa",
+      "python35_target": true
+    },
+    {
+      "path": "tests/test_go_readonly_parent_cleanup_v92.py",
+      "bytes": 30164,
+      "sha256": "80a0424b0e17ed7a70bccd0ca3e130a8101fd332bd63a61ec2f5f4d6444e1cb3",
+      "python35_target": false
+    }
+  ]
+}

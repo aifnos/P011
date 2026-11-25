@@ -1,0 +1,130 @@
+{
+  "scope": "Host filesystem fixtures, no Windows/P011 execution",
+  "count": 25,
+  "all_passed": true,
+  "cases": [
+    {
+      "case": "absent",
+      "passed": true,
+      "decision": "absent"
+    },
+    {
+      "case": "literal dangling",
+      "passed": true,
+      "decision": "remove_dangling_managed_alias"
+    },
+    {
+      "case": "canonical dangling",
+      "passed": true,
+      "decision": "remove_dangling_managed_alias"
+    },
+    {
+      "case": "old literal session",
+      "passed": true,
+      "decision": "remove_previous_boot_managed_alias"
+    },
+    {
+      "case": "old canonical session",
+      "passed": true,
+      "decision": "remove_previous_boot_managed_alias"
+    },
+    {
+      "case": "same boot restored",
+      "passed": true,
+      "decision": "remove_finished_managed_alias"
+    },
+    {
+      "case": "same boot failed",
+      "passed": true,
+      "decision": "preserve_unfinished_same_boot_session"
+    },
+    {
+      "case": "same boot pending",
+      "passed": true,
+      "decision": "preserve_unfinished_same_boot_session"
+    },
+    {
+      "case": "unknown boot",
+      "passed": true,
+      "decision": "preserve_unknown_boot"
+    },
+    {
+      "case": "real dir",
+      "passed": true,
+      "decision": "preserve_non_symlink"
+    },
+    {
+      "case": "regular file",
+      "passed": true,
+      "decision": "preserve_non_symlink"
+    },
+    {
+      "case": "foreign",
+      "passed": true,
+      "decision": "preserve_wrong_suffix"
+    },
+    {
+      "case": "relative",
+      "passed": true,
+      "decision": "preserve_noncanonical_target"
+    },
+    {
+      "case": "traversal",
+      "passed": true,
+      "decision": "preserve_noncanonical_target"
+    },
+    {
+      "case": "wrong name",
+      "passed": true,
+      "decision": "preserve_foreign_target"
+    },
+    {
+      "case": "wrong suffix",
+      "passed": true,
+      "decision": "preserve_wrong_suffix"
+    },
+    {
+      "case": "nonroot",
+      "passed": true,
+      "decision": "preserve_non_root_owned"
+    },
+    {
+      "case": "live old session",
+      "passed": true,
+      "decision": "preserve_live_session"
+    },
+    {
+      "case": "live restored session",
+      "passed": true,
+      "decision": "preserve_live_session"
+    },
+    {
+      "case": "page redirect",
+      "passed": true,
+      "decision": "preserve_page_redirect"
+    },
+    {
+      "case": "log redirect",
+      "passed": true,
+      "decision": "preserve_unsafe_log_directory"
+    },
+    {
+      "case": "boot file redirect",
+      "passed": true,
+      "decision": "preserve_unknown_boot"
+    },
+    {
+      "case": "private child",
+      "passed": true,
+      "decision": "preserve_live_session"
+    },
+    {
+      "case": "unlink only managed alias",
+      "passed": true
+    },
+    {
+      "case": "conflict preserves all",
+      "passed": true
+    }
+  ]
+}

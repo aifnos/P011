@@ -1,0 +1,32 @@
+{
+  "schema": "p011-formal-send-cancel-status-source-delta-v1",
+  "evidence": "SOURCE_ONLY_NOT_EXECUTED",
+  "source": [
+    "candidate/formal-send-filecenter-deploy-v5/runtime/mta_service.py",
+    145540,
+    "64a74b3e9082ac06070377d541544e29766f93887c39dcc92d72a87d7ceb7e51"
+  ],
+  "candidate": [
+    "candidate/formal-send-cancel-status-v1/runtime/mta_service.py",
+    145733,
+    "4b1971056673e492e42d59410594192ea7165687ec0ac807cb61deccd5e75d82"
+  ],
+  "selected_manifest": [
+    "candidate/formal-send-filecenter-deploy-v5/assets/ordinary-source-manifest.json",
+    20796,
+    "d000945a5e749a7f4d651305ef0e3a0b9f7fce96ffc2360dfed04b0d37ba230c"
+  ],
+  "replacements": [
+    {
+      "name": "closed_sender_cancelled_status_reason",
+      "before": "                    elif sending and session['phase']=='failed':state='error';reason='发送未完成；资源已关闭，没有报告成功'\n",
+      "after": "                    elif sending and session['phase']=='failed':state='error';reason='发送未完成；资源已关闭，没有报告成功'\n                    elif sending and session['phase']=='cancelled':\n                        state='idle'\n                        if not pending:reason='已取消发送；未报告传输成功'\n",
+      "count": 1
+    }
+  ],
+  "runtime_source_only": true,
+  "deployed": false,
+  "session_close_predicate_changed": false,
+  "restoration_branch_changed": false,
+  "success_predicate_changed": false
+}

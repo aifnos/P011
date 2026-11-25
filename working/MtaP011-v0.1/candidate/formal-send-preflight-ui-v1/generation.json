@@ -1,0 +1,139 @@
+{
+  "all_definition_bytes_and_lines_unchanged": true,
+  "asset_bytes": 4184758,
+  "bundle": "out/mta-ui-send-picker-v1-c69296a193ff43ce8e5b901d",
+  "business_definitions_executed": false,
+  "changed_guardian_assignments": 1,
+  "changed_worker_assignments": 5,
+  "control": "/var/volatile/tmp/p011-mta-ui-session-c69296a193ff43ce8e5b901d-formal-send-preflight-native-v1",
+  "control_name": "p011-mta-ui-session-c69296a193ff43ce8e5b901d-formal-send-preflight-native-v1",
+  "control_suffix": "-formal-send-preflight-native-v1",
+  "device": false,
+  "filecenter_bytes": 99972,
+  "filecenter_files": 9,
+  "full_ast_inverse": true,
+  "full_byte_inverse": true,
+  "generator": [
+    "candidate/formal-send-preflight-ui-v1/generate_worker.py",
+    14343,
+    "694e1deb96b4f8d1a6abbcf5d9deafc6633e8477d5a2117efb618ff25912c80e"
+  ],
+  "graph_generation": [
+    "candidate/formal-send-filecenter-deploy-v7/generation.json",
+    22477,
+    "a5da1b8c31a550712c5115077d28f13b4e5cca456acdaced4d84e046ee540c55"
+  ],
+  "guardian_assignments": [
+    "CONTROL_NAME"
+  ],
+  "input_count": 8,
+  "observer_bytes": 1548495,
+  "observer_files": 41,
+  "old_builders": 0,
+  "old_mains": 0,
+  "old_tests": 0,
+  "ordinary_bytes": 1368142,
+  "ordinary_files": 37,
+  "ordinary_roles": 32,
+  "ordinary_source_bytes": 1078691,
+  "original_cleanup_seconds": 60,
+  "original_window_seconds": 600,
+  "other_ast_unchanged": true,
+  "output_count": 4,
+  "output_pins": [
+    [
+      "candidate/formal-send-preflight-ui-v1/runtime/ui_guardian.py",
+      43996,
+      "8df81808cbd6e32848e5698a5adc486f1027daf8270e5841f83f852d3513b3c1"
+    ],
+    [
+      "candidate/formal-send-preflight-ui-v1/runtime/ui_session.py",
+      46418,
+      "eb1f076560b8061a48b7138a747e805fd9fa32fad86d7d2a025e428d555ab9b7"
+    ],
+    [
+      "candidate/formal-send-preflight-ui-v1/exactsource-delta.json",
+      2936,
+      "db377afb5bc06e45351a96a5e44cf98594ca3ae75c226402716e62e4372326a9"
+    ]
+  ],
+  "phone": false,
+  "physical_root": "/var/volatile/tmp/p011-mta-formal-send-filecenter-deploy-v7",
+  "remote": "/mnt/data/p011-toolbox/mta-ui/c69296a193ff43ce8e5b901d",
+  "rf": false,
+  "root": "/tmp/p011-mta-formal-send-filecenter-deploy-v7",
+  "schema": "p011-formal-send-preflight-ui-v1-generation",
+  "scope": "PC_SOURCE_ONLY_NOT_STAGED_NOT_RUN",
+  "sender_bytes": 2402458,
+  "sender_files": 27,
+  "sender_outer": [
+    "candidate/formal-send-filecenter-deploy-v7/runtime/formal_send_session.py",
+    24060,
+    "6cbd71d7ce054df6de4c419cd93c0ac8ba2049b2f7f9b692bd10bfb2af3b148f"
+  ],
+  "session": "c69296a193ff43ce8e5b901d",
+  "smoke_seconds": 20,
+  "source_inputs": [
+    [
+      "candidate/formal-send-repair-package-v1/runtime/ui_session.py",
+      46416,
+      "719507f6207c2d94720007f5593092a6d6c5da5b8f1ec7428140347b9525996e"
+    ],
+    [
+      "candidate/formal-send-picker-package-v1/runtime/ui_guardian.py",
+      43994,
+      "c118e4f1a6c8f2000a6ae97680d58304af5d8cd55ea30c08cf3a96df16c61477"
+    ],
+    [
+      "candidate/formal-send-picker-package-v1/runtime/ui_assets.py",
+      12526,
+      "7bf8bd1e239ab8cf21a6662ea9217de3e2bef634fb20f31880482abbaca4fd21"
+    ],
+    [
+      "candidate/formal-send-filecenter-deploy-v7/runtime/formal_send_session.py",
+      24060,
+      "6cbd71d7ce054df6de4c419cd93c0ac8ba2049b2f7f9b692bd10bfb2af3b148f"
+    ],
+    [
+      "candidate/formal-send-filecenter-deploy-v7/assets/ordinary-source-manifest.json",
+      20810,
+      "9be61347f4a44d031cf7c07095692b4cd0de21f79410a9f45c5ad6b2073f9d52"
+    ],
+    [
+      "candidate/formal-send-filecenter-deploy-v7/generation.json",
+      22477,
+      "a5da1b8c31a550712c5115077d28f13b4e5cca456acdaced4d84e046ee540c55"
+    ],
+    [
+      "candidate/formal-send-picker-package-v1/generation.json",
+      18953,
+      "4b35068be0fac257a7568d3790a593c42e09d43efe32e96a1a14865ed2658b80"
+    ],
+    [
+      "candidate/formal-send-preflight-ui-v1/generate_worker.py",
+      14343,
+      "694e1deb96b4f8d1a6abbcf5d9deafc6633e8477d5a2117efb618ff25912c80e"
+    ]
+  ],
+  "source_preserved": true,
+  "stage_files": 19,
+  "ui_bundle_rebuilt": false,
+  "ui_generation": [
+    "candidate/formal-send-picker-package-v1/generation.json",
+    18953,
+    "4b35068be0fac257a7568d3790a593c42e09d43efe32e96a1a14865ed2658b80"
+  ],
+  "ui_resources_changed": false,
+  "ui_validator": [
+    "candidate/formal-send-picker-package-v1/runtime/ui_assets.py",
+    12526,
+    "7bf8bd1e239ab8cf21a6662ea9217de3e2bef634fb20f31880482abbaca4fd21"
+  ],
+  "worker_assignments": [
+    "SENDER_PIN",
+    "GUARDIAN_PIN",
+    "SENDER_ROOT",
+    "SENDER_PHYSICAL_ROOT",
+    "CONTROL_NAME"
+  ]
+}

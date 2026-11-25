@@ -1,0 +1,140 @@
+{
+  "edits": [
+    {
+      "candidate": [
+        "candidate/receive-publication-progress-v1/runtime/mta_client_receive_factory.py",
+        99255,
+        "b7f771bb58e9238474ebe6cb2b64604dc0f4bcd79eb7743e48b8f9a028263664"
+      ],
+      "records": [
+        {
+          "after": "        attempt._prepdiag = ('start', 0, None, None)\n        try:\n            attempt.start()\n",
+          "before": "        try:\n            attempt.start()\n",
+          "name": "initialize_private_tuple",
+          "offset": 88536
+        },
+        {
+          "after": "            attempt._prepdiag = ('io', 0, attempt.last, attempt.last)\n            attempt.files = _Files(attempt)\n",
+          "before": "            attempt.files = _Files(attempt)\n",
+          "name": "original_start_return_sample",
+          "offset": 88630
+        },
+        {
+          "after": "                attempt._prepdiag = ('sources', attempt._prepdiag[1],\n                                     attempt._prepdiag[2], attempt.last)\n                raw = attempt.files.read(ASSET_PHYSICAL_ROOT + '/runtime35/' + name + '.py',\n",
+          "before": "                raw = attempt.files.read(ASSET_PHYSICAL_ROOT + '/runtime35/' + name + '.py',\n",
+          "name": "each_source_begin",
+          "offset": 88873
+        },
+        {
+          "after": "                payloads[name] = raw\n                attempt._prepdiag = ('sources', attempt._prepdiag[1] + 1,\n                                     attempt._prepdiag[2], attempt._prepdiag[3])\n            attempt.payloads = payloads\n",
+          "before": "                payloads[name] = raw\n            attempt.payloads = payloads\n",
+          "name": "each_verified_payload_completed",
+          "offset": 89248
+        },
+        {
+          "after": "            attempt._prepdiag = ('wpa', attempt._prepdiag[1],\n                                 attempt._prepdiag[2], attempt.last)\n            attempt.wpa = attempt.files.read(ASSET_PHYSICAL_ROOT + '/native/mta-wpa-supplicant',\n",
+          "before": "            attempt.wpa = attempt.files.read(ASSET_PHYSICAL_ROOT + '/native/mta-wpa-supplicant',\n",
+          "name": "wpa_begin",
+          "offset": 89480
+        },
+        {
+          "after": "            attempt._prepdiag = ('json_pin', attempt._prepdiag[1],\n                                 attempt._prepdiag[2], attempt.last)\n            # JSON definitions are fixed bytes; do not re-execute the running F.\n",
+          "before": "            # JSON definitions are fixed bytes; do not re-execute the running F.\n",
+          "name": "json_pin_begin",
+          "offset": 89881
+        },
+        {
+          "after": "            attempt._prepdiag = ('profile', attempt._prepdiag[1],\n                                 attempt._prepdiag[2], attempt.last)\n            attempt.profile = _live_profile(attempt)\n",
+          "before": "            attempt.profile = _live_profile(attempt)\n",
+          "name": "live_profile_begin",
+          "offset": 90237
+        },
+        {
+          "after": "            attempt._prepdiag = ('received', attempt._prepdiag[1],\n                                 attempt._prepdiag[2], attempt.last)\n            attempt.receive_metadata = executor._receive_directory(attempt.files.io,\n",
+          "before": "            attempt.receive_metadata = executor._receive_directory(attempt.files.io,\n",
+          "name": "received_directory_begin",
+          "offset": 90425
+        },
+        {
+          "after": "            attempt._prepdiag = ('identity', attempt._prepdiag[1],\n                                 attempt._prepdiag[2], attempt.last)\n            attempt.directory_identity_rows = attempt.received_directory.identity_rows()\n",
+          "before": "            attempt.directory_identity_rows = attempt.received_directory.identity_rows()\n",
+          "name": "directory_identity_begin",
+          "offset": 90743
+        },
+        {
+          "after": "            attempt._prepdiag = ('manifest', attempt._prepdiag[1],\n                                 attempt._prepdiag[2], attempt.last)\n            with attempt.state.lock:\n                attempt.now()\n                metadata = ",
+          "before": "            with attempt.state.lock:\n                attempt.now()\n                metadata = ",
+          "name": "manifest_begin",
+          "offset": 90968
+        },
+        {
+          "after": "            attempt._prepdiag = ('write', attempt._prepdiag[1],\n                                 attempt._prepdiag[2], attempt.last)\n            attempt.phase = 'write'; attempt.writer = _Writer(attempt)\n",
+          "before": "            attempt.phase = 'write'; attempt.writer = _Writer(attempt)\n",
+          "name": "original_write_begin",
+          "offset": 92775
+        },
+        {
+          "after": "            attempt._prepdiag = ('loader', attempt._prepdiag[1],\n                                 attempt._prepdiag[2], attempt.last)\n            attempt.phase = 'loader'; attempt.now()\n",
+          "before": "            attempt.phase = 'loader'; attempt.now()\n",
+          "name": "original_loader_begin",
+          "offset": 93040
+        }
+      ],
+      "source": [
+        "candidate/receive-proc-freezer-v1/runtime/mta_client_receive_factory.py",
+        97757,
+        "051b1f6d1e1823be652f59695628d41f9d11c3d1da1896149dc4cfe3c7b207cb"
+      ]
+    },
+    {
+      "candidate": [
+        "candidate/receive-publication-progress-v1/runtime/phone_discovery_session.py",
+        28352,
+        "cdfcec298c2da5b2ec2eff931b06da4381c56ddcba39a163cb8b58dad4108d12"
+      ],
+      "records": [
+        {
+          "after": "    unknown.update(factory_phase=None, stage_unknown=True)\n    unknown.update(publication_step=None, publication_sources_done=None,\n                 publication_sample_elapsed=None, publication_step_elapsed=None,\n                 publication_progress_unknown=True)\n",
+          "before": "    unknown.update(factory_phase=None, stage_unknown=True)\n",
+          "name": "private_unknown_defaults",
+          "offset": 6264
+        },
+        {
+          "after": "    known.update(factory_phase=None, stage_unknown=False)\n    known.update(publication_step=None, publication_sources_done=None,\n                 publication_sample_elapsed=None, publication_step_elapsed=None,\n                 publication_progress_unknown=True)\n",
+          "before": "    known.update(factory_phase=None, stage_unknown=False)\n",
+          "name": "private_known_defaults",
+          "offset": 6579
+        },
+        {
+          "after": "        known.update(factory_active_present=True, factory_phase=active.phase,\n                     factory_ended=active.ended, factory_success=active.success)\n        # Private DATA only: no active methods, extra clock, IO or lock.\n        progress = getattr(active, '_prepdiag', None)\n        last = active.last\n        if (type(progress) is not tuple or len(progress) != 4 or\n                type(progress[0]) is not str or progress[0] not in\n                ('start', 'io', 'sources', 'wpa', 'json_pin', 'profile', 'received',\n                 'identity', 'manifest', 'write', 'loader') or\n                type(progress[1]) is not int or not 0 <= progress[1] <= 35):\n            return known\n        step, completed, origin, entered = progress\n        if step == 'start':\n            if (completed != 0 or origin is not None or entered is not None or\n                    getattr(active, '_prepdiag', None) is not progress or active.last is not last):\n                return known\n            known.update(publication_step=step, publication_sources_done=completed,\n                         publication_progress_unknown=False)\n            return known\n        if (step == 'io' and completed != 0 or step not in ('io', 'sources') and completed != 35 or\n                any(type(value) is not float for value in (origin, entered, last)) or\n                not 0 <= origin <= entered <= last <= 1e12 or not 0 <= last - origin <= 300 or\n                getattr(active, '_prepdiag', None) is not progress or active.last is not last):\n            return known\n        known.update(publication_step=step, publication_sources_done=completed,\n                     publication_sample_elapsed=last - origin,\n                     publication_step_elapsed=last - entered, publication_progress_unknown=False)\n        return known\n",
+          "before": "        known.update(factory_active_present=True, factory_phase=active.phase,\n                     factory_ended=active.ended, factory_success=active.success)\n        return known\n",
+          "name": "finite_cached_projection_after_original_binding",
+          "offset": 10538
+        }
+      ],
+      "source": [
+        "candidate/receive-handoff-progress-120s-v2/runtime/phone_discovery_session.py",
+        26305,
+        "15540ef933e3c18853f8ab650e8ddc4aa902c2499eec3a7538f6f178e295ddf4"
+      ]
+    }
+  ],
+  "generator": [
+    "candidate/receive-publication-progress-v1/generate.py",
+    16140,
+    "d4c8a7aea6e0452469847f53fdecbca756c347d524a9351d3b9a4eebb3bca988"
+  ],
+  "schema": "p011-receive-publication-progress-v1-exact-source-delta",
+  "source_pins": [
+    [
+      "candidate/receive-proc-freezer-v1/runtime/mta_client_receive_factory.py",
+      97757,
+      "051b1f6d1e1823be652f59695628d41f9d11c3d1da1896149dc4cfe3c7b207cb"
+    ],
+    [
+      "candidate/receive-handoff-progress-120s-v2/runtime/phone_discovery_session.py",
+      26305,
+      "15540ef933e3c18853f8ab650e8ddc4aa902c2499eec3a7538f6f178e295ddf4"
+    ]
+  ]
+}

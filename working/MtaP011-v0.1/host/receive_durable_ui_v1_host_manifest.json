@@ -1,0 +1,64 @@
+{
+  "schema": "p011-affected-host-contract-v1",
+  "test": "tests/test_receive_durable_state_v1.py",
+  "selector": "DurableReceiveStateTests.test_actual_receiver_saved_failed_display_and_unchanged_action_gates",
+  "marker": "RECEIVE_DURABLE_QML_FIXTURE_CONTRACT=1",
+  "inputs": [
+    {
+      "path": "tests/test_receive_durable_state_v1.py",
+      "bytes": 12715,
+      "sha256": "6eb58767d0ccdf964d9e5298c8ce1fab0fef2bb469c88a71e986a31cd9971dba"
+    },
+    {
+      "path": "tests/qml_candidate_fixture_v1.py",
+      "bytes": 7249,
+      "sha256": "346c11f2a432101d0bc0cc40c8bcccb5b50c2f39eba4a396a291f5f5949fecd3"
+    },
+    {
+      "path": "candidate/receive-durable-state-v1/device/mta/MtaPage.qml",
+      "bytes": 28426,
+      "sha256": "b5f69f032395999c5bd2bdbb3759e7cb47859baee0a87fe462341b1b99ff0755"
+    },
+    {
+      "path": "candidate/receive-durable-state-v1/exactsource-delta.json",
+      "bytes": 2864,
+      "sha256": "3846c335f69e1ba8866668fa12ee173ff359836eecfba0b385101c91779fbe50"
+    },
+    {
+      "path": "candidate/formal-receive-filecenter-ui-v1/device/mta/MtaPage.qml",
+      "bytes": 27441,
+      "sha256": "6f87bdfc8e3b00a85642dd849963219962c47b563d71bf65c291d1e73bcb77b2"
+    },
+    {
+      "path": "out/mta-ui-receive-filecenter-navigation-gui-v1-a87de5c1d0e0b90b35bb2a91/mta/MtaPage.qml",
+      "bytes": 27441,
+      "sha256": "6f87bdfc8e3b00a85642dd849963219962c47b563d71bf65c291d1e73bcb77b2"
+    },
+    {
+      "path": "candidate/formal-receive-filecenter-navigation-anchor-v1/runtime/ui_assets.py",
+      "bytes": 12642,
+      "sha256": "a620878186a3005f36febf5487675c3031c8831fd91d5e8962660ad99466c4be"
+    },
+    {
+      "path": "out/mta-ui-receive-filecenter-navigation-gui-v1-a87de5c1d0e0b90b35bb2a91/mta/MtaButton.qml",
+      "bytes": 758,
+      "sha256": "7e1d4e378b8e3293e617f4dc432cce3c70ae7fe377f2ea26950aa9bb11393bff"
+    },
+    {
+      "path": "out/mta-ui-receive-filecenter-navigation-gui-v1-a87de5c1d0e0b90b35bb2a91/mta/MtaLabel.qml",
+      "bytes": 352,
+      "sha256": "77caf248c2f83ed50f5221082084e5af360d08fc917df98eb84449e24903bd75"
+    },
+    {
+      "path": "out/mta-ui-receive-filecenter-navigation-gui-v1-a87de5c1d0e0b90b35bb2a91/mta/MtaTheme.js",
+      "bytes": 262,
+      "sha256": "5848aa8bf1dab57cfe590dd80da1122eb819c75c1f208f69ad4184bf669a99ff"
+    },
+    {
+      "path": "HOST_MTA_RECEIVE_DURABLE_UI_V1_CHECK.cmd",
+      "bytes": 175,
+      "sha256": "ff149c1b13ff659b7a2a1c362305c7cb893ebe13c7fa923d96dc701700454411"
+    }
+  ],
+  "boundary": "Actual HOST offscreen Qt/QML properties/bindings/functions/button signal handlers; request entry is a delayed inert fixture. Strict saved_failed local-save DATA and original action gates are compared. GUI20 validator only supplies AST PINS data. No rendering/screenshot/physical touch/native saving/IPC/XHR/network."
+}

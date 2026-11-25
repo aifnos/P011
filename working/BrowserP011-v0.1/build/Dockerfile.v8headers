@@ -1,0 +1,9 @@
+FROM browser685-builder:gcc11-v8host
+# Ubuntu's multilib glibc development package supplies /usr/include/bits for
+# -m32, while Linux UAPI asm headers remain in the x86 multiarch directory.
+# They select 32/64 bit layouts from compiler macros. Expose that existing
+# host-only UAPI directory to the 32-bit V8 snapshot helper. ARM compilation
+# uses -nostdinc and the old explicit sysroot, so cannot consume this alias.
+RUN test -f /usr/include/x86_64-linux-gnu/asm/errno.h \
+    && test ! -e /usr/include/asm \
+    && ln -s x86_64-linux-gnu/asm /usr/include/asm

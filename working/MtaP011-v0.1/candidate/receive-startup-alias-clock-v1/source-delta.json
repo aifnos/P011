@@ -1,0 +1,52 @@
+{
+  "schema": "p011-startup-alias-clock-source-delta-v1",
+  "evidence": "READBACK_BYTE_INVERSE_ONLY",
+  "source": [
+    "candidate/formal-receive-filecenter-v1/runtime/mta_client_receive_factory.py",
+    82682,
+    "7d20081c5d8581616f0e3cf722cc91ed4b43afa78bea1479bd702eb4a5e3a41d"
+  ],
+  "candidate": [
+    "candidate/receive-startup-alias-clock-v1/runtime/mta_client_receive_factory.py",
+    89055,
+    "726d0963df5d1fef8017ea9279fcb37344f50b500d22326b7fc941a6a46c1f80"
+  ],
+  "replacements": [
+    {
+      "name": "startup_init_bindings",
+      "before": "        self.close_called, self.close_complete = False, False\n        value = self.check_active()",
+      "after": "        self.close_called, self.close_complete = False, False\n        # Metadata-only alias checks keep the same Owner/window, not IO grants.\n        self._alias_functions, self._alias_codes = _STARTUP_ALIAS_ORIGINALS, _STARTUP_ALIAS_CODES\n        self._alias_pins = self._alias_pins_original = SOURCE_PINS\n        self._alias_lock, self._alias_clock = owner.lock, self.alias_now\n        self._alias_owner_methods = self.owner_methods\n        self._alias_owner_codes = tuple(function.__code__ for function in self.owner_methods)\n        value = self.check_active()",
+      "count": 1
+    },
+    {
+      "name": "startup_originals_prefix",
+      "before": "    def _originals(self, active):\n        owner = self.owner",
+      "after": "    def _originals(self, active):\n        if (self._alias_functions is not _STARTUP_ALIAS_ORIGINALS or\n                self._alias_codes is not _STARTUP_ALIAS_CODES or\n                self._alias_pins is not self._alias_pins_original or SOURCE_PINS is not self._alias_pins_original or\n                self.owner.lock is not self._alias_lock or type(self) is not _StartupReadScope or\n                self.owner_methods is not self._alias_owner_methods or\n                any(current is not original or current.__code__ is not code for current, original, code in zip(\n                    (self.owner_type._context, self.owner_type._now, self.owner_type._startup_readonly, self.owner_type.close),\n                    self._alias_owner_methods, self._alias_owner_codes)) or\n                any(current is not original or current.__code__ is not code for current, original, code in zip(\n                    (_StartupReadScope.__init__, _StartupReadScope._originals, _StartupReadScope.check_active,\n                     _StartupReadScope.alias_now, executor._ReadOwner.check, executor._ReadOwner._fixed_tmp_alias),\n                    self._alias_functions, self._alias_codes)) or\n                getattr(self._alias_clock, '__self__', None) is not self or\n                getattr(self._alias_clock, '__func__', None) is not self._alias_functions[3]):\n            _fail('startup_owner_changed')\n        if self.files is not None and hasattr(self.files, 'alias_owner') and (\n                type(self.files) is not _Files or self.files.attempt is not self or\n                type(self.files.alias_owner) is not _F_ORIGINALS[4] or\n                self.files.alias_owner.io is not self.files.io or\n                self.files.alias_owner.clock is not self._alias_clock or\n                self.files.alias_owner.deadline is not self.original_prepare_until):\n            _fail('startup_owner_changed')\n        owner = self.owner",
+      "count": 1
+    },
+    {
+      "name": "startup_alias_method",
+      "before": "    def close_originals_allowed(self):",
+      "after": "    def alias_now(self):\n        \"\"\"Pure metadata/readlink clock; full check_active stays at every IO boundary.\"\"\"\n        if (self._alias_functions is not _STARTUP_ALIAS_ORIGINALS or\n                self._alias_codes is not _STARTUP_ALIAS_CODES or\n                any(current is not original or current.__code__ is not code for current, original, code in zip(\n                    (_StartupReadScope.__init__, _StartupReadScope._originals, _StartupReadScope.check_active,\n                     _StartupReadScope.alias_now, executor._ReadOwner.check, executor._ReadOwner._fixed_tmp_alias),\n                    self._alias_functions, self._alias_codes)) or\n                getattr(self._alias_clock, '__self__', None) is not self or\n                getattr(self._alias_clock, '__func__', None) is not self._alias_functions[3] or\n                self.owner.lock is not self._alias_lock):\n            _fail('startup_owner_changed')\n        with self._alias_lock:\n            _STARTUP_ALIAS_ORIGINALS[1](self, False)\n            owner, state = self.owner, self.state\n            if (owner.started is not True or owner.state_complete is not True or\n                    owner.startup_called is not True or owner.close_called is not False or\n                    owner.server_called is not False or owner.server is not None or owner.thread is not None or\n                    self.close_called or owner.start_complete or state.closing or\n                    state.receive_available is not False or state.send_available is not False or\n                    state.wifi_restore_pending is not False or state.radio_restore_pending is not False or\n                    state.probe_actors is not owner.probe_rows or\n                    self.service.State._probes_closed(state) is not True or\n                    self.phase not in ('reading', 'importing') or self.files is None or\n                    not hasattr(self.files, 'alias_owner') or\n                    type(self.files.alias_owner.rows) is not list or self.files.alias_owner.rows or\n                    type(self.files.alias_owner.raw) is not list or self.files.alias_owner.raw or\n                    self.files.alias_owner.pending is not False):\n                _fail('startup_window_changed')\n            if self.module_originals is not None:\n                for name, module, definitions in self.module_originals:\n                    if self.private_modules.get(name) is not module or module.__dict__ is not definitions:\n                        _fail('startup_source_changed')\n            if self._profile_original is not None and (\n                    self.profile is not self._profile_original or\n                    self.profile.get('baseline_manifest') is not BASELINE_MANIFEST or\n                    self.profile.get('status_manifest') is not self._status_manifest_original or\n                    tuple(sorted(self._status_manifest_original.items())) != self._status_items_original):\n                _fail('startup_profile_changed')\n            if (self.prepare_until is None or self.prepare_until is not self.original_prepare_until or\n                    self.prepare_until > self.original_until):\n                _fail('startup_expired')\n            value = self._alias_owner_methods[1](owner)\n            if (not _number(value) or self.last is not None and value < self.last or\n                    owner.last is not None and value < owner.last):\n                _fail('startup_clock')\n            if (self.prepare_until is None or self.prepare_until is not self.original_prepare_until or\n                    self.prepare_until > self.original_until or value >= self.prepare_until or\n                    value >= self.original_until):\n                _fail('startup_expired')\n            self.last = float(value)\n            return float(value)\n\n    def close_originals_allowed(self):",
+      "count": 1
+    },
+    {
+      "name": "startup_fixed_functions_codes",
+      "before": "class _Files(object):",
+      "after": "_STARTUP_ALIAS_ORIGINALS = (_StartupReadScope.__init__, _StartupReadScope._originals,\n    _StartupReadScope.check_active, _StartupReadScope.alias_now,\n    executor._ReadOwner.check, executor._ReadOwner._fixed_tmp_alias)\n_STARTUP_ALIAS_CODES = tuple(function.__code__ for function in _STARTUP_ALIAS_ORIGINALS)\n\n\nclass _Files(object):",
+      "count": 1
+    },
+    {
+      "name": "files_callback_selection",
+      "before": "        clock = attempt._alias_clock if type(attempt) is _PublicationAttempt else attempt.now",
+      "after": "        clock = attempt._alias_clock",
+      "count": 1
+    }
+  ],
+  "forward_exact": true,
+  "inverse_exact": true,
+  "ast_executed": false,
+  "source_entry_executed": false,
+  "host_executed": false,
+  "device_executed": false
+}

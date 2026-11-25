@@ -1,0 +1,174 @@
+{
+  "schema": "go-send-transport-v76-r3-host-source",
+  "runtime_source_count": 26,
+  "sources": [
+    {
+      "path": "runtime/p011_json.py",
+      "bytes": 8061,
+      "sha256": "fb6c803b185283258c2312e630df8bb80d6299007e95a1f3cf31250aa0e8ca88",
+      "python35_target": true
+    },
+    {
+      "path": "runtime/mta_ip.py",
+      "bytes": 22049,
+      "sha256": "1fa5e72817772285fd966f52c57af105950ff0d3b6ea49b202983aebfbab40c5",
+      "python35_target": true
+    },
+    {
+      "path": "candidate/client-tmp-alias-v11/runtime/mta_client_tmp_alias.py",
+      "bytes": 8827,
+      "sha256": "1a4a52bd0bae7add6ae42f66bd9827c43865a0170c666eaab00797d1f45f7f2f",
+      "python35_target": true
+    },
+    {
+      "path": "candidate/client-session-v28/runtime/mta_p2p_client_init.py",
+      "bytes": 69966,
+      "sha256": "178bd8a491e9e5ec03e8da3bce780f8e8e8c1c8781bfeaca7d8c3bac59fa364b",
+      "python35_target": true
+    },
+    {
+      "path": "candidate/client-session-v28/runtime/mta_client_resource_budget.py",
+      "bytes": 16215,
+      "sha256": "56d6dbe2370279b1572a563e67fd3313bf942c0baa78fbd8e36cd973ba09839e",
+      "python35_target": true
+    },
+    {
+      "path": "candidate/client-proc-deadline-v25/runtime/mta_client_proc.py",
+      "bytes": 39384,
+      "sha256": "ede5953c33ba4c17d3aecb1fffe8a9358589497b37e3109034d5e1de3eadb3d6",
+      "python35_target": true
+    },
+    {
+      "path": "candidate/client-session-v28/runtime/mta_client_journal_codec.py",
+      "bytes": 17450,
+      "sha256": "2ffeca6b59498c9e2dfa4b9906bbe55db909d5d5e1d448fa0c795490996fe14a",
+      "python35_target": true
+    },
+    {
+      "path": "candidate/client-tmp-alias-v11/runtime/mta_client_coordination.py",
+      "bytes": 35591,
+      "sha256": "930e56d35ebf08d0b1c83fe7ccab843cbe6520ecd68c0799e9a07b2bbe40823f",
+      "python35_target": true
+    },
+    {
+      "path": "candidate/client-resource-v23/runtime/mta_client_files.py",
+      "bytes": 28938,
+      "sha256": "30c07bb4a5a28ce02aa76f35650ee1c87af63617f445e554c3fd7f73a2705864",
+      "python35_target": true
+    },
+    {
+      "path": "candidate/client-recovery-budget-v8/runtime/mta_client_pending.py",
+      "bytes": 42432,
+      "sha256": "cfba740700268d5998eb3a91bf7cdc34d893fa8f0083377d716ea98950c3f5af",
+      "python35_target": true
+    },
+    {
+      "path": "candidate/client-peer-v29-r2/runtime/mta_client_store.py",
+      "bytes": 71524,
+      "sha256": "f328dcaa95ecfc5288c85a3715ecfdbdbdb8e83c83797b91cde3e334d188f4a2",
+      "python35_target": true
+    },
+    {
+      "path": "candidate/go-bootstrap-v33-r3/runtime/mta_go_process_owner.py",
+      "bytes": 42612,
+      "sha256": "78a480728a348e98e578acf4e7c778be50bfae3411ba5d34bb563493e1ba6583",
+      "python35_target": true
+    },
+    {
+      "path": "candidate/go-typed-live-v72/runtime/mta_go_deployment.py",
+      "bytes": 24518,
+      "sha256": "6e1ccb8a5f492b763ce486a456a81e06aa368cc2fe8eb45bd346570feb08deaf",
+      "python35_target": true
+    },
+    {
+      "path": "candidate/go-proc-diagnostic-v60/runtime/mta_go_executor.py",
+      "bytes": 25360,
+      "sha256": "29fa5edba074be8fc87a50399ce24d4ee9cb5135e5ebbe41e8def9451ef723e0",
+      "python35_target": true
+    },
+    {
+      "path": "runtime/mta_ip_lease.py",
+      "bytes": 18704,
+      "sha256": "39373dba355557ee73cfac354bdbaa95eaf0ddde4e27313450edf0e74742f12c",
+      "python35_target": true
+    },
+    {
+      "path": "runtime/mta_dhcp.py",
+      "bytes": 15719,
+      "sha256": "631987bd7307580af069f1978e440d21fbd449ecc62c83e0e06195c330f50176",
+      "python35_target": true
+    },
+    {
+      "path": "candidate/go-dhcp-setup-v74/runtime/mta_go_bootstrap_store.py",
+      "bytes": 78430,
+      "sha256": "24620844c7d24f4777114ba9bfb4ea292ded2020a281681dd8e71fe07c7a4eae",
+      "python35_target": true
+    },
+    {
+      "path": "candidate/go-send-transport-v76/runtime/mta_go_dhcp.py",
+      "bytes": 21997,
+      "sha256": "3f7dbab30c8925cf0ea288a1e011787d436c07d3a8178a8a45934db3597f9312",
+      "python35_target": true
+    },
+    {
+      "path": "candidate/go-send-transport-v76/runtime/mta_go_native.py",
+      "bytes": 200317,
+      "sha256": "ee46d8313fe31cbc5a0d16d0d14aff7ce2b3fb507f3cdac572e59bc5f16dfa9f",
+      "python35_target": true
+    },
+    {
+      "path": "candidate/go-send-transport-v76/runtime/mta_go_bootstrap.py",
+      "bytes": 30951,
+      "sha256": "25247dcb905b53cab1e1df1d0949e8c9296b91caf36d94d4c1171763cbc46568",
+      "python35_target": true
+    },
+    {
+      "path": "runtime/mta_protocol.py",
+      "bytes": 17958,
+      "sha256": "4f7c2bd46cde114f0a2a0c33b31631aa463f09e71b156d26e34daf2251dd8a57",
+      "python35_target": true
+    },
+    {
+      "path": "runtime/mta_storage.py",
+      "bytes": 14335,
+      "sha256": "3c5c5f65ef0c8eb9a0256a99f931faff40558484bb908e89acee1c1c0aa3b4d6",
+      "python35_target": true
+    },
+    {
+      "path": "runtime/mta_files.py",
+      "bytes": 10267,
+      "sha256": "c37a00be58487abee32abf7ded7ed857e059883aee680e049e6372d3d06681ae",
+      "python35_target": true
+    },
+    {
+      "path": "runtime/mta_transport.py",
+      "bytes": 31883,
+      "sha256": "29e5ea6bf8f5de9ddae33824c158f4e401bab391d51b18dc0b8a1ab2cbc2dc72",
+      "python35_target": true
+    },
+    {
+      "path": "runtime/mta_send_preparation.py",
+      "bytes": 28532,
+      "sha256": "0e92fc68947601d0517cfe64a22d90d50b9952529c4594a6a189970420f69814",
+      "python35_target": true
+    },
+    {
+      "path": "runtime/mta_sender_pump.py",
+      "bytes": 33455,
+      "sha256": "81c3d7ff98ab71cde2ac2858daaffd267f129033b28ebde1dbd2f13f19ff447c",
+      "python35_target": true
+    },
+    {
+      "path": "host/go_send_transport_v76_definition_manifest.json",
+      "bytes": 4556,
+      "sha256": "045d28f552e572182b7d2653863eccb6ced9b26a7f3aee093fae69ea0fba9eac",
+      "python35_target": false
+    },
+    {
+      "path": "tests/test_go_send_transport_v76_r3.py",
+      "bytes": 51814,
+      "sha256": "c6012bb15b20e1a5092b1b4c3d9a15420024586feacb2772675dfce326823e7b",
+      "python35_target": false
+    }
+  ]
+}

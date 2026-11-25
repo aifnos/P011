@@ -1,0 +1,22 @@
+{
+  "schema": "p011-profile-classification-clock-source-delta-v1",
+  "evidence": "READBACK_BYTE_INVERSE_ONLY",
+  "source": [
+    "candidate/formal-receive-publication-anchor-clock-v1/runtime/mta_client_receive_factory.py",
+    94393,
+    "887942d83faf27f781981f426cce5890fa4894219365545901df9310887cd8d3"
+  ],
+  "candidate": [
+    "candidate/receive-profile-classification-clock-v1/runtime/mta_client_receive_factory.py",
+    97801,
+    "8cf46d17fda24cc2199e8900a0dfdd9d980b2247808c87801c00426db6158c37"
+  ],
+  "replacements": [
+    {
+      "name": "live_profile_classification_metadata_clock",
+      "before": "    for name in sorted(names):\n        attempt.now()\n        if re.fullmatch('[1-9][0-9]{0,9}', name) is None: continue\n",
+      "after": "    for index, name in enumerate(sorted(names)):\n        if index == 0:\n            # Keep the original first full boundary after /proc listdir.\n            attempt.now()\n            clock, functions, codes = attempt._alias_clock, attempt._alias_functions, attempt._alias_codes\n        else:\n            # This call covers only pure regex/int/path classification. All\n            # actual listdir/stat/read and continuity boundaries remain full.\n            if (type(files) is not _Files or attempt.files is not files or files.attempt is not attempt or\n                    type(files.alias_owner) is not _F_ORIGINALS[4] or\n                    files.alias_owner.io is not files.io or files.alias_owner.clock is not clock or\n                    files.alias_owner.deadline is not attempt.original_prepare_until or\n                    type(clock) is not types.MethodType or attempt._alias_clock is not clock or\n                    clock.__self__ is not attempt):\n                _fail('publication_owner_changed')\n            if type(attempt) is _StartupReadScope:\n                if (attempt._files_original is not files or\n                        attempt._alias_functions is not functions or functions is not _STARTUP_ALIAS_ORIGINALS or\n                        type(functions) is not tuple or len(functions) != 6 or\n                        attempt._alias_codes is not codes or codes is not _STARTUP_ALIAS_CODES or\n                        type(codes) is not tuple or len(codes) != 6 or\n                        clock.__func__ is not functions[3] or\n                        any(type(current) is not types.FunctionType or current is not original or\n                            current.__code__ is not code for current, original, code in zip(\n                                (_StartupReadScope.__init__, _StartupReadScope._originals, _StartupReadScope.check_active,\n                                 _StartupReadScope.alias_now, executor._ReadOwner.check, executor._ReadOwner._fixed_tmp_alias),\n                                functions, codes))):\n                    _fail('startup_owner_changed')\n            elif type(attempt) is _PublicationAttempt:\n                if (type(attempt.factory) is not FixedReceiveDeploymentFactory or attempt.factory._active is not attempt or\n                        attempt._alias_functions is not functions or functions is not _PUBLICATION_ALIAS_ORIGINALS or\n                        type(functions) is not tuple or len(functions) != 6 or\n                        attempt.factory._alias_functions is not functions or\n                        attempt._alias_codes is not codes or codes is not _PUBLICATION_ALIAS_CODES or\n                        type(codes) is not tuple or len(codes) != 6 or\n                        attempt.factory._alias_codes is not codes or clock.__func__ is not functions[3] or\n                        any(type(current) is not types.FunctionType or current is not original or\n                            current.__code__ is not code for current, original, code in zip(\n                                (_PublicationAttempt.__init__, _PublicationAttempt.originals, _PublicationAttempt.now,\n                                 _PublicationAttempt.alias_now, executor._ReadOwner.check, executor._ReadOwner._fixed_tmp_alias),\n                                functions, codes))):\n                    _fail('publication_owner_changed')\n            else:\n                _fail('publication_owner_changed')\n            clock()\n        if re.fullmatch('[1-9][0-9]{0,9}', name) is None: continue\n",
+      "count": 1
+    }
+  ]
+}

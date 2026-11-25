@@ -1,0 +1,410 @@
+{
+  "schema": "p011-fixed-source-bundle-inputs-v1",
+  "scope": "OFFLINE_FIXED_SOURCE_ASSETS_UNADMITTED",
+  "tables": [
+    {
+      "domain": "ordinary",
+      "path": "host/client_receive_http_directory_close_v3_definition_manifest.json",
+      "bytes": 6754,
+      "sha256": "029a1a48b9420e6d80eee5db3ee8860af3589d1104d602295575867371d7b801",
+      "schema": "client-receive-directory-v1-definitions",
+      "count": 30,
+      "modules": [
+        "mta_client_executor",
+        "p011_json",
+        "mta_protocol",
+        "mta_storage",
+        "mta_files",
+        "mta_crypto",
+        "mta_transfer_session",
+        "mta_dhcp",
+        "mta_dhcp_server",
+        "mta_scoped_sockets",
+        "mta_transport",
+        "mta_sender",
+        "mta_send_worker",
+        "mta_scan_handoff",
+        "mta_wifi",
+        "minhttp",
+        "mta_client_control_frame",
+        "mta_client_connect_handoff",
+        "mta_client_tmp_alias",
+        "mta_client_receive_factory",
+        "mta_client_state_bridge",
+        "mta_go_deployment",
+        "mta_send_preparation",
+        "mta_go_readonly_parent",
+        "mta_go_send_publication",
+        "mta_go_send_bridge",
+        "mta_go_readonly_terminal_parent",
+        "mta_service",
+        "mta_client_receive_boot",
+        "mta_client_service_owner"
+      ]
+    },
+    {
+      "domain": "client_private",
+      "path": "host/client_receive_directory_auth_clock_v2_private_source_manifest.json",
+      "bytes": 8144,
+      "sha256": "bbd5362d9d8ca5598b504a6ba3cbd4cf56f92af2f714d34b806c4e660f342941",
+      "schema": "client-receive-directory-v1-private-source",
+      "count": 35,
+      "modules": [
+        "p011_json",
+        "mta_ip",
+        "mta_client_tmp_alias",
+        "mta_p2p_client_init",
+        "mta_client_resource_budget",
+        "mta_client_proc",
+        "mta_client_caps",
+        "mta_client_caps_transport",
+        "mta_client_baseline",
+        "mta_client_journal_codec",
+        "mta_client_coordination",
+        "mta_client_files",
+        "mta_client_pending",
+        "mta_client_store",
+        "mta_client_process_owner",
+        "mta_client_launch_registration",
+        "mta_client_two_phase_lease",
+        "mta_p2p_client_ctrl",
+        "mta_client_wpa_status",
+        "mta_protocol",
+        "mta_client_control_frame",
+        "mta_client_kernel_proof",
+        "mta_client_connection",
+        "mta_client_linux_provider",
+        "mta_client_executor",
+        "mta_dhcp",
+        "mta_dhcp_client_core",
+        "mta_dhcp_client",
+        "mta_client_dora",
+        "mta_client_dynamic_ip",
+        "mta_client_peer",
+        "mta_scoped_sockets",
+        "mta_storage",
+        "mta_transport",
+        "mta_client_transfer"
+      ]
+    },
+    {
+      "domain": "go_private",
+      "path": "host/go_send_fixed_terminal_v98_asset_sources.json",
+      "bytes": 5634,
+      "sha256": "c6293f477248dd36c7b8ad695527ae65901225d7ac976432ea953dd90d87fc3c",
+      "schema": "go-send-fixed-terminal-v98-asset-sources",
+      "count": 25,
+      "modules": [
+        "p011_json",
+        "mta_ip",
+        "mta_client_tmp_alias",
+        "mta_p2p_client_init",
+        "mta_snapshot_data",
+        "mta_client_resource_budget",
+        "mta_client_proc",
+        "mta_client_journal_codec",
+        "mta_client_coordination",
+        "mta_client_files",
+        "mta_client_pending",
+        "mta_client_store",
+        "mta_go_process_owner",
+        "mta_go_deployment",
+        "mta_go_executor",
+        "mta_ip_lease",
+        "mta_dhcp",
+        "mta_go_bootstrap_store",
+        "mta_go_dhcp",
+        "mta_go_native",
+        "mta_go_bootstrap",
+        "mta_protocol",
+        "mta_transport",
+        "mta_sender_pump",
+        "mta_go_send_bridge"
+      ]
+    },
+    {
+      "domain": "observer_private",
+      "path": "host/go_readonly_terminal_v97_asset_sources.json",
+      "bytes": 9751,
+      "sha256": "8205740cb49b819923845f126a6fb1e22d04a614877bcac4e10ea3533705c5cc",
+      "schema": "p011-readonly-terminal-v97-fixed-assets",
+      "count": 41,
+      "modules": [
+        "p011_json",
+        "mta_ip",
+        "mta_client_tmp_alias",
+        "mta_p2p_client_init",
+        "mta_client_resource_budget",
+        "mta_client_proc",
+        "mta_client_caps",
+        "mta_client_caps_transport",
+        "mta_client_baseline",
+        "mta_client_journal_codec",
+        "mta_client_coordination",
+        "mta_client_files",
+        "mta_client_pending",
+        "mta_client_store",
+        "mta_client_process_owner",
+        "mta_client_launch_registration",
+        "mta_client_two_phase_lease",
+        "mta_p2p_client_ctrl",
+        "mta_client_wpa_status",
+        "mta_protocol",
+        "mta_client_control_frame",
+        "mta_client_kernel_proof",
+        "mta_client_connection",
+        "mta_client_linux_provider",
+        "mta_client_executor",
+        "mta_dhcp",
+        "mta_dhcp_client_core",
+        "mta_dhcp_client",
+        "mta_client_dora",
+        "mta_client_dynamic_ip",
+        "mta_client_peer",
+        "mta_scoped_sockets",
+        "mta_storage",
+        "mta_transport",
+        "mta_client_transfer",
+        "mta_client_readonly_baseline",
+        "mta_snapshot_data",
+        "mta_go_readonly_preflight",
+        "mta_go_readonly_loader",
+        "mta_observer_packet",
+        "mta_go_readonly_entry"
+      ]
+    }
+  ],
+  "extras": [
+    {
+      "kind": "native",
+      "path": "out/native/mta-bluez-helper",
+      "bytes": 65832,
+      "sha256": "179fd01f737acd30c7e903d6925217d9e0467400187614189d06a4cffdc44363",
+      "native_name": "mta-bluez-helper"
+    },
+    {
+      "kind": "native",
+      "path": "out/native/mta-network-helper",
+      "bytes": 47464,
+      "sha256": "ef3b904ef1017b6f0011b1e2cfcadbc98f9e8026933153ff0291699f32c525e6",
+      "native_name": "mta-network-helper"
+    },
+    {
+      "kind": "native",
+      "path": "native/private-p2p-candidate-20261001-v2/mta-wpa-supplicant",
+      "bytes": 1351192,
+      "sha256": "e069aef76a089215367f502015266e9ce59cf4ebb7d7246974815ff60d67f301",
+      "native_name": "mta-wpa-supplicant"
+    },
+    {
+      "kind": "frontend",
+      "path": "device/MtaHost.qml",
+      "bytes": 6205,
+      "sha256": "371f705136fb1e03aec7d283120f6915b798edd4b96cdec670f29c971d508380",
+      "native_name": ""
+    },
+    {
+      "kind": "frontend",
+      "path": "device/MtaPage.qml",
+      "bytes": 23429,
+      "sha256": "b8470eb81b8ab608cf81f96e301679bc3ced5cc2243a23428812d1aed92bdecf",
+      "native_name": ""
+    },
+    {
+      "kind": "frontend",
+      "path": "device/MtaButton.qml",
+      "bytes": 757,
+      "sha256": "5abb4dabbd735ef4a071e8e10a65cf5c946e505cceb2373a12fa5f54827d1339",
+      "native_name": ""
+    },
+    {
+      "kind": "frontend",
+      "path": "device/MtaLabel.qml",
+      "bytes": 351,
+      "sha256": "e6298ebb141e4eba23b7acd1dee6900c141d1065ed194be953d1b3daff77eaa3",
+      "native_name": ""
+    },
+    {
+      "kind": "frontend",
+      "path": "device/MtaKeyboard.qml",
+      "bytes": 5344,
+      "sha256": "3241344572163deff5bc195cfb06dc5647f76861c03736f99a331d5bb53ef661",
+      "native_name": ""
+    },
+    {
+      "kind": "frontend",
+      "path": "device/MtaTheme.js",
+      "bytes": 261,
+      "sha256": "b795cd24c1bae4c9423c6c9c3e45303b0494c267a897715c4f8eab14f8f12f2c",
+      "native_name": ""
+    },
+    {
+      "kind": "archival_source",
+      "path": "native/mta_bluez_helper.c",
+      "bytes": 55158,
+      "sha256": "38a2ce2e7ab967ed2c296d4ccff8ebdfe71331325a65e403df2f4766c48ce289",
+      "native_name": ""
+    },
+    {
+      "kind": "archival_source",
+      "path": "native/mta_network.c",
+      "bytes": 47623,
+      "sha256": "b419a3fad96cc2159de9e2bee5bb6ea20a03b9f8b9f47baedec8b072c1f9589a",
+      "native_name": ""
+    },
+    {
+      "kind": "archival_source",
+      "path": "native/mta_core.c",
+      "bytes": 10215,
+      "sha256": "c9fe71f0e0db4720d2a0a6eca508a3ab292aa38a81357d9b223647b8731a65ed",
+      "native_name": ""
+    },
+    {
+      "kind": "archival_source",
+      "path": "native/mta_core.h",
+      "bytes": 1924,
+      "sha256": "0f55b11a6e05b0ce0d90a916454e2eea0c95048dcc90b3cfc0a4b429d3743533",
+      "native_name": ""
+    },
+    {
+      "kind": "archival_source",
+      "path": "native/mta_wifi_caps.c",
+      "bytes": 17399,
+      "sha256": "2235aa9305897e8b75ad367930dd5eb91dafe1af3653ad2fbc644f96347ff486",
+      "native_name": ""
+    },
+    {
+      "kind": "archival_source",
+      "path": "native/mta_wifi_caps.h",
+      "bytes": 1245,
+      "sha256": "49c7adac2e6ac45ef236a00ed0f13ce12317d2b71f5bcf6cd6736b372cd78785",
+      "native_name": ""
+    },
+    {
+      "kind": "archival_source",
+      "path": "native/Makefile",
+      "bytes": 1263,
+      "sha256": "774eb6acc0fe300dfd1188dcb8fe478737f37de9f23acc1137ea6583b4732d27",
+      "native_name": ""
+    },
+    {
+      "kind": "archival_source",
+      "path": "native/README.md",
+      "bytes": 6778,
+      "sha256": "8d59ffedc880f003fe2effd78efc8854e67a65997fd7224fb97df2ded5d6b4b6",
+      "native_name": ""
+    },
+    {
+      "kind": "archival_source",
+      "path": "host/build_native.py",
+      "bytes": 5033,
+      "sha256": "64cd5294304762488277c0441bdfd9c363114c5aee7cf747d43b7fe61916b564",
+      "native_name": ""
+    },
+    {
+      "kind": "wpa_corresponding_material",
+      "path": "native/private-p2p-candidate-20261001-v2/licenses/libnl-COPYING",
+      "bytes": 26530,
+      "sha256": "dc626520dcd53a22f727af3ee42c770e56c97a64fe3adb063799d8ab032fe551",
+      "native_name": ""
+    },
+    {
+      "kind": "wpa_corresponding_material",
+      "path": "native/private-p2p-candidate-20261001-v2/licenses/project-v2-supplicant.patch",
+      "bytes": 6996,
+      "sha256": "bad24af1dcef004ab28cc0a6ab9c9e025cc18b2545587f709ec1118dd35a18c7",
+      "native_name": ""
+    },
+    {
+      "kind": "wpa_corresponding_material",
+      "path": "native/private-p2p-candidate-20261001-v2/licenses/wpa-COPYING",
+      "bytes": 965,
+      "sha256": "a87ac4e333d0f120408a9d814e40c3672cd27f365af89b4f2f6631f7a9338953",
+      "native_name": ""
+    },
+    {
+      "kind": "wpa_corresponding_material",
+      "path": "native/private-p2p-candidate-20261001-v2/source/build_p2p_private_v2.sh",
+      "bytes": 3037,
+      "sha256": "60d2e659971ccaa54ea595615848b41ba0a62a1f840e0826758fac15dc46bb81",
+      "native_name": ""
+    },
+    {
+      "kind": "wpa_corresponding_material",
+      "path": "native/private-p2p-candidate-20261001-v2/source/libnl-3.11.0.tar.gz",
+      "bytes": 1124072,
+      "sha256": "2a56e1edefa3e68a7c00879496736fdbf62fc94ed3232c0baba127ecfa76874d",
+      "native_name": ""
+    },
+    {
+      "kind": "wpa_corresponding_material",
+      "path": "native/private-p2p-candidate-20261001-v2/source/p2p-private-initial-mode.patch",
+      "bytes": 1331,
+      "sha256": "6b958f0a282be0be042ca981fb06ca76a73f8d61c2983d1ea0eac20572cb823b",
+      "native_name": ""
+    },
+    {
+      "kind": "wpa_corresponding_material",
+      "path": "native/private-p2p-candidate-20261001-v2/source/p2p-private-v2.config",
+      "bytes": 459,
+      "sha256": "1c46fae858e3c7d61213e1f28f9cf5ada2c55246a1c25eef211ffc342452f3bd",
+      "native_name": ""
+    },
+    {
+      "kind": "wpa_corresponding_material",
+      "path": "native/private-p2p-candidate-20261001-v2/source/prepare_wpa_v2.py",
+      "bytes": 7781,
+      "sha256": "fa7f0cc2b454180cc0131a96faa84cf866a7bd852db1f5a8297ff061568749a6",
+      "native_name": ""
+    },
+    {
+      "kind": "wpa_corresponding_material",
+      "path": "native/private-p2p-candidate-20261001-v2/source/project-v2-supplicant.patch",
+      "bytes": 6996,
+      "sha256": "bad24af1dcef004ab28cc0a6ab9c9e025cc18b2545587f709ec1118dd35a18c7",
+      "native_name": ""
+    },
+    {
+      "kind": "wpa_corresponding_material",
+      "path": "native/private-p2p-candidate-20261001-v2/source/wpa_supplicant-2.12.tar.gz",
+      "bytes": 4247413,
+      "sha256": "08e23937e16d0155e55cab2b51f51fbe10d80a1aa91c4e15442645059b737ef6",
+      "native_name": ""
+    },
+    {
+      "kind": "wpa_corresponding_material",
+      "path": "native/private-p2p-candidate-20261001-v2/relink/libnl-3.a",
+      "bytes": 157588,
+      "sha256": "aa248cf3ce345d573bf8c40b042adc7786f55fd1074574b57e6bd8efbbbf063c",
+      "native_name": ""
+    },
+    {
+      "kind": "wpa_corresponding_material",
+      "path": "native/private-p2p-candidate-20261001-v2/relink/libnl-genl-3.a",
+      "bytes": 22714,
+      "sha256": "d503d2e156859fb952b69b8b0633161b889c9a22156e7899bce5e612b4e2dc0a",
+      "native_name": ""
+    },
+    {
+      "kind": "wpa_corresponding_material",
+      "path": "native/private-p2p-candidate-20261001-v2/relink/wpa-application-objects.tar.gz",
+      "bytes": 788994,
+      "sha256": "bdfbff0336e1844f56ca514969d9ffcc66cd026709da86f8501d7fc622180ffb",
+      "native_name": ""
+    }
+  ],
+  "role_rows": 131,
+  "unique_role_sources": 80,
+  "unique_fixed_inputs": 115,
+  "gates": {
+    "service": false,
+    "tested": false,
+    "device": false,
+    "phone": false,
+    "admission": false,
+    "rf": false,
+    "qml_handoff": false,
+    "restoration_verified": false
+  },
+  "no_deployment_or_execution": true
+}

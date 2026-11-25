@@ -1,0 +1,66 @@
+{
+  "schema": "p011-formal-send-fc-http-cap-v1-filecenter-source",
+  "source_count": 9,
+  "source_bytes": 100114,
+  "source_cap": 131072,
+  "delivery": "separate-fixed-memory-nine-source-caller",
+  "in_protocol_stage_payload": false,
+  "ui_or_guardian_started": false,
+  "sources": [
+    {
+      "module": "mta_toolbox_json",
+      "source": "integration/ToolboxMta-v0.1/runtime/mta_toolbox_json.py",
+      "bytes": 3069,
+      "sha256": "e32cf4433b966714a16e725e405052fa905715ce108b80199f8d50904abe5c7c"
+    },
+    {
+      "module": "mta_toolbox_minhttp",
+      "source": "candidate/filecenter-http-parent-cap-v1/shared/mta_toolbox_minhttp.py",
+      "bytes": 9323,
+      "sha256": "8ea06020e4b133665ab881e5901af9094ebc2c9d5add9d4eb37ca5b2e55a8c55"
+    },
+    {
+      "module": "mta_toolbox_storage",
+      "source": "integration/ToolboxMta-v0.1/runtime/mta_toolbox_storage.py",
+      "bytes": 9114,
+      "sha256": "d9fa92a795729d88f6fac27705a2883adba8aac72423b4ebcd9220ffb78ddb51"
+    },
+    {
+      "module": "mta_toolbox_metrics",
+      "source": "integration/ToolboxMta-v0.1/runtime/mta_toolbox_metrics.py",
+      "bytes": 4080,
+      "sha256": "e56808ec3bc7c751e5dff43a053294595bb719cad658a44eb378932142b7a679"
+    },
+    {
+      "module": "mta_toolbox_audio",
+      "source": "integration/ToolboxMta-v0.1/runtime/mta_toolbox_audio.py",
+      "bytes": 9045,
+      "sha256": "c4ea432c8c6e972a28134f352fa75ff773827fd4a41e205865c9309f96a63432"
+    },
+    {
+      "module": "mta_toolbox_server",
+      "source": "integration/ToolboxMta-v0.1/runtime/mta_toolbox_server.py",
+      "bytes": 19732,
+      "sha256": "fab0c1afa6fc85a30de711b4f4d94467e03911e836ce292b73e8796ead8a9bc6"
+    },
+    {
+      "module": "mta_filecenter_audio",
+      "source": "candidate/filecenter-deadline-v2/runtime/mta_filecenter_audio.py",
+      "bytes": 15082,
+      "sha256": "898e5373f6ec4789eaf756ffd01731646bcafb7b0f35019731403a2e881147af"
+    },
+    {
+      "module": "mta_filecenter_storage",
+      "source": "candidate/receive-filecenter-v1/runtime/mta_filecenter_storage.py",
+      "bytes": 4581,
+      "sha256": "19013d117ffc041d7be0f6f1101a65ef9acfba45ffe7bb815264f596556cf169"
+    },
+    {
+      "module": "mta_filecenter_companion",
+      "source": "candidate/filecenter-http-parent-cap-v1/send/mta_filecenter_companion.py",
+      "bytes": 26088,
+      "sha256": "5daa53f647db195f02a5588f0fb45d009b490eaa51d0af98de76205b00fdee0f"
+    }
+  ],
+  "parent_deadline_crop_integrated": true
+}

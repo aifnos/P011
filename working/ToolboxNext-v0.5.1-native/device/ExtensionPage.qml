@@ -1,0 +1,133 @@
+import QtQuick 2.10
+import "Theme.js" as Theme
+Rectangle {
+    id: root
+    objectName: "extensionPage"
+    color: Theme.background
+    property string endpoint: typeof nextEndpoint !== "undefined" ? nextEndpoint : ""
+    property string token: typeof nextToken !== "undefined" ? nextToken : ""
+    property bool bootstrapAllowed: false
+    property bool connected: token !== ""
+    property string pageName: ""
+    property bool immersiveGame:pageName==="Games"
+    property string message: ""
+    property var telemetry: ({metrics:{},history:[],scores:{},transfer:{},addresses:[]})
+    property var lifetime: ({alive:true,epoch:0})
+    property var pending: []
+    property bool biliAvailable: false
+    signal biliRequested()
+    signal exitRequested()
+    function request(path,form,done) {
+        var xhr=new XMLHttpRequest(), guard=lifetime, epoch=guard.epoch, finished=false;
+        function finish(ok,result) {
+            if(finished)return; finished=true;
+            if(guard.alive && guard.epoch===epoch && done)done(ok,result);
+        }
+        xhr.onreadystatechange=function() {
+            if(xhr.readyState!==XMLHttpRequest.DONE)return;
+            try {var o=JSON.parse(xhr.responseText);finish(xhr.status===200&&o.ok,o.ok?o.data:{error:o.error});}
+            catch(e){finish(false,{error:"本地服务未就绪"});}
+        };
+        try {
+            xhr.open(form===null?"GET":"POST",endpoint+path);
+            if(path==="/api/native/bootstrap")xhr.setRequestHeader("X-P011-Native-UI","qml-runtime");
+            else xhr.setRequestHeader("X-P011-Token",token);
+            var body="";
+            if(form!==null) {
+                var fields=[];for(var k in form)fields.push(encodeURIComponent(k)+"="+encodeURIComponent(form[k]));
+                body=fields.join("&");xhr.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
+            }
+            pending.push({xhr:xhr,at:Date.now(),finished:function(){return finished;},expire:function(){xhr.abort();finish(false,{error:"请求超时"});}});
+            xhr.send(body);
+        }catch(e){finish(false,{error:"本地服务连接失败"});}
+    }
+    function connectBackend() {
+        if(token){connected=true;refresh();return;}
+        if(!bootstrapAllowed){toast("等待本地服务");return;}
+        request("/api/native/bootstrap",null,function(ok,d){
+            if(!ok){toast(d.error);return;}
+            token=d.token;connected=true;refresh();
+        });
+    }
+    function refresh() {if(connected)request("/api/state",null,function(ok,d){if(ok)telemetry=d;else toast(d.error);});}
+    function toast(text) {message=text;toastTimer.restart();}
+    function open(name) {
+        if(name && !connected){toast("本地服务正在初始化");return;}
+        if(child.item&&child.item.prepareLeave)child.item.prepareLeave();
+        lifetime.epoch++;pageName=name==="Bili"?"":name;
+        if(name==="Bili"){child.source="";biliRequested();return;}
+        child.setSource(name?Qt.resolvedUrl(name+"Page.qml"):"",name?{app:root}:{});
+        if(connected)request("/api/ui/event",{event:"page_"+(name||"Home")},null);
+        refresh();
+    }
+    function back() {
+        if(child.item&&child.item.handleBack&&child.item.handleBack())return;
+        if(pageName)open("");else exitRequested();
+    }
+    function saveScore(game,score) {
+        request("/api/scores",{game:game,score:score},function(ok,d){
+            if(ok){var t=telemetry;t.scores=d;telemetry=t;}else toast("最高分保存失败");
+        });
+    }
+    Item {
+        width:parent.width;height:64;visible:!root.immersiveGame
+        Item {
+            objectName:"backButton";x:0;y:0;width:76;height:64
+            Canvas {
+                x:21;y:15;width:32;height:34
+                onPaint:{var c=getContext("2d");c.strokeStyle="#ffffff";c.lineWidth=4;c.lineCap="round";c.lineJoin="round";c.beginPath();c.moveTo(21,4);c.lineTo(8,17);c.lineTo(21,30);c.stroke();}
+            }
+            MouseArea {anchors.fill:parent;onClicked:root.back()}
+        }
+        Label {
+            x:136;y:4;width:528;height:56
+            text:child.item&&child.item.headerTitle?child.item.headerTitle:"工具箱"
+            font.pixelSize:36;horizontalAlignment:Text.AlignHCenter
+            elide:Text.ElideMiddle
+        }
+        Button {
+            objectName:"headerAction";x:672;y:7;width:116;height:50
+            visible:!root.pageName || (child.item&&child.item.headerAction)
+            text:!root.pageName?"退出":child.item?child.item.headerAction:""
+            enabled:!child.item || child.item.actionEnabled===undefined || child.item.actionEnabled
+            fontSize:24
+            onClicked:{if(!root.pageName)root.exitRequested();else if(child.item&&child.item.primaryAction)child.item.primaryAction();}
+        }
+    }
+    Row {
+        x:root.biliAvailable?16:40;y:83;spacing:root.biliAvailable?12:20;visible:!root.pageName
+        Repeater {
+            model:[{name:"文件中心",kind:"folder",page:"Files",hint:"文件与无线传输"},
+                   {name:"小游戏中心",kind:"game",page:"Games",hint:"贪吃蛇 / 2048 / 打砖块"},
+                   {name:"系统仪表盘",kind:"chart",page:"Dashboard",hint:"状态与采样记录"}].concat(root.biliAvailable?[{name:"哔哩哔哩",kind:"video",page:"Bili",hint:"视频 / 番剧 / 关注"}]:[])
+            delegate:Item {
+                objectName:"home"+modelData.page
+                width:root.biliAvailable?183:226;height:172
+                NativeIcon {anchors.horizontalCenter:parent.horizontalCenter;y:0;width:96;height:96;kind:modelData.kind;opacity:homeArea.pressed?.5:1}
+                Label {x:0;y:110;width:parent.width;height:38;text:modelData.name;font.pixelSize:28;horizontalAlignment:Text.AlignHCenter}
+                Label {x:0;y:148;width:parent.width;height:26;text:modelData.hint;font.pixelSize:root.biliAvailable?16:18;color:Theme.secondary;horizontalAlignment:Text.AlignHCenter}
+                MouseArea {id:homeArea;anchors.fill:parent;onClicked:root.open(modelData.page)}
+            }
+        }
+    }
+    Loader {
+        id:child;objectName:"featureLoader";x:0;y:root.immersiveGame?0:64;width:parent.width;height:parent.height-y
+        visible:root.pageName!==""
+        onStatusChanged:if(status===Loader.Error)root.toast("页面加载失败")
+    }
+    Rectangle {
+        x:14;y:parent.height-54;width:parent.width-28;height:48;radius:6;z:50
+        visible:root.message!=="";color:"#ef3c3d42"
+        Label {anchors.fill:parent;anchors.margins:8;text:root.message;font.pixelSize:24;elide:Text.ElideRight}
+        MouseArea {anchors.fill:parent;onClicked:root.message=""}
+    }
+    Timer {id:toastTimer;interval:4000;onTriggered:root.message=""}
+    Timer {objectName:"telemetryTimer";interval:2000;repeat:true;running:root.visible&&root.connected;onTriggered:root.refresh()}
+    Timer {
+        interval:500;repeat:true;running:true
+        onTriggered:{var keep=[];for(var i=0;i<root.pending.length;i++){var p=root.pending[i];if(p.finished())continue;if(Date.now()-p.at>6000)p.expire();else keep.push(p);}root.pending=keep;}
+    }
+    Keys.onEscapePressed:back()
+    Component.onCompleted:connectBackend()
+    Component.onDestruction:{lifetime.alive=false;for(var i=0;i<pending.length;i++)pending[i].xhr.abort();}
+}

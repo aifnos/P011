@@ -1,0 +1,478 @@
+{
+  "automatic_phone_window_requested": false,
+  "business": {
+    "byte_delta": 0,
+    "candidate": [
+      "candidate/receive-startup-20s-v1/runtime/mta_client_receive_factory.py",
+      99675,
+      "32784fee80f5e74d8e49e4a517e5dc5d45f297c0ad2f5bad42b343b81872da4d"
+    ],
+    "edits": [
+      {
+        "after": "STARTUP_READ_SECONDS = 20.0\n",
+        "before": "STARTUP_READ_SECONDS = 10.0\n",
+        "count": 1,
+        "name": "startup_read_seconds_only"
+      }
+    ],
+    "seed_delta": [
+      "candidate/receive-startup-20s-v1/exactsource-delta.json",
+      1823,
+      "935415b58c9ee53ac860398bd89819eac6a1a9e8492cb9ad9bdd7b81823c4a3f"
+    ],
+    "seed_delta_expected": {
+      "additional_clock_calls": 0,
+      "additional_io_calls": 0,
+      "alarm240_changed": false,
+      "all_class_function_bytes_unchanged": true,
+      "all_class_function_position_ast_unchanged": true,
+      "automatic_phone_window_requested": false,
+      "business_constants": [
+        "STARTUP_READ_SECONDS"
+      ],
+      "business_delta_count": 1,
+      "business_methods": [],
+      "byte_delta": 0,
+      "candidate": {
+        "bytes": 99675,
+        "path": "candidate/receive-startup-20s-v1/runtime/mta_client_receive_factory.py",
+        "sha256": "32784fee80f5e74d8e49e4a517e5dc5d45f297c0ad2f5bad42b343b81872da4d"
+      },
+      "complete_ast_inverse": true,
+      "complete_byte_inverse": true,
+      "device_executed": false,
+      "guards_removed": false,
+      "host250_changed": false,
+      "independent_candidate_only": true,
+      "io_boundaries_changed": false,
+      "later_definition_line_delta": 0,
+      "measured_performance_claim": false,
+      "origin": {
+        "bytes": 99675,
+        "path": "candidate/receive-profile-cache-graph-v1/runtime/mta_client_receive_factory.py",
+        "sha256": "3f0ca3d039301a221fce10b5b72cb50e0bf6d374298656879ff748de61ec5cf5"
+      },
+      "original_10s_sources_and_history_unchanged": true,
+      "original_factory_prepare_seconds_changed": false,
+      "outer_60_plus_60_caps_changed": false,
+      "permission_cache_created": false,
+      "proc_dispatch_candidate_integrated": false,
+      "profile_cache_changed": false,
+      "prospective_payload_bytes": 4193768,
+      "prospective_payload_remaining": 536,
+      "replacements": [
+        {
+          "after": "STARTUP_READ_SECONDS = 20.0\n",
+          "before": "STARTUP_READ_SECONDS = 10.0\n",
+          "count": 1
+        }
+      ],
+      "rf_executed": false,
+      "schema": "p011-receive-startup-20s-v1-exactsource-delta",
+      "source_payload_bytes": 4193768,
+      "stage_close_caps_changed": false,
+      "startup_prepare_seconds_after": 20.0,
+      "startup_prepare_seconds_before": 10.0
+    },
+    "seed_generator": [
+      "candidate/receive-startup-20s-v1/generate_seed.py",
+      8560,
+      "313186ad15e4a6eb6c8d148c08a99044c572f7bb105b2fd8ade774214e11f84c"
+    ],
+    "source": [
+      "candidate/receive-profile-cache-graph-v1/runtime/mta_client_receive_factory.py",
+      99675,
+      "3f0ca3d039301a221fce10b5b72cb50e0bf6d374298656879ff748de61ec5cf5"
+    ]
+  },
+  "cache_data_not_authority": true,
+  "changed_roles": [
+    "mta_client_executor",
+    "mta_client_receive_factory",
+    "mta_client_state_bridge",
+    "mta_client_receive_boot",
+    "mta_client_service_owner",
+    "runtime35/mta_client_executor"
+  ],
+  "filecenter_bytes": 113832,
+  "filecenter_cap": 131072,
+  "filecenter_exact_roles": 9,
+  "filecenter_sources_changed": false,
+  "independent_candidate_only": true,
+  "inherited_owner_scope_fc_http_provenance_preserved": true,
+  "manifests": [
+    {
+      "candidate": [
+        "host/formal_receive_startup_20s_v1_definition_manifest.json",
+        7937,
+        "b33bf4d703603691b4751ccc5a632cbb248c773a6e757f0687c476aae6d74503"
+      ],
+      "changes": [
+        [
+          0,
+          {
+            "bytes": 124769,
+            "module": "mta_client_executor",
+            "path": "candidate/receive-profile-cache-graph-v1/runtime/mta_client_executor.py",
+            "sha256": "65e5d26f411fbdf71e583bf7f344d664d7934bc2b33260197ed5fa3279182015"
+          },
+          {
+            "bytes": 124769,
+            "module": "mta_client_executor",
+            "path": "candidate/receive-startup-20s-graph-v1/runtime/mta_client_executor.py",
+            "sha256": "8be9784ab137fdd4e779d8bd5bb1368381ca60e56aae737e4d3c51ede9b8d0fb"
+          }
+        ],
+        [
+          20,
+          {
+            "bytes": 99675,
+            "module": "mta_client_receive_factory",
+            "path": "candidate/receive-profile-cache-graph-v1/runtime/mta_client_receive_factory.py",
+            "sha256": "3f0ca3d039301a221fce10b5b72cb50e0bf6d374298656879ff748de61ec5cf5"
+          },
+          {
+            "bytes": 99675,
+            "module": "mta_client_receive_factory",
+            "path": "candidate/receive-startup-20s-graph-v1/runtime/mta_client_receive_factory.py",
+            "sha256": "e1a30f457ca77321c4ebfb15644137ee9498b9fd6e94f5685991a040fdb449a5"
+          }
+        ],
+        [
+          21,
+          {
+            "bytes": 21356,
+            "module": "mta_client_state_bridge",
+            "path": "candidate/receive-profile-cache-graph-v1/runtime/mta_client_state_bridge.py",
+            "sha256": "3a52e050465595befa564c45db75bcfde015248f0072529db4165fe7a1c0066a"
+          },
+          {
+            "bytes": 21356,
+            "module": "mta_client_state_bridge",
+            "path": "candidate/receive-startup-20s-graph-v1/runtime/mta_client_state_bridge.py",
+            "sha256": "247714d59f500b7f2c60eb605ff0fc341301f76dccae8d058e678db20fa30562"
+          }
+        ],
+        [
+          33,
+          {
+            "bytes": 19697,
+            "module": "mta_client_receive_boot",
+            "path": "candidate/receive-profile-cache-graph-v1/runtime/mta_client_receive_boot.py",
+            "sha256": "d8f62bd0f00840c5f210dabe211c827bf2c396f5b6075019032de2f688ee744f"
+          },
+          {
+            "bytes": 19697,
+            "module": "mta_client_receive_boot",
+            "path": "candidate/receive-startup-20s-graph-v1/runtime/mta_client_receive_boot.py",
+            "sha256": "167daaa1dbf754ff03e77578e838153f9f38d1a7b32c600718a83f915553b645"
+          }
+        ],
+        [
+          34,
+          {
+            "bytes": 107104,
+            "module": "mta_client_service_owner",
+            "path": "candidate/receive-profile-cache-graph-v1/runtime/mta_client_service_owner.py",
+            "sha256": "e135dc8f7cbd32c7b9430dbbdfe83586bbe13510cbc5180bdff7cd076128a83b"
+          },
+          {
+            "bytes": 107104,
+            "module": "mta_client_service_owner",
+            "path": "candidate/receive-startup-20s-graph-v1/runtime/mta_client_service_owner.py",
+            "sha256": "a9d8e4812dd26cd3a573e03257ec68fdd4b065c4daddec2119a7e21d6346db6c"
+          }
+        ]
+      ],
+      "private": false,
+      "source": [
+        "host/formal_receive_profile_cache_v1_definition_manifest.json",
+        7947,
+        "44993c2d82a9096c884104906d60447b1d389f673a1c489c9768bfdcf31f1c2b"
+      ]
+    },
+    {
+      "candidate": [
+        "host/formal_receive_startup_20s_v1_private_source_manifest.json",
+        8165,
+        "94e9344d76d96891b61177ac23b6ace4aa67e7754fd5e8df94288079a89fcfde"
+      ],
+      "changes": [
+        [
+          24,
+          {
+            "bytes": 124769,
+            "module": "mta_client_executor",
+            "path": "candidate/receive-profile-cache-graph-v1/runtime/mta_client_executor.py",
+            "sha256": "65e5d26f411fbdf71e583bf7f344d664d7934bc2b33260197ed5fa3279182015"
+          },
+          {
+            "bytes": 124769,
+            "module": "mta_client_executor",
+            "path": "candidate/receive-startup-20s-graph-v1/runtime/mta_client_executor.py",
+            "sha256": "8be9784ab137fdd4e779d8bd5bb1368381ca60e56aae737e4d3c51ede9b8d0fb"
+          }
+        ]
+      ],
+      "private": true,
+      "source": [
+        "host/formal_receive_profile_cache_v1_private_source_manifest.json",
+        8167,
+        "05b2dca4b0504366202c26600fc1ea2d2974b4d2104cc96df587c5c9d954b6a5"
+      ]
+    }
+  ],
+  "measured_owner_context_preserved": true,
+  "mechanical": [
+    {
+      "candidate": [
+        "candidate/receive-startup-20s-graph-v1/runtime/mta_client_executor.py",
+        124769,
+        "8be9784ab137fdd4e779d8bd5bb1368381ca60e56aae737e4d3c51ede9b8d0fb"
+      ],
+      "edits": [
+        {
+          "after": "    if (directory != '/var/volatile/tmp/p011-mta-rx-prep20-v001/runtime35' and\n",
+          "before": "    if (directory != '/var/volatile/tmp/p011-mta-rx-pfcache-v01/runtime35' and\n",
+          "count": 1,
+          "name": "private_runtime_root"
+        }
+      ],
+      "functions_unchanged": false,
+      "name": "mta_client_executor",
+      "source": [
+        "candidate/receive-profile-cache-graph-v1/runtime/mta_client_executor.py",
+        124769,
+        "65e5d26f411fbdf71e583bf7f344d664d7934bc2b33260197ed5fa3279182015"
+      ]
+    },
+    {
+      "candidate": [
+        "candidate/receive-startup-20s-graph-v1/runtime/mta_client_state_bridge.py",
+        21356,
+        "247714d59f500b7f2c60eb605ff0fc341301f76dccae8d058e678db20fa30562"
+      ],
+      "edits": [
+        {
+          "after": "PARENT_SOURCE_SHA = '8be9784ab137fdd4e779d8bd5bb1368381ca60e56aae737e4d3c51ede9b8d0fb'\n",
+          "before": "PARENT_SOURCE_SHA = '65e5d26f411fbdf71e583bf7f344d664d7934bc2b33260197ed5fa3279182015'\n",
+          "count": 1,
+          "name": "PARENT_SOURCE_SHA_constant"
+        }
+      ],
+      "functions_unchanged": true,
+      "name": "mta_client_state_bridge",
+      "source": [
+        "candidate/receive-profile-cache-graph-v1/runtime/mta_client_state_bridge.py",
+        21356,
+        "3a52e050465595befa564c45db75bcfde015248f0072529db4165fe7a1c0066a"
+      ]
+    },
+    {
+      "candidate": [
+        "candidate/receive-startup-20s-graph-v1/runtime/mta_client_receive_factory.py",
+        99675,
+        "e1a30f457ca77321c4ebfb15644137ee9498b9fd6e94f5685991a040fdb449a5"
+      ],
+      "edits": [
+        {
+          "after": "ASSET_ROOT = '/tmp/p011-mta-rx-prep20-v001'\n",
+          "before": "ASSET_ROOT = '/tmp/p011-mta-rx-pfcache-v01'\n",
+          "count": 1,
+          "name": "ASSET_ROOT_constant"
+        },
+        {
+          "after": "ASSET_PHYSICAL_ROOT = '/var/volatile/tmp/p011-mta-rx-prep20-v001'\n",
+          "before": "ASSET_PHYSICAL_ROOT = '/var/volatile/tmp/p011-mta-rx-pfcache-v01'\n",
+          "count": 1,
+          "name": "ASSET_PHYSICAL_ROOT_constant"
+        },
+        {
+          "after": "SOURCE_MANIFEST_SHA = '94e9344d76d96891b61177ac23b6ace4aa67e7754fd5e8df94288079a89fcfde'\n",
+          "before": "SOURCE_MANIFEST_SHA = '05b2dca4b0504366202c26600fc1ea2d2974b4d2104cc96df587c5c9d954b6a5'\n",
+          "count": 1,
+          "name": "SOURCE_MANIFEST_SHA_constant"
+        },
+        {
+          "after": "F_SHA = '8be9784ab137fdd4e779d8bd5bb1368381ca60e56aae737e4d3c51ede9b8d0fb'\n",
+          "before": "F_SHA = '65e5d26f411fbdf71e583bf7f344d664d7934bc2b33260197ed5fa3279182015'\n",
+          "count": 1,
+          "name": "F_SHA_constant"
+        }
+      ],
+      "functions_unchanged": true,
+      "name": "mta_client_receive_factory",
+      "source": [
+        "candidate/receive-startup-20s-v1/runtime/mta_client_receive_factory.py",
+        99675,
+        "32784fee80f5e74d8e49e4a517e5dc5d45f297c0ad2f5bad42b343b81872da4d"
+      ]
+    },
+    {
+      "candidate": [
+        "candidate/receive-startup-20s-graph-v1/runtime/mta_client_receive_boot.py",
+        19697,
+        "167daaa1dbf754ff03e77578e838153f9f38d1a7b32c600718a83f915553b645"
+      ],
+      "edits": [
+        {
+          "after": "ROOT = '/tmp/p011-mta-rx-prep20-v001'\n",
+          "before": "ROOT = '/tmp/p011-mta-rx-pfcache-v01'\n",
+          "count": 1,
+          "name": "ROOT_constant"
+        },
+        {
+          "after": "PHYSICAL_ROOT = '/var/volatile/tmp/p011-mta-rx-prep20-v001'\n",
+          "before": "PHYSICAL_ROOT = '/var/volatile/tmp/p011-mta-rx-pfcache-v01'\n",
+          "count": 1,
+          "name": "PHYSICAL_ROOT_constant"
+        },
+        {
+          "after": "CLIENT_MANIFEST_SHA = '94e9344d76d96891b61177ac23b6ace4aa67e7754fd5e8df94288079a89fcfde'\n",
+          "before": "CLIENT_MANIFEST_SHA = '05b2dca4b0504366202c26600fc1ea2d2974b4d2104cc96df587c5c9d954b6a5'\n",
+          "count": 1,
+          "name": "CLIENT_MANIFEST_SHA_constant"
+        },
+        {
+          "after": "F37_SHA = '8be9784ab137fdd4e779d8bd5bb1368381ca60e56aae737e4d3c51ede9b8d0fb'\n",
+          "before": "F37_SHA = '65e5d26f411fbdf71e583bf7f344d664d7934bc2b33260197ed5fa3279182015'\n",
+          "count": 1,
+          "name": "F37_SHA_constant"
+        },
+        {
+          "after": "    ('mta_client_receive_factory', 99675, 'e1a30f457ca77321c4ebfb15644137ee9498b9fd6e94f5685991a040fdb449a5'),\n",
+          "before": "    ('mta_client_receive_factory', 99675, '3f0ca3d039301a221fce10b5b72cb50e0bf6d374298656879ff748de61ec5cf5'),\n",
+          "count": 1,
+          "name": "mta_client_receive_factory_tuple"
+        },
+        {
+          "after": "    ('mta_client_state_bridge', 21356, '247714d59f500b7f2c60eb605ff0fc341301f76dccae8d058e678db20fa30562'),\n",
+          "before": "    ('mta_client_state_bridge', 21356, '3a52e050465595befa564c45db75bcfde015248f0072529db4165fe7a1c0066a'),\n",
+          "count": 1,
+          "name": "mta_client_state_bridge_tuple"
+        }
+      ],
+      "functions_unchanged": true,
+      "name": "mta_client_receive_boot",
+      "source": [
+        "candidate/receive-profile-cache-graph-v1/runtime/mta_client_receive_boot.py",
+        19697,
+        "d8f62bd0f00840c5f210dabe211c827bf2c396f5b6075019032de2f688ee744f"
+      ]
+    },
+    {
+      "candidate": [
+        "candidate/receive-startup-20s-graph-v1/runtime/mta_client_service_owner.py",
+        107104,
+        "a9d8e4812dd26cd3a573e03257ec68fdd4b065c4daddec2119a7e21d6346db6c"
+      ],
+      "edits": [
+        {
+          "after": "ROOT = '/tmp/p011-mta-rx-prep20-v001'\n",
+          "before": "ROOT = '/tmp/p011-mta-rx-pfcache-v01'\n",
+          "count": 1,
+          "name": "ROOT_constant"
+        },
+        {
+          "after": "BOOT_PIN = (19697, '167daaa1dbf754ff03e77578e838153f9f38d1a7b32c600718a83f915553b645')\n",
+          "before": "BOOT_PIN = (19697, 'd8f62bd0f00840c5f210dabe211c827bf2c396f5b6075019032de2f688ee744f')\n",
+          "count": 1,
+          "name": "BOOT_PIN_constant"
+        },
+        {
+          "after": "        physical = '/var/volatile/tmp/p011-mta-rx-prep20-v001'\n",
+          "before": "        physical = '/var/volatile/tmp/p011-mta-rx-pfcache-v01'\n",
+          "count": 1,
+          "name": "held_physical_root"
+        }
+      ],
+      "functions_unchanged": false,
+      "name": "mta_client_service_owner",
+      "source": [
+        "candidate/receive-profile-cache-graph-v1/runtime/mta_client_service_owner.py",
+        107104,
+        "e135dc8f7cbd32c7b9430dbbdfe83586bbe13510cbc5180bdff7cd076128a83b"
+      ]
+    },
+    {
+      "candidate": [
+        "candidate/receive-startup-20s-graph-v1/runtime/mta_formal_receive_session.py",
+        79281,
+        "fe0aa4d5b00ef071ac213056c4db6215527c0ac2df78be471b2dcc7721453554"
+      ],
+      "edits": [
+        {
+          "after": "STATE_ROOT = '/var/volatile/tmp/p011-mta-rx-prep20-v001'\n",
+          "before": "STATE_ROOT = '/var/volatile/tmp/p011-mta-rx-pfcache-v01'\n",
+          "count": 1,
+          "name": "STATE_ROOT_constant"
+        },
+        {
+          "after": "STATE_ALIAS = '/tmp/p011-mta-rx-prep20-v001'\n",
+          "before": "STATE_ALIAS = '/tmp/p011-mta-rx-pfcache-v01'\n",
+          "count": 1,
+          "name": "STATE_ALIAS_constant"
+        },
+        {
+          "after": "    ('mta_client_executor', 124769, '8be9784ab137fdd4e779d8bd5bb1368381ca60e56aae737e4d3c51ede9b8d0fb'),\n",
+          "before": "    ('mta_client_executor', 124769, '65e5d26f411fbdf71e583bf7f344d664d7934bc2b33260197ed5fa3279182015'),\n",
+          "count": 2,
+          "name": "mta_client_executor_tuple"
+        },
+        {
+          "after": "    ('mta_client_receive_factory', 99675, 'e1a30f457ca77321c4ebfb15644137ee9498b9fd6e94f5685991a040fdb449a5'),\n",
+          "before": "    ('mta_client_receive_factory', 99675, '3f0ca3d039301a221fce10b5b72cb50e0bf6d374298656879ff748de61ec5cf5'),\n",
+          "count": 1,
+          "name": "mta_client_receive_factory_tuple"
+        },
+        {
+          "after": "    ('mta_client_state_bridge', 21356, '247714d59f500b7f2c60eb605ff0fc341301f76dccae8d058e678db20fa30562'),\n",
+          "before": "    ('mta_client_state_bridge', 21356, '3a52e050465595befa564c45db75bcfde015248f0072529db4165fe7a1c0066a'),\n",
+          "count": 1,
+          "name": "mta_client_state_bridge_tuple"
+        },
+        {
+          "after": "    ('mta_client_receive_boot', 19697, '167daaa1dbf754ff03e77578e838153f9f38d1a7b32c600718a83f915553b645'),\n",
+          "before": "    ('mta_client_receive_boot', 19697, 'd8f62bd0f00840c5f210dabe211c827bf2c396f5b6075019032de2f688ee744f'),\n",
+          "count": 1,
+          "name": "mta_client_receive_boot_tuple"
+        },
+        {
+          "after": "    ('mta_client_service_owner', 107104, 'a9d8e4812dd26cd3a573e03257ec68fdd4b065c4daddec2119a7e21d6346db6c'),\n",
+          "before": "    ('mta_client_service_owner', 107104, 'e135dc8f7cbd32c7b9430dbbdfe83586bbe13510cbc5180bdff7cd076128a83b'),\n",
+          "count": 1,
+          "name": "mta_client_service_owner_tuple"
+        }
+      ],
+      "functions_unchanged": true,
+      "name": "mta_formal_receive_session",
+      "source": [
+        "candidate/receive-profile-cache-graph-v1/runtime/mta_formal_receive_session.py",
+        79281,
+        "444922ee9cc41781b497e8f0dce82095da4ea8fbcd297e5c91448da1ad34f967"
+      ]
+    }
+  ],
+  "mother": [
+    "host/formal_receive_profile_cache_v1_definitions.py",
+    276517,
+    "fc1327b17f4124e286b967b3246f59c69458b803834efb34fd56246350bb5043"
+  ],
+  "native_authority_changed": false,
+  "new_business_closure_count": 1,
+  "original_10s_sources_and_history_unchanged": true,
+  "outer_deadlines_preserved": true,
+  "payload_bytes": 4193768,
+  "payload_cap": 4194304,
+  "private_roles_exact": 34,
+  "proc_dispatch_candidate_integrated": false,
+  "proc_native_wpa_monitor_unchanged": true,
+  "rf_requested": false,
+  "root": "p011-mta-rx-prep20-v001",
+  "schema": "p011-receive-startup-20s-v1-graph-delta",
+  "send_graph_changed": false,
+  "startup_prepare_seconds_after": 20.0,
+  "startup_prepare_seconds_before": 10.0,
+  "state_protocol_unchanged": true,
+  "unchanged_payload_roles": 69
+}

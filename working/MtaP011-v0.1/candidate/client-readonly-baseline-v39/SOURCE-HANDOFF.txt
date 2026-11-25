@@ -1,0 +1,71 @@
+V39 ACTUAL READONLY BASELINE — SOURCE HANDOFF / NOT STAGE OR RF ADMISSION
+
+新增隔离源码：
+  candidate/client-readonly-baseline-v39/runtime/mta_client_readonly_baseline.py
+  13811 bytes / cd4c3ef940ef12783dd0b91aba2805a4f4cbe50f2fe2bdccbddaa1db32f4b7ff
+  host/client_readonly_baseline_v39_p011.py
+  18597 bytes / c8826392b32b913e639c551c2e00eaa07545006598e384ac2d9896b50a671ee9
+
+固定输入仍是 v37 35 源图 4b9ea54997194ca895a3459cf88cd715b2ccc05e46c55b533920f8182314d07a。
+不修改旧 v37、v36/v38 Pending、v38 staticstage、Bridge、State、任何设备文件或回执。
+该图是源码身份；旧 v37 full HOST TIMEOUT 仍保留，不能因只读方法存在称其 formal PASS。
+
+本子代理仅 SOURCE 编写/全文读取/文件 hash，没有 import、AST、方法执行、ADB 或设备动作。
+ROOT 已独立 SOURCE/Py3.5 AST 核 leaf cd4c/13811，但未执行该 leaf。本 runner 尚待 ROOT
+完整 SOURCE 审核与首次检查。既有 staticv38 默认 source_check 的 ROOT PASS 不等于这里
+已执行 package、StageOwner、readonly collect、目标 syscall 或 physical staging。
+
+Actual neutral accounting bridge
+-------------------------------
+leaf L115 创建真实 proc.ProcReader(_clock=owner.now)；传给真实
+stores.DurableClientInitStore(_proc_reader=原件,_clock=owner.now,trial profile)。
+真实 Store 纯构造器创建真实 ResourceBudget(self,SOURCE_PROFILE)并原 bind_reader。
+没有 fake Store、直接改 _bound_budget、替代资源预算、放宽 profile、旧 Proc 复制或 monkeypatch。
+Store 从不 acquire/open/prepare/current/finish，也无 Journal/marker/Coord/FILES IO。
+core.Identity(v37 map SHA)仅源码 provenance，不是 Handoff、LoadedDeployment 或网络权限。
+leaf _neutral 核原 Store/reader/budget/epoch/mutex/profile 与其尚未打开的真实组件库存。
+
+leaf L43 是独立 trusted _LinuxIo subclass，仅确认 Linux/ARM7/py355/root/真实 ARM flags，
+仅 original _READ_FLAGS 转换为 actual os.O_RDONLY|NOFOLLOW|CLOEXEC；Proc 原本即用 actual
+os flags，无需修改。其他原 IO、actor exe magiclink flags、native socket/child/返回值不替换。
+原固定 /usr/sbin/wpa_cli -i wlan0 status 子进程是 readonly，不是 Parent/F/RF 候选启动。
+原 baseline 的子进程 wait/kill-on-known-own-timeout、pipe close、socket/FD onceclose 仍保留。
+
+leaf L223 调用原 BaselineCollector.collect：固定 current stock3 + CLI SHA e5d7e23…，
+stock file/image 原 metadata+sha、原 live actors/boot、两轮 stable full core.Snapshot、完整
+IPv4 addresses/routes/rules、IPv6、station STATUS 与原执行文件重新 hash。原规则/字段校验
+和原关闭 finally 都保留，不用 dict manifest labels 或传入 BOOL 制造结果。
+原总 readonly cap30在发行后不续期；原 collector min10 cap，Proc使用原absolute until。
+只在实际 _closed/history/预算未pending 且最终原 clock 未过期后发放 read_success。
+只读失败和实际资源未知分开：pin/state 不满足可已关闭但仍 read_success=False。
+PENDING absence/platform 采用前后 fresh 读。Snapshot、原 raw、tickets、generation facts
+均仅私有数据；closure不是全OS/CPython内部FD证明、原厂恢复或网络准入。
+
+HOST runner 默认与明确执行路径
+-----------------------------
+默认只读 PC 固定 35 源/WPA/leaf。仅复用已审 staticv38 PC source-reader 定义；private
+__name__ 不执行其 main，不 import/exec 候选模块或旧 driver，也不访问 ADB。
+--read-current、reviewed SHA、positive transport ID 必须同时出现。源/hash检查后才检查
+current ADB C:/Program Files/ADB/adb.exe b4a6b455702684652cccf7b46258b29e653538904359a58fd4931cf3ef286b3f。
+fresh devices -l 仅承认唯一非 emulator、product sprdtrum/model sprdisk 与确切 requested ID。
+一个 -t exec-out fixed command；STDIN 35 按原顺序定义、每原 SHA重验，再定义 leaf/collect。
+__name__ 非 __main__，不运行 F/Parent/Stage；python -B，不写 candidate/安装/用户目录。
+target cap 在模块定义前一次发行；HOST deadline45，不自动 retry/repair/reboot/stop无线。
+
+原 stdout/stderr/host-exit/remote-exit/payload/error 都私有保留，派生仅规范化换行；exec-out
+只保留 ADB 实际提供的两 host streams，不声称有独立 remote stderr channel。远端原 EXIT
+marker先保存，即便 PUBLIC 解析失败也不丢已知远端退出。私有 JSON包含原完整 named IPv4
+字段、stock/actor/Proc/generation/collector raw 与原件关闭投影，不进入 public ZIP。
+public只固定 source pins、布尔/数字，不包含 serial/MAC/SSID/IP/process/设备名称。
+四成员 result/source-pins/README/SHA256SUMS ZIP 实现逐 bytes/size/CRC读回；本次没有生成。
+
+尚未完成 / 保持 False
+--------------------
+未执行 actual platform/full native baseline/CLI pin/PENDING/closure；未证明物理300秒性能。
+新的 neutral ctor 小 HOST 方法尚未编写；不得在 Windows fake ARM 启动 collect当设备PASS。
+static/preparer物理入口仍 baseline_adapter_unavailable，State factory=None/receive gate=False。
+后续完整 physical staging 采用另明确固定 client-static-v39 新 namespace +一次 run token，
+不得清空或改用旧 p011-mta-client-rfinit retained stage；本 leaf 和 runner 都不 mkdir该目标。
+未来 stage 必须在同 actual transport/owner 前后重查身份/stock/full baseline/PENDING与IO闭合；
+readonly Snapshot是观察而非锁定/原子性，不能直接作为 F 准入；F之后仍需自己实际preflight。
+互传 GO、GATT/Handoff、TLS、原生 send/receive、恢复、小米15 Ultra 实际互通均未发生。

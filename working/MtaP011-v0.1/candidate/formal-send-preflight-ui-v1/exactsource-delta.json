@@ -1,0 +1,80 @@
+{
+  "all_definition_bytes_and_lines_unchanged": true,
+  "business_definitions_executed": false,
+  "changed_guardian_assignments": 1,
+  "changed_worker_assignments": 5,
+  "full_ast_inverse": true,
+  "full_byte_inverse": true,
+  "guardian": {
+    "candidate": [
+      "candidate/formal-send-preflight-ui-v1/runtime/ui_guardian.py",
+      43996,
+      "8df81808cbd6e32848e5698a5adc486f1027daf8270e5841f83f852d3513b3c1"
+    ],
+    "origin": [
+      "candidate/formal-send-picker-package-v1/runtime/ui_guardian.py",
+      43994,
+      "c118e4f1a6c8f2000a6ae97680d58304af5d8cd55ea30c08cf3a96df16c61477"
+    ],
+    "replacements": [
+      {
+        "after": "CONTROL_NAME = 'p011-mta-ui-session-' + SESSION + '-formal-send-preflight-native-v1'\n",
+        "before": "CONTROL_NAME = 'p011-mta-ui-session-' + SESSION + '-formal-send-picker-package-v1'\n",
+        "count": 1,
+        "line": 29,
+        "name": "CONTROL_NAME"
+      }
+    ]
+  },
+  "other_ast_unchanged": true,
+  "schema": "p011-formal-send-preflight-ui-v1-exactsource-delta",
+  "worker": {
+    "candidate": [
+      "candidate/formal-send-preflight-ui-v1/runtime/ui_session.py",
+      46418,
+      "eb1f076560b8061a48b7138a747e805fd9fa32fad86d7d2a025e428d555ab9b7"
+    ],
+    "origin": [
+      "candidate/formal-send-repair-package-v1/runtime/ui_session.py",
+      46416,
+      "719507f6207c2d94720007f5593092a6d6c5da5b8f1ec7428140347b9525996e"
+    ],
+    "replacements": [
+      {
+        "after": "SENDER_PIN = (24060, '6cbd71d7ce054df6de4c419cd93c0ac8ba2049b2f7f9b692bd10bfb2af3b148f')\n",
+        "before": "SENDER_PIN = (24059, '9c7f87dc4eb7cca9cc09e65a75063365429c363ea1e68da27e9597f228bbf036')\n",
+        "count": 1,
+        "line": 26,
+        "name": "SENDER_PIN"
+      },
+      {
+        "after": "GUARDIAN_PIN = (43996, '8df81808cbd6e32848e5698a5adc486f1027daf8270e5841f83f852d3513b3c1')\n",
+        "before": "GUARDIAN_PIN = (43994, 'c118e4f1a6c8f2000a6ae97680d58304af5d8cd55ea30c08cf3a96df16c61477')\n",
+        "count": 1,
+        "line": 27,
+        "name": "GUARDIAN_PIN"
+      },
+      {
+        "after": "SENDER_ROOT = '/tmp/p011-mta-formal-send-filecenter-deploy-v7'\n",
+        "before": "SENDER_ROOT = '/tmp/p011-mta-formal-send-filecenter-deploy-v6'\n",
+        "count": 1,
+        "line": 29,
+        "name": "SENDER_ROOT"
+      },
+      {
+        "after": "SENDER_PHYSICAL_ROOT = '/var/volatile/tmp/p011-mta-formal-send-filecenter-deploy-v7'\n",
+        "before": "SENDER_PHYSICAL_ROOT = '/var/volatile/tmp/p011-mta-formal-send-filecenter-deploy-v6'\n",
+        "count": 1,
+        "line": 30,
+        "name": "SENDER_PHYSICAL_ROOT"
+      },
+      {
+        "after": "CONTROL_NAME = 'p011-mta-ui-session-' + SESSION + '-formal-send-preflight-native-v1'\n",
+        "before": "CONTROL_NAME = 'p011-mta-ui-session-' + SESSION + '-formal-send-picker-package-v1'\n",
+        "count": 1,
+        "line": 34,
+        "name": "CONTROL_NAME"
+      }
+    ]
+  }
+}

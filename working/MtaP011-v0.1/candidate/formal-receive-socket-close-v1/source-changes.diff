@@ -1,0 +1,179 @@
+--- candidate/formal-receive-alias-clock-v1/runtime/mta_client_service_owner.py
++++ candidate/formal-receive-socket-close-v1/runtime/mta_client_service_owner.py
+@@ -1,4 +1,8 @@
+ """Formal-receive-v2 original Owner: sealed startup window and one-shot trial.
++
++Isolated receive-socket-close-v1 SOURCE PATCH, NOT a runnable composition.
++The original alias-clock roots/constants/BOOT pins are intentionally unchanged;
++this patched Owner/minhttp pair has not been connected to a sealed graph/UI.
+ 
+ Independent SOURCE derived from formal-receive-v1. Fixed roots are versioned;
+ old graph/results/publications remain untouched. BOOT_PIN seals the new
+@@ -247,6 +251,9 @@
+         self.service = self.http = None
+         self.state_constructor_failure = self.server_constructor_failure = None
+         self.assets, self.requests, self.threads = [], [], []
++        self.socket_close_receipts = self._socket_close_receipts_original = []
++        self.socket_receipt_methods = self._socket_receipt_methods_original = (
++            type(self)._socket_receipt, type(self)._socket_receipt_closed)
+         self._requests_original, self._threads_original = self.requests, self.threads
+         self._state_original = self._server_original = self._listener_original = None
+         self._http_stopping_original = self._http_worker_lock_original = self._http_workers_original = None
+@@ -341,26 +348,117 @@
+         row['metadata'] = row['metadata_original'] = _meta(self.io.fstat(row['fd']))
+         if not stat.S_ISSOCK(row['metadata'][2]): _fail('socket_unknown')
+         row['unknown'] = False; row['proxy'] = row['proxy_original'] = _SocketRef(self, row)
++        original = (self, row, raw, row['fd'], row['metadata'], row['proxy'])
++        receipt = dict(original=original, original_retained=original, sealed=None, sealed_retained=None,
++            close_return_none=None, post_fileno_minus_one=None, post_outcome='none')
++        self.socket_close_receipts.append(receipt)
++        row['socket_close_receipt'] = receipt
+         return row
++
++    def _socket_receipt(self, row):
++        """Resolve only this Owner's retained original row/object tuple."""
++        if (type(row) is not dict or
++                self.socket_close_receipts is not self._socket_close_receipts_original or
++                not (row is self.listener or any(row is value for value in self.requests))):
++            return None
++        values = [value for value in self.socket_close_receipts if type(value) is dict and
++                  type(value.get('original')) is tuple and len(value['original']) == 6 and
++                  value['original'][1] is row]
++        if len(values) != 1: return None
++        value, original = values[0], values[0]['original']
++        if (original is not value.get('original_retained') or original[0] is not self or
++                row.get('socket_close_receipt') is not value or type(original[2]) is not socket.socket or
++                row.get('socket') is not original[2] or row.get('socket_original') is not original[2] or
++                type(original[3]) is not int or type(row.get('fd')) is not int or
++                type(row.get('fd_original')) is not int or row['fd'] != original[3] or
++                row['fd_original'] != original[3] or row.get('metadata') is not original[4] or
++                row.get('metadata_original') is not original[4] or
++                row.get('proxy') is not original[5] or row.get('proxy_original') is not original[5] or
++                type(original[5]) is not _SocketRef or original[5].owner is not self or
++                original[5].row is not row):
++            return None
++        return value
++
++    def _socket_receipt_closed(self, row):
++        """Once-sealed original close proof; never close/reopen the old number."""
++        methods = self.socket_receipt_methods
++        if (type(methods) is not tuple or methods is not self._socket_receipt_methods_original or
++                len(methods) != 2 or any(type(value) is not types.FunctionType for value in methods) or
++                type(self)._socket_receipt is not methods[0] or
++                type(self)._socket_receipt_closed is not methods[1]):
++            return False
++        value = methods[0](self, row)
++        if value is None: return False
++        seal = value['sealed']
++        if (type(seal) is not tuple or len(seal) != 6 or seal is not value['sealed_retained'] or
++                seal[0] is not value['original'] or seal[1] is not True or seal[2] is not True or
++                value['close_return_none'] is not True or value['post_fileno_minus_one'] is not True or
++                value['post_outcome'] != seal[3] or row.get('attempted') is not True or
++                row.get('closed') is not True or row.get('unknown') is not False):
++            return False
++        after = value['original'][2].fileno()
++        if type(after) is not int or after != -1: return False
++        if seal[3] == 'badfd':
++            return seal[4] is None and type(seal[5]) is int and seal[5] == errno.EBADF
++        if seal[3] == 'reused':
++            post, original = seal[4], value['original'][4]
++            if (type(post) is not tuple or len(post) != 7 or
++                    any(type(item) is not int or item < 0 for item in post) or seal[5] is not None):
++                return False
++            return ((post[0], post[1], stat.S_IFMT(post[2])) !=
++                    (original[0], original[1], stat.S_IFMT(original[2])))
++        return False
+ 
+     def _close_socket(self, row):
+         with self.lock:
+             self._context()
+-            if row['attempted']: return row['closed'] is True and row['unknown'] is False
++            methods = self.socket_receipt_methods
++            if (type(methods) is not tuple or methods is not self._socket_receipt_methods_original or
++                    len(methods) != 2 or any(type(value) is not types.FunctionType for value in methods) or
++                    type(self)._socket_receipt is not methods[0] or
++                    type(self)._socket_receipt_closed is not methods[1]):
++                return False
++            if row['attempted']: return methods[1](self, row)
+             if row['unknown']: return False
+             row['attempted'] = True
++            receipt = None
+             try:
+-                if (row['socket'] is not row.get('socket_original') or row['fd'] != row.get('fd_original') or
+-                        row['metadata'] is not row.get('metadata_original') or
+-                        row['socket'].fileno() != row['fd'] or _meta(self.io.fstat(row['fd'])) != row['metadata']):
++                receipt = methods[0](self, row)
++                if receipt is None: _fail('socket_close_unknown')
++                original = receipt['original']
++                before = original[2].fileno()
++                if (type(before) is not int or before != original[3] or
++                        _meta(self.io.fstat(original[3])) != original[4]):
+                     _fail('socket_close_unknown')
+-                returned = row['socket'].close()
+-                try: self.io.fstat(row['fd'])
++                returned = original[2].close()
++                receipt['close_return_none'] = returned is None
++                after = original[2].fileno()
++                receipt['post_fileno_minus_one'] = type(after) is int and after == -1
++                if not receipt['close_return_none'] or not receipt['post_fileno_minus_one']:
++                    _fail('socket_close_unknown')
++                post, number = None, None
++                try:
++                    post = _meta(self.io.fstat(original[3]))
+                 except OSError as error:
+-                    row['closed'] = returned is None and type(error.errno) is int and error.errno == errno.EBADF
++                    number = error.errno
++                    if type(number) is not int or number != errno.EBADF: raise
++                    receipt['post_outcome'] = 'badfd'
++                else:
++                    if ((post[0], post[1], stat.S_IFMT(post[2])) ==
++                            (original[4][0], original[4][1], stat.S_IFMT(original[4][2]))):
++                        receipt['post_outcome'] = 'same'
++                        _fail('socket_close_unknown')
++                    receipt['post_outcome'] = 'reused'
++                # Retain the immutable actual post-check; neither True fields
++                # nor later absence alone can manufacture this original seal.
++                seal = (original, True, True, receipt['post_outcome'], post, number)
++                receipt['sealed'] = receipt['sealed_retained'] = seal
++                row['closed'] = True
+             except BaseException as error:
+                 row['failure'] = error; row['unknown'] = True
+-            return row['closed'] is True and row['unknown'] is False
++                if receipt is not None and receipt['post_outcome'] != 'same':
++                    receipt['post_outcome'] = 'error'
++            return methods[1](self, row)
+ 
+     def _new_thread(self, target):
+         ticket = {'thread': None, 'thread_original': None, 'initialized': False,
+@@ -996,7 +1094,14 @@
+     def _http_closed(self):
+         """Passive original HTTP borrowers; no clock, wait, close or State call."""
+         try:
+-            if (self.requests is not self._requests_original or self.threads is not self._threads_original or
++            methods = self.socket_receipt_methods
++            if (type(methods) is not tuple or methods is not self._socket_receipt_methods_original or
++                    len(methods) != 2 or any(type(value) is not types.FunctionType for value in methods) or
++                    type(self)._socket_receipt is not methods[0] or
++                    type(self)._socket_receipt_closed is not methods[1]):
++                return False
++            if (self.socket_close_receipts is not self._socket_close_receipts_original or
++                    self.requests is not self._requests_original or self.threads is not self._threads_original or
+                     type(self.requests) is not list or type(self.threads) is not list or
+                     self.listener is not self._listener_original or self.server is not self._server_original):
+                 return False
+@@ -1016,6 +1121,7 @@
+                         ticket['thread'].ident is not None):
+                     return False
+             rows = ([self.listener] if self.listener is not None else []) + self.requests
++            if len(self.socket_close_receipts) != len(rows): return False
+             for row in rows:
+                 if (type(row) is not dict or row.get('unknown') is not False or
+                         row.get('closed') is not True or row.get('attempted') is not True or
+@@ -1027,6 +1133,7 @@
+                         type(row.get('proxy')) is not _SocketRef or row['proxy'] is not row.get('proxy_original') or
+                         row['proxy'].owner is not self or row['proxy'].row is not row):
+                     return False
++                if not methods[1](self, row): return False
+             for row in self.requests:
+                 ticket = row.get('ticket')
+                 if ticket is None:

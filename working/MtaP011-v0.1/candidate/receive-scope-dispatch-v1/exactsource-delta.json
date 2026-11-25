@@ -1,0 +1,41 @@
+{
+  "business_delta_count": 1,
+  "business_methods": [
+    "_StartupReadScope._originals"
+  ],
+  "byte_delta": 114,
+  "candidate": {
+    "bytes": 99371,
+    "path": "candidate/receive-scope-dispatch-v1/runtime/mta_client_receive_factory.py",
+    "sha256": "7c4ee1b5dabf869301be940e0330968b683bde2e8d7d45add83f63c474c70f15"
+  },
+  "complete_ast_inverse": true,
+  "complete_byte_inverse": true,
+  "deadlines_changed": false,
+  "device_executed": false,
+  "failure_short_circuit_preserved": true,
+  "guards_removed": false,
+  "io_boundaries_changed": false,
+  "later_definition_line_delta": 5,
+  "measured_performance_claim": false,
+  "origin": {
+    "bytes": 99257,
+    "path": "candidate/receive-owner-dispatch-graph-v1/runtime/mta_client_receive_factory.py",
+    "sha256": "0103f047e9598767f9e9162cf8833f0420c171f7552c31ed28e107e6a91c6cb0"
+  },
+  "original_code_receipts_still_required": true,
+  "other_definition_bytes_unchanged": true,
+  "owner_scan_rows": 4,
+  "replacements": [
+    {
+      "after": "                type(self._alias_owner_codes) is not tuple or len(self._alias_owner_codes) != 4):\n            _fail('startup_owner_changed')\n        for current, original, code in zip(\n                (self.owner_type._context, self.owner_type._now, self.owner_type._startup_readonly, self.owner_type.close),\n                self._alias_owner_methods, self._alias_owner_codes):\n            if current is not original or current.__code__ is not code:\n                _fail('startup_owner_changed')\n        for current, original, code in zip(\n                (_StartupReadScope.__init__, _StartupReadScope._originals, _StartupReadScope.check_active,\n                 _StartupReadScope.alias_now, executor._ReadOwner.check, executor._ReadOwner._fixed_tmp_alias),\n                self._alias_functions, self._alias_codes):\n            if current is not original or current.__code__ is not code:\n                _fail('startup_owner_changed')\n        if (getattr(self._alias_clock, '__self__', None) is not self or\n                getattr(self._alias_clock, '__func__', None) is not self._alias_functions[3]):\n            _fail('startup_owner_changed')\n",
+      "before": "                type(self._alias_owner_codes) is not tuple or len(self._alias_owner_codes) != 4 or\n                any(current is not original or current.__code__ is not code for current, original, code in zip(\n                    (self.owner_type._context, self.owner_type._now, self.owner_type._startup_readonly, self.owner_type.close),\n                    self._alias_owner_methods, self._alias_owner_codes)) or\n                any(current is not original or current.__code__ is not code for current, original, code in zip(\n                    (_StartupReadScope.__init__, _StartupReadScope._originals, _StartupReadScope.check_active,\n                     _StartupReadScope.alias_now, executor._ReadOwner.check, executor._ReadOwner._fixed_tmp_alias),\n                    self._alias_functions, self._alias_codes)) or\n                getattr(self._alias_clock, '__self__', None) is not self or\n                getattr(self._alias_clock, '__func__', None) is not self._alias_functions[3]):\n            _fail('startup_owner_changed')\n",
+      "count": 1
+    }
+  ],
+  "rf_executed": false,
+  "same_order_and_eager_tuple_inputs": true,
+  "schema": "p011-receive-scope-dispatch-v1-exactsource-delta",
+  "scope_scan_rows": 6,
+  "unchanged_predicates_and_clock_tail": true
+}

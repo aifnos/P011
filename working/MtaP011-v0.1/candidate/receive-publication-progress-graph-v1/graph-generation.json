@@ -1,0 +1,81 @@
+{
+  "business_closure_count": 1,
+  "changed_payload_roles": [
+    "mta_client_executor",
+    "mta_client_receive_factory",
+    "mta_client_state_bridge",
+    "mta_client_receive_boot",
+    "mta_client_service_owner",
+    "runtime35/mta_client_executor"
+  ],
+  "definitions_and_report_pins_omitted_to_avoid_cycles": true,
+  "definitions_path": "host/formal_receive_publication_progress_v1_definitions.py",
+  "device_tested": false,
+  "exact_payload_roles": 69,
+  "factory_diagnostic_growth": 1498,
+  "generator": [
+    "candidate/receive-publication-progress-graph-v1/generate_graph.py",
+    26460,
+    "e0c1aa0304546f3cae1d677919b5904308bb060c379934596f46e7d89e8dcf04"
+  ],
+  "headless_only": true,
+  "mechanical_closure_count": 6,
+  "navigation_ui_outputs": false,
+  "old_main_build_verify_called": false,
+  "old_tests_replayed": 0,
+  "output_pins": [
+    [
+      "candidate/receive-publication-progress-graph-v1/graph-exactsource-delta.json",
+      15389,
+      "ff52581255323c091187815fa25e53e8de391e2a6617f408ac6402d3f87e666e"
+    ],
+    [
+      "candidate/receive-publication-progress-graph-v1/runtime/mta_client_executor.py",
+      124769,
+      "6f9b2d368dacb37ed50830067c1b7b42e59acbc5f154f0c5ba550d4263a70826"
+    ],
+    [
+      "candidate/receive-publication-progress-graph-v1/runtime/mta_client_receive_boot.py",
+      19697,
+      "77bcd4b7b6180b0aba97b68d33e8498f5c807e6b546f516948cb7f99b5a51868"
+    ],
+    [
+      "candidate/receive-publication-progress-graph-v1/runtime/mta_client_receive_factory.py",
+      99257,
+      "5fd3e85df3f76a48220564bdc96a429cfa2da513ee528d8745987f0d176eda01"
+    ],
+    [
+      "candidate/receive-publication-progress-graph-v1/runtime/mta_client_service_owner.py",
+      107026,
+      "a33b1a4c015bda42fc8ab8ba447fd5f331181df1a5b4240fc82f455dc2b74da7"
+    ],
+    [
+      "candidate/receive-publication-progress-graph-v1/runtime/mta_client_state_bridge.py",
+      21356,
+      "f703eedb18b19aafbfb1d4d4326491a362c97c9e4ffa6f01fccc6f94c18da234"
+    ],
+    [
+      "candidate/receive-publication-progress-graph-v1/runtime/mta_formal_receive_session.py",
+      79281,
+      "c867b9eb52a4cf6ac81367163f22d6d5bfbbed88595313802100960746119410"
+    ],
+    [
+      "host/formal_receive_publication_progress_v1_definition_manifest.json",
+      7982,
+      "c3a31a284e12ff312352ec04c7bfc5b5dee3f82cbc958547b16374c6a74dead7"
+    ],
+    [
+      "host/formal_receive_publication_progress_v1_private_source_manifest.json",
+      8174,
+      "90dfcefeeb13b91d613203af89a11630a44b0af03117973918436a84274cfd0b"
+    ]
+  ],
+  "payload_bytes": 4193272,
+  "payload_remaining": 1032,
+  "phone_tested": false,
+  "proc_native_fc9_unchanged": true,
+  "root": "p011-mta-rx-progress-v1",
+  "schema": "p011-receive-publication-progress-v1-graph-generation",
+  "source_origin_count": 230,
+  "status": "MECHANICALLY_DERIVED_NOT_HOST_OR_DEVICE_TESTED"
+}

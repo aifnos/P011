@@ -1,0 +1,108 @@
+{
+  "business_byte_cap": 500,
+  "business_byte_delta": 304,
+  "cache_data_not_authority": true,
+  "changed_payload_roles": [
+    "mta_client_executor",
+    "mta_client_receive_factory",
+    "mta_client_state_bridge",
+    "mta_client_receive_boot",
+    "mta_client_service_owner",
+    "runtime35/mta_client_executor"
+  ],
+  "definitions_and_report_pins_omitted_to_avoid_cycles": true,
+  "definitions_path": "host/formal_receive_profile_cache_v1_definitions.py",
+  "device_tested": false,
+  "exact_payload_roles": 69,
+  "filecenter_bytes": 113832,
+  "filecenter_exact_roles": 9,
+  "filecenter_remaining": 17240,
+  "filecenter_sources": 9,
+  "filecenter_sources_changed": false,
+  "generator": [
+    "candidate/receive-profile-cache-graph-v1/generate_graph.py",
+    37744,
+    "f6d2ad0ec343b01a126e60492a2144038d4c3ada16e1f4719abb8ca06857326a"
+  ],
+  "generator_mother": [
+    "candidate/receive-fc-http-cap-graph-v1/generate_graph.py",
+    31875,
+    "15f7f9569f0513c6c7cc15158fe3e24b84875b9ab7d7fb9f5ef48c6d1c3bd0bd"
+  ],
+  "headless_only": true,
+  "inherited_owner_scope_fc_http_provenance_preserved": true,
+  "measured_owner_context_preserved": true,
+  "mechanical_closure_count": 6,
+  "mother": [
+    "host/formal_receive_fc_http_cap_v1_definitions.py",
+    169842,
+    "c43f342a7c7ccafe5e2780de7f4068bdfe84195579b5f1c6e970d78ad19abfc2"
+  ],
+  "navigation_ui_outputs": false,
+  "new_business_closure_count": 1,
+  "new_business_method": "_live_profile",
+  "new_device_root_checked": false,
+  "old_main_build_verify_called": false,
+  "old_tests_replayed": 0,
+  "original_deadlines_preserved": true,
+  "output_pins": [
+    [
+      "candidate/receive-profile-cache-graph-v1/graph-exactsource-delta.json",
+      44462,
+      "8d02404d084ca90f9c044fa6eced2bb6c41eeabfffb986d18e302b2869db91a3"
+    ],
+    [
+      "candidate/receive-profile-cache-graph-v1/runtime/mta_client_executor.py",
+      124769,
+      "65e5d26f411fbdf71e583bf7f344d664d7934bc2b33260197ed5fa3279182015"
+    ],
+    [
+      "candidate/receive-profile-cache-graph-v1/runtime/mta_client_receive_boot.py",
+      19697,
+      "d8f62bd0f00840c5f210dabe211c827bf2c396f5b6075019032de2f688ee744f"
+    ],
+    [
+      "candidate/receive-profile-cache-graph-v1/runtime/mta_client_receive_factory.py",
+      99675,
+      "3f0ca3d039301a221fce10b5b72cb50e0bf6d374298656879ff748de61ec5cf5"
+    ],
+    [
+      "candidate/receive-profile-cache-graph-v1/runtime/mta_client_service_owner.py",
+      107104,
+      "e135dc8f7cbd32c7b9430dbbdfe83586bbe13510cbc5180bdff7cd076128a83b"
+    ],
+    [
+      "candidate/receive-profile-cache-graph-v1/runtime/mta_client_state_bridge.py",
+      21356,
+      "3a52e050465595befa564c45db75bcfde015248f0072529db4165fe7a1c0066a"
+    ],
+    [
+      "candidate/receive-profile-cache-graph-v1/runtime/mta_formal_receive_session.py",
+      79281,
+      "444922ee9cc41781b497e8f0dce82095da4ea8fbcd297e5c91448da1ad34f967"
+    ],
+    [
+      "host/formal_receive_profile_cache_v1_definition_manifest.json",
+      7947,
+      "44993c2d82a9096c884104906d60447b1d389f673a1c489c9768bfdcf31f1c2b"
+    ],
+    [
+      "host/formal_receive_profile_cache_v1_private_source_manifest.json",
+      8167,
+      "05b2dca4b0504366202c26600fc1ea2d2974b4d2104cc96df587c5c9d954b6a5"
+    ]
+  ],
+  "payload_bytes": 4193768,
+  "payload_cap": 4194304,
+  "payload_remaining": 536,
+  "phone_tested": false,
+  "private_roles_exact": 34,
+  "profile_cache_performance_verified": false,
+  "rf_requested": false,
+  "root": "p011-mta-rx-pfcache-v01",
+  "schema": "p011-receive-profile-cache-v1-graph-generation",
+  "send_graph_changed": false,
+  "source_origin_count": 289,
+  "state_protocol_proc_native_wpa_monitor_unchanged": true,
+  "status": "SOURCE_DERIVED_NOT_DEVICE_TESTED"
+}

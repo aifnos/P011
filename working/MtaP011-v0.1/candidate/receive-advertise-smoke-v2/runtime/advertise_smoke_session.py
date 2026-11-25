@@ -1,0 +1,242 @@
+"""One original receiver advertisement/cancel, not a phone transfer test.
+
+This envelope borrows the frozen 75-role runner without changing its classes,
+methods, closed-policy complete predicate or original 60+60-second window.
+No HTTP/UI producer, guardian, consent, scan or sender action is invoked.
+"""
+import time
+
+OBSERVE_SECONDS = 15.0
+_RETAINED = None
+_OBSERVATION_BUSY_COUNT = 0
+COMMON = ('platform_validated', 'payload_validated', 'before_baseline_observed',
+          'after_baseline_observed', 'stock_hashes_match', 'stock_processes_match',
+          'baseline_unchanged', 'preflight_complete', 'runner_fds_closed',
+          'client_sockets_closed')
+SERVICE = ('stage_verified', 'boot_loaded', 'owner_started', 'operation_inventory_idle',
+           'capability_actors_closed', 'owner_close_called', 'owner_resources_closed',
+           'private_assets_verified', 'startup_readonly_called', 'startup_readonly_verified',
+           'startup_baseline_collected', 'startup_status_verified', 'startup_resources_closed')
+
+
+def observe(component, observation_until=None):
+    """Bounded local read of original actors; never supplies native events."""
+    component.check()
+    owner = component.owner
+    state, service = owner.state, owner.service
+    cap = component.until if observation_until is None else min(component.until, observation_until)
+    remaining = cap - time.monotonic()
+    if remaining <= 0:
+        return None
+    if not state.lock.acquire(timeout=min(.1, remaining)):
+        # Busy is not an identity/field failure and never advertising evidence.
+        # The original outer observation/window cap controls the next attempt.
+        return None
+    try:
+        op, session = state.operation, state.session
+        if (state is not owner._state_original or type(state) is not service.State or
+                type(op) is not service.Operation or op.kind != 'receive' or
+                type(session) is not service.TransferSession or session is not op.session or
+                state.worker is not session._worker or op.epoch != state.native_epoch):
+            raise ValueError('original_receive_inventory_unknown')
+        handoff, bridge, helper = op.client_handoff, op.client_bridge, op.helper
+        handoff_received = (handoff is not None and handoff.status()['received'] is True)
+        bridge_started = bridge is not None and bridge.started is True
+        counts = tuple(state.event_counts.get(name, 0) for name in ('listen', 'advert', 'p2p', 'error', 'closed', 'stop'))
+        if any(type(value) is not int or not 0 <= value <= 1000000 for value in counts):
+            raise ValueError('native_counts_unknown')
+        # State begins as connecting before listen. That initial state is not a
+        # phone handoff; actual input/Bridge/request is what requires cancel.
+        peer_activity = handoff_received or bridge_started or state.request is not None
+        native_failure = counts[3] > 0 or op.cancelled.is_set() or op.actor_unknown
+        advertising = (state.state == 'advertising' and state.discoverable is True and
+                       op.stage == 'advertising' and helper is not None and
+                       helper is state.helper and counts[0] > 0 and counts[1] > 0 and
+                       not native_failure and not peer_activity)
+        return dict(stage=op.stage, state=state.state, discoverable=state.discoverable is True,
+                    advertising=advertising, handoff_received=handoff_received,
+                    bridge_started=bridge_started, request_present=state.request is not None,
+                    peer_activity=peer_activity, native_failure=bool(native_failure),
+                    worker_alive=session._worker is not None and session._worker.is_alive(),
+                    helper_retained=helper is not None, event_counts=counts)
+    finally:
+        state.lock.release()
+
+
+def observe_window(component, started, observe_until, rows, flags):
+    """Retry only lock-busy within the caller's original absolute window."""
+    global _OBSERVATION_BUSY_COUNT
+    reason = 'advert_not_observed'
+    observe_until = min(observe_until, component.until, started + OBSERVE_SECONDS)
+    while time.monotonic() < observe_until and len(rows) < 160:
+        row = observe(component, observe_until)
+        if row is None:
+            _OBSERVATION_BUSY_COUNT += 1
+            time.sleep(min(.01, max(0.0, observe_until - time.monotonic())))
+            continue
+        row['elapsed_seconds'] = time.monotonic() - started
+        rows.append(row)
+        flags['listen_seen'] = flags['listen_seen'] or row['event_counts'][0] > 0
+        flags['advertising_seen'] = flags['advertising_seen'] or row['advertising']
+        if row['peer_activity']:
+            flags['peer_activity_seen'] = True
+            reason = 'peer_activity_cancelled'
+            break
+        if row['native_failure']:
+            flags['native_failure_seen'] = True
+            reason = 'native_operation_failed'
+            break
+        time.sleep(min(.1, max(0.0, observe_until - time.monotonic())))
+    if flags['advertising_seen'] and not flags['peer_activity_seen'] and not flags['native_failure_seen']:
+        reason = 'advertising_observed'
+    return reason
+
+
+def terminal(component):
+    """Passive retained inventory after the original Owner close; no new IO."""
+    owner = component.owner
+    if owner is None or owner.state is None:
+        return None
+    state, service = owner.state, owner.service
+    if not state.lock.acquire(False):
+        raise ValueError('terminal_lock_unknown')
+    try:
+        op, session = state.operation, state.session
+        if (op is None or session is None or op.kind != 'receive' or
+                op.session is not session or state.worker is not session._worker):
+            return None
+        helper, bridge, key = op.helper, op.client_bridge, op.key
+        return dict(operation_retained=True, session_retained=True,
+                    worker_alive=session._worker is not None and session._worker.is_alive(),
+                    helper_retained=helper is not None,
+                    helper_reader_alive=helper is not None and helper._reader_original.is_alive(),
+                    helper_reaped=helper is not None and type(helper.returncode) is int,
+                    helper_closed=helper is not None and helper.closure_verified() is True,
+                    key_retained=key is not None, key_closed=key is not None and key.closed is True,
+                    bridge_retained=bridge is not None,
+                    bridge_started=bridge is not None and bridge.started is True,
+                    handoff_received=op.client_handoff is not None and op.client_handoff.status()['received'] is True,
+                    parent_retained=bridge is not None and bridge.parent is not None,
+                    deployment_retained=bridge is not None and bridge.deployment is not None,
+                    network_before_present=op.receive_network_before is not None,
+                    network_after_present=op.receive_network_after is not None,
+                    network_zero_known=op.receive_network_zero_known is True,
+                    network_verified=op.receive_network_verified is True,
+                    receive_extra_verified=op.receive_extra_verified is True,
+                    radio_restore_pending=state.radio_restore_pending is True,
+                    wifi_restore_pending=state.wifi_restore_pending is True,
+                    event_counts=tuple(state.event_counts.get(name, 0) for name in
+                                       ('listen', 'advert', 'p2p', 'error', 'closed', 'stop')))
+    finally:
+        state.lock.release()
+
+
+def run_fixed(runner, artifacts):
+    global _RETAINED, _OBSERVATION_BUSY_COUNT
+    _OBSERVATION_BUSY_COUNT = 0
+    component = runner.FixedSession(artifacts, False, receive_trial_requested=True)
+    _RETAINED = component
+    flags = dict(start_called=False, start_returned=False, receive_ready=False,
+                 advertising_seen=False, listen_seen=False, peer_activity_seen=False,
+                 stop_called=False, stop_returned=False, native_failure_seen=False,
+                 late_peer_activity_seen=False,
+                 closure_verified=False, baseline_verified=False, resource_pending=True)
+    rows = []
+    reason = 'not_started'
+    end_inventory = None
+    try:
+        component.platform(); component.validate_payload()
+        component.before = component.snapshot()
+        component.result['before_baseline_observed'] = True
+        component.result['stock_hashes_match'] = (
+            dict((path, row[1]) for path, row in component.before['stock']) == dict(runner.STOCK_PINS))
+        processes = component.before['processes']
+        component.result['stock_processes_match'] = all(
+            sum(row[0][3] == name for row in processes) == 1
+            for name in (b'Z03', b'control_engine', b'weston')) and all(
+                row[0][4] == '/usr/bin/' + row[0][3].decode('ascii') for row in processes
+                if row[0][3] in (b'Z03', b'control_engine', b'weston'))
+        if not component.result['stock_hashes_match'] or not component.result['stock_processes_match']:
+            runner.fail('stock_baseline')
+        component.preflight(); component.stage(); component.load_owner()
+        facts = component.trial_start_facts
+        flags['receive_ready'] = (type(facts) is dict and facts['available'] is True and
+                                  facts['reason'] == 'ready' and facts['claim_count'] == 0)
+        if not flags['receive_ready']:
+            reason = 'receive_refused'
+        else:
+            component.check()
+            owner = component.owner
+            flags['start_called'] = True
+            owner.service.State.action(owner.state, {'action': 'discover_start'})
+            flags['start_returned'] = True
+            started = time.monotonic()
+            observe_until = min(component.until, started + OBSERVE_SECONDS)
+            reason = observe_window(component, started, observe_until, rows, flags)
+    except BaseException as error:
+        component.first_error = error
+        component.failures.append(error)
+        reason = 'operation_unknown'
+    finally:
+        if flags['start_called'] and component.owner is not None:
+            flags['stop_called'] = True
+            try:
+                owner = component.owner
+                action = 'cancel' if flags['peer_activity_seen'] else 'discover_stop'
+                owner.service.State.action(owner.state, {'action': action})
+                flags['stop_returned'] = True
+            except BaseException as error:
+                component.failures.append(error)
+        # This is the original finalizer/used-network path, including real
+        # Parent/F cleanup if a phone races our observation. No zero shortcut.
+        component.finish_owner()
+        try:
+            component.after = component.snapshot()
+            component.result['after_baseline_observed'] = True
+            component.result['baseline_unchanged'] = (
+                component.before is not None and component.before == component.after)
+            if not component.result['baseline_unchanged']:
+                runner.fail('baseline_changed')
+        except BaseException as error:
+            component.failures.append(error)
+        for row in reversed(component.rows):
+            try:
+                component.close_fd(row)
+            except BaseException as error:
+                component.failures.append(error)
+        component.result['runner_opened_fd_count'] = sum(type(row['fd']) is int for row in component.rows)
+        component.result['runner_closed_fd_count'] = sum(
+            type(row['fd']) is int and row['closed'] and not row['unknown'] for row in component.rows)
+        component.result['runner_fds_closed'] = all(row['closed'] and not row['unknown'] for row in component.rows)
+        component.result['client_socket_count'] = len(component.clients)
+        component.result['client_sockets_closed'] = all(row['closed'] and not row['unknown'] for row in component.clients)
+        component.result['resource_pending'] = (
+            not component.result['runner_fds_closed'] or not component.result['client_sockets_closed'] or
+            component.owner is not None and not component.result['owner_resources_closed'] or
+            component.loader is not None and (getattr(component.loader, 'pending', True) or
+                type(getattr(component.loader, 'rows', None)) is not list or
+                any(row['unknown'] or not row['closed'] for row in getattr(component.loader, 'rows', ()))))
+        component.result['staging_pending'] = bool(component.creations and not component.result['stage_verified'])
+        try:
+            end_inventory = terminal(component)
+        except BaseException as error:
+            component.failures.append(error)
+    if end_inventory is not None and (end_inventory['bridge_started'] or end_inventory['handoff_received']):
+        flags['late_peer_activity_seen'] = not flags['peer_activity_seen']
+        reason = 'peer_activity_cancelled'
+    flags['resource_pending'] = bool(component.result['resource_pending'] or component.result['staging_pending'] or
+                                     flags['start_called'] and end_inventory is None)
+    flags['closure_verified'] = (component.result['owner_resources_closed'] is True and
+                                 not flags['resource_pending'])
+    flags['baseline_verified'] = component.result['baseline_unchanged'] is True
+    complete = (reason == 'advertising_observed' and not component.failures and
+                flags['start_returned'] and flags['stop_returned'] and flags['closure_verified'] and
+                end_inventory is not None and end_inventory['helper_closed'] and
+                end_inventory['network_zero_known'] and not end_inventory['bridge_started'] and
+                all(component.result[key] is True for key in COMMON + SERVICE))
+    # Raw old component remains complete=False: its closed-policy run() was not
+    # called or falsified. This new smoke has an explicitly different result.
+    return dict(scope='receive-advertise-cancel-only-v1', complete=bool(complete), reason=reason,
+                flags=flags, observations=tuple(rows), terminal=end_inventory,
+                trials=dict(start=component.trial_start_facts, end=component.trial_end_facts),
+                component=component.result)

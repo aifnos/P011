@@ -1,0 +1,442 @@
+{
+  "changed_roles": [
+    "mta_client_executor",
+    "mta_client_receive_factory",
+    "mta_client_state_bridge",
+    "mta_client_receive_boot",
+    "mta_client_service_owner",
+    "runtime35/mta_client_executor"
+  ],
+  "filecenter_bytes": 113832,
+  "filecenter_cap": 131072,
+  "filecenter_changed_roles": [
+    "mta_toolbox_minhttp",
+    "mta_filecenter_companion"
+  ],
+  "filecenter_exact_roles": 7,
+  "filecenter_http": [
+    {
+      "candidate": [
+        "candidate/filecenter-http-parent-cap-v1/shared/mta_toolbox_minhttp.py",
+        9323,
+        "8ea06020e4b133665ab881e5901af9094ebc2c9d5add9d4eb37ca5b2e55a8c55"
+      ],
+      "edits": [
+        {
+          "after": "        header_deadline = min(self.deadline, time.monotonic()+4)\n",
+          "before": "        header_deadline = time.monotonic()+4\n",
+          "count": 1,
+          "name": "header_original_deadline_clamp"
+        }
+      ],
+      "name": "mta_toolbox_minhttp",
+      "source": [
+        "integration/ToolboxMta-v0.1/runtime/mta_toolbox_minhttp.py",
+        9303,
+        "6f8ec322fe8bb9522b9cc5ab1b52d844c17d366eaf7e176634b5760089bc3f93"
+      ]
+    },
+    {
+      "candidate": [
+        "candidate/filecenter-http-parent-cap-v1/receive/mta_filecenter_companion.py",
+        33630,
+        "8b3ab84e17de135622b3a58e29138ca556376172e6c523eb9ab22ef44f4880ba"
+      ],
+      "edits": [
+        {
+          "after": "class _FileCenterHandler(Handler):\n    def setup(self):\n        self.deadline = min(self.deadline, self.server.companion.until)\n        Handler.setup(self)\n\n",
+          "before": "class _FileCenterHandler(Handler):\n",
+          "count": 1,
+          "name": "receive_original_parent_cap_setup"
+        }
+      ],
+      "name": "mta_filecenter_companion",
+      "source": [
+        "candidate/filecenter-close-seal-v1/runtime/mta_filecenter_companion.py",
+        33508,
+        "e38fa8dc20e6730ab68c580d92866a7a71ceb420a00c3ac38e04d94b0316b284"
+      ]
+    }
+  ],
+  "manifests": [
+    {
+      "candidate": [
+        "host/formal_receive_fc_http_cap_v1_definition_manifest.json",
+        7937,
+        "96bfbbe105768331b0124b760e931109d33752b9caaba06beaaaecccefd51bce"
+      ],
+      "changes": [
+        [
+          0,
+          {
+            "bytes": 124769,
+            "module": "mta_client_executor",
+            "path": "candidate/receive-scope-dispatch-graph-v1/runtime/mta_client_executor.py",
+            "sha256": "345762f64d63977d0c8f1ee1c2f4d5ee0368e0c11b5888863b1edbbad83fb8c2"
+          },
+          {
+            "bytes": 124769,
+            "module": "mta_client_executor",
+            "path": "candidate/receive-fc-http-cap-graph-v1/runtime/mta_client_executor.py",
+            "sha256": "f762183a271e83a652e755c5e54691a7780cfc748d6497c6d4789cbb18b0385d"
+          }
+        ],
+        [
+          20,
+          {
+            "bytes": 99371,
+            "module": "mta_client_receive_factory",
+            "path": "candidate/receive-scope-dispatch-graph-v1/runtime/mta_client_receive_factory.py",
+            "sha256": "0c5269ed0e62b69626b59a3dfcb3214c61572e654d70d85e428a703fd5ecca0a"
+          },
+          {
+            "bytes": 99371,
+            "module": "mta_client_receive_factory",
+            "path": "candidate/receive-fc-http-cap-graph-v1/runtime/mta_client_receive_factory.py",
+            "sha256": "e1e02b700b51ca40dffc536622ab69647d58b93788b1458eb9db0f9cf017612b"
+          }
+        ],
+        [
+          21,
+          {
+            "bytes": 21356,
+            "module": "mta_client_state_bridge",
+            "path": "candidate/receive-scope-dispatch-graph-v1/runtime/mta_client_state_bridge.py",
+            "sha256": "8ab5dc13989a7096a8f7573316ccf56c450d0111f67f3e0fa0d15315fef38a55"
+          },
+          {
+            "bytes": 21356,
+            "module": "mta_client_state_bridge",
+            "path": "candidate/receive-fc-http-cap-graph-v1/runtime/mta_client_state_bridge.py",
+            "sha256": "4030ddf22ccea5dd46c261c5cc5a248b91a99c426934af0e039c36893d885f33"
+          }
+        ],
+        [
+          33,
+          {
+            "bytes": 19697,
+            "module": "mta_client_receive_boot",
+            "path": "candidate/receive-scope-dispatch-graph-v1/runtime/mta_client_receive_boot.py",
+            "sha256": "c7c4d0410a27bb94d51ba5e7e2023b0e340f9efd2141d95fe44ec22ac540f367"
+          },
+          {
+            "bytes": 19697,
+            "module": "mta_client_receive_boot",
+            "path": "candidate/receive-fc-http-cap-graph-v1/runtime/mta_client_receive_boot.py",
+            "sha256": "06c0d5b3a3c58d136403482104592491a83388ff04d86733fa09dc0a3f1c5fcd"
+          }
+        ],
+        [
+          34,
+          {
+            "bytes": 107104,
+            "module": "mta_client_service_owner",
+            "path": "candidate/receive-scope-dispatch-graph-v1/runtime/mta_client_service_owner.py",
+            "sha256": "4c46913a4bb5f1fe1e1d1c055215606137d53e9c66c7a077286ce77c06f71786"
+          },
+          {
+            "bytes": 107104,
+            "module": "mta_client_service_owner",
+            "path": "candidate/receive-fc-http-cap-graph-v1/runtime/mta_client_service_owner.py",
+            "sha256": "c7040f6f0363be008595f2b6c70a9ed3081702993fa73b8355331e8bafeb1ca0"
+          }
+        ]
+      ],
+      "private": false,
+      "source": [
+        "host/formal_receive_scope_dispatch_v1_definition_manifest.json",
+        7952,
+        "548816ee90f71bc030270b6e1c1b29d847b6e289440261d37c9c365bc09bc3e6"
+      ]
+    },
+    {
+      "candidate": [
+        "host/formal_receive_fc_http_cap_v1_private_source_manifest.json",
+        8165,
+        "b5175771f716a09773f6f5d70977d85b33dd7385a2bd6351f9e69dd098fd1a36"
+      ],
+      "changes": [
+        [
+          24,
+          {
+            "bytes": 124769,
+            "module": "mta_client_executor",
+            "path": "candidate/receive-scope-dispatch-graph-v1/runtime/mta_client_executor.py",
+            "sha256": "345762f64d63977d0c8f1ee1c2f4d5ee0368e0c11b5888863b1edbbad83fb8c2"
+          },
+          {
+            "bytes": 124769,
+            "module": "mta_client_executor",
+            "path": "candidate/receive-fc-http-cap-graph-v1/runtime/mta_client_executor.py",
+            "sha256": "f762183a271e83a652e755c5e54691a7780cfc748d6497c6d4789cbb18b0385d"
+          }
+        ]
+      ],
+      "private": true,
+      "source": [
+        "host/formal_receive_scope_dispatch_v1_private_source_manifest.json",
+        8168,
+        "52f0360b3fb0138b8fa6fd5589bb2d9f29e68d47e601e6d63ff5ebf60e3942ca"
+      ]
+    }
+  ],
+  "measured_owner_context_preserved": true,
+  "mechanical": [
+    {
+      "candidate": [
+        "candidate/receive-fc-http-cap-graph-v1/runtime/mta_client_executor.py",
+        124769,
+        "f762183a271e83a652e755c5e54691a7780cfc748d6497c6d4789cbb18b0385d"
+      ],
+      "edits": [
+        {
+          "after": "    if (directory != '/var/volatile/tmp/p011-mta-rx-fccap-v0001/runtime35' and\n",
+          "before": "    if (directory != '/var/volatile/tmp/p011-mta-rx-scope-v0001/runtime35' and\n",
+          "count": 1,
+          "name": "private_runtime_root"
+        }
+      ],
+      "functions_unchanged": false,
+      "name": "mta_client_executor",
+      "source": [
+        "candidate/receive-scope-dispatch-graph-v1/runtime/mta_client_executor.py",
+        124769,
+        "345762f64d63977d0c8f1ee1c2f4d5ee0368e0c11b5888863b1edbbad83fb8c2"
+      ]
+    },
+    {
+      "candidate": [
+        "candidate/receive-fc-http-cap-graph-v1/runtime/mta_client_state_bridge.py",
+        21356,
+        "4030ddf22ccea5dd46c261c5cc5a248b91a99c426934af0e039c36893d885f33"
+      ],
+      "edits": [
+        {
+          "after": "PARENT_SOURCE_SHA = 'f762183a271e83a652e755c5e54691a7780cfc748d6497c6d4789cbb18b0385d'\n",
+          "before": "PARENT_SOURCE_SHA = '345762f64d63977d0c8f1ee1c2f4d5ee0368e0c11b5888863b1edbbad83fb8c2'\n",
+          "count": 1,
+          "name": "PARENT_SOURCE_SHA_constant"
+        }
+      ],
+      "functions_unchanged": true,
+      "name": "mta_client_state_bridge",
+      "source": [
+        "candidate/receive-scope-dispatch-graph-v1/runtime/mta_client_state_bridge.py",
+        21356,
+        "8ab5dc13989a7096a8f7573316ccf56c450d0111f67f3e0fa0d15315fef38a55"
+      ]
+    },
+    {
+      "candidate": [
+        "candidate/receive-fc-http-cap-graph-v1/runtime/mta_client_receive_factory.py",
+        99371,
+        "e1e02b700b51ca40dffc536622ab69647d58b93788b1458eb9db0f9cf017612b"
+      ],
+      "edits": [
+        {
+          "after": "ASSET_ROOT = '/tmp/p011-mta-rx-fccap-v0001'\n",
+          "before": "ASSET_ROOT = '/tmp/p011-mta-rx-scope-v0001'\n",
+          "count": 1,
+          "name": "ASSET_ROOT_constant"
+        },
+        {
+          "after": "ASSET_PHYSICAL_ROOT = '/var/volatile/tmp/p011-mta-rx-fccap-v0001'\n",
+          "before": "ASSET_PHYSICAL_ROOT = '/var/volatile/tmp/p011-mta-rx-scope-v0001'\n",
+          "count": 1,
+          "name": "ASSET_PHYSICAL_ROOT_constant"
+        },
+        {
+          "after": "SOURCE_MANIFEST_SHA = 'b5175771f716a09773f6f5d70977d85b33dd7385a2bd6351f9e69dd098fd1a36'\n",
+          "before": "SOURCE_MANIFEST_SHA = '52f0360b3fb0138b8fa6fd5589bb2d9f29e68d47e601e6d63ff5ebf60e3942ca'\n",
+          "count": 1,
+          "name": "SOURCE_MANIFEST_SHA_constant"
+        },
+        {
+          "after": "F_SHA = 'f762183a271e83a652e755c5e54691a7780cfc748d6497c6d4789cbb18b0385d'\n",
+          "before": "F_SHA = '345762f64d63977d0c8f1ee1c2f4d5ee0368e0c11b5888863b1edbbad83fb8c2'\n",
+          "count": 1,
+          "name": "F_SHA_constant"
+        }
+      ],
+      "functions_unchanged": true,
+      "name": "mta_client_receive_factory",
+      "source": [
+        "candidate/receive-scope-dispatch-graph-v1/runtime/mta_client_receive_factory.py",
+        99371,
+        "0c5269ed0e62b69626b59a3dfcb3214c61572e654d70d85e428a703fd5ecca0a"
+      ]
+    },
+    {
+      "candidate": [
+        "candidate/receive-fc-http-cap-graph-v1/runtime/mta_client_receive_boot.py",
+        19697,
+        "06c0d5b3a3c58d136403482104592491a83388ff04d86733fa09dc0a3f1c5fcd"
+      ],
+      "edits": [
+        {
+          "after": "ROOT = '/tmp/p011-mta-rx-fccap-v0001'\n",
+          "before": "ROOT = '/tmp/p011-mta-rx-scope-v0001'\n",
+          "count": 1,
+          "name": "ROOT_constant"
+        },
+        {
+          "after": "PHYSICAL_ROOT = '/var/volatile/tmp/p011-mta-rx-fccap-v0001'\n",
+          "before": "PHYSICAL_ROOT = '/var/volatile/tmp/p011-mta-rx-scope-v0001'\n",
+          "count": 1,
+          "name": "PHYSICAL_ROOT_constant"
+        },
+        {
+          "after": "CLIENT_MANIFEST_SHA = 'b5175771f716a09773f6f5d70977d85b33dd7385a2bd6351f9e69dd098fd1a36'\n",
+          "before": "CLIENT_MANIFEST_SHA = '52f0360b3fb0138b8fa6fd5589bb2d9f29e68d47e601e6d63ff5ebf60e3942ca'\n",
+          "count": 1,
+          "name": "CLIENT_MANIFEST_SHA_constant"
+        },
+        {
+          "after": "F37_SHA = 'f762183a271e83a652e755c5e54691a7780cfc748d6497c6d4789cbb18b0385d'\n",
+          "before": "F37_SHA = '345762f64d63977d0c8f1ee1c2f4d5ee0368e0c11b5888863b1edbbad83fb8c2'\n",
+          "count": 1,
+          "name": "F37_SHA_constant"
+        },
+        {
+          "after": "    ('mta_client_receive_factory', 99371, 'e1e02b700b51ca40dffc536622ab69647d58b93788b1458eb9db0f9cf017612b'),\n",
+          "before": "    ('mta_client_receive_factory', 99371, '0c5269ed0e62b69626b59a3dfcb3214c61572e654d70d85e428a703fd5ecca0a'),\n",
+          "count": 1,
+          "name": "mta_client_receive_factory_tuple"
+        },
+        {
+          "after": "    ('mta_client_state_bridge', 21356, '4030ddf22ccea5dd46c261c5cc5a248b91a99c426934af0e039c36893d885f33'),\n",
+          "before": "    ('mta_client_state_bridge', 21356, '8ab5dc13989a7096a8f7573316ccf56c450d0111f67f3e0fa0d15315fef38a55'),\n",
+          "count": 1,
+          "name": "mta_client_state_bridge_tuple"
+        }
+      ],
+      "functions_unchanged": true,
+      "name": "mta_client_receive_boot",
+      "source": [
+        "candidate/receive-scope-dispatch-graph-v1/runtime/mta_client_receive_boot.py",
+        19697,
+        "c7c4d0410a27bb94d51ba5e7e2023b0e340f9efd2141d95fe44ec22ac540f367"
+      ]
+    },
+    {
+      "candidate": [
+        "candidate/receive-fc-http-cap-graph-v1/runtime/mta_client_service_owner.py",
+        107104,
+        "c7040f6f0363be008595f2b6c70a9ed3081702993fa73b8355331e8bafeb1ca0"
+      ],
+      "edits": [
+        {
+          "after": "ROOT = '/tmp/p011-mta-rx-fccap-v0001'\n",
+          "before": "ROOT = '/tmp/p011-mta-rx-scope-v0001'\n",
+          "count": 1,
+          "name": "ROOT_constant"
+        },
+        {
+          "after": "BOOT_PIN = (19697, '06c0d5b3a3c58d136403482104592491a83388ff04d86733fa09dc0a3f1c5fcd')\n",
+          "before": "BOOT_PIN = (19697, 'c7c4d0410a27bb94d51ba5e7e2023b0e340f9efd2141d95fe44ec22ac540f367')\n",
+          "count": 1,
+          "name": "BOOT_PIN_constant"
+        },
+        {
+          "after": "        physical = '/var/volatile/tmp/p011-mta-rx-fccap-v0001'\n",
+          "before": "        physical = '/var/volatile/tmp/p011-mta-rx-scope-v0001'\n",
+          "count": 1,
+          "name": "held_physical_root"
+        },
+        {
+          "after": "    ('mta_toolbox_minhttp', 9323, '8ea06020e4b133665ab881e5901af9094ebc2c9d5add9d4eb37ca5b2e55a8c55'),\n",
+          "before": "    ('mta_toolbox_minhttp', 9303, '6f8ec322fe8bb9522b9cc5ab1b52d844c17d366eaf7e176634b5760089bc3f93'),\n",
+          "count": 1,
+          "name": "mta_toolbox_minhttp_tuple"
+        },
+        {
+          "after": "    ('mta_filecenter_companion', 33630, '8b3ab84e17de135622b3a58e29138ca556376172e6c523eb9ab22ef44f4880ba'),\n",
+          "before": "    ('mta_filecenter_companion', 33508, 'e38fa8dc20e6730ab68c580d92866a7a71ceb420a00c3ac38e04d94b0316b284'),\n",
+          "count": 1,
+          "name": "mta_filecenter_companion_tuple"
+        }
+      ],
+      "functions_unchanged": false,
+      "name": "mta_client_service_owner",
+      "source": [
+        "candidate/receive-scope-dispatch-graph-v1/runtime/mta_client_service_owner.py",
+        107104,
+        "4c46913a4bb5f1fe1e1d1c055215606137d53e9c66c7a077286ce77c06f71786"
+      ]
+    },
+    {
+      "candidate": [
+        "candidate/receive-fc-http-cap-graph-v1/runtime/mta_formal_receive_session.py",
+        79281,
+        "1b0fe8a2959d81fa25eb66bad258965c2980380f5811c0e3562c448ea0a70333"
+      ],
+      "edits": [
+        {
+          "after": "STATE_ROOT = '/var/volatile/tmp/p011-mta-rx-fccap-v0001'\n",
+          "before": "STATE_ROOT = '/var/volatile/tmp/p011-mta-rx-scope-v0001'\n",
+          "count": 1,
+          "name": "STATE_ROOT_constant"
+        },
+        {
+          "after": "STATE_ALIAS = '/tmp/p011-mta-rx-fccap-v0001'\n",
+          "before": "STATE_ALIAS = '/tmp/p011-mta-rx-scope-v0001'\n",
+          "count": 1,
+          "name": "STATE_ALIAS_constant"
+        },
+        {
+          "after": "    ('mta_client_executor', 124769, 'f762183a271e83a652e755c5e54691a7780cfc748d6497c6d4789cbb18b0385d'),\n",
+          "before": "    ('mta_client_executor', 124769, '345762f64d63977d0c8f1ee1c2f4d5ee0368e0c11b5888863b1edbbad83fb8c2'),\n",
+          "count": 2,
+          "name": "mta_client_executor_tuple"
+        },
+        {
+          "after": "    ('mta_client_receive_factory', 99371, 'e1e02b700b51ca40dffc536622ab69647d58b93788b1458eb9db0f9cf017612b'),\n",
+          "before": "    ('mta_client_receive_factory', 99371, '0c5269ed0e62b69626b59a3dfcb3214c61572e654d70d85e428a703fd5ecca0a'),\n",
+          "count": 1,
+          "name": "mta_client_receive_factory_tuple"
+        },
+        {
+          "after": "    ('mta_client_state_bridge', 21356, '4030ddf22ccea5dd46c261c5cc5a248b91a99c426934af0e039c36893d885f33'),\n",
+          "before": "    ('mta_client_state_bridge', 21356, '8ab5dc13989a7096a8f7573316ccf56c450d0111f67f3e0fa0d15315fef38a55'),\n",
+          "count": 1,
+          "name": "mta_client_state_bridge_tuple"
+        },
+        {
+          "after": "    ('mta_client_receive_boot', 19697, '06c0d5b3a3c58d136403482104592491a83388ff04d86733fa09dc0a3f1c5fcd'),\n",
+          "before": "    ('mta_client_receive_boot', 19697, 'c7c4d0410a27bb94d51ba5e7e2023b0e340f9efd2141d95fe44ec22ac540f367'),\n",
+          "count": 1,
+          "name": "mta_client_receive_boot_tuple"
+        },
+        {
+          "after": "    ('mta_client_service_owner', 107104, 'c7040f6f0363be008595f2b6c70a9ed3081702993fa73b8355331e8bafeb1ca0'),\n",
+          "before": "    ('mta_client_service_owner', 107104, '4c46913a4bb5f1fe1e1d1c055215606137d53e9c66c7a077286ce77c06f71786'),\n",
+          "count": 1,
+          "name": "mta_client_service_owner_tuple"
+        }
+      ],
+      "functions_unchanged": true,
+      "name": "mta_formal_receive_session",
+      "source": [
+        "candidate/receive-scope-dispatch-graph-v1/runtime/mta_formal_receive_session.py",
+        79281,
+        "70a348bbe1288edbd3fdf2f26c774289372bd81510a4d15809a0e5ff8e1905a7"
+      ]
+    }
+  ],
+  "mother": [
+    "host/formal_receive_scope_dispatch_v1_definitions.py",
+    178958,
+    "bcf738217c0821a14d732872cb1520e0e090f507272e588f8659d40b07bf28e3"
+  ],
+  "native_authority_changed": false,
+  "native_business_methods_preserved": true,
+  "payload_bytes": 4193464,
+  "private_roles_exact": 34,
+  "proc_native_wpa_monitor_unchanged": true,
+  "rf_requested": false,
+  "root": "p011-mta-rx-fccap-v0001",
+  "schema": "p011-receive-fc-http-cap-v1-graph-delta",
+  "send_graph_changed": false,
+  "state_protocol_unchanged": true,
+  "unchanged_payload_roles": 69
+}

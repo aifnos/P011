@@ -1,0 +1,208 @@
+{
+  "schema": "p011-formal-send-repair-ordinary-v1-exact-source-delta",
+  "evidence": "PC_MECHANICAL_SOURCE_EDIT_NOT_EXECUTED",
+  "source": [
+    "host/device_formal_send_filecenter_ordinary_v5_check.py",
+    20322,
+    "8a0b9a45cb529068fd364e93dc1fdbea7b2ab6157e2d82d68590f7a3d7dea2f4"
+  ],
+  "candidate": [
+    "host/device_formal_send_repair_ordinary_v1_check.py",
+    20427,
+    "1b29868ff72d40a5d5f9b5a021c29a981f4f096312ed3b061281ac8806249dcf"
+  ],
+  "replacements": [
+    {
+      "name": "entry_title",
+      "before": "One fixed ordinary-v5 files-only stage; default PC SOURCE.",
+      "after": "One fixed repair-ordinary-v1 files-only stage; default PC SOURCE.",
+      "count": 1,
+      "scope": "mechanical_actual_pin_root_or_label"
+    },
+    {
+      "name": "self_label",
+      "before": "SELF = 'host/device_formal_send_filecenter_ordinary_v5_check.py'",
+      "after": "SELF = 'host/device_formal_send_repair_ordinary_v1_check.py'",
+      "count": 1,
+      "scope": "mechanical_actual_pin_root_or_label"
+    },
+    {
+      "name": "oneclick_labels",
+      "before": "CMD = 'STAGE_MTA_FORMAL_SEND_FILECENTER_ORDINARY_V5.cmd'",
+      "after": "CMD = 'HOST_MTA_FORMAL_SEND_REPAIR_ORDINARY_V1.cmd'\nTEST_CMD = 'TEST_MTA_FORMAL_SEND_REPAIR_ORDINARY_V1.cmd'",
+      "count": 1,
+      "scope": "mechanical_actual_pin_root_or_label"
+    },
+    {
+      "name": "actual_v6_root",
+      "before": "formal-send-filecenter-deploy-v5",
+      "after": "formal-send-filecenter-deploy-v6",
+      "count": 3,
+      "scope": "mechanical_actual_pin_root_or_label"
+    },
+    {
+      "name": "actual_v6_catalog_pin",
+      "before": "d000945a5e749a7f4d651305ef0e3a0b9f7fce96ffc2360dfed04b0d37ba230c",
+      "after": "d2300225159796bee6f6d2664ba86cdd1d13f8033899596effeb0431c7633052",
+      "count": 1,
+      "scope": "mechanical_actual_pin_root_or_label"
+    },
+    {
+      "name": "actual_v6_stage_pin",
+      "before": "7ea5f8a058da636c7f1b16f29199b3c6cd2bc2541a4825791668005413ba6398",
+      "after": "49e9f972d093d7f7749f5dd4a38558a73cc0e36ea894e558455238aeb8f840da",
+      "count": 1,
+      "scope": "mechanical_actual_pin_root_or_label"
+    },
+    {
+      "name": "actual_v6_staged_bytes",
+      "before": "1353583",
+      "after": "1353776",
+      "count": 6,
+      "scope": "mechanical_actual_pin_root_or_label"
+    },
+    {
+      "name": "help_readme_version",
+      "before": "ordinary v5",
+      "after": "ordinary v6",
+      "count": 2,
+      "scope": "mechanical_actual_pin_root_or_label"
+    },
+    {
+      "name": "results_label",
+      "before": "'formal-send-filecenter-ordinary-v5-'",
+      "after": "'formal-send-repair-ordinary-v1-'",
+      "count": 1,
+      "scope": "mechanical_actual_pin_root_or_label"
+    },
+    {
+      "name": "report_label",
+      "before": "'formal-send-filecenter-ordinary-v5-thin'",
+      "after": "'formal-send-repair-ordinary-v1-thin'",
+      "count": 1,
+      "scope": "mechanical_actual_pin_root_or_label"
+    },
+    {
+      "name": "snapshot_new_test_cmd",
+      "before": "        inputs[CMD] = (BASE / CMD).read_bytes()\n",
+      "after": "        inputs[CMD] = (BASE / CMD).read_bytes()\n        inputs[TEST_CMD] = (BASE / TEST_CMD).read_bytes()\n",
+      "count": 1,
+      "scope": "mechanical_actual_pin_root_or_label"
+    }
+  ],
+  "exact_bytes_forward": true,
+  "exact_bytes_reverse": true,
+  "source_methods": [
+    "sha",
+    "need",
+    "write_new",
+    "fixed",
+    "literal",
+    "module",
+    "selected_generator",
+    "payloads",
+    "main"
+  ],
+  "unchanged_functions": [
+    "sha",
+    "need",
+    "write_new",
+    "fixed",
+    "literal",
+    "module",
+    "selected_generator"
+  ],
+  "mechanically_affected_functions": [
+    "payloads",
+    "main"
+  ],
+  "actual_v6_bindings": [
+    [
+      "candidate/formal-send-filecenter-deploy-v6/assets/ordinary-source-manifest.json",
+      20796,
+      "d2300225159796bee6f6d2664ba86cdd1d13f8033899596effeb0431c7633052"
+    ],
+    [
+      "candidate/formal-send-filecenter-deploy-v6/runtime/formal_send_stage.py",
+      37417,
+      "49e9f972d093d7f7749f5dd4a38558a73cc0e36ea894e558455238aeb8f840da"
+    ],
+    [
+      "candidate/formal-send-filecenter-deploy-v6/runtime/mta_client_receive_boot.py",
+      19583,
+      "ccf7db818c159c1637676ea6860c48ce4ffa9298b3fd44c76a2565635583c405"
+    ],
+    [
+      "candidate/formal-send-filecenter-deploy-v6/runtime/mta_client_service_owner.py",
+      89599,
+      "f8f2bca88915d372ba685024bf995e9d746491559d5c981e83ff1a1e3d6ddea0"
+    ],
+    [
+      "candidate/formal-send-filecenter-deploy-v6/runtime/formal_send_session.py",
+      24059,
+      "9c7f87dc4eb7cca9cc09e65a75063365429c363ea1e68da27e9597f228bbf036"
+    ]
+  ],
+  "root": "/var/volatile/tmp/p011-mta-formal-send-filecenter-deploy-v6",
+  "ordinary_roles": 32,
+  "staged_files": 37,
+  "staged_bytes": 1353776,
+  "readonly_sender_profile": [
+    27,
+    2402458
+  ],
+  "readonly_observer_profile": [
+    41,
+    1442508
+  ],
+  "oneclicks": [
+    {
+      "pin": [
+        "HOST_MTA_FORMAL_SEND_REPAIR_ORDINARY_V1.cmd",
+        237,
+        "222de7982020df8a2ffae0a7e57cb273f9d904927f96ad1ed4f1207f00e2c1f8"
+      ],
+      "arguments": [],
+      "forwards_user_arguments": false,
+      "mode": "source"
+    },
+    {
+      "pin": [
+        "TEST_MTA_FORMAL_SEND_REPAIR_ORDINARY_V1.cmd",
+        252,
+        "87bef1cf0af7158f0f2f7fbfbb3b54c2fc9320d8e032a7199507aaffa6f2fe3e"
+      ],
+      "arguments": [
+        "--stage-device"
+      ],
+      "forwards_user_arguments": false,
+      "mode": "files_only_stage"
+    }
+  ],
+  "original_cmd": [
+    "STAGE_MTA_FORMAL_SEND_FILECENTER_ORDINARY_V5.cmd",
+    244,
+    "ab9f1b55dc1b424ad0adc7706457986af23afb28cad51e3f133a3cf80d047463"
+  ],
+  "original_stage_seconds": 120,
+  "original_outer_seconds": 180,
+  "original_carrier_launch_timeout": 210,
+  "program_cap": 2097152,
+  "wire_cap": 4194304,
+  "line_cap": 256,
+  "shell_cap": 4096,
+  "original_gates_preserved": true,
+  "original_finally_preserved": true,
+  "original_pass_predicate_preserved": true,
+  "original_zip_sealer_preserved": true,
+  "python_executed": false,
+  "source_executed": false,
+  "tests_executed": false,
+  "adb_executed": false,
+  "build_executed": false,
+  "rf_executed": false,
+  "owner_started": false,
+  "ui_started": false,
+  "pending_handled": false,
+  "production_admitted": false
+}

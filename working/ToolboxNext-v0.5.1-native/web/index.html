@@ -1,0 +1,6 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>P011 无线文件中心</title><link rel="icon" href="/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="/transfer.css"></head>
+<body><main><header><span class="badge">P011 / TOOLBOX NEXT</span><h1>无线文件中心</h1><p>与学习笔处于同一可信局域网。仅开放用户目录，结束后请在笔上关闭传输。</p></header>
+<section id="login"><label for="code">笔上显示的 8 位访问码</label><form id="login-form"><input id="code" type="password" inputmode="numeric" pattern="[0-9]{8}" maxlength="8" autocomplete="off" required><button>连接学习笔</button></form></section>
+<section id="workspace" hidden><div class="toolbar"><button id="up">上一级</button><strong id="path">用户目录</strong><button id="refresh">刷新</button><button id="logout">退出</button></div><p class="hint">同名文件不会覆盖。音乐 / 视频由笔上文件中心打开；游戏资源仅保存，不会自动运行。</p>
+<div class="upload"><label for="files">导入到当前目录（单文件 ≤ 64 MiB）</label><input id="files" type="file" multiple><button id="upload">上传所选文件</button><progress id="progress" max="100" value="0" hidden></progress></div><ul id="listing"></ul><button id="more" hidden>下一页</button></section>
+<p id="status" role="status" aria-live="polite">传输使用局域网 HTTP，不适合公共 Wi-Fi 或敏感文件。</p></main><script src="/transfer.js"></script></body></html>

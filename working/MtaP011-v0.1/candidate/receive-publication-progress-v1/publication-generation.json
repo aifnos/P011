@@ -1,0 +1,86 @@
+{
+  "admission": false,
+  "device_executed": false,
+  "factory_growth_bytes": 1498,
+  "factory_growth_cap": 2538,
+  "generator": [
+    "candidate/receive-publication-progress-v1/generate.py",
+    16140,
+    "d4c8a7aea6e0452469847f53fdecbca756c347d524a9351d3b9a4eebb3bca988"
+  ],
+  "initial_start_elapsed": null,
+  "malformed_diag_preserves_original_known": true,
+  "only_phone_stage_progress_changed": true,
+  "origin": "cached attempt.last after original attempt.start returns",
+  "original_clock_io_lock_trace_calls_unchanged": true,
+  "original_finally_raise_write_loader_ast_unchanged": true,
+  "original_phone_parser_requires_new_finite_fields": true,
+  "other_factory_definitions_unchanged": true,
+  "output_pins": [
+    [
+      "candidate/receive-publication-progress-v1/publication-exactsource-delta.json",
+      9609,
+      "c335cc3e5591a33c60103a81e301bc92f51b5c52592fecf578ed8d6cdcd6b228"
+    ],
+    [
+      "candidate/receive-publication-progress-v1/runtime/mta_client_receive_factory.py",
+      99255,
+      "b7f771bb58e9238474ebe6cb2b64604dc0f4bcd79eb7743e48b8f9a028263664"
+    ],
+    [
+      "candidate/receive-publication-progress-v1/runtime/phone_discovery_session.py",
+      28352,
+      "cdfcec298c2da5b2ec2eff931b06da4381c56ddcba39a163cb8b58dad4108d12"
+    ]
+  ],
+  "phone_fields": [
+    "publication_step",
+    "publication_sources_done",
+    "publication_sample_elapsed",
+    "publication_step_elapsed",
+    "publication_progress_unknown"
+  ],
+  "phone_tested": false,
+  "restoration_verified": false,
+  "rf_started": false,
+  "role75_packaged": false,
+  "schema": "p011-receive-publication-progress-v1-generation",
+  "source_checked_by_host": false,
+  "source_completion_cap": 35,
+  "source_count": 3,
+  "source_pins": [
+    [
+      "candidate/receive-proc-freezer-v1/runtime/mta_client_receive_factory.py",
+      97757,
+      "051b1f6d1e1823be652f59695628d41f9d11c3d1da1896149dc4cfe3c7b207cb"
+    ],
+    [
+      "candidate/receive-handoff-progress-120s-v2/runtime/phone_discovery_session.py",
+      26305,
+      "15540ef933e3c18853f8ab650e8ddc4aa902c2499eec3a7538f6f178e295ddf4"
+    ]
+  ],
+  "status": "MECHANICALLY_DERIVED_NOT_HOST_OR_DEVICE_TESTED",
+  "step_names": [
+    "start",
+    "io",
+    "sources",
+    "wpa",
+    "json_pin",
+    "profile",
+    "received",
+    "identity",
+    "manifest",
+    "write",
+    "loader"
+  ],
+  "tests_executed": false,
+  "time_semantics": "successful cached sample deltas, not live time or exact call durations",
+  "tuple_attribute": "_prepdiag",
+  "tuple_fields": [
+    "step",
+    "sources_done",
+    "origin_sample",
+    "step_start_sample"
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "schema": "client-store-close-v22-source-only",
+  "previous_checker_sha256": "b9db2d1c54ae882bd7575dfd5175ed7fdbf5ebb9c898156318ac7d269678e2f0",
+  "previous_manifest_sha256": "a8387d5e5036370ec8ae8bf7794f903680a5a124621b8815650dcd793fafd999",
+  "replacement": {
+    "module": "mta_client_store",
+    "path": "candidate/client-store-close-v22/runtime/mta_client_store.py",
+    "sha256": "a829dfd10ed00ce4ea3fc8b4e850b917cb2e79d609de8dfa9ea096e33c2c97ab",
+    "bytes": 61184
+  }
+}

@@ -1,0 +1,233 @@
+{
+  "artifacts_excluding_definitions_and_self": [
+    [
+      "candidate/receive-proc-freezer-v1/graph-exactsource-delta.json",
+      23494,
+      "9804cc25849db8acd1901a31d6f1d3f045d35968854cd8082ba4bb002050d310"
+    ],
+    [
+      "candidate/receive-proc-freezer-v1/runtime/mta_client_executor.py",
+      124768,
+      "4b43d778473a4c2bd484be7a25e68a5a320dd78cede5d7d0c137d392f3478ecc"
+    ],
+    [
+      "candidate/receive-proc-freezer-v1/runtime/mta_client_receive_boot.py",
+      19695,
+      "5321af05bacde54904439747634fe3d45ec3081d5165212fbcfcab7b1f95d91a"
+    ],
+    [
+      "candidate/receive-proc-freezer-v1/runtime/mta_client_receive_factory.py",
+      97757,
+      "051b1f6d1e1823be652f59695628d41f9d11c3d1da1896149dc4cfe3c7b207cb"
+    ],
+    [
+      "candidate/receive-proc-freezer-v1/runtime/mta_client_service_owner.py",
+      107024,
+      "90f28f3472747168d9ab2a36869cfc84c520bbf2fd95eff0433449f640c46fc7"
+    ],
+    [
+      "candidate/receive-proc-freezer-v1/runtime/mta_client_state_bridge.py",
+      21356,
+      "89832b90bd8bb173ed52fa9087ba09e850d1fbbb946813384865c8540d0f0850"
+    ],
+    [
+      "candidate/receive-proc-freezer-v1/runtime/mta_formal_receive_navigation_session.py",
+      88850,
+      "9d2244fb49058077d947f95b514c921b2fd62c2285c00147edce07523c2a8963"
+    ],
+    [
+      "candidate/receive-proc-freezer-v1/runtime/mta_formal_receive_session.py",
+      79279,
+      "68573f0c9053db3df42f71647d9765a6af9bda56f4913daeef52b79e907f1894"
+    ],
+    [
+      "candidate/receive-proc-freezer-v1/runtime/ui_session.py",
+      100157,
+      "06196ee0567dd5e3076638a3821974985e5b771497922eb0ee7ecdf916ab0697"
+    ],
+    [
+      "host/formal_receive_proc_freezer_v1_definition_manifest.json",
+      7912,
+      "1f58907a64a16f3ac979a68532220d05738cc8f6b4b0e7a2953b261a08c0ec6f"
+    ],
+    [
+      "host/formal_receive_proc_freezer_v1_private_source_manifest.json",
+      8160,
+      "ab8b9f5cb173d62c0850ac89c546701b12036453892772a9143fd89d5f86bedf"
+    ]
+  ],
+  "business_closure_count": 1,
+  "definitions_and_self_omitted_to_avoid_circular_pins": true,
+  "definitions_path": "host/formal_receive_proc_freezer_v1_definitions.py",
+  "device_tested": false,
+  "generation_path": "candidate/receive-proc-freezer-v1/graph-generation.json",
+  "generator": [
+    "candidate/receive-proc-freezer-v1/generate_graph.py",
+    38376,
+    "29ef7094e0f1aa61a8e3b1d0ecc72c1d895acbd215dffe62e3e5ada8ae12db25"
+  ],
+  "guards": {
+    "atomic_functions_unchanged": true,
+    "changed_payload_roles": 7,
+    "cleanup_seconds": 60,
+    "client_rfinit_unchanged": true,
+    "current_window_logic_unchanged": true,
+    "device_tested": false,
+    "filecenter_cap": 131072,
+    "filecenter_count": 9,
+    "filecenter_unchanged": true,
+    "gui20_unchanged": true,
+    "headless_line_cap": 256,
+    "historical_generator_called": false,
+    "historical_verifier_called": false,
+    "native_unchanged": true,
+    "navigation_display_seconds": 20,
+    "navigation_failure_line": 1560,
+    "navigation_observer_line": 817,
+    "ordinary_changed_roles": 5,
+    "ordinary_count": 35,
+    "original_result_fields": 51,
+    "owner_seconds": 600,
+    "payload_cap": 4194304,
+    "payload_role_count": 75,
+    "phone_tested": false,
+    "prepare_seconds": 120,
+    "private_changed_roles": 2,
+    "private_count": 35,
+    "proc_mask": 1073741824,
+    "ready_seconds": 10,
+    "restoration_verified": false,
+    "rf_started": false,
+    "source_check_executed": false,
+    "startup_host_seconds": 250,
+    "startup_remote_alarm_seconds": 240,
+    "startup_seconds": 10,
+    "target_source_cap": 2097152,
+    "tests_executed": false,
+    "ui_line_cap": 2048,
+    "unchanged_payload_roles": 68,
+    "wire_cap": 6291456,
+    "worker_run_fixed_line": 1246
+  },
+  "host_checked": false,
+  "mechanical_closure_count": 8,
+  "ordinary_changed_roles": [
+    "mta_client_executor",
+    "mta_client_state_bridge",
+    "mta_client_receive_factory",
+    "mta_client_receive_boot",
+    "mta_client_service_owner"
+  ],
+  "phone_tested": false,
+  "private_changed_roles": [
+    "mta_client_proc",
+    "mta_client_executor"
+  ],
+  "proc_inputs": [
+    [
+      "candidate/client-proc-deadline-v25/runtime/mta_client_proc.py",
+      39384,
+      "ede5953c33ba4c17d3aecb1fffe8a9358589497b37e3109034d5e1de3eadb3d6"
+    ],
+    [
+      "candidate/receive-proc-freezer-v1/runtime/mta_client_proc.py",
+      39398,
+      "2894a8ffb1e361bd1f4785e6da2b0df9e5ee8bff7711e21ee745ae3cd1f9653d"
+    ],
+    [
+      "candidate/receive-proc-freezer-v1/generate_proc.py",
+      8164,
+      "c9e725dc092436a7c8fd82d84e38954dabac7cbf1571b2c736fd53fce55faad1"
+    ],
+    [
+      "candidate/receive-proc-freezer-v1/proc-exactsource-delta.json",
+      1512,
+      "0f047d009c25e068b7e260a53543273cc0ef83233f2f69eebccabbcc32088fc0"
+    ],
+    [
+      "candidate/receive-proc-freezer-v1/proc-generation.json",
+      1446,
+      "ba1887f08a17f6a04e02a8256719fadb40c2900fc63dbdc243f1cc00753304ad"
+    ]
+  ],
+  "schema": "p011-receive-proc-freezer-v1-graph-generation",
+  "source_origin_count": 208,
+  "status": "MECHANICAL_GENERATED_NOT_HOST_CHECKED",
+  "tests_executed": false,
+  "totals": {
+    "filecenter_bytes": 113690,
+    "original_payload_bytes": 4191752,
+    "payload_bytes": 4191766,
+    "payload_remaining": 2538
+  },
+  "unchanged_payload_roles": [
+    "p011_json",
+    "mta_protocol",
+    "mta_storage",
+    "mta_files",
+    "mta_crypto",
+    "mta_transfer_session",
+    "mta_dhcp",
+    "mta_dhcp_server",
+    "mta_scoped_sockets",
+    "mta_transport",
+    "mta_sender",
+    "mta_send_worker",
+    "mta_scan_handoff",
+    "mta_wifi",
+    "minhttp",
+    "mta_client_control_frame",
+    "mta_client_connect_handoff",
+    "mta_client_tmp_alias",
+    "mta_client_startup_readonly",
+    "mta_go_deployment",
+    "mta_send_preparation",
+    "mta_go_readonly_parent",
+    "mta_go_send_publication",
+    "mta_go_send_bridge",
+    "mta_go_readonly_terminal_parent",
+    "mta_receive_radio_baseline",
+    "mta_receive_network",
+    "mta_receive_barrier",
+    "mta_receive_trial",
+    "mta_service",
+    "mta-bluez-helper",
+    "mta-network-helper",
+    "mta-connman-observer",
+    "runtime35/p011_json",
+    "runtime35/mta_ip",
+    "runtime35/mta_client_tmp_alias",
+    "runtime35/mta_p2p_client_init",
+    "runtime35/mta_client_resource_budget",
+    "runtime35/mta_client_caps",
+    "runtime35/mta_client_caps_transport",
+    "runtime35/mta_client_baseline",
+    "runtime35/mta_client_journal_codec",
+    "runtime35/mta_client_coordination",
+    "runtime35/mta_client_files",
+    "runtime35/mta_client_pending",
+    "runtime35/mta_client_store",
+    "runtime35/mta_client_process_owner",
+    "runtime35/mta_client_launch_registration",
+    "runtime35/mta_client_two_phase_lease",
+    "runtime35/mta_p2p_client_ctrl",
+    "runtime35/mta_client_wpa_status",
+    "runtime35/mta_protocol",
+    "runtime35/mta_client_control_frame",
+    "runtime35/mta_client_kernel_proof",
+    "runtime35/mta_client_connection",
+    "runtime35/mta_client_linux_provider",
+    "runtime35/mta_dhcp",
+    "runtime35/mta_dhcp_client_core",
+    "runtime35/mta_dhcp_client",
+    "runtime35/mta_client_dora",
+    "runtime35/mta_client_dynamic_ip",
+    "runtime35/mta_client_peer",
+    "runtime35/mta_scoped_sockets",
+    "runtime35/mta_storage",
+    "runtime35/mta_transport",
+    "runtime35/mta_client_transfer",
+    "mta-wpa-supplicant",
+    "receive_monitor"
+  ]
+}

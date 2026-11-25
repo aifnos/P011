@@ -1,0 +1,377 @@
+{
+  "schema": "p011-formal-send-cancel-graph-v1-generation",
+  "scope": "GENERATED_SOURCE_ONLY_NOT_STAGED_NOT_RUN",
+  "generator": [
+    "candidate/formal-send-cancel-graph-v1/generate_graph.py",
+    26849,
+    "b6f4d51c451461cc9627e432699ccf5afe51496d24d7dd2f1da783520ba58d5a"
+  ],
+  "original_root": "/tmp/p011-mta-formal-send-filecenter-deploy-v5",
+  "root": "/tmp/p011-mta-formal-send-filecenter-deploy-v6",
+  "physical_root": "/var/volatile/tmp/p011-mta-formal-send-filecenter-deploy-v6",
+  "business_edits": 1,
+  "business_method": "State.status",
+  "business_byte_delta": 193,
+  "ordinary_roles": 32,
+  "ordinary_source_bytes": 1078686,
+  "staged_files": 37,
+  "staged_bytes": 1353776,
+  "sender_files": 27,
+  "sender_bytes": 2402458,
+  "observer_files": 41,
+  "observer_bytes": 1442508,
+  "helper_files": 3,
+  "filecenter_files": 9,
+  "filecenter_source_bytes": 99972,
+  "original_loader_seconds": 10,
+  "stage_seconds": 120,
+  "original_service_profiles": [
+    [
+      "diagnostic",
+      60.0,
+      false
+    ],
+    [
+      "send-interactive-v1",
+      600.0,
+      true
+    ]
+  ],
+  "program_cap_bytes": 2097152,
+  "wire_cap_bytes": 4194304,
+  "source_forward_reverse_verified": true,
+  "mechanical_ast_inverse_verified": true,
+  "source_definition_rosters_unchanged": true,
+  "only_status_business_ast_changed": true,
+  "minhttp_close_fix_reused": true,
+  "source_unchanged_checked": true,
+  "runtime": false,
+  "host_test": false,
+  "build": false,
+  "ui": false,
+  "device": false,
+  "rf": false,
+  "phone": false,
+  "production": false,
+  "tests_replayed": false,
+  "input_count": 55,
+  "inputs": [
+    [
+      "candidate/client-connect-v13/runtime/mta_client_connect_handoff.py",
+      10533,
+      "aeade54eac7ed055936d7004087aa2a30a731ee7742365080cbd037264a58cc4"
+    ],
+    [
+      "candidate/client-integrated-v37/runtime/mta_client_control_frame.py",
+      20942,
+      "d1a8fce91ab705524f14edac8d81e8d391c0cddbf8f4ac96ee7a6446c0512278"
+    ],
+    [
+      "candidate/client-integrated-v37/runtime/mta_client_executor.py",
+      105182,
+      "f3f7c9fb54e46f82b4321152dfac6f4ab9b037943c403d76716f8254700bb17e"
+    ],
+    [
+      "candidate/client-receive-factory-v69-r3/runtime/mta_client_receive_factory.py",
+      54158,
+      "29265227937c2191e8af7a90a25ee518c87e6cb2a28162a99f883196bd9d7329"
+    ],
+    [
+      "candidate/client-receive-factory-v69/runtime/mta_client_state_bridge.py",
+      21283,
+      "17d3c5339c1e68bf5eb68308858144d687b1b17616cbeaa0817bad91bd33b8fd"
+    ],
+    [
+      "candidate/client-tmp-alias-v11/runtime/mta_client_tmp_alias.py",
+      8827,
+      "1a4a52bd0bae7add6ae42f66bd9827c43865a0170c666eaab00797d1f45f7f2f"
+    ],
+    [
+      "candidate/filecenter-deadline-v2/runtime/mta_filecenter_audio.py",
+      15082,
+      "898e5373f6ec4789eaf756ffd01731646bcafb7b0f35019731403a2e881147af"
+    ],
+    [
+      "candidate/filecenter-deadline-v2/runtime/mta_filecenter_companion.py",
+      25966,
+      "51f212ef07e0e323cc3803cfd2583ec29867ce0bbf7daff9129ad51d4f6eeeb3"
+    ],
+    [
+      "candidate/formal-send-cancel-graph-v1/generate_graph.py",
+      26849,
+      "b6f4d51c451461cc9627e432699ccf5afe51496d24d7dd2f1da783520ba58d5a"
+    ],
+    [
+      "candidate/formal-send-cancel-status-v1/exactsource-delta.json",
+      1458,
+      "1dcaa43c0d0bc465bda3e8a1b0f8ea18f342346713fb80e1e5a3dff0f6e4d2aa"
+    ],
+    [
+      "candidate/formal-send-cancel-status-v1/runtime/mta_service.py",
+      145733,
+      "4b1971056673e492e42d59410594192ea7165687ec0ac807cb61deccd5e75d82"
+    ],
+    [
+      "candidate/formal-send-filecenter-deploy-v3/assets/filecenter-source-manifest.json",
+      2466,
+      "14d57b5aea7c49df0f87b6338044c86ccd155583994e83c8158c5217d7f48e1d"
+    ],
+    [
+      "candidate/formal-send-filecenter-deploy-v3/runtime/mta_go_send_publication.py",
+      45722,
+      "7afbdc2b675b1d4fc61ded61ae6ff9d4dfbe529525c616ad96f7881b378d948d"
+    ],
+    [
+      "candidate/formal-send-filecenter-deploy-v4/assets/asset-sources.json",
+      24267,
+      "be76740f8d7283e2db5806790c87997dee24a0911beb1306d7c9833086745ec0"
+    ],
+    [
+      "candidate/formal-send-filecenter-deploy-v4/runtime/mta_go_readonly_terminal_parent.py",
+      66981,
+      "ba34d2442ded555d7f7ab1166b9ffd703a1e59f2aa484c20a6226a428e49e823"
+    ],
+    [
+      "candidate/formal-send-filecenter-deploy-v5/assets/ordinary-source-manifest.json",
+      20796,
+      "d000945a5e749a7f4d651305ef0e3a0b9f7fce96ffc2360dfed04b0d37ba230c"
+    ],
+    [
+      "candidate/formal-send-filecenter-deploy-v5/runtime/formal_send_session.py",
+      24059,
+      "5b827482ee82e9edcf4bff07ad75e24166a4a1bda3d949a1f4f617a93dd488c3"
+    ],
+    [
+      "candidate/formal-send-filecenter-deploy-v5/runtime/formal_send_stage.py",
+      37417,
+      "7ea5f8a058da636c7f1b16f29199b3c6cd2bc2541a4825791668005413ba6398"
+    ],
+    [
+      "candidate/formal-send-filecenter-deploy-v5/runtime/minhttp.py",
+      9690,
+      "bf5648457b19b60ad0f17320f8bd0431064f9cb4edf0d238d82136000eb57235"
+    ],
+    [
+      "candidate/formal-send-filecenter-deploy-v5/runtime/mta_client_receive_boot.py",
+      19583,
+      "34cc9989bcd2914c4e9f6e6050da0f3a067abd84695e1fb4dbf16b1d48ba5082"
+    ],
+    [
+      "candidate/formal-send-filecenter-deploy-v5/runtime/mta_client_service_owner.py",
+      89599,
+      "a9a5aa60d4cf5c26df46d6de88a9c79fb1df76eb88ff869f186fcf277ea7af11"
+    ],
+    [
+      "candidate/formal-send-filecenter-deploy-v5/runtime/mta_send_terminal_consumer.py",
+      12785,
+      "301ec1990e87d3162c738797035ca511a8d9183b1af164da728c75457bde2225"
+    ],
+    [
+      "candidate/formal-send-filecenter-deploy-v5/runtime/mta_send_trial.py",
+      22052,
+      "4cb4c5f5b4dab967178c5fc8ffed6682aa885f9bd3d7f0d44b94ea2cd42f02d6"
+    ],
+    [
+      "candidate/formal-send-filecenter-deploy-v5/runtime/mta_service.py",
+      145540,
+      "64a74b3e9082ac06070377d541544e29766f93887c39dcc92d72a87d7ceb7e51"
+    ],
+    [
+      "candidate/go-observer-libc-v1/assets/observer-source-catalog.json",
+      15861,
+      "8aaadd3f5a32b184bb851b422781ae8038d699d3e9555cb479cd49f4d090648a"
+    ],
+    [
+      "candidate/go-observer-libc-v1/runtime/mta_go_readonly_parent.py",
+      52881,
+      "a950577490c576698b3186efe87c6a8da773b21128f836d51b5b26a7bb5d45d6"
+    ],
+    [
+      "candidate/go-send-preflight-key-v90/runtime/mta_go_deployment.py",
+      26543,
+      "e8dc91c0a44a48d6cecf066257e79185fe590385f98300d01835edddb8114efe"
+    ],
+    [
+      "candidate/go-send-state-v78/runtime/mta_transfer_session.py",
+      20633,
+      "e7321ad446318f96bf84b1a94f0e5e3c76b1e973e28826f1c2514527b6967859"
+    ],
+    [
+      "candidate/go-send-terminal-source-v93/runtime/mta_go_send_bridge.py",
+      87625,
+      "027be64bf7b1b4f6ae57d09921b821e4cc77db44c602b9a5d99d901ed5736f02"
+    ],
+    [
+      "candidate/receive-directory-fd-v1/runtime/mta_storage.py",
+      55562,
+      "ea3d3df1177019125c9b3124b8ebaf33196dd1013db95ac24580e1fe1a96c8d1"
+    ],
+    [
+      "candidate/receive-filecenter-v1/runtime/mta_filecenter_storage.py",
+      4581,
+      "19013d117ffc041d7be0f6f1101a65ef9acfba45ffe7bb815264f596556cf169"
+    ],
+    [
+      "integration/ToolboxMta-v0.1/runtime/mta_toolbox_audio.py",
+      9045,
+      "c4ea432c8c6e972a28134f352fa75ff773827fd4a41e205865c9309f96a63432"
+    ],
+    [
+      "integration/ToolboxMta-v0.1/runtime/mta_toolbox_json.py",
+      3069,
+      "e32cf4433b966714a16e725e405052fa905715ce108b80199f8d50904abe5c7c"
+    ],
+    [
+      "integration/ToolboxMta-v0.1/runtime/mta_toolbox_metrics.py",
+      4080,
+      "e56808ec3bc7c751e5dff43a053294595bb719cad658a44eb378932142b7a679"
+    ],
+    [
+      "integration/ToolboxMta-v0.1/runtime/mta_toolbox_minhttp.py",
+      9303,
+      "6f8ec322fe8bb9522b9cc5ab1b52d844c17d366eaf7e176634b5760089bc3f93"
+    ],
+    [
+      "integration/ToolboxMta-v0.1/runtime/mta_toolbox_server.py",
+      19732,
+      "fab0c1afa6fc85a30de711b4f4d94467e03911e836ce292b73e8796ead8a9bc6"
+    ],
+    [
+      "integration/ToolboxMta-v0.1/runtime/mta_toolbox_storage.py",
+      9114,
+      "d9fa92a795729d88f6fac27705a2883adba8aac72423b4ebcd9220ffb78ddb51"
+    ],
+    [
+      "out/native/mta-network-helper",
+      47464,
+      "ef3b904ef1017b6f0011b1e2cfcadbc98f9e8026933153ff0291699f32c525e6"
+    ],
+    [
+      "results/receive-network-observer-build-20261004-120127-0ce26786/mta-connman-observer",
+      46008,
+      "5f2612224a3db35d8f0850adf10d1fece7094bff6387521c185570c4be8068e2"
+    ],
+    [
+      "results/receive-radio-baseline-build-20261004-112415-de67547c/mta-bluez-radio-baseline",
+      74920,
+      "c06398ddae281cf4a6f8a41953baf84795992f8f3e3769baebaf11f6d9964181"
+    ],
+    [
+      "runtime/mta_crypto.py",
+      15274,
+      "6fde6a60ec327895938a59990c4734a923dd5ff68bd5ee6979791df9a607e516"
+    ],
+    [
+      "runtime/mta_dhcp.py",
+      15719,
+      "631987bd7307580af069f1978e440d21fbd449ecc62c83e0e06195c330f50176"
+    ],
+    [
+      "runtime/mta_dhcp_server.py",
+      20515,
+      "a34fdbc07a96f2ed3337872612510aa2a8b72b970a193f58b8045c0653b8d8bc"
+    ],
+    [
+      "runtime/mta_files.py",
+      10267,
+      "c37a00be58487abee32abf7ded7ed857e059883aee680e049e6372d3d06681ae"
+    ],
+    [
+      "runtime/mta_protocol.py",
+      17958,
+      "4f7c2bd46cde114f0a2a0c33b31631aa463f09e71b156d26e34daf2251dd8a57"
+    ],
+    [
+      "runtime/mta_receive_network.py",
+      15860,
+      "1d2b2e250d63376f070816262fde601af5cd6005fb4f5877812f3d20ab8675a6"
+    ],
+    [
+      "runtime/mta_receive_radio_baseline.py",
+      3971,
+      "27a1cf60be3f964862904233c600af11b8d3e9468febba61d8c622fceb29824c"
+    ],
+    [
+      "runtime/mta_scan_handoff.py",
+      11515,
+      "51af67e80cf64038160cf420ad08f4f255a15dd9577e14fdcdb44fc26711046a"
+    ],
+    [
+      "runtime/mta_scoped_sockets.py",
+      26339,
+      "b95cfbe724b43baf90511c9d2a4a39d869a40a57e78e2a87d398ea134f9f84b8"
+    ],
+    [
+      "runtime/mta_send_preparation.py",
+      28532,
+      "0e92fc68947601d0517cfe64a22d90d50b9952529c4594a6a189970420f69814"
+    ],
+    [
+      "runtime/mta_send_worker.py",
+      43252,
+      "de0dd8c2c0fb3b45923199ccc987ae057046fa0244c6a405c3a254850f7e68e7"
+    ],
+    [
+      "runtime/mta_sender.py",
+      33949,
+      "da25d3359d0759f71d8a4483680e3a3d5376c9e745e85224dbaee2a672f0670a"
+    ],
+    [
+      "runtime/mta_transport.py",
+      31883,
+      "29e5ea6bf8f5de9ddae33824c158f4e401bab391d51b18dc0b8a1ab2cbc2dc72"
+    ],
+    [
+      "runtime/mta_wifi.py",
+      28459,
+      "62322b09fe4fd96bf6d49d8a2f7ac416e9a9d4dadcb3df23a6330e3205bcd017"
+    ],
+    [
+      "runtime/p011_json.py",
+      8061,
+      "fb6c803b185283258c2312e630df8bb80d6299007e95a1f3cf31250aa0e8ca88"
+    ]
+  ],
+  "outputs": [
+    [
+      "candidate/formal-send-filecenter-deploy-v6/assets/ordinary-source-manifest.json",
+      20796,
+      "d2300225159796bee6f6d2664ba86cdd1d13f8033899596effeb0431c7633052"
+    ],
+    [
+      "candidate/formal-send-filecenter-deploy-v6/runtime/formal_send_session.py",
+      24059,
+      "9c7f87dc4eb7cca9cc09e65a75063365429c363ea1e68da27e9597f228bbf036"
+    ],
+    [
+      "candidate/formal-send-filecenter-deploy-v6/runtime/formal_send_stage.py",
+      37417,
+      "49e9f972d093d7f7749f5dd4a38558a73cc0e36ea894e558455238aeb8f840da"
+    ],
+    [
+      "candidate/formal-send-filecenter-deploy-v6/runtime/mta_client_receive_boot.py",
+      19583,
+      "ccf7db818c159c1637676ea6860c48ce4ffa9298b3fd44c76a2565635583c405"
+    ],
+    [
+      "candidate/formal-send-filecenter-deploy-v6/runtime/mta_client_service_owner.py",
+      89599,
+      "f8f2bca88915d372ba685024bf995e9d746491559d5c981e83ff1a1e3d6ddea0"
+    ],
+    [
+      "candidate/formal-send-filecenter-deploy-v6/runtime/mta_send_terminal_consumer.py",
+      12785,
+      "5cc4c7fac05719c17f568c14c9fe3e13e7203c679305c73887a7e7597f414153"
+    ],
+    [
+      "candidate/formal-send-filecenter-deploy-v6/runtime/mta_send_trial.py",
+      22052,
+      "dfb4c95aba33612a7cf94c46c04af234af0d6f01bb73b69b39713c7eea683011"
+    ],
+    [
+      "candidate/formal-send-filecenter-deploy-v6/runtime/mta_service.py",
+      145733,
+      "38039da81606508f4633662b3802b2882d851df223f32bcf7bd237ee1a53fa76"
+    ]
+  ]
+}

@@ -1,0 +1,236 @@
+{
+  "version": "0.4.3",
+  "scope": "Host Linux tests and static review. No Windows native ACL or P011 runtime execution.",
+  "input_archive": "P011-ToolsTest-Run-20260915-132430083.zip",
+  "input_evidence_files_size_sha256_verified": 39,
+  "observed_failure": "preflight: /mnt/data/p011-menu already exists; exact type/target not recorded in input",
+  "input_candidate_started": false,
+  "alias_host_filesystem_tests": {
+    "scope": "Host filesystem fixtures, no Windows/P011 execution",
+    "count": 25,
+    "all_passed": true,
+    "cases": [
+      {
+        "case": "absent",
+        "passed": true,
+        "decision": "absent"
+      },
+      {
+        "case": "literal dangling",
+        "passed": true,
+        "decision": "remove_dangling_managed_alias"
+      },
+      {
+        "case": "canonical dangling",
+        "passed": true,
+        "decision": "remove_dangling_managed_alias"
+      },
+      {
+        "case": "old literal session",
+        "passed": true,
+        "decision": "remove_previous_boot_managed_alias"
+      },
+      {
+        "case": "old canonical session",
+        "passed": true,
+        "decision": "remove_previous_boot_managed_alias"
+      },
+      {
+        "case": "same boot restored",
+        "passed": true,
+        "decision": "remove_finished_managed_alias"
+      },
+      {
+        "case": "same boot failed",
+        "passed": true,
+        "decision": "preserve_unfinished_same_boot_session"
+      },
+      {
+        "case": "same boot pending",
+        "passed": true,
+        "decision": "preserve_unfinished_same_boot_session"
+      },
+      {
+        "case": "unknown boot",
+        "passed": true,
+        "decision": "preserve_unknown_boot"
+      },
+      {
+        "case": "real dir",
+        "passed": true,
+        "decision": "preserve_non_symlink"
+      },
+      {
+        "case": "regular file",
+        "passed": true,
+        "decision": "preserve_non_symlink"
+      },
+      {
+        "case": "foreign",
+        "passed": true,
+        "decision": "preserve_wrong_suffix"
+      },
+      {
+        "case": "relative",
+        "passed": true,
+        "decision": "preserve_noncanonical_target"
+      },
+      {
+        "case": "traversal",
+        "passed": true,
+        "decision": "preserve_noncanonical_target"
+      },
+      {
+        "case": "wrong name",
+        "passed": true,
+        "decision": "preserve_foreign_target"
+      },
+      {
+        "case": "wrong suffix",
+        "passed": true,
+        "decision": "preserve_wrong_suffix"
+      },
+      {
+        "case": "nonroot",
+        "passed": true,
+        "decision": "preserve_non_root_owned"
+      },
+      {
+        "case": "live old session",
+        "passed": true,
+        "decision": "preserve_live_session"
+      },
+      {
+        "case": "live restored session",
+        "passed": true,
+        "decision": "preserve_live_session"
+      },
+      {
+        "case": "page redirect",
+        "passed": true,
+        "decision": "preserve_page_redirect"
+      },
+      {
+        "case": "log redirect",
+        "passed": true,
+        "decision": "preserve_unsafe_log_directory"
+      },
+      {
+        "case": "boot file redirect",
+        "passed": true,
+        "decision": "preserve_unknown_boot"
+      },
+      {
+        "case": "private child",
+        "passed": true,
+        "decision": "preserve_live_session"
+      },
+      {
+        "case": "unlink only managed alias",
+        "passed": true
+      },
+      {
+        "case": "conflict preserves all",
+        "passed": true
+      }
+    ]
+  },
+  "host_supervisor_cases": {
+    "scope": "Host Linux fake-process tests, NOT P011/Qt/Windows",
+    "cases": [
+      {
+        "case": "normal",
+        "pass": true,
+        "evidence": [
+          "05:33:36 CHECK_OK: original PID=1310, restart-loop PID=1309; hashes and Wayland verified.",
+          "05:33:37 TOOLS_BRIDGE_READY: loopback authenticated API; SSH remains OFF until explicit action.",
+          "05:33:37 GUARDIAN_ARMED: timeout and rollback run ON the pen, not in PowerShell.",
+          "05:33:38 RESTART_LOOP_PAUSED",
+          "05:33:38 ORIGINAL_TERM_SENT: waiting for exit; original app is never SIGKILLed.",
+          "05:33:38 CANDIDATE_RUNNING: PID=1344; test window=1s; inspect the pen screen now.",
+          "05:33:39 TEST_WINDOW_ENDED: guardian will restore stock.",
+          "05:33:40 WORKER_EXIT: 0",
+          "05:33:40 RESTORING_STOCK",
+          "05:33:41 TOOLS_RECOVERY: OK",
+          "05:33:41 TEMP_MENU_ALIAS_REMOVED",
+          "05:33:41 RESTART_LOOP_RESUMED: PID=1309",
+          "05:33:44 RESTORED_STOCK_PROCESS: PID=1345; original files unchanged. Visual recovery still needs user confirmation."
+        ]
+      },
+      {
+        "case": "crash",
+        "pass": true,
+        "evidence": [
+          "05:33:46 CHECK_OK: original PID=1357, restart-loop PID=1356; hashes and Wayland verified.",
+          "05:33:47 TOOLS_BRIDGE_READY: loopback authenticated API; SSH remains OFF until explicit action.",
+          "05:33:47 GUARDIAN_ARMED: timeout and rollback run ON the pen, not in PowerShell.",
+          "05:33:48 RESTART_LOOP_PAUSED",
+          "05:33:48 ORIGINAL_TERM_SENT: waiting for exit; original app is never SIGKILLed.",
+          "05:33:49 CANDIDATE_RUNNING: PID=1391; test window=1s; inspect the pen screen now.",
+          "05:33:49 CANDIDATE_EXITED: code=23; guardian will restore stock.",
+          "05:33:49 WORKER_EXIT: 0",
+          "05:33:49 RESTORING_STOCK",
+          "05:33:51 TOOLS_RECOVERY: OK",
+          "05:33:51 TEMP_MENU_ALIAS_REMOVED",
+          "05:33:51 RESTART_LOOP_RESUMED: PID=1356",
+          "05:33:54 RESTORED_STOCK_PROCESS: PID=1392; original files unchanged. Visual recovery still needs user confirmation."
+        ]
+      },
+      {
+        "case": "stop",
+        "pass": true,
+        "evidence": [
+          "05:33:56 CHECK_OK: original PID=1404, restart-loop PID=1403; hashes and Wayland verified.",
+          "05:33:57 TOOLS_BRIDGE_READY: loopback authenticated API; SSH remains OFF until explicit action.",
+          "05:33:57 GUARDIAN_ARMED: timeout and rollback run ON the pen, not in PowerShell.",
+          "05:33:58 RESTART_LOOP_PAUSED",
+          "05:33:58 ORIGINAL_TERM_SENT: waiting for exit; original app is never SIGKILLed.",
+          "05:33:58 CANDIDATE_RUNNING: PID=1438; test window=30s; inspect the pen screen now.",
+          "05:33:58 GUARDIAN_STOP_REQUEST",
+          "05:33:59 STOP_REQUEST_RECEIVED",
+          "05:33:59 RESTORING_STOCK",
+          "05:34:00 TOOLS_RECOVERY: OK",
+          "05:34:00 TEMP_MENU_ALIAS_REMOVED",
+          "05:34:00 RESTART_LOOP_RESUMED: PID=1403",
+          "05:34:03 RESTORED_STOCK_PROCESS: PID=1439; original files unchanged. Visual recovery still needs user confirmation."
+        ]
+      },
+      {
+        "case": "preexisting-path",
+        "pass": true
+      }
+    ]
+  },
+  "feature_fixtures": {
+    "count": 33,
+    "all_passed": true
+  },
+  "python35_grammar_pass": [
+    "menu_policy.py",
+    "menu_trial.py",
+    "p011_json.py",
+    "tools_bridge.py",
+    "tools_metrics.py",
+    "tools_services.py"
+  ],
+  "unchanged_functional_files": 28,
+  "unchanged_scope": "All QML/JS/HTML pages, resource patch, test media, metrics/services/bridge/policy/JSON modules",
+  "private_key_acl_static": {
+    "read_flags": "OWNER|DACL (0x5)",
+    "write_flags": "PROTECTED_DACL|DACL (0x80000004)",
+    "changes_owner": false,
+    "requests_sacl": false,
+    "reads_private_key_content": false,
+    "csharp_compiled_here": false,
+    "windows_api_tested_here": false,
+    "runtime_selftest": "Disposable host file, before applying ACL to the existing dedicated key"
+  },
+  "host_packaging_regression": "New no-trial/unknown-result cases added; run by actual PowerShell before ADB on the user PC. Not executed in this Linux container.",
+  "limits": [
+    "No P011 runtime executed for v0.4.3.",
+    "Exact existing menu-path type remains unknown until the new path-preflight report.",
+    "Unknown directories/foreign links/active or unfinished same-boot sessions are deliberately preserved.",
+    "Restart normally before next run after unfinished older trials; do not delete the menu path manually.",
+    "No promise that later menu/media/browser/SSH tests have succeeded."
+  ]
+}

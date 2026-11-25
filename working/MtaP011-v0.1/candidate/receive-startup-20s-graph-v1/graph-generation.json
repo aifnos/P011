@@ -1,0 +1,117 @@
+{
+  "automatic_phone_window_requested": false,
+  "business_byte_cap": 0,
+  "business_byte_delta": 0,
+  "cache_data_not_authority": true,
+  "changed_payload_roles": [
+    "mta_client_executor",
+    "mta_client_receive_factory",
+    "mta_client_state_bridge",
+    "mta_client_receive_boot",
+    "mta_client_service_owner",
+    "runtime35/mta_client_executor"
+  ],
+  "definitions_and_report_pins_omitted_to_avoid_cycles": true,
+  "definitions_path": "host/formal_receive_startup_20s_v1_definitions.py",
+  "device_tested": false,
+  "exact_payload_roles": 69,
+  "filecenter_bytes": 113832,
+  "filecenter_exact_roles": 9,
+  "filecenter_remaining": 17240,
+  "filecenter_sources": 9,
+  "filecenter_sources_changed": false,
+  "generator": [
+    "candidate/receive-startup-20s-graph-v1/generate_graph.py",
+    41819,
+    "e3b690ff769187c48d87448198371d8025ed8fcdd9ae78678f8e17cf56e338d8"
+  ],
+  "generator_mother": [
+    "candidate/receive-profile-cache-graph-v1/generate_graph.py",
+    37744,
+    "f6d2ad0ec343b01a126e60492a2144038d4c3ada16e1f4719abb8ca06857326a"
+  ],
+  "headless_only": true,
+  "independent_candidate_only": true,
+  "inherited_owner_scope_fc_http_provenance_preserved": true,
+  "measured_owner_context_preserved": true,
+  "mechanical_closure_count": 6,
+  "mother": [
+    "host/formal_receive_profile_cache_v1_definitions.py",
+    276517,
+    "fc1327b17f4124e286b967b3246f59c69458b803834efb34fd56246350bb5043"
+  ],
+  "navigation_ui_outputs": false,
+  "new_business_closure_count": 1,
+  "new_business_constants": [
+    "STARTUP_READ_SECONDS"
+  ],
+  "new_business_methods": [],
+  "new_device_root_checked": false,
+  "old_main_build_verify_called": false,
+  "old_tests_replayed": 0,
+  "original_10s_sources_and_history_unchanged": true,
+  "outer_deadlines_preserved": true,
+  "output_pins": [
+    [
+      "candidate/receive-startup-20s-graph-v1/graph-exactsource-delta.json",
+      18657,
+      "972ce2facc4e7095d6f64e39c8bd729e48cd4fbca91cfdc33f9756117e201518"
+    ],
+    [
+      "candidate/receive-startup-20s-graph-v1/runtime/mta_client_executor.py",
+      124769,
+      "8be9784ab137fdd4e779d8bd5bb1368381ca60e56aae737e4d3c51ede9b8d0fb"
+    ],
+    [
+      "candidate/receive-startup-20s-graph-v1/runtime/mta_client_receive_boot.py",
+      19697,
+      "167daaa1dbf754ff03e77578e838153f9f38d1a7b32c600718a83f915553b645"
+    ],
+    [
+      "candidate/receive-startup-20s-graph-v1/runtime/mta_client_receive_factory.py",
+      99675,
+      "e1a30f457ca77321c4ebfb15644137ee9498b9fd6e94f5685991a040fdb449a5"
+    ],
+    [
+      "candidate/receive-startup-20s-graph-v1/runtime/mta_client_service_owner.py",
+      107104,
+      "a9d8e4812dd26cd3a573e03257ec68fdd4b065c4daddec2119a7e21d6346db6c"
+    ],
+    [
+      "candidate/receive-startup-20s-graph-v1/runtime/mta_client_state_bridge.py",
+      21356,
+      "247714d59f500b7f2c60eb605ff0fc341301f76dccae8d058e678db20fa30562"
+    ],
+    [
+      "candidate/receive-startup-20s-graph-v1/runtime/mta_formal_receive_session.py",
+      79281,
+      "fe0aa4d5b00ef071ac213056c4db6215527c0ac2df78be471b2dcc7721453554"
+    ],
+    [
+      "host/formal_receive_startup_20s_v1_definition_manifest.json",
+      7937,
+      "b33bf4d703603691b4751ccc5a632cbb248c773a6e757f0687c476aae6d74503"
+    ],
+    [
+      "host/formal_receive_startup_20s_v1_private_source_manifest.json",
+      8165,
+      "94e9344d76d96891b61177ac23b6ace4aa67e7754fd5e8df94288079a89fcfde"
+    ]
+  ],
+  "payload_bytes": 4193768,
+  "payload_cap": 4194304,
+  "payload_remaining": 536,
+  "phone_tested": false,
+  "private_roles_exact": 34,
+  "proc_dispatch_candidate_integrated": false,
+  "profile_cache_performance_verified": false,
+  "rf_requested": false,
+  "root": "p011-mta-rx-prep20-v001",
+  "schema": "p011-receive-startup-20s-v1-graph-generation",
+  "send_graph_changed": false,
+  "source_origin_count": 304,
+  "startup_prepare_seconds_after": 20.0,
+  "startup_prepare_seconds_before": 10.0,
+  "state_protocol_proc_native_wpa_monitor_unchanged": true,
+  "status": "SOURCE_DERIVED_NOT_DEVICE_TESTED"
+}

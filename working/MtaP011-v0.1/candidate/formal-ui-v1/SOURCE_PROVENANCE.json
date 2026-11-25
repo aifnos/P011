@@ -1,0 +1,108 @@
+{
+  "schema": "p011-mta-formal-ui-composition-v1-source",
+  "evidence_level": "SOURCE_ONLY",
+  "native_launcher_implemented": false,
+  "service_graph_installed": false,
+  "radio_admission_issued": false,
+  "phone_interop_verified": false,
+  "embedding_contract": {
+    "property": "ExtensionPage.mtaHostSource",
+    "fixed_host": "candidate/formal-ui-v1/device/MtaHost.qml",
+    "inner_page": "MtaPage.qml",
+    "bootstrap_allowed": false,
+    "geometry": "parent supplied 800x268 content region; no extra rotation or embedded y offset"
+  },
+  "ancestors": [
+    {
+      "path": "device/MtaPage.qml",
+      "bytes": 23429,
+      "sha256": "b8470eb81b8ab608cf81f96e301679bc3ced5cc2243a23428812d1aed92bdecf"
+    },
+    {
+      "path": "candidate/go-send-ui-v80/device/MtaPage.qml",
+      "bytes": 25341,
+      "sha256": "2729358896390175557a2ec907286f8413fa600d0dee0397517ae4c9cd133c0a"
+    },
+    {
+      "path": "device/MtaHost.qml",
+      "bytes": 6205,
+      "sha256": "371f705136fb1e03aec7d283120f6915b798edd4b96cdec670f29c971d508380"
+    },
+    {
+      "path": "device/MtaButton.qml",
+      "bytes": 757,
+      "sha256": "5abb4dabbd735ef4a071e8e10a65cf5c946e505cceb2373a12fa5f54827d1339"
+    },
+    {
+      "path": "device/MtaLabel.qml",
+      "bytes": 351,
+      "sha256": "e6298ebb141e4eba23b7acd1dee6900c141d1065ed194be953d1b3daff77eaa3"
+    },
+    {
+      "path": "device/MtaKeyboard.qml",
+      "bytes": 5344,
+      "sha256": "3241344572163deff5bc195cfb06dc5647f76861c03736f99a331d5bb53ef661"
+    },
+    {
+      "path": "device/MtaTheme.js",
+      "bytes": 261,
+      "sha256": "b795cd24c1bae4c9423c6c9c3e45303b0494c267a897715c4f8eab14f8f12f2c"
+    }
+  ],
+  "sources": [
+    {
+      "path": "candidate/formal-ui-v1/device/MtaTheme.js",
+      "bytes": 261,
+      "sha256": "b795cd24c1bae4c9423c6c9c3e45303b0494c267a897715c4f8eab14f8f12f2c",
+      "derivation": "byte-identical existing device dependency"
+    },
+    {
+      "path": "candidate/formal-ui-v1/device/MtaPage.qml",
+      "bytes": 26088,
+      "sha256": "2e63016d806f890703c5d361b35cc80d2e092e55a2714088f27dcb948ef5c44e",
+      "derivation": "UI80 complete page plus current receive archiveProgressKnown and validProgressBytes/progressText/progressDetails receive branches"
+    },
+    {
+      "path": "candidate/formal-ui-v1/device/MtaLabel.qml",
+      "bytes": 351,
+      "sha256": "e6298ebb141e4eba23b7acd1dee6900c141d1065ed194be953d1b3daff77eaa3",
+      "derivation": "byte-identical existing device dependency"
+    },
+    {
+      "path": "candidate/formal-ui-v1/device/MtaKeyboard.qml",
+      "bytes": 5344,
+      "sha256": "3241344572163deff5bc195cfb06dc5647f76861c03736f99a331d5bb53ef661",
+      "derivation": "byte-identical existing device dependency"
+    },
+    {
+      "path": "candidate/formal-ui-v1/device/MtaHost.qml",
+      "bytes": 6205,
+      "sha256": "371f705136fb1e03aec7d283120f6915b798edd4b96cdec670f29c971d508380",
+      "derivation": "byte-identical existing device dependency"
+    },
+    {
+      "path": "candidate/formal-ui-v1/device/MtaButton.qml",
+      "bytes": 757,
+      "sha256": "5abb4dabbd735ef4a071e8e10a65cf5c946e505cceb2373a12fa5f54827d1339",
+      "derivation": "byte-identical existing device dependency"
+    }
+  ],
+  "composition_changes": [
+    "replace only the leading UI80 description with formal composition description",
+    "add archiveProgressKnown after sending",
+    "insert current validProgressBytes before progressText",
+    "add current archive download branch to progressText",
+    "add current file-processing branch to progressDetails; leave GO gates and layout unchanged"
+  ],
+  "host_test": {
+    "path": "tests/test_formal_ui_composition_v1.py",
+    "bytes": 19205,
+    "sha256": "141b27536daadcd31bd350802a1325184698b818974df98bb9da1bf353a00b33",
+    "method": "FormalUiCompositionV1Tests.test_fixed_host_go_and_receive_composition",
+    "cases": 4,
+    "network": "empty-credential real wrapper plus delayed in-memory Page.request model",
+    "device_tested": false,
+    "executed": false,
+    "formal_distribution": false
+  }
+}

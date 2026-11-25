@@ -1,0 +1,250 @@
+--- a/src/drivers/driver_nl80211.c
++++ b/src/drivers/driver_nl80211.c
+@@ -42,6 +42,28 @@
+ #include "radiotap_iter.h"
+ #include "rfkill.h"
+ #include "driver_nl80211.h"
++
++
++/* Project diagnostics: fixed numeric stages, no format/string/key inputs.
++ * FD 3 is a private inherited pipe, never a log or public control socket. */
++void mta_p2p_diag(unsigned int stage, int code)
++{
++	const char *enabled = getenv("MTA_PRIVATE_P2P");
++	char line[64];
++	int length;
++
++	if (!enabled || strcmp(enabled, "1") != 0 || stage > 32)
++		return;
++	if (code < -4095 || code > 4095)
++		code = -4095;
++	length = snprintf(line, sizeof(line),
++			  "MTA_P2P_DIAG stage=%u code=%d\n", stage, code);
++	if (length > 0 && (size_t) length < sizeof(line)) {
++		ssize_t result = write(3, line, length);
++		if (result < 0)
++			return;
++	}
++}
+ 
+ 
+ #ifndef NETLINK_CAP_ACK
+@@ -2668,6 +2690,7 @@
+ 	return bss;
+ 
+ failed:
++	mta_p2p_diag(8, -1);
+ 	wpa_driver_nl80211_deinit(bss);
+ 	return NULL;
+ }
+@@ -2685,8 +2708,23 @@
+ 				      void *global_priv,
+ 				      enum wpa_p2p_mode p2p_mode)
+ {
++	const char *enabled = getenv("MTA_PRIVATE_P2P");
++	const char *initial_params = NULL;
++
++	/* Explicit project opt-in is applied BEFORE finish_drv_init. The normal
++	 * init2 ABI supplies NULL; a late conf driver_param cannot preserve mode. */
++	if (enabled && strcmp(enabled, "1") == 0) {
++		if (!ifname || strlen(ifname) != 11 ||
++		    strncmp(ifname, "mta", 3) != 0 ||
++		    strspn(ifname + 3, "0123456789abcdef") != 8) {
++			mta_p2p_diag(1, -EINVAL);
++			return NULL;
++		}
++		initial_params = "mta_p2p_initial=1 control_port=0";
++		mta_p2p_diag(1, 0);
++	}
+ 	return wpa_driver_nl80211_drv_init(ctx, ifname, global_priv, 0, NULL,
+-					   NULL, p2p_mode);
++					   initial_params, p2p_mode);
+ }
+ 
+ 
+@@ -3533,11 +3571,19 @@
+ 	    linux_iface_up(drv->global->ioctl_sock, bss->ifname) > 0)
+ 		bss->start_iface_up = 1;
+ 
+-	if (first && wpa_driver_nl80211_capa(drv))
+-		return -1;
+-
+-	if (driver_params && nl80211_set_param(bss, driver_params) < 0)
+-		return -1;
++	if (first) {
++		int result = wpa_driver_nl80211_capa(drv);
++		mta_p2p_diag(2, result);
++		if (result)
++			return -1;
++	}
++
++	if (driver_params) {
++		int result = nl80211_set_param(bss, driver_params);
++		mta_p2p_diag(3, result);
++		if (result < 0)
++			return -1;
++	}
+ 
+ #ifdef CONFIG_P2P
+ 	/* Project-only lease: never claim or retune the original wlan0. */
+@@ -3545,9 +3591,13 @@
+ 		if (os_strlen(bss->ifname) != 11 ||
+ 		    os_strncmp(bss->ifname, "mta", 3) != 0 ||
+ 		    strspn(bss->ifname + 3, "0123456789abcdef") != 8 ||
+-		    !is_p2p_net_interface(nl80211_get_ifmode(bss)))
++		    !is_p2p_net_interface(nl80211_get_ifmode(bss))) {
++			mta_p2p_diag(4, -EINVAL);
+ 			return -1;
++		}
+ 		mta_private_initial = true;
++		bss->mta_private_lease = 1;
++		mta_p2p_diag(4, 0);
+ 		/* Use only the leased netdev, not an implicitly owned wdev. */
+ 		drv->capa.flags &= ~WPA_DRIVER_FLAGS_DEDICATED_P2P_DEVICE;
+ 	}
+@@ -3573,9 +3623,11 @@
+ 	else
+ 		nlmode = NL80211_IFTYPE_STATION;
+ 
+-	if (first && wpa_driver_nl80211_set_mode(bss, nlmode) < 0) {
+-		wpa_printf(MSG_ERROR, "nl80211: Could not configure driver mode");
+-		return -1;
++	if (first) {
++		int result = wpa_driver_nl80211_set_mode(bss, nlmode);
++		mta_p2p_diag(5, result);
++		if (result < 0)
++			return -1;
+ 	}
+ 
+ 	if (!nl80211_is_netdev_iftype(nl80211_get_ifmode(bss)))
+@@ -3590,6 +3642,7 @@
+ 
+ 	if (!rfkill_is_blocked(drv->rfkill)) {
+ 		int ret = i802_set_iface_flags(bss, 1);
++		mta_p2p_diag(6, ret);
+ 		if (ret) {
+ 			wpa_printf(MSG_ERROR, "nl80211: Could not set "
+ 				   "interface '%s' UP", bss->ifname);
+@@ -3624,6 +3677,7 @@
+ 			os_memcpy(drv->perm_addr, bss->addr, ETH_ALEN);
+ 	}
+ 
++	mta_p2p_diag(7, 0);
+ 	if (send_rfkill_event)
+ 		eloop_register_timeout(0, 0, wpa_driver_nl80211_send_rfkill,
+ 				       drv, bss->ctx);
+@@ -3703,6 +3757,7 @@
+ 		   bss->ifname, drv->disabled_11b_rates);
+ 
+ 	bss->in_deinit = 1;
++	mta_p2p_diag(9, 0);
+ 	if (drv->data_tx_status)
+ 		eloop_unregister_read_sock(drv->eapol_tx_sock);
+ 	if (drv->eapol_tx_sock >= 0)
+@@ -10535,8 +10590,11 @@
+ 	 * If the P2P GO interface was dynamically added, then it is
+ 	 * possible that the interface change to station is not possible.
+ 	 */
+-	if (drv->nlmode == NL80211_IFTYPE_P2P_GO && bss->if_dynamic)
++	if (drv->nlmode == NL80211_IFTYPE_P2P_GO &&
++	    (bss->if_dynamic || bss->mta_private_lease)) {
++		mta_p2p_diag(10, 0);
+ 		return 0;
++	}
+ 
+ 	return wpa_driver_nl80211_set_mode(priv, NL80211_IFTYPE_STATION);
+ }
+@@ -10575,8 +10633,10 @@
+ 	 * If the P2P Client interface was dynamically added, then it is
+ 	 * possible that the interface change to station is not possible.
+ 	 */
+-	if (bss->if_dynamic)
++	if (bss->if_dynamic || bss->mta_private_lease) {
++		mta_p2p_diag(11, 0);
+ 		return 0;
++	}
+ 
+ 	return wpa_driver_nl80211_set_mode(priv, NL80211_IFTYPE_STATION);
+ }
+--- a/src/drivers/driver_nl80211.h
++++ b/src/drivers/driver_nl80211.h
+@@ -108,6 +108,7 @@
+ 	unsigned int wdev_id_set:1;
+ 	unsigned int added_if:1;
+ 	unsigned int static_ap:1;
++	unsigned int mta_private_lease:1;
+ 
+ 	u8 addr[ETH_ALEN];
+ 	u8 prev_addr[ETH_ALEN];
+--- a/wpa_supplicant/wpa_supplicant.c
++++ b/wpa_supplicant/wpa_supplicant.c
+@@ -7780,6 +7780,9 @@
+ }
+ 
+ 
++/* Project-only fixed numeric diagnostic function in private nl80211. */
++extern void mta_p2p_diag(unsigned int stage, int code);
++
+ static int wpas_init_driver(struct wpa_supplicant *wpa_s,
+ 			    const struct wpa_interface *iface)
+ {
+@@ -7791,6 +7794,7 @@
+ 		return -1;
+ 
+ 	wpa_s->drv_priv = wpa_drv_init(wpa_s, wpa_s->ifname);
++	mta_p2p_diag(12, wpa_s->drv_priv ? 0 : -1);
+ 	if (wpa_s->drv_priv == NULL) {
+ 		const char *pos;
+ 		int level = MSG_ERROR;
+@@ -8180,8 +8184,12 @@
+ 	}
+ #endif /* CONFIG_FST */
+ 
+-	if (wpas_wps_init(wpa_s))
+-		return -1;
++	{
++		int result = wpas_wps_init(wpa_s);
++		mta_p2p_diag(13, result);
++		if (result)
++			return -1;
++	}
+ 
+ #ifdef CONFIG_GAS_SERVER
+ 	wpa_s->gas_server = gas_server_init(wpa_s, wpas_gas_server_tx);
+@@ -8204,11 +8212,16 @@
+ 		  sizeof(wpa_s->nan_capa));
+ #endif /* CONFIG_NAN */
+ 
+-	if (wpa_supplicant_init_eapol(wpa_s) < 0)
+-		return -1;
++	{
++		int result = wpa_supplicant_init_eapol(wpa_s);
++		mta_p2p_diag(14, result);
++		if (result < 0)
++			return -1;
++	}
+ 	wpa_sm_set_eapol(wpa_s->wpa, wpa_s->eapol);
+ 
+ 	wpa_s->ctrl_iface = wpa_supplicant_ctrl_iface_init(wpa_s);
++	mta_p2p_diag(15, wpa_s->ctrl_iface ? 0 : -1);
+ 	if (wpa_s->ctrl_iface == NULL) {
+ 		wpa_printf(MSG_ERROR,
+ 			   "Failed to initialize control interface '%s'.\n"
+@@ -8236,11 +8249,12 @@
+ 	}
+ #endif /* CONFIG_P2P */
+ 
+-	if ((!(wpa_s->drv_flags & WPA_DRIVER_FLAGS_DEDICATED_P2P_DEVICE) ||
+-	     wpa_s->p2p_mgmt) &&
+-	    wpas_p2p_init(wpa_s->global, wpa_s) < 0) {
+-		wpa_msg(wpa_s, MSG_ERROR, "Failed to init P2P");
+-		return -1;
++	if (!(wpa_s->drv_flags & WPA_DRIVER_FLAGS_DEDICATED_P2P_DEVICE) ||
++	    wpa_s->p2p_mgmt) {
++		int result = wpas_p2p_init(wpa_s->global, wpa_s);
++		mta_p2p_diag(16, result);
++		if (result < 0)
++			return -1;
+ 	}
+ 
+ 	if (!capa.ranging_type.pd_support) {

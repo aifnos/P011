@@ -1,0 +1,746 @@
+"""Held receive-directory adapter for the fixed State/loopback owner; not RF admission.
+
+Explicit --serve is a fresh-process entry using the fixed Boot98 definitions
+at the existing state-v69 path. Its 28 ordinary roles are checked; State96
+receives the SAME original loader service cap, never its 10-second load cap.
+Default main performs no IO. All radio policies remain unavailable. This
+SOURCE replacement is not staged. Parent97 and TerminalParent95 are ordinary
+definitions only; neither observer runs at start, and Pub90's bundle seal and network
+finish admission remain absent. This independent lifecycle candidate allows close to
+reach the original receive Session finalizer, then verifies its retained originals;
+no admission, alternate restore or ownership reset is introduced. Private IO models
+may map the three fixed path roles for
+HOST tests, never issue readiness. Partial objects, original errors, requests
+and threads stay retained. No old recovery record or managed tree is removed.
+"""
+import builtins
+import errno
+import hashlib
+import math
+import os
+import socket
+import stat
+import sys
+import threading
+import time
+import types
+
+ROOT = '/tmp/p011-mta-state-v69'
+USER_ROOT = '/mnt/data/p011-toolbox/user'
+BLUEZ = ROOT + '/native/mta-bluez-helper'
+NETWORK = ROOT + '/native/mta-network-helper'
+BOOT_PATH = ROOT + '/runtime/mta_client_receive_boot.py'
+BOOT_PIN = (19144, '4e2c54d2abde7ae706065c931a8f8eb2acc067fef94a7ffa9667f46062471ae8')
+BOOT_SCHEMA = 'sender-state-boot-v98-source'
+BOOT_MODULES = (
+    'mta_client_executor', 'p011_json', 'mta_protocol', 'mta_storage',
+    'mta_files', 'mta_crypto', 'mta_transfer_session', 'mta_dhcp',
+    'mta_dhcp_server', 'mta_scoped_sockets', 'mta_transport', 'mta_sender',
+    'mta_send_worker', 'mta_scan_handoff', 'mta_wifi', 'minhttp',
+    'mta_client_control_frame', 'mta_client_connect_handoff', 'mta_client_tmp_alias',
+    'mta_client_receive_factory', 'mta_client_state_bridge', 'mta_go_deployment',
+    'mta_send_preparation', 'mta_go_readonly_parent', 'mta_go_send_publication',
+    'mta_go_send_bridge', 'mta_go_readonly_terminal_parent', 'mta_service')
+GO_ASSET_RUNTIME = '/var/volatile/tmp/p011-mta-go-send-v76-assets/runtime'
+HELPER_PINS = ((65832, '179fd01f737acd30c7e903d6925217d9e0467400187614189d06a4cffdc44363'),
+               (47464, 'ef3b904ef1017b6f0011b1e2cfcadbc98f9e8026933153ff0291699f32c525e6'))
+MAX_REQUESTS = 4096
+CLEANUP_SECONDS = 60.0
+_MAIN = None
+
+
+class ServiceOwnerError(ValueError):
+    def __init__(self, code):
+        self.code = code
+        ValueError.__init__(self, code)
+
+
+def _fail(code): raise ServiceOwnerError(code) from None
+
+
+def _finite(value):
+    return type(value) in (int, float) and 0 <= value < 1e12 and math.isfinite(float(value))
+
+
+def _meta(value):
+    result = tuple(getattr(value, key, None) for key in
+                   ('st_dev', 'st_ino', 'st_mode', 'st_uid', 'st_gid', 'st_nlink', 'st_size'))
+    if any(type(v) is not int or not 0 <= v < (1 << 64) for v in result): _fail('metadata_unknown')
+    return result
+
+
+def _held_directory_policy(binding, root):
+    """Fixed observed nodes, checked through the retained no-follow FD chain."""
+    expected = ('/', 'mnt', 'data', 'p011-toolbox', 'user')
+    if root == USER_ROOT + '/Received': expected += ('Received',)
+    elif root != USER_ROOT: _fail('unsafe_user_root')
+    if binding.root != root or binding.check() is not binding: _fail('unsafe_user_root')
+    rows = binding.identity_rows()
+    if type(rows) is not tuple or len(rows) != len(expected): _fail('unsafe_user_root')
+    for row, name in zip(rows, expected):
+        if (type(row) is not tuple or len(row) != 6 or row[0] != name or
+                any(type(v) is not int for v in row[1:]) or
+                not stat.S_ISDIR(row[3]) or row[3] & 0o022): _fail('unsafe_user_root')
+        if name == 'data':
+            # The sole observed user-owned mount, not a general UID exception.
+            if row[1:] != (66328, 21, stat.S_IFDIR | 0o755, 1000, 1000): _fail('unsafe_user_root')
+        elif row[4:6] != (0, 0): _fail('unsafe_user_root')
+        if name in ('p011-toolbox', 'user', 'Received') and stat.S_IMODE(row[3]) != 0o700:
+            _fail('unsafe_user_root')
+    if binding.check() is not binding or binding.identity_rows() != rows: _fail('anchor_changed')
+    return rows
+
+
+class _LinuxIo(object):
+    def _anchors(self):
+        rows = []
+        physical = '/var/volatile/tmp/p011-mta-state-v69'
+        for path, mode, target in (('/', None, None), ('/tmp', stat.S_IFLNK | 0o777, '/var/tmp'),
+                ('/var', stat.S_IFDIR | 0o755, None),
+                ('/var/tmp', stat.S_IFLNK | 0o777, '/var/volatile/tmp'),
+                ('/var/volatile', stat.S_IFDIR | 0o1777, None),
+                ('/var/volatile/tmp', stat.S_IFDIR | 0o1777, None),
+                (physical, stat.S_IFDIR | 0o700, None),
+                (physical + '/runtime', stat.S_IFDIR | 0o700, None),
+                (physical + '/native', stat.S_IFDIR | 0o700, None)):
+            meta = _meta(os.lstat(path))
+            if (meta[3:5] != (0, 0) or meta[5] < 1 or
+                    mode is None and (not stat.S_ISDIR(meta[2]) or meta[2] & 0o022) or
+                    mode is not None and meta[2] != mode): _fail('unsafe_anchor')
+            if target is not None and (meta[5] != 1 or os.readlink(path) != target or meta[6] != len(target)):
+                _fail('unsafe_anchor')
+            rows.append((path, meta if target is not None else meta[:5], target))
+        for suffix in ('', '/runtime', '/native'):
+            if _meta(os.stat(ROOT + suffix))[:5] != _meta(os.lstat(physical + suffix))[:5]:
+                _fail('anchor_changed')
+        result = tuple(rows)
+        if hasattr(self, 'original_anchors') and self.original_anchors != result: _fail('anchor_changed')
+        return result
+    def validate(self):
+        if (sys.platform != 'linux' or sys.byteorder != 'little' or os.geteuid() != 0 or
+                os.uname()[4] != 'armv7l' or os.O_NOFOLLOW != 0x8000 or os.O_CLOEXEC != 0x80000):
+            _fail('unsupported_platform')
+        self.original_anchors = self._anchors()
+    def _receive_anchors(self):
+        binding = getattr(self, 'original_received_binding', None)
+        binding_type = getattr(self, 'original_binding_type', None)
+        if binding is None or type(binding) is not binding_type: _fail('unsafe_user_root')
+        rows = _held_directory_policy(binding, USER_ROOT + '/Received')
+        if rows != self.original_receive_anchors: _fail('anchor_changed')
+        return rows
+    def bind_receive_directory(self, binding, binding_type):
+        if hasattr(self, 'original_received_binding') or type(binding) is not binding_type:
+            _fail('anchor_changed')
+        self.original_received_binding = binding
+        self.original_binding_type = binding_type
+        self.original_receive_anchors = _held_directory_policy(binding, USER_ROOT + '/Received')
+    def state_paths(self): return USER_ROOT, BLUEZ, NETWORK
+    def pid(self): return os.getpid()
+    def stat(self, path):
+        self._anchors()
+        if path != BOOT_PATH: self._receive_anchors()
+        return os.stat(path, follow_symlinks=False)
+    def open(self, path):
+        if path not in (BOOT_PATH, BLUEZ, NETWORK): _fail('fixed_paths_unknown')
+        self._anchors()
+        if path != BOOT_PATH: self._receive_anchors()
+        return os.open(path, os.O_RDONLY | os.O_NOFOLLOW | os.O_CLOEXEC)
+    def fstat(self, fd): return os.fstat(fd)
+    def read(self, fd, count): return os.read(fd, count)
+    def close(self, fd): return os.close(fd)
+
+
+def _read_asset(io, path, size, pin, mode, rows, check):
+    row = {'path': path, 'fd': None, 'metadata': None, 'raw': None, 'attempted': False,
+           'closed': False, 'unknown': True, 'failure': None}
+    rows.append(row)
+    try:
+        check(); row['fd'] = io.open(path)  # Retain before any late-cap check.
+        if type(row['fd']) is not int or row['fd'] < 0: _fail('descriptor_unknown')
+        row['metadata'] = _meta(io.fstat(row['fd'])); row['unknown'] = False
+        check(); meta = row['metadata']
+        if not stat.S_ISREG(meta[2]) or stat.S_IMODE(meta[2]) != mode or meta[3:6] != (0, 0, 1) or meta[6] != size:
+            _fail('asset_shape')
+        parts, count = [], 0
+        while count <= size:
+            check(); raw = io.read(row['fd'], min(65536, size + 1 - count)); check()
+            if type(raw) is not bytes: _fail('asset_shape')
+            parts.append(raw); count += len(raw)
+            if not raw: break
+        row['raw'] = b''.join(parts)
+        if (len(row['raw']) != size or hashlib.sha256(row['raw']).hexdigest() != pin or
+                _meta(io.fstat(row['fd'])) != meta or _meta(io.stat(path)) != meta): _fail('asset_changed')
+        return row['raw']
+    except BaseException as error:
+        row['failure'] = error
+        raise
+    finally:
+        if row['unknown'] is False:
+            row['attempted'] = True
+            try:
+                if _meta(io.fstat(row['fd'])) != row['metadata']: _fail('close_unknown')
+                returned = io.close(row['fd'])
+                try: io.fstat(row['fd'])
+                except OSError as error:
+                    row['closed'] = returned is None and type(error.errno) is int and error.errno == errno.EBADF
+            except BaseException as error:
+                row['close_failure'] = error
+                row['unknown'] = True
+
+
+class _SocketRef(object):
+    """Original socket byte operations; intercept only its once close proof."""
+    def __init__(self, owner, row): self.owner, self.row = owner, row
+    def accept(self): return self.row['socket'].accept()
+    def _remaining(self):
+        now = self.owner.clock()  # Per-request sample; never shared owner.last.
+        if not _finite(now) or now >= self.owner.until or self.owner.stop_called: _fail('deadline')
+        return self.owner.until - now
+    def _clip(self):
+        remaining = self._remaining(); current = self.row['socket'].gettimeout()
+        self.row['socket'].settimeout(remaining if current is None else min(current, remaining))
+    def recv(self, count):
+        self._clip(); value = self.row['socket'].recv(count); self._remaining(); return value
+    def sendall(self, data):
+        self._clip(); value = self.row['socket'].sendall(data); self._remaining(); return value
+    def settimeout(self, value):
+        if value is None or not _finite(value): _fail('timeout_unknown')
+        return self.row['socket'].settimeout(min(value, self._remaining()))
+    def shutdown(self, how): return self.row['socket'].shutdown(how)
+    def fileno(self): return self.row['socket'].fileno()
+    def close(self):
+        if not self.owner._close_socket(self.row): _fail('socket_close_unknown')
+        return None
+
+
+class FixedStateServiceOwner(object):
+    def __init__(self, loader, original_until, _io=None):
+        boot = sys.modules.get('mta_client_receive_boot')
+        if (type(boot) is not types.ModuleType or type(loader) is not boot.BootSourceLoader or
+                not _finite(original_until) or float(original_until) != loader._original_until or
+                loader.clock is not time.monotonic): _fail('invalid_owner')
+        self.boot, self.loader = boot, loader
+        self.until = self.original_until = loader._original_until
+        self.clock = time.monotonic
+        self.io = self.original_io = _LinuxIo() if _io is None else _io
+        self.worker = threading.current_thread()
+        self.pid = None
+        self.lock = threading.RLock()
+        self.factory = self.state = self.server = self.thread = None
+        self.probe_rows = None
+        self.service = self.http = None
+        self.state_constructor_failure = self.server_constructor_failure = None
+        self.assets, self.requests, self.threads = [], [], []
+        self._requests_original, self._threads_original = self.requests, self.threads
+        self._state_original = self._server_original = self._listener_original = None
+        self._http_stopping_original = self._http_worker_lock_original = self._http_workers_original = None
+        self.listener = None
+        self.paths = None
+        self.started = self.start_complete = self.state_complete = self.server_complete = False
+        self.factory_called = self.state_called = self.server_called = False
+        self.stop_called = self.close_called = self.close_complete = False
+        self.state_close_called = False
+        self.state_close_return = None
+        self.cleanup_until = None
+        self.failure, self.loop_failure, self.failures = None, None, []
+        self.last = None
+        self.directory_type = None
+        self.user_directory = self.received_directory = None
+        self._user_directory_original = self._received_directory_original = None
+        self.directory_close_called = False
+        self.directory_close_complete = False
+
+    def _context(self):
+        if (self.io is not self.original_io or self.until is not self.original_until or
+                self.loader._original_until is not self.original_until or self.loader.clock is not self.clock or
+                sys.modules.get('mta_client_receive_boot') is not self.boot or
+                self.pid is not None and self.io.pid() != self.pid): _fail('owner_changed')
+
+    def _boot_roles(self):
+        # Original authenticate has already checked all fixed bytes, original
+        # namespaces and source closes. This pure role contract grants no RF.
+        if (self.boot.SOURCE_SCHEMA != BOOT_SCHEMA or self.boot.MODULES != BOOT_MODULES or
+                type(self.loader.modules) is not dict or len(self.loader.modules) != len(BOOT_MODULES)):
+            _fail('boot_roles_changed')
+        for name in BOOT_MODULES:
+            module = self.loader.modules.get(name)
+            root = GO_ASSET_RUNTIME if name == 'mta_go_deployment' else ROOT + '/runtime'
+            if (type(module) is not types.ModuleType or sys.modules.get(name) is not module or
+                    module.__file__ != root + '/' + name + '.py'):
+                _fail('boot_roles_changed')
+
+    def _now(self, cleanup=False):
+        with self.lock:
+            self._context(); now = self.clock()
+            if not _finite(now) or self.last is not None and now < self.last: _fail('clock_unknown')
+            self.last = now
+            cap = self.cleanup_until if cleanup else self.until
+            if cap is None or now >= cap: _fail('deadline')
+            return now
+
+    def _socket_row(self, raw, row):
+        # The caller registers this exact row before fileno/fstat can fail.
+        row['socket_original'] = raw
+        if type(raw) is not socket.socket: _fail('socket_unknown')
+        row['fd'] = row['fd_original'] = raw.fileno()
+        if type(row['fd']) is not int or row['fd'] < 0: _fail('socket_unknown')
+        row['metadata'] = row['metadata_original'] = _meta(self.io.fstat(row['fd']))
+        if not stat.S_ISSOCK(row['metadata'][2]): _fail('socket_unknown')
+        row['unknown'] = False; row['proxy'] = row['proxy_original'] = _SocketRef(self, row)
+        return row
+
+    def _close_socket(self, row):
+        with self.lock:
+            self._context()
+            if row['attempted']: return row['closed'] is True and row['unknown'] is False
+            if row['unknown']: return False
+            row['attempted'] = True
+            try:
+                if (row['socket'] is not row.get('socket_original') or row['fd'] != row.get('fd_original') or
+                        row['metadata'] is not row.get('metadata_original') or
+                        row['socket'].fileno() != row['fd'] or _meta(self.io.fstat(row['fd'])) != row['metadata']):
+                    _fail('socket_close_unknown')
+                returned = row['socket'].close()
+                try: self.io.fstat(row['fd'])
+                except OSError as error:
+                    row['closed'] = returned is None and type(error.errno) is int and error.errno == errno.EBADF
+            except BaseException as error:
+                row['failure'] = error; row['unknown'] = True
+            return row['closed'] is True and row['unknown'] is False
+
+    def _new_thread(self, target):
+        ticket = {'thread': None, 'thread_original': None, 'initialized': False,
+                  'called': False, 'returned': False, 'unknown': False, 'ended': False,
+                  'join_called': False, 'join_returned': False, 'failure': None}
+        self.threads.append(ticket)
+        value = threading.Thread.__new__(threading.Thread)
+        ticket['thread'] = ticket['thread_original'] = value
+        try:
+            threading.Thread.__init__(value, target=target); value.daemon = True
+            ticket['initialized'] = True
+        except BaseException as error:
+            ticket['failure'] = error; ticket['unknown'] = True; raise
+        return ticket
+
+    def _start_thread(self, ticket):
+        self._now()
+        if self.stop_called or self.server.stopping.is_set(): _fail('deadline')
+        ticket['called'] = True
+        try: ticket['thread'].start(); ticket['returned'] = True
+        except BaseException as error:
+            ticket['failure'] = error; ticket['unknown'] = True; raise
+
+    def start(self):
+        if self.started or self.close_called: _fail('already_started')
+        if threading.current_thread() is not self.worker: _fail('wrong_worker')
+        self.started = True
+        try:
+            self._now(); self.io.validate(); self.pid = self.io.pid()
+            if type(self.pid) is not int or not 1 <= self.pid <= 0x7fffffff: _fail('owner_changed')
+            self._now()
+            self.boot.BootSourceLoader.authenticate(self.loader)
+            self._boot_roles()
+            # Boot needs only fixed /tmp anchors. Initialization holds the user
+            # FD under the original cap; no top mkdir/chown/chmod or pending IO.
+            storage = self.loader.modules['mta_storage']
+            self.directory_type = storage.DirectoryBinding
+            self.user_directory = self._user_directory_original = self.directory_type.__new__(self.directory_type)
+            self.directory_type.__init__(self.user_directory, USER_ROOT,
+                                         self.original_until, clock=self.clock)
+            self._now(); user_rows = _held_directory_policy(self.user_directory, USER_ROOT)
+            self.received_directory = self._received_directory_original = self.user_directory.ensure_private_child('Received')
+            self._now()
+            if (type(self.received_directory) is not self.directory_type or
+                    _held_directory_policy(self.received_directory, USER_ROOT + '/Received')[:-1] != user_rows):
+                _fail('anchor_changed')
+            self.io.bind_receive_directory(self.received_directory, self.directory_type)
+            self._now()
+            self.factory_called = True
+            self.factory = self.boot.BootSourceLoader.create_fixed_factory(self.loader)
+            self.service, self.http = self.loader.modules['mta_service'], self.loader.modules['minhttp']
+            paths = self.io.state_paths()
+            if type(paths) is not tuple or len(paths) != 3 or any(type(p) is not str or not os.path.isabs(p) for p in paths):
+                _fail('fixed_paths_unknown')
+            if type(self.io) is _LinuxIo and paths != (USER_ROOT, BLUEZ, NETWORK): _fail('fixed_paths_unknown')
+            self.paths = paths
+            for path, pin in zip(paths[1:], HELPER_PINS):
+                _read_asset(self.io, path, pin[0], pin[1], 0o500, self.assets, self._now)
+            if any(row['unknown'] or row['closed'] is not True for row in self.assets): _fail('asset_close_unknown')
+            self._now(); self.state_called = True
+            self.state = self._state_original = self.service.State.__new__(self.service.State)
+            try:
+                self.service.State.__init__(self.state, paths[0], paths[1], paths[2],
+                                           trusted_receive_deployment_factory=self.factory,
+                                           original_service_until=self.original_until,
+                                           original_received_binding=self.received_directory)
+            except BaseException as error:
+                self.state_constructor_failure = error
+                raise
+            finally:
+                self.probe_rows = getattr(self.state, 'probe_actors', None)
+            self.state_complete = True
+            self.state.scan_available = False
+            if (self.state.receive_available is not False or self.state.send_available is not False or
+                    self.state.wifi_restore_pending is not False or self.state.radio_restore_pending is not False or
+                    self.state._trusted_receive_deployment_factory is not self.factory or
+                    self.state._original_service_until is not self.original_until or
+                    self.state._service_until_original is not self.original_until or
+                    self.state._original_received_binding is not self.received_directory or
+                    self.state._received_binding_original is not self.received_directory or
+                    not self.service.State._probes_closed(self.state)):
+                _fail('state_start_pending')
+            self._now(); self.server_called = True
+            self.server = self._server_original = self.service.Server.__new__(self.service.Server)
+            try:
+                self.service.Server.__init__(self.server, self.state, 0, True)
+                self._http_stopping_original = self.server.stopping
+                self._http_worker_lock_original = self.server.worker_lock
+                self._http_workers_original = self.server.workers
+                self.server_complete = True
+            except BaseException as error:
+                self.server_constructor_failure = error
+                raise
+            finally:
+                raw = getattr(self.server, 'socket', None)
+                if raw is not None:
+                    self.listener = self._listener_original = {'socket': raw, 'fd': None, 'metadata': None, 'proxy': None,
+                        'attempted': False, 'closed': False, 'unknown': True, 'failure': None}
+                    try: self._socket_row(raw, self.listener)
+                    except BaseException as error:
+                        self.listener['failure'] = error; self.failures.append(error)
+            if self.listener is None or self.listener['unknown']: _fail('server_socket_unknown')
+            self.server.socket = self.listener['proxy']
+            self.server.bootstrap_deadline = min(self.server.bootstrap_deadline, self.until)
+            owner, base, http = self, self.service.Handler, self.http
+            class FiniteHandler(base):
+                def setup(self):
+                    self.deadline = min(self.deadline, owner.until)
+                    http.BaseHTTPRequestHandler.setup(self)
+                def _dispatch(self, method):
+                    if owner.clock() >= owner.until or self.server.stopping.is_set(): return
+                    return method(self)
+                def do_GET(self): return self._dispatch(base.do_GET)
+                def do_POST(self): return self._dispatch(base.do_POST)
+            self.server.handler = FiniteHandler
+            self._now(); ticket = self._new_thread(self._serve)
+            self.thread = ticket['thread']; self._start_thread(ticket)
+            self._now(); self.start_complete = True
+            return self
+        except BaseException as error:
+            self.failure = error; self.failures.append(error)
+            raise
+
+    def _request(self, row, address):
+        try: self.http.HTTPServer.process(self.server, row['proxy'], address)
+        except BaseException as error: row['failure'] = error; self.failures.append(error)
+        finally: row['ended'] = True
+
+    def _serve(self):
+        try:
+            while not self.server.stopping.is_set():
+                self._now()
+                if len(self.requests) >= MAX_REQUESTS: _fail('request_budget')
+                # Serialize accept+inventory against proxy close/EBADF so our
+                # own accept cannot reuse a descriptor before its close proof.
+                with self.lock:
+                    try: raw, address = self.server.socket.accept()
+                    except socket.timeout: continue
+                    row = {'socket': raw, 'fd': None, 'metadata': None, 'proxy': None,
+                           'attempted': False, 'closed': False, 'unknown': True, 'ended': False, 'failure': None}
+                    self.requests.append(row)
+                    self._socket_row(raw, row)
+                self._now()  # Adopt first; late accept cannot create new work.
+                if self.stop_called or self.server.stopping.is_set(): _fail('deadline')
+                if not self.server.slots.acquire(False): row['proxy'].close(); row['ended'] = True; continue
+                ticket = self._new_thread(lambda r=row, a=address: self._request(r, a))
+                row['ticket'] = row['ticket_original'] = ticket
+                with self.server.worker_lock: self.server.workers[row['proxy']] = ticket['thread']
+                self._start_thread(ticket)
+        except BaseException as error:
+            if not self.stop_called and not (type(error) is ServiceOwnerError and error.code == 'deadline'):
+                self.loop_failure = error
+                self.failures.append(error)
+        finally:
+            self._stop_server()
+
+    def _stop_server(self):
+        with self.lock:
+            if self.stop_called: return
+            self.stop_called = True
+            if self.server_complete:
+                try: self.http.HTTPServer.shutdown(self.server)
+                except BaseException as error: self.failures.append(error)
+            elif self.listener is not None: self._close_socket(self.listener)
+            for row in self.requests:
+                try:
+                    if row.get('closed') is not True: row['socket'].shutdown(socket.SHUT_RDWR)
+                except OSError: pass
+                except BaseException as error: self.failures.append(error)
+
+    def endpoint(self):
+        self._now()
+        if not self.start_complete or self.stop_called: _fail('service_unavailable')
+        return {'endpoint': 'http://' + self.server.expected_host, 'token': self.state.token}
+
+    def close(self):
+        if threading.current_thread() is not self.worker: _fail('wrong_worker')
+        if self.close_called: return self.close_complete
+        self.close_called = True
+        now = self.clock()
+        self.cleanup_until = min(now + CLEANUP_SECONDS, self.until + CLEANUP_SECONDS)
+        try:
+            self._now(True); self._stop_server()
+            if self.state_complete:
+                # Revoke State work before waiting for HTTP workers. An original
+                # retained receive operation is a reason to close, not to skip
+                # the Session finalizer. Never clear its objects to get None.
+                remaining = self.cleanup_until - self._now(True)
+                self.state_close_called = True
+                try:
+                    self.state_close_return = self.service.State.close(
+                        self.state, timeout=min(30.0, remaining))
+                except BaseException as error:
+                    self.failures.append(error)
+                self._now(True)
+            for ticket in self.threads:
+                value = ticket['thread_original']
+                try:
+                    if ticket['thread'] is not value: _fail('thread_unknown')
+                    if ticket['initialized'] and ticket['called'] and not ticket['join_called']:
+                        remaining = max(0, self.cleanup_until - self._now(True))
+                        ticket['join_called'] = True
+                        value.join(remaining)
+                        ticket['join_returned'] = True
+                        ticket['ended'] = value.is_alive() is False
+                except BaseException as error: ticket['failure'] = error; self.failures.append(error)
+            for row in self.requests:
+                if row.get('ticket') is None or row['ticket']['called'] is False or row['ticket']['ended']:
+                    self._close_socket(row)
+            if self.state is not None and type(self.probe_rows) is list and self.state.probe_actors is self.probe_rows:
+                self._now(True); self.service.State._close_probes(self.state); self._now(True)
+            self._close_directories()
+            self.close_complete = self._closed()
+        except BaseException as error:
+            self.failures.append(error)
+        finally:
+            # Expiry cannot authorize new data operations, but must not skip
+            # release of known original directory owners after passive closure.
+            # A false State.close still prevents releasing a live borrow.
+            try: self._close_directories()
+            except BaseException as error: self.failures.append(error)
+        return self.close_complete
+
+    def _close_directories(self):
+        # State/Factory/Parent AND HTTP handlers borrow the retained directory.
+        # Passive closure gates only; expiry cannot permit release under users.
+        if threading.current_thread() is not self.worker: _fail('wrong_worker')
+        self._context()
+        if self.directory_close_called: return self.directory_close_complete
+        if not self._http_closed() or not self._state_directory_idle(): return False
+        self.directory_close_called = True
+        good = True
+        for binding, original in ((self.received_directory, self._received_directory_original),
+                                  (self.user_directory, self._user_directory_original)):
+            if binding is None:
+                if original is not None: good = False
+                continue
+            try:
+                if (binding is not original or type(binding) is not self.directory_type or
+                        binding.close() is not True or binding.closed() is not True): good = False
+            except BaseException as error:
+                self.failures.append(error); good = False
+        self.directory_close_complete = good
+        return good
+
+    def _http_closed(self):
+        """Passive original HTTP borrowers; no clock, wait, close or State call."""
+        try:
+            if (self.requests is not self._requests_original or self.threads is not self._threads_original or
+                    type(self.requests) is not list or type(self.threads) is not list or
+                    self.listener is not self._listener_original or self.server is not self._server_original):
+                return False
+            for ticket in self.threads:
+                if (type(ticket) is not dict or ticket.get('unknown') is not False or
+                        ticket.get('initialized') is not True or ticket.get('failure') is not None or
+                        type(ticket.get('thread')) is not threading.Thread or
+                        ticket['thread'] is not ticket.get('thread_original') or
+                        ticket['thread'].is_alive() is not False):
+                    return False
+                if ticket.get('called') is True:
+                    if (ticket.get('returned') is not True or ticket.get('ended') is not True or
+                            ticket.get('join_called') is not True or ticket.get('join_returned') is not True):
+                        return False
+                elif (ticket.get('called') is not False or ticket.get('returned') is not False or
+                        ticket.get('join_called') is not False or ticket.get('join_returned') is not False or
+                        ticket['thread'].ident is not None):
+                    return False
+            rows = ([self.listener] if self.listener is not None else []) + self.requests
+            for row in rows:
+                if (type(row) is not dict or row.get('unknown') is not False or
+                        row.get('closed') is not True or row.get('attempted') is not True or
+                        row.get('failure') is not None or type(row.get('socket')) is not socket.socket or
+                        row['socket'] is not row.get('socket_original') or row['socket'].fileno() != -1 or
+                        type(row.get('fd')) is not int or row['fd'] < 0 or
+                        row['fd'] != row.get('fd_original') or row.get('metadata') is not row.get('metadata_original') or
+                        type(row.get('metadata')) is not tuple or len(row['metadata']) != 7 or
+                        type(row.get('proxy')) is not _SocketRef or row['proxy'] is not row.get('proxy_original') or
+                        row['proxy'].owner is not self or row['proxy'].row is not row):
+                    return False
+            for row in self.requests:
+                ticket = row.get('ticket')
+                if ticket is None:
+                    if 'ticket_original' in row: return False
+                elif (ticket is not row.get('ticket_original') or
+                        not any(ticket is original for original in self.threads) or
+                        ticket.get('called') is True and row.get('ended') is not True):
+                    return False
+            if self.server_called is False:
+                return (self.server is None and self.listener is None and not self.requests and not self.threads)
+            if (self.server_called is not True or self.server_complete is not True or self.stop_called is not True or
+                    type(self.server) is not self.service.Server or self.server.state is not self._state_original or
+                    self.listener is None or self.server.socket is not self.listener['proxy_original'] or
+                    self.server.stopping is not self._http_stopping_original or
+                    self.server.worker_lock is not self._http_worker_lock_original or
+                    self.server.workers is not self._http_workers_original or
+                    self.server.stopping.is_set() is not True or type(self.server.workers) is not dict):
+                return False
+            if self._http_worker_lock_original.acquire(False) is not True: return False
+            try:
+                return not self._http_workers_original
+            finally:
+                self._http_worker_lock_original.release()
+        except BaseException:
+            return False
+
+    def _state_directory_idle(self):
+        """Complete State uses its original close; only known ctor failure is idle."""
+        if self.state_complete is True: return self._state_closed()
+        if self.state is None:
+            return self.state_called is False and self._state_original is None
+        try:
+            state = self.state
+            if (self.state_called is not True or state is not self._state_original or
+                    type(state) is not self.service.State or self.state_complete is not False or
+                    not isinstance(self.state_constructor_failure, BaseException) or
+                    self.server_called is not False or self.server is not None or
+                    self.state_close_called is not False):
+                return False
+            names = ('operation', 'session', 'worker', 'helper', 'key', 'crypto', 'lease', 'transport')
+            present = tuple(hasattr(state, name) for name in names)
+            if any(getattr(state, name, None) is not None for name in names): return False
+            binding_names = ('_original_received_binding', '_received_binding_original')
+            bound = tuple(hasattr(state, name) for name in binding_names)
+            if not any(bound):
+                # Canonical ctor failed before binding assignment; all activity
+                # fields and the probe inventory are still source-order absent.
+                return (not any(present) and not hasattr(state, 'probe_actors') and self.probe_rows is None)
+            if (not all(bound) or any(getattr(state, name) is not self.received_directory for name in binding_names) or
+                    any(present) and not all(present)):
+                return False
+            if not hasattr(state, 'probe_actors'):
+                # Bound-directory checks precede all actor/probe construction.
+                return self.probe_rows is None
+            return (type(self.probe_rows) is list and state.probe_actors is self.probe_rows and
+                    self.service.State._probes_closed(state) is True)
+        except BaseException:
+            return False
+
+    def _state_closed(self):
+        """Passive original receive closure, not a new restore invocation."""
+        state = self.state
+        if (self.state_complete is not True or state is not self._state_original or
+                type(state) is not self.service.State or
+                self.state_close_called is not True or self.state_close_return is not True):
+            return False
+        if (state._original_received_binding is not self.received_directory or
+                state._received_binding_original is not self.received_directory): return False
+        with state.lock:
+            if state.closing is not True:
+                return False
+            op, session = state.operation, state.session
+            if op is None:
+                # State.closed retains the original no-operation inventory and
+                # pending/probe checks. Presence is never erased by this owner.
+                return self.service.State.closed(state) is True
+            if (type(op) is not self.service.Operation or op.kind != 'receive' or
+                    type(session) is not self.service.TransferSession or op.session is not session or
+                    state.worker is not session._worker or op.epoch != state.native_epoch or
+                    op.receive_factory is not self.factory or
+                    state._trusted_receive_deployment_factory is not self.factory):
+                return False
+            originals = (state.operation, state.session, state.worker, state.helper,
+                         state.key, state.crypto, state.lease, state.transport)
+            epoch = state.native_epoch
+        # Only passive closure/receipt reads after the original Session.close.
+        # This checks retained Parent wait/reap/absence, EOF and resource facts;
+        # never Parent.finish, network restore, recover, kill or reference reset.
+        if (self.service.State.closed(state) is not True or
+                self.service.State._restore_receive_owner(state, op) is not True):
+            return False
+        with state.lock:
+            current = (state.operation, state.session, state.worker, state.helper,
+                       state.key, state.crypto, state.lease, state.transport)
+            return (all(actual is original for actual, original in zip(current, originals)) and
+                    state.native_epoch == epoch and state.closing is True and
+                    self.service.State.closed(state) is True)
+
+    def _closed(self):
+        if self.directory_close_complete is not True: return False
+        if any(binding is not None and binding.closed() is not True for binding in
+               (self.received_directory, self.user_directory)): return False
+        if self.state_called and not self.state_complete or self.server_called and not self.server_complete: return False
+        if any(row['unknown'] or row['closed'] is not True for row in self.assets): return False
+        if not self._http_closed(): return False
+        if self.state is not None and (type(self.probe_rows) is not list or self.state.probe_actors is not self.probe_rows or
+                not self.service.State._probes_closed(self.state)): return False
+        if self.state_complete and not self._state_closed(): return False
+        return True
+
+    def status(self):
+        return {'kind': 'fixed-state-service-owner-v98', 'started': self.started,
+                'startup_complete': self.start_complete, 'close_called': self.close_called,
+                'service_resources_closed': self.close_complete, 'resource_pending': not self.close_complete,
+                'state_constructor_complete': self.state_complete, 'server_constructor_complete': self.server_complete,
+                'loop_failed': self.loop_failure is not None, 'startup_failed': self.failure is not None,
+                'state_close_called': self.state_close_called, 'state_close_verified': self.state_close_return is True,
+                'assets': len(self.assets), 'requests': len(self.requests), 'threads': len(self.threads),
+                'receive_directory_closed': self.directory_close_complete,
+                'receive_available': False, 'send_available': False, 'scan_available': False,
+                'native_restored': False, 'phone_tested': False}
+
+
+def main(argv=None):
+    global _MAIN
+    args = sys.argv[1:] if argv is None else argv
+    if not args:
+        print('SOURCE98_SERVICE definitions=false state=false service=false rf=false')
+        return 0
+    if len(args) != 3 or args[:2] != ['--serve', '--until'] or _MAIN is not None: _fail('fixed_arguments')
+    until = float(args[2])
+    if not _finite(until) or repr(until) != args[2]: _fail('fixed_arguments')
+    io = _LinuxIo(); rows = []
+    _MAIN = {'rows': rows, 'boot': None, 'loader': None, 'owner': None, 'failure': None}
+    def check():
+        if time.monotonic() >= until: _fail('deadline')
+    try:
+        check(); io.validate()
+        raw = _read_asset(io, BOOT_PATH, BOOT_PIN[0], BOOT_PIN[1], 0o400, rows, check)
+        if any(row['unknown'] or not row['closed'] for row in rows): _fail('boot_close_unknown')
+        if any(type(n) is str and n.startswith(('mta_', 'p011_')) for n in sys.modules): _fail('namespace_busy')
+        boot = types.ModuleType('mta_client_receive_boot'); _MAIN['boot'] = boot
+        boot.__file__ = BOOT_PATH; sys.modules[boot.__name__] = boot
+        exec(raw, boot.__dict__)
+        loader = boot.BootSourceLoader(until); _MAIN['loader'] = loader; loader.load()
+        owner = FixedStateServiceOwner(loader, until); _MAIN['owner'] = owner; owner.start()
+        while owner.thread.is_alive(): owner.thread.join(.2)
+        closed = owner.close()
+        return 0 if closed and owner.failure is None and owner.loop_failure is None and not owner.failures else 1
+    except BaseException as error:
+        _MAIN['failure'] = error
+        owner = _MAIN['owner']
+        if owner is not None: owner.close()
+        raise
+
+
+if __name__ == '__main__':
+    raise SystemExit(main())

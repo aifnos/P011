@@ -1,0 +1,390 @@
+"""Flat immutable headless75 graph for one Scope originals dispatch change.
+
+Default SOURCE plan writes nothing. Explicit --write creates eleven new files.
+The already measured Owner dispatch is retained, not newly redesigned.
+No old main, assemble, verifier, test, build or device operation is run.
+"""
+import ast
+import copy
+import hashlib
+import json
+from pathlib import Path
+import sys
+
+BASE = Path(__file__).resolve().parents[2]
+PREFIX = 'candidate/receive-scope-dispatch-graph-v1/'
+RUNTIME = PREFIX + 'runtime/'
+SELF = PREFIX + 'generate_graph.py'
+DEFINITIONS = 'host/formal_receive_scope_dispatch_v1_definitions.py'
+MANIFEST_PATH = 'host/formal_receive_scope_dispatch_v1_definition_manifest.json'
+PRIVATE_MANIFEST_PATH = 'host/formal_receive_scope_dispatch_v1_private_source_manifest.json'
+SPEC_PATH = PREFIX + 'graph-exactsource-delta.json'
+REPORT_PATH = PREFIX + 'graph-generation.json'
+MOTHER = ('host/formal_receive_owner_dispatch_v1_definitions.py', 141837,
+          '61220b6609ac8cbed3830b680a9d56ef960ef3cbc3b54c2bea0eefe384da460b')
+GENERATOR_MOTHER = ('candidate/receive-owner-dispatch-graph-v1/generate_graph.py', 22754,
+                    '89bc3ebad927497ab5aa60e28d63c19642a80ad96015484c007750143b0007c2')
+# Actual files are pinned; the seed writer's readback FAIL is not upgraded here.
+SCOPE_INPUTS = (
+    ('candidate/receive-scope-dispatch-v1/runtime/mta_client_receive_factory.py', 99371,
+     '7c4ee1b5dabf869301be940e0330968b683bde2e8d7d45add83f63c474c70f15'),
+    ('candidate/receive-scope-dispatch-v1/generate.py', 11297,
+     '52fb3a632d170bbd0b8617203de66069a23de065311da79a4a70fd86b35ec2ab'),
+    ('candidate/receive-scope-dispatch-v1/exactsource-delta.json', 3469,
+     'be87cdbd4830f79164787277d4c189b577fb7854d6ee125bd2d4e14434a4d768'))
+ROOT_BEFORE, ROOT_AFTER = 'p011-mta-rx-dispatch-v1', 'p011-mta-rx-scope-v0001'
+CHANGED = ('mta_client_executor', 'mta_client_receive_factory', 'mta_client_state_bridge',
+           'mta_client_receive_boot', 'mta_client_service_owner')
+CHANGED_PAYLOAD_ROLES = CHANGED + ('runtime35/mta_client_executor',)
+INTERFACE_CONSTANTS = ('CHECKER', 'TRANSPORT', 'HELPERS', 'WPA', 'MONITOR', 'MODULE_NAMES',
+                       'PRIVATE_MODULE_NAMES', 'TRIAL_BOOL_FIELDS', 'TRIAL_REASONS',
+                       'TARGET_COMMON', 'TARGET_SERVICE', 'FILECENTER_SOURCES')
+REUSED_FUNCTIONS = ('need', 'digest', 'jraw', 'scoped', 'read_pin', 'literal_assignment', 'replay',
+                    'definition_rows', 'validate_delta', 'validate_runner', '_meta', 'load_checker',
+                    '_short_chunks', 'parse_trial_facts', 'manifest_rows', 'make_source',
+                    'owner_context', 'validate_owner_business')
+GENERATOR_HELPERS = ('need', 'digest', 'pin', 'jraw', 'scoped', 'read_pin', 'literal_assignment',
+                     'source_function', 'owner_context', 'replay', 'definition_rows', 'validate_delta',
+                     'assignment', 'source_tuple', 'validate_runner')
+
+
+def need(value, code):
+    if value is not True:
+        raise ValueError(code)
+
+
+def digest(raw):
+    return hashlib.sha256(raw).hexdigest()
+
+
+def pin(path, raw):
+    return path, len(raw), digest(raw)
+
+
+def jraw(value):
+    return (json.dumps(value, sort_keys=True, indent=2, ensure_ascii=True) + '\n').encode('ascii')
+
+
+def scoped(path):
+    target = BASE / path
+    need(not target.is_symlink() and target.resolve().is_relative_to(BASE.resolve()), 'graph_path_scope')
+    return target
+
+
+def read_pin(row):
+    raw = scoped(row[0]).read_bytes()
+    need((len(raw), digest(raw)) == row[1:], 'graph_actual_pin:' + row[0])
+    return raw
+
+
+def literal_assignment(raw, name):
+    rows = [node for node in ast.parse(raw.decode('ascii')).body if isinstance(node, ast.Assign) and
+            len(node.targets) == 1 and isinstance(node.targets[0], ast.Name) and node.targets[0].id == name]
+    need(len(rows) == 1, 'single_literal:' + name)
+    return ast.literal_eval(rows[0].value)
+
+
+def source_function(raw, name):
+    text = raw.decode('ascii')
+    rows = [node for node in ast.parse(text).body if isinstance(node, ast.FunctionDef) and node.name == name]
+    need(len(rows) == 1, 'single_pure_function:' + name)
+    return ast.get_source_segment(text, rows[0])
+
+
+def owner_context(raw):
+    text, tree = raw.decode('ascii'), ast.parse(raw.decode('ascii'), feature_version=(3, 5))
+    classes = [node for node in tree.body if isinstance(node, ast.ClassDef) and node.name == 'FixedStateServiceOwner']
+    need(len(classes) == 1, 'one_owner_class')
+    methods = [node for node in classes[0].body if isinstance(node, ast.FunctionDef) and node.name == '_context']
+    need(len(methods) == 1, 'one_owner_context')
+    return ast.get_source_segment(text, methods[0])
+
+
+def replay(raw, edits, inverse=False):
+    for row in reversed(edits) if inverse else edits:
+        before = row['after' if inverse else 'before'].encode('ascii')
+        after = row['before' if inverse else 'after'].encode('ascii')
+        need(raw.count(before) == row['count'], 'exact_edit_count:' + row['name'])
+        raw = raw.replace(before, after)
+    return raw
+
+
+def definition_rows(raw):
+    text = raw.decode('ascii')
+    return tuple((type(node).__name__, node.name, node.lineno, node.end_lineno, ast.get_source_segment(text, node))
+        for node in ast.walk(ast.parse(text, feature_version=(3, 5))) if isinstance(node, (ast.FunctionDef, ast.ClassDef)))
+
+
+def validate_delta(before, after, edits, functions_unchanged=False):
+    inverse = replay(after, edits, True)
+    need(replay(before, edits) == after and inverse == before, 'complete_source_byte_inverse')
+    need(ast.dump(ast.parse(inverse.decode('ascii')), include_attributes=True) ==
+         ast.dump(ast.parse(before.decode('ascii')), include_attributes=True), 'complete_position_ast_inverse')
+    old, new = definition_rows(before), definition_rows(after)
+    need(tuple(row[:4] for row in old) == tuple(row[:4] for row in new) and
+         len(before.splitlines()) == len(after.splitlines()), 'mechanical_definition_lines')
+    if functions_unchanged:
+        need(old == new, 'mechanical_all_definitions_byte_exact')
+
+
+def scope_originals(raw):
+    text, tree = raw.decode('ascii'), ast.parse(raw.decode('ascii'), feature_version=(3, 5))
+    classes = [node for node in tree.body if isinstance(node, ast.ClassDef) and node.name == '_StartupReadScope']
+    need(len(classes) == 1, 'one_startup_scope_class')
+    methods = [node for node in classes[0].body if isinstance(node, ast.FunctionDef) and node.name == '_originals']
+    need(len(methods) == 1, 'one_startup_scope_originals')
+    return ast.get_source_segment(text, methods[0])
+
+
+def validate_scope_business(inputs, entry):
+    before, seed = inputs[entry['source'][0]], inputs[entry['candidate'][0]]
+    need((len(before), digest(before)) == tuple(entry['source'][1:]) and
+         (len(seed), digest(seed)) == tuple(entry['candidate'][1:]), 'scope_business_pins')
+    edits = entry['edits']
+    need(len(edits) == 1 and edits[0]['count'] == 1 and edits[0]['name'] == 'scope_originals_dispatch' and
+         edits[0]['before'] == scope_originals(before) and edits[0]['after'] == scope_originals(seed),
+         'only_scope_originals_business_block')
+    need(replay(before, edits) == seed and replay(seed, edits, True) == before and
+         len(seed) - len(before) == 114, 'scope_dispatch_complete_byte_inverse')
+    delta = json.loads(inputs[entry['seed_delta'][0]].decode('ascii'))
+    need(delta == entry['seed_delta_expected'] and delta['schema'] ==
+         'p011-receive-scope-dispatch-v1-exactsource-delta' and delta['origin'] == dict(
+         path=entry['source'][0], bytes=entry['source'][1], sha256=entry['source'][2]) and
+         delta['candidate'] == dict(path=entry['candidate'][0], bytes=entry['candidate'][1],
+                                    sha256=entry['candidate'][2]), 'actual_scope_seed_delta_bindings')
+    partial = [dict(row, name='scope_seed_dispatch') for row in delta['replacements']]
+    need(len(partial) == 1 and partial[0]['count'] == 1 and replay(before, partial) == seed and
+         replay(seed, partial, True) == before, 'actual_scope_seed_partial_byte_inverse')
+    restored = replay(seed, edits, True)
+    need(ast.dump(ast.parse(restored), include_attributes=True) == ast.dump(ast.parse(before), include_attributes=True),
+         'scope_dispatch_complete_position_ast_inverse')
+
+
+def assignment(name, before, after):
+    return dict(name=name + '_constant', before=name + ' = ' + repr(before) + '\n',
+                after=name + ' = ' + repr(after) + '\n', count=1)
+
+
+def source_tuple(name, before, after, count=1):
+    return dict(name=name + '_tuple', before='    ' + repr((name,) + before[1:]) + ',\n',
+                after='    ' + repr((name,) + after[1:]) + ',\n', count=count)
+
+
+def validate_runner(raw, rows, private_rows, helpers, wpa, monitor):
+    need(literal_assignment(raw, 'STATE_ROOT') == '/var/volatile/tmp/' + ROOT_AFTER and
+         literal_assignment(raw, 'STATE_ALIAS') == '/tmp/' + ROOT_AFTER, 'runner_roots')
+    need(literal_assignment(raw, 'ROLE_PINS') == tuple((n, size, sha) for n, p, size, sha in rows) and
+         literal_assignment(raw, 'PRIVATE_PINS') == tuple((n[10:], size, sha) for n, p, size, sha in private_rows) and
+         literal_assignment(raw, 'HELPER_PINS') == tuple((n, size, sha) for n, p, size, sha in helpers) and
+         literal_assignment(raw, 'WPA_PIN') == (wpa[0], wpa[2], wpa[3]) and
+         literal_assignment(raw, 'MONITOR_PIN') == (monitor[0], monitor[2], monitor[3]), 'runner_exact75_pins')
+
+
+def load_inputs():
+    need(len(SCOPE_INPUTS) == 3 and len(ROOT_BEFORE) == len(ROOT_AFTER), 'frozen_scope_and_equal_root_required')
+    inputs = {MOTHER[0]: read_pin(MOTHER), GENERATOR_MOTHER[0]: read_pin(GENERATOR_MOTHER)}
+    rows = literal_assignment(inputs[MOTHER[0]], 'ORIGIN_SOURCE_PINS')
+    need(len(rows) == 245, 'fixed_current_flat245')
+    for row in rows + SCOPE_INPUTS:
+        raw = read_pin(row)
+        need(row[0] not in inputs or inputs[row[0]] == raw, 'flat_duplicate_identity')
+        inputs[row[0]] = raw
+    inputs[SELF] = scoped(SELF).read_bytes()
+    return inputs
+
+
+def assemble(inputs):
+    """Pure derivation of actual bytes/pins from one flat input snapshot."""
+    mother = inputs[MOTHER[0]]
+    need((len(mother), digest(mother)) == MOTHER[1:] and len(SCOPE_INPUTS) == 3, 'actual_current_mother_scope')
+    origin_rows = literal_assignment(mother, 'ORIGIN_SOURCE_PINS')
+    need(len(origin_rows) == 245 and (len(inputs[GENERATOR_MOTHER[0]]), digest(inputs[GENERATOR_MOTHER[0]])) ==
+         GENERATOR_MOTHER[1:], 'current245_fixed_inventory')
+    for path, size, sha in origin_rows + SCOPE_INPUTS:
+        need((len(inputs[path]), digest(inputs[path])) == (size, sha), 'actual_flat_source_pin')
+    need(all(source_function(inputs[SELF], name) == source_function(inputs[GENERATOR_MOTHER[0]], name)
+             for name in GENERATOR_HELPERS), 'original_generator_pure_helpers_byte_exact')
+    values = {name: literal_assignment(mother, name) for name in INTERFACE_CONSTANTS}
+    owner_business = literal_assignment(mother, 'BUSINESS_EXPECTED')
+    old_manifest, old_private, old_runner = (literal_assignment(mother, name) for name in ('MANIFEST', 'PRIVATE_MANIFEST', 'RUNNER'))
+    ordinary, private = (json.loads(inputs[row[0]].decode('ascii')) for row in (old_manifest, old_private))
+    old_rows = {row['module']: (row['path'], row['bytes'], row['sha256']) for row in ordinary['sources']}
+    old_private_rows = tuple(('runtime35/' + r['module'], r['path'], r['bytes'], r['sha256']) for r in private['sources'])
+    original_payload = tuple((r['module'], r['path'], r['bytes'], r['sha256']) for r in ordinary['sources']) + values['HELPERS'] + old_private_rows + (values['WPA'], values['MONITOR'])
+    need(len(original_payload) == 75 and sum(r[2] for r in original_payload) == 4193350 and
+         literal_assignment(mother, 'ROOT_AFTER') == ROOT_BEFORE, 'actual_current75_root_budget')
+    scope_seed = SCOPE_INPUTS[0]
+    business = dict(source=list(old_rows['mta_client_receive_factory']), candidate=list(scope_seed),
+        seed_delta=list(SCOPE_INPUTS[2]), seed_delta_expected=json.loads(inputs[SCOPE_INPUTS[2][0]].decode('ascii')), edits=[dict(
+        name='scope_originals_dispatch', before=scope_originals(inputs[old_rows['mta_client_receive_factory'][0]]),
+        after=scope_originals(inputs[scope_seed[0]]), count=1)])
+    validate_scope_business(inputs, business)
+    outputs, mechanical, new_pins = {}, [], {}
+
+    def create(name, source, edits, functions_unchanged=False):
+        before = inputs[source[0]]
+        result = replay(before, edits)
+        validate_delta(before, result, edits, functions_unchanged)
+        path = RUNTIME + name + '.py'
+        outputs[path], new_pins[name] = result, pin(path, result)
+        mechanical.append(dict(name=name, source=list(source), candidate=list(new_pins[name]),
+                               edits=edits, functions_unchanged=functions_unchanged))
+
+    def root(name, physical=False):
+        prefix = '/var/volatile/tmp/' if physical else '/tmp/'
+        return assignment(name, prefix + ROOT_BEFORE, prefix + ROOT_AFTER)
+
+    create('mta_client_executor', old_rows['mta_client_executor'], [dict(name='private_runtime_root',
+        before="    if (directory != '/var/volatile/tmp/" + ROOT_BEFORE + "/runtime35' and\n",
+        after="    if (directory != '/var/volatile/tmp/" + ROOT_AFTER + "/runtime35' and\n", count=1)])
+    executor = new_pins['mta_client_executor']
+    need(executor[1] == old_rows['mta_client_executor'][1], 'equal_length_executor_root')
+    create('mta_client_state_bridge', old_rows['mta_client_state_bridge'],
+           [assignment('PARENT_SOURCE_SHA', old_rows['mta_client_executor'][2], executor[2])], True)
+    private_new = copy.deepcopy(private)
+    private_index = next(i for i, row in enumerate(private_new['sources']) if row['module'] == 'mta_client_executor')
+    private_new['sources'][private_index] = dict(module='mta_client_executor', path=executor[0], bytes=executor[1], sha256=executor[2])
+    private_new['previous_manifest_sha256'] = old_private[2]
+    outputs[PRIVATE_MANIFEST_PATH] = jraw(private_new)
+    private_pin = pin(PRIVATE_MANIFEST_PATH, outputs[PRIVATE_MANIFEST_PATH])
+    create('mta_client_receive_factory', scope_seed, [root('ASSET_ROOT'),
+        root('ASSET_PHYSICAL_ROOT', True), assignment('SOURCE_MANIFEST_SHA', old_private[2], private_pin[2]),
+        assignment('F_SHA', old_rows['mta_client_executor'][2], executor[2])], True)
+    boot_edits = [root('ROOT'), root('PHYSICAL_ROOT', True),
+        assignment('CLIENT_MANIFEST_SHA', old_private[2], private_pin[2]),
+        assignment('F37_SHA', old_rows['mta_client_executor'][2], executor[2]),
+        source_tuple('mta_client_receive_factory', old_rows['mta_client_receive_factory'], new_pins['mta_client_receive_factory']),
+        source_tuple('mta_client_state_bridge', old_rows['mta_client_state_bridge'], new_pins['mta_client_state_bridge'])]
+    create('mta_client_receive_boot', old_rows['mta_client_receive_boot'], boot_edits, True)
+    boot_raw = outputs[new_pins['mta_client_receive_boot'][0]]
+    need(literal_assignment(boot_raw, 'F37_SHA') == executor[2] and
+         ("    ('mta_client_executor', " + str(executor[1]) + ', F37_SHA),\n').encode('ascii') in boot_raw and
+         ("SOURCE_PINS[0] != ('mta_client_executor', " + str(executor[1]) + ', F37_SHA)').encode('ascii') in boot_raw,
+         'boot_table_and_source_shape_actual_executor')
+    create('mta_client_service_owner', old_rows['mta_client_service_owner'], [root('ROOT'),
+        assignment('BOOT_PIN', old_rows['mta_client_receive_boot'][1:], new_pins['mta_client_receive_boot'][1:]),
+        dict(name='held_physical_root', before="        physical = '/var/volatile/tmp/" + ROOT_BEFORE + "'\n",
+             after="        physical = '/var/volatile/tmp/" + ROOT_AFTER + "'\n", count=1)])
+    need(owner_context(outputs[new_pins['mta_client_service_owner'][0]]) ==
+         owner_context(inputs[old_rows['mta_client_service_owner'][0]]), 'measured_owner_context_byte_exact')
+    ordinary_new, changes = copy.deepcopy(ordinary), []
+    for index, row in enumerate(ordinary_new['sources']):
+        if row['module'] in CHANGED:
+            path, size, sha = new_pins[row['module']]
+            after = dict(module=row['module'], path=path, bytes=size, sha256=sha)
+            changes.append([index, copy.deepcopy(row), after])
+            ordinary_new['sources'][index] = after
+    outputs[MANIFEST_PATH] = jraw(ordinary_new)
+    manifest_pin = pin(MANIFEST_PATH, outputs[MANIFEST_PATH])
+    rows = tuple((r['module'], r['path'], r['bytes'], r['sha256']) for r in ordinary_new['sources'])
+    private_rows = tuple(('runtime35/' + r['module'], r['path'], r['bytes'], r['sha256']) for r in private_new['sources'])
+    runner_edits = [root('STATE_ROOT', True), root('STATE_ALIAS')]
+    runner_edits.extend(source_tuple(name, old_rows[name], new_pins[name], 2 if name == 'mta_client_executor' else 1) for name in CHANGED)
+    create('mta_formal_receive_session', old_runner, runner_edits, True)
+    core = new_pins['mta_formal_receive_session']
+    payload = rows + values['HELPERS'] + private_rows + (values['WPA'], values['MONITOR'])
+    changed = tuple(row[0] for row, before in zip(payload, original_payload) if row != before)
+    total = sum(row[2] for row in payload)
+    need(len(payload) == 75 and len(set(row[0] for row in payload)) == 75 and changed == CHANGED_PAYLOAD_ROLES and
+         total == 4193350 + 114 <= 4194304 and len(mechanical) == 6, 'actual6_changed_69_exact_budget')
+    for row, before in zip(payload, original_payload):
+        if row[0] not in CHANGED_PAYLOAD_ROLES:
+            need(row == before and inputs[row[1]] == inputs[before[1]], 'unchanged69_original_bytes')
+    validate_runner(outputs[core[0]], rows, private_rows, values['HELPERS'], values['WPA'], values['MONITOR'])
+    need(literal_assignment(outputs[executor[0]], 'MODULES') == values['PRIVATE_MODULE_NAMES'], 'executor35_order')
+    factory_raw = outputs[new_pins['mta_client_receive_factory'][0]]
+    need(literal_assignment(factory_raw, 'F_SHA') == executor[2] and
+         factory_raw.count(("    ('mta_client_executor', " + str(executor[1]) + ', F_SHA),\n').encode('ascii')) == 1,
+         'factory_actual_executor_row')
+    manifests = [dict(source=list(old_manifest), candidate=list(manifest_pin), private=False, changes=changes),
+        dict(source=list(old_private), candidate=list(private_pin), private=True,
+             changes=[[private_index, private['sources'][private_index], private_new['sources'][private_index]]])]
+    spec = dict(schema='p011-receive-scope-dispatch-v1-graph-delta', root=ROOT_AFTER,
+        mechanical=mechanical, business=business, business_inputs=[list(row) for row in SCOPE_INPUTS],
+        manifests=manifests, changed_roles=list(changed), payload_bytes=total,
+        unchanged_payload_roles=69, private_roles_exact=34, proc_native_fc9_unchanged=True,
+        measured_owner_context_preserved=True)
+    outputs[SPEC_PATH] = jraw(spec)
+    need(len(outputs[SPEC_PATH]) <= 131072, 'finite_graph_delta_metadata')
+    delta_pin = pin(SPEC_PATH, outputs[SPEC_PATH])
+    origin = {path: pin(path, raw) for path, raw in inputs.items()}
+    need(not set(origin).intersection(outputs), 'immutable_output_partition')
+    origin.update((path, pin(path, raw)) for path, raw in outputs.items())
+    report = dict(schema='p011-receive-scope-dispatch-v1-graph-generation',
+        status='MECHANICALLY_DERIVED_NOT_NEW_DEVICE_TESTED', generator=list(pin(SELF, inputs[SELF])),
+        source_origin_count=len(origin) + 1, mechanical_closure_count=6, business_closure_count=1,
+        changed_payload_roles=list(changed), exact_payload_roles=69, private_roles_exact=34,
+        payload_bytes=total, payload_remaining=4194304 - total, scope_business_growth=114,
+        root=ROOT_AFTER, headless_only=True, navigation_ui_outputs=False, proc_native_fc9_unchanged=True,
+        measured_owner_context_preserved=True,
+        output_pins=[list(pin(path, raw)) for path, raw in sorted(outputs.items())], definitions_path=DEFINITIONS,
+        definitions_and_report_pins_omitted_to_avoid_cycles=True, old_main_build_verify_called=False,
+        old_tests_replayed=0, device_tested=False, phone_tested=False)
+    outputs[REPORT_PATH] = jraw(report)
+    report_pin = pin(REPORT_PATH, outputs[REPORT_PATH])
+    origin[REPORT_PATH] = report_pin
+    source_pins = tuple(origin[path] for path in sorted(origin))
+    constants = dict(MOTHER=MOTHER, MANIFEST=manifest_pin, PRIVATE_MANIFEST=private_pin, RUNNER=core,
+        EXECUTOR_PIN=executor, OLD_MANIFEST=old_manifest, ORIGINAL_MANIFEST=old_manifest, OLD_PRIVATE_MANIFEST=old_private,
+        DELTA_SPEC=delta_pin, GENERATION=report_pin, ROOT_BEFORE=ROOT_BEFORE, ROOT_AFTER=ROOT_AFTER,
+        STATE_ROOT='/var/volatile/tmp/' + ROOT_AFTER, STATE_ALIAS='/tmp/' + ROOT_AFTER,
+        RUNTIME_PREFIX=RUNTIME, CHANGED=CHANGED, PRIVATE_CHANGED=('mta_client_executor',),
+        CHANGED_PAYLOAD_ROLES=CHANGED_PAYLOAD_ROLES, MECHANICAL_CLOSURE_COUNT=6, BUSINESS_CLOSURE_COUNT=1,
+        PAYLOAD_BYTES=total, ORIGIN_SOURCE_PINS=source_pins, ORIGINAL_PAYLOAD_ROWS=original_payload,
+        ORDINARY_ROWS=rows, PRIVATE_ROWS=private_rows, MECHANICAL_EXPECTED=mechanical, BUSINESS_EXPECTED=business,
+        OWNER_BUSINESS_EXPECTED=owner_business,
+        MANIFEST_EXPECTED=manifests, DELTA_EXPECTED=spec, GENERATION_EXPECTED=report,
+        ORIGINAL_MANIFEST_RAW=inputs[old_manifest[0]], OLD_PRIVATE_RAW=inputs[old_private[0]], **values)
+    header = '\n'.join(('"""Flat headless Scope dispatch75 closure; not device/phone acceptance."""',
+        'import ast', 'import copy', 'import hashlib', 'import json', 'import os', 'from pathlib import Path',
+        'import re', 'import stat', 'import types', '', 'BASE = Path(__file__).resolve().parents[1]') +
+        tuple(name + ' = ' + repr(value) for name, value in constants.items()))
+    reusable = '\n\n'.join(source_function(mother, name) for name in REUSED_FUNCTIONS)
+    business_functions = '\n\n'.join(source_function(inputs[SELF], name) for name in ('scope_originals', 'validate_scope_business'))
+    verify = source_function(mother, 'verify_inputs')
+    anchor = '    validate_owner_business(inputs, BUSINESS_EXPECTED)'
+    replacement = ('    validate_owner_business(inputs, OWNER_BUSINESS_EXPECTED)\n'
+                   '    validate_scope_business(inputs, BUSINESS_EXPECTED)')
+    need(verify.count(anchor) == 1 and replacement not in verify, 'one_scope_verifier_anchor')
+    verify_new = verify.replace(anchor, replacement)
+    need(verify_new.replace(replacement, anchor) == verify, 'complete_verifier_interface_inverse')
+    interfaces = '\n'.join(('SOURCE_PINS = ORIGIN_SOURCE_PINS', 'FILECENTER_SOURCE_PINS = FILECENTER_SOURCES',
+        "TRIAL_FIELDS = frozenset(TRIAL_BOOL_FIELDS + ('claim_count', 'reason'))", 'json_bytes = jraw'))
+    definitions = (header + '\n\n' + reusable + '\n\n' + business_functions + '\n\n' + interfaces +
+                   '\n\n' + verify_new + '\n').encode('ascii')
+    ast.parse(definitions.decode('ascii'))
+    outputs[DEFINITIONS] = definitions
+    need(len(outputs) == 11 and len(source_pins) == report['source_origin_count'], 'actual11_outputs_flat_origin')
+    return outputs, report, inputs
+
+
+def main():
+    args = sys.argv[1:]
+    need(args in ([], ['--write']), 'source_plan_or_explicit_write')
+    inputs = load_inputs()
+    outputs, report, _ = assemble(inputs)
+    if not args:
+        print(json.dumps(dict(mode='SOURCE_PLAN_NO_WRITES', planned_output_bytes={p: len(r) for p, r in outputs.items()},
+            payload_bytes=report['payload_bytes'], remaining=report['payload_remaining'],
+            source_origin_count=report['source_origin_count']), sort_keys=True))
+        return 0
+    for path, raw in inputs.items():
+        need(scoped(path).read_bytes() == raw, 'input_preserved_before_write')
+    need(all(path.startswith(PREFIX) or path in (DEFINITIONS, MANIFEST_PATH, PRIVATE_MANIFEST_PATH)
+             for path in outputs), 'explicit_eleven_output_namespace')
+    need(all(not scoped(path).exists() for path in outputs), 'all_outputs_exclusive')
+    for path, raw in outputs.items():
+        target = scoped(path)
+        target.parent.mkdir(parents=True, exist_ok=True)
+        with target.open('xb') as stream:
+            need(stream.write(raw) == len(raw), 'exclusive_short_write')
+        need(target.read_bytes() == raw, 'actual_output_readback')
+    for path, raw in inputs.items():
+        need(scoped(path).read_bytes() == raw, 'input_preserved_after_write')
+    print(json.dumps(dict(mode='EXCL_ACTUAL_OUTPUTS', outputs=[list(pin(p, r)) for p, r in outputs.items()],
+        payload_bytes=report['payload_bytes'], remaining=report['payload_remaining']), sort_keys=True))
+    return 0
+
+
+if __name__ == '__main__':
+    raise SystemExit(main())

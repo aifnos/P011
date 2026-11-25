@@ -1,0 +1,86 @@
+{
+  "added_methods": [
+    "_MediaLock.__init__",
+    "_MediaLock.__enter__",
+    "_MediaLock.__exit__"
+  ],
+  "all_other_definition_bytes_unchanged": true,
+  "already_acquired_lock_released_on_error": true,
+  "blocking_file_io_preemption_verified": false,
+  "candidate": {
+    "bytes": 35198,
+    "path": "candidate/filecenter-media-lock-deadline-v1/receive/mta_filecenter_companion.py",
+    "sha256": "44c14589ef7b6a0af98c6a3446b3bd7539640f5b7fccc23c5c9677c705ae02ca"
+  },
+  "changed_methods": [
+    "_FileCenterHandler.dispatch",
+    "_FileCenterHandler.media",
+    "_Companion.open_file",
+    "_Companion.media_row",
+    "_Companion.audio_source_fd"
+  ],
+  "close_method_bytes_unchanged": true,
+  "complete_ast_inverse": true,
+  "complete_byte_inverse": true,
+  "device_verified": false,
+  "fd_identity_io_http_status_unchanged": true,
+  "graph_changed": false,
+  "handler_absolute_deadline_forwarded": true,
+  "host_test_executed": false,
+  "lock_wait_slice_seconds": 0.05,
+  "new_deadline_created": false,
+  "origin": {
+    "bytes": 33630,
+    "path": "candidate/filecenter-http-parent-cap-v1/receive/mta_filecenter_companion.py",
+    "sha256": "8b3ab84e17de135622b3a58e29138ca556376172e6c523eb9ab22ef44f4880ba"
+  },
+  "original_guard_bytes_unchanged": true,
+  "owner_authority_granted": false,
+  "parent_original_until_unchanged": true,
+  "radio_operation_requested": false,
+  "replacements": [
+    {
+      "after": "\nclass _MediaLock:\n    \"\"\"Wait only within the retained parent/caller cap, without renewing it.\"\"\"\n    def __init__(self, companion, lock, deadline=None):\n        parent_until = companion.until\n        if type(parent_until) is not float or not math.isfinite(parent_until):\n            raise ValueError('original_finite_cap_required')\n        if deadline is not None and (type(deadline) is not float or not math.isfinite(deadline)):\n            raise ValueError('filecenter_finite_media_deadline_required')\n        self.companion, self.lock = companion, lock\n        self.deadline = parent_until if deadline is None else min(parent_until, deadline)\n\n    def __enter__(self):\n        while True:\n            self.companion.check()\n            remaining = self.deadline - time.monotonic()\n            if remaining <= 0: raise ValueError('filecenter_media_lock_deadline')\n            if self.lock.acquire(timeout=min(0.05, remaining)):\n                try:\n                    self.companion.check()\n                    if time.monotonic() >= self.deadline:\n                        raise ValueError('filecenter_media_lock_deadline')\n                except BaseException:\n                    self.lock.release()\n                    raise\n                return self\n\n    def __exit__(self, error_type, error, traceback):\n        self.lock.release()\n        return False\n\n\ndef _owner_binding(owner, module):\n",
+      "before": "\ndef _owner_binding(owner, module):\n",
+      "count": 1
+    },
+    {
+      "after": "self.server.companion.open_file(query.get('path', ''), deadline=self.deadline)",
+      "before": "self.server.companion.open_file(query.get('path', ''))",
+      "count": 1
+    },
+    {
+      "after": "        row = self.server.companion.media_row(query, deadline=self.deadline)\n        with _MediaLock(self.server.companion, row['lock'], self.deadline):\n",
+      "before": "        row = self.server.companion.media_row(query)\n        with row['lock']:\n",
+      "count": 1
+    },
+    {
+      "after": "    def open_file(self, path, deadline=None):\n",
+      "before": "    def open_file(self, path):\n",
+      "count": 1
+    },
+    {
+      "after": "        with _MediaLock(self, self.media_lock, deadline):\n            for row in self.media:\n",
+      "before": "        with self.media_lock:\n            for row in self.media:\n",
+      "count": 1
+    },
+    {
+      "after": "    def media_row(self, query, deadline=None):\n",
+      "before": "    def media_row(self, query):\n",
+      "count": 1
+    },
+    {
+      "after": "        with _MediaLock(self, self.media_lock, deadline):\n            rows = [row for row in self.media if row['cap'] == query['cap']]\n",
+      "before": "        with self.media_lock:\n            rows = [row for row in self.media if row['cap'] == query['cap']]\n",
+      "count": 1
+    },
+    {
+      "after": "        with _MediaLock(self, self.media_lock):\n            rows = [row for row in self.media if row['valid'] and row['kind']=='audio' and\n",
+      "before": "        with self.media_lock:\n            rows = [row for row in self.media if row['valid'] and row['kind']=='audio' and\n",
+      "count": 1
+    }
+  ],
+  "schema": "filecenter-media-lock-deadline-v1-exactsource-delta",
+  "side": "receive",
+  "unowned_lock_released": false
+}

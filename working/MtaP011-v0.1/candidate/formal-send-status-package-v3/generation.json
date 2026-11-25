@@ -1,0 +1,547 @@
+{
+  "asset_bytes": 4185296,
+  "bridge_body_source": [
+    "candidate/formal-send-status-package-v2/generate_ui.py",
+    10647,
+    "72ebe7e1479eeac72fbfa7903d4c27a997143e79e2edef525491b58fa2c6bb23"
+  ],
+  "bridge_complete_byte_ast_inverse": true,
+  "bridge_origin": [
+    "candidate/formal-send-status-package-v1/generate_ui.py",
+    24159,
+    "a424b9b28583797ea669beb983437a9ad6a277d527cc808f6160775a6810980c"
+  ],
+  "bridge_replacements": [
+    {
+      "after": "ROOT = 'candidate/formal-send-status-package-v3'",
+      "before": "ROOT = 'candidate/formal-send-status-package-v1'",
+      "count": 1
+    },
+    {
+      "after": "CONTROL_SUFFIX = '-formal-send-status-package-v3'",
+      "before": "CONTROL_SUFFIX = '-formal-send-status-package-v1'",
+      "count": 1
+    },
+    {
+      "after": "'p011-formal-send-status-package-v3-stage'",
+      "before": "'p011-formal-send-status-package-v1-stage'",
+      "count": 1
+    },
+    {
+      "after": "'p011-formal-send-status-package-v3-exactsource-delta'",
+      "before": "'p011-formal-send-status-package-v1-exactsource-delta'",
+      "count": 1
+    },
+    {
+      "after": "'p011-formal-send-status-package-v3-pc-build'",
+      "before": "'p011-formal-send-status-package-v1-pc-build'",
+      "count": 1
+    },
+    {
+      "after": "'p011-formal-send-status-package-v3-generation'",
+      "before": "'p011-formal-send-status-package-v1-generation'",
+      "count": 1
+    }
+  ],
+  "bundle": "out/mta-ui-send-status-v1-6d4fb1fd4af949cbb3515870",
+  "business_definitions_executed": false,
+  "cached_qt_evidence": {
+    "boundary": "Actual HOST Qt/QML with delayed request seam; not real XHR/device/phone/rendering.",
+    "methods": 1,
+    "reexecuted": false,
+    "result": [
+      "results/formal-send-status-presentation-v1-host-20261006-084552-973b4819/result.json",
+      3555,
+      "64714ba0823759436cce100bf5a8b036a82b22a8e5e77ee61996ffed59788add"
+    ],
+    "scenarios": 9
+  },
+  "caps": {
+    "file_bytes": 5242880,
+    "geometry": "800x268",
+    "qrc_slot_bytes": 1580,
+    "source_manifest_bytes": 4096,
+    "stage_bytes": 4194304,
+    "target_max_line": 2048,
+    "ui_text_bytes": 262144
+  },
+  "changed_payload": [
+    "Bridge.qml",
+    "FormalEntry.qml",
+    "Z03.mta-ui-candidate",
+    "mta/MtaPage.qml"
+  ],
+  "changed_staged_files": 5,
+  "control": "/var/volatile/tmp/p011-mta-ui-session-6d4fb1fd4af949cbb3515870-formal-send-status-package-v3",
+  "control_name": "p011-mta-ui-session-6d4fb1fd4af949cbb3515870-formal-send-status-package-v3",
+  "control_suffix": "-formal-send-status-package-v3",
+  "device": false,
+  "exactsource_delta": [
+    "candidate/formal-send-status-package-v3/exactsource-delta.json",
+    10759,
+    "90e70524c115ffd3a43e66dce7dcf5049bd597fb32a7bc50f681e82b5f8c3ebd"
+  ],
+  "failed_partial_outputs_preserved": true,
+  "filecenter_changed": false,
+  "generator": [
+    "candidate/formal-send-status-package-v3/generate_ui.py",
+    12871,
+    "07788d35b2eccd7cdd68877b6b854efbb9a02ddf08f282c0295e71939e4888a7"
+  ],
+  "generic_source_mode_gate_changed": false,
+  "guardian": [
+    "candidate/formal-send-status-package-v3/runtime/ui_guardian.py",
+    43994,
+    "c36560f4d481677ce61ec9cbed5910f4f202e381215a4cd5f2eb564965712998"
+  ],
+  "input_count": 48,
+  "inputs": [
+    [
+      "HOST_MTA_FORMAL_SEND_STATUS_PRESENTATION_V1_SOURCE_CHECK.cmd",
+      182,
+      "b4fcf6787238f0c55ea297c97b392816681e4dff74b96e9e6de18699e6f23216"
+    ],
+    [
+      "PROJECT:06_Firmware/backups/v2.4.0-20260923-162730/files/Z03",
+      4103844,
+      "cb8d6a78617d50f64c6adc8056427dd963bc83979cbb04e349275dd8e8ffb62a"
+    ],
+    [
+      "TEST_MTA_FORMAL_SEND_STATUS_PRESENTATION_V1.cmd",
+      193,
+      "8a0e37e09e935e8adf0605f142040f8a24f041a64c324ceffcb5982ff01da279"
+    ],
+    [
+      "candidate/formal-send-filecenter-deploy-v7/runtime/formal_send_session.py",
+      24060,
+      "6cbd71d7ce054df6de4c419cd93c0ac8ba2049b2f7f9b692bd10bfb2af3b148f"
+    ],
+    [
+      "candidate/formal-send-filecenter-ui-v5/device/mta/MtaButton.qml",
+      758,
+      "7e1d4e378b8e3293e617f4dc432cce3c70ae7fe377f2ea26950aa9bb11393bff"
+    ],
+    [
+      "candidate/formal-send-filecenter-ui-v5/device/mta/MtaLabel.qml",
+      352,
+      "77caf248c2f83ed50f5221082084e5af360d08fc917df98eb84449e24903bd75"
+    ],
+    [
+      "candidate/formal-send-filecenter-ui-v5/device/mta/MtaPage.qml",
+      26769,
+      "1084ea1a5a906bbf0f56ea20df031ea9b4a1fd0931879e80cd6dfb475f7eabc2"
+    ],
+    [
+      "candidate/formal-send-filecenter-ui-v5/device/mta/MtaTheme.js",
+      262,
+      "5848aa8bf1dab57cfe590dd80da1122eb819c75c1f208f69ad4184bf669a99ff"
+    ],
+    [
+      "candidate/formal-send-picker-package-v1/generate_ui.py",
+      32033,
+      "8ed44c223b538ab13cdbc9d2d30dcfbd3e053c436b1177a0b68e3646a6aebd69"
+    ],
+    [
+      "candidate/formal-send-picker-package-v1/generation.json",
+      18953,
+      "4b35068be0fac257a7568d3790a593c42e09d43efe32e96a1a14865ed2658b80"
+    ],
+    [
+      "candidate/formal-send-picker-package-v1/runtime/ui_assets.py",
+      12526,
+      "7bf8bd1e239ab8cf21a6662ea9217de3e2bef634fb20f31880482abbaca4fd21"
+    ],
+    [
+      "candidate/formal-send-preflight-ui-v1/runtime/ui_guardian.py",
+      43996,
+      "8df81808cbd6e32848e5698a5adc486f1027daf8270e5841f83f852d3513b3c1"
+    ],
+    [
+      "candidate/formal-send-preflight-ui-v1/runtime/ui_session.py",
+      46418,
+      "eb1f076560b8061a48b7138a747e805fd9fa32fad86d7d2a025e428d555ab9b7"
+    ],
+    [
+      "candidate/formal-send-status-package-v1/generate_ui.py",
+      24159,
+      "a424b9b28583797ea669beb983437a9ad6a277d527cc808f6160775a6810980c"
+    ],
+    [
+      "candidate/formal-send-status-package-v2/generate_ui.py",
+      10647,
+      "72ebe7e1479eeac72fbfa7903d4c27a997143e79e2edef525491b58fa2c6bb23"
+    ],
+    [
+      "candidate/formal-send-status-package-v3/generate_ui.py",
+      12871,
+      "07788d35b2eccd7cdd68877b6b854efbb9a02ddf08f282c0295e71939e4888a7"
+    ],
+    [
+      "candidate/formal-send-status-presentation-v1/device/mta/MtaPage.qml",
+      27307,
+      "667b3e54c9fc7dbbd41e4fe8533e9926eab7a1942b6220248626bb30acf0f6fc"
+    ],
+    [
+      "candidate/formal-send-status-presentation-v1/exactsource-delta.json",
+      3589,
+      "2525a8e170129c7ab4682f33c8b99e4c320b1e22b2ff36796d3bc95dc2862bf6"
+    ],
+    [
+      "host/build_formal_send_filecenter_ui_v5.py",
+      18604,
+      "6c97c44dd54059eb3b78150bfb2a033aa0a9e8273e900d748df2a0ebca829f49"
+    ],
+    [
+      "host/build_formal_ui_candidate_v1.py",
+      11889,
+      "5215ebff474016262900c0599355bfa9b6e48e5960ed0a20f07f17428f87e70c"
+    ],
+    [
+      "host/formal_send_status_presentation_v1_host_check.py",
+      9551,
+      "503999d4973774fb56b644dbfe9c40786c2b09626108215088d18394915d5c00"
+    ],
+    [
+      "host/host_artifact_seal_v1.py",
+      6784,
+      "30b9cbf6b20ce10232f356d0464f0803c94fc8bee2250055c3434aae9c5126c7"
+    ],
+    [
+      "out/mta-ui-send-picker-v1-c69296a193ff43ce8e5b901d/Bridge.qml",
+      2560,
+      "7b8a899e73b1d682374de6dd8585b927b8478c7fe41b0cd0a2e29275a2d832ee"
+    ],
+    [
+      "out/mta-ui-send-picker-v1-c69296a193ff43ce8e5b901d/FormalEntry.qml",
+      4080,
+      "f83df3553a8bbf19d69570a0cced61e24de34b94e35b639342c472040c6d1518"
+    ],
+    [
+      "out/mta-ui-send-picker-v1-c69296a193ff43ce8e5b901d/NaviPanel.embedded.qml",
+      6055,
+      "5837d04c90de9ad96e60f48d62587aee8fc711823937c14e2c997dd689f29b6b"
+    ],
+    [
+      "out/mta-ui-send-picker-v1-c69296a193ff43ce8e5b901d/ReceiveComposition.qml",
+      402,
+      "a739489cfaf77f9500e3ac3585f34d9fadf152de92770a2ced525bfbb41eb360"
+    ],
+    [
+      "out/mta-ui-send-picker-v1-c69296a193ff43ce8e5b901d/SOURCE.sha256",
+      1603,
+      "fe3733cb856e1065a9c82e34c5ce962c5097e2f732cd9bdcf2627b70499874e0"
+    ],
+    [
+      "out/mta-ui-send-picker-v1-c69296a193ff43ce8e5b901d/Z03.mta-ui-candidate",
+      4103844,
+      "22e56e86b27263048d9d009e24b6b79e16ca9f60cf978ce50d4fc0d3a33f955b"
+    ],
+    [
+      "out/mta-ui-send-picker-v1-c69296a193ff43ce8e5b901d/build-result.json",
+      4146,
+      "dd4e46cd4f31b8447d0597af90bfaa56d001a070414ad58dd51d86ccd968396c"
+    ],
+    [
+      "out/mta-ui-send-picker-v1-c69296a193ff43ce8e5b901d/mta/MtaButton.qml",
+      758,
+      "7e1d4e378b8e3293e617f4dc432cce3c70ae7fe377f2ea26950aa9bb11393bff"
+    ],
+    [
+      "out/mta-ui-send-picker-v1-c69296a193ff43ce8e5b901d/mta/MtaHost.qml",
+      6602,
+      "dcb6178f6d3179b7bab61e6818ae21a02443c902446f6b203c82bd16b8b479c3"
+    ],
+    [
+      "out/mta-ui-send-picker-v1-c69296a193ff43ce8e5b901d/mta/MtaKeyboard.qml",
+      5345,
+      "2de31e8cde68ab6ff76f4da85c386d5cddb466cccefb809987dddfce2f8c40cc"
+    ],
+    [
+      "out/mta-ui-send-picker-v1-c69296a193ff43ce8e5b901d/mta/MtaLabel.qml",
+      352,
+      "77caf248c2f83ed50f5221082084e5af360d08fc917df98eb84449e24903bd75"
+    ],
+    [
+      "out/mta-ui-send-picker-v1-c69296a193ff43ce8e5b901d/mta/MtaPage.qml",
+      26769,
+      "1084ea1a5a906bbf0f56ea20df031ea9b4a1fd0931879e80cd6dfb475f7eabc2"
+    ],
+    [
+      "out/mta-ui-send-picker-v1-c69296a193ff43ce8e5b901d/mta/MtaTheme.js",
+      262,
+      "5848aa8bf1dab57cfe590dd80da1122eb819c75c1f208f69ad4184bf669a99ff"
+    ],
+    [
+      "out/mta-ui-send-picker-v1-c69296a193ff43ce8e5b901d/stage-manifest.json",
+      4228,
+      "1bdc2b81999093cf38e24e2f38e89af080242f40bb71e34dd0c55d4c1e4ffa48"
+    ],
+    [
+      "out/mta-ui-send-picker-v1-c69296a193ff43ce8e5b901d/toolbox/Button.qml",
+      666,
+      "bc8878dfd7c50512934bb9a9a0aab2e54ed84ac86967d3db49d38cd87f3b6216"
+    ],
+    [
+      "out/mta-ui-send-picker-v1-c69296a193ff43ce8e5b901d/toolbox/ExtensionPage.qml",
+      10110,
+      "e7fac81643238b1e3aa0233bd4af0a8dfb0fbfc8ebe05562b44d84ecb7c74581"
+    ],
+    [
+      "out/mta-ui-send-picker-v1-c69296a193ff43ce8e5b901d/toolbox/FilesPage.qml",
+      11640,
+      "fd34d837b5790b950a41e86fc5cd23b4dd8458932379b59f37e4a42474939865"
+    ],
+    [
+      "out/mta-ui-send-picker-v1-c69296a193ff43ce8e5b901d/toolbox/Label.qml",
+      270,
+      "7a6d83a7ee45b450db32db224ac372e7d4fbdba57553a71c7230a02e77674376"
+    ],
+    [
+      "out/mta-ui-send-picker-v1-c69296a193ff43ce8e5b901d/toolbox/MtaEmbedded.qml",
+      6544,
+      "5c3fe62973da460bebd779f3c15ca2d9906f8ee52513e7fe4a4cb3b1d8982b89"
+    ],
+    [
+      "out/mta-ui-send-picker-v1-c69296a193ff43ce8e5b901d/toolbox/NativeIcon.qml",
+      2000,
+      "59ff989674ff862f661e2e8ccdf804eeda0e27cfbd229729219e92141d7d0b1d"
+    ],
+    [
+      "out/mta-ui-send-picker-v1-c69296a193ff43ce8e5b901d/toolbox/Theme.js",
+      245,
+      "792bd479b18abb45cd3a71ac8e393ec32064755ffdb605e098691e77681b31ad"
+    ],
+    [
+      "out/mta-ui-send-picker-v1-c69296a193ff43ce8e5b901d/toolbox/VideoPane.qml",
+      706,
+      "2e076a699b1dae83b316130db6f0df2ec69025d25ddcdd6dee78ddc438b7b230"
+    ],
+    [
+      "results/formal-send-status-presentation-v1-host-20261006-084552-973b4819/private-seal/result.json",
+      3555,
+      "64714ba0823759436cce100bf5a8b036a82b22a8e5e77ee61996ffed59788add"
+    ],
+    [
+      "results/formal-send-status-presentation-v1-host-20261006-084552-973b4819/result.json",
+      3555,
+      "64714ba0823759436cce100bf5a8b036a82b22a8e5e77ee61996ffed59788add"
+    ],
+    [
+      "tests/qml_candidate_fixture_v1.py",
+      7249,
+      "346c11f2a432101d0bc0cc40c8bcccb5b50c2f39eba4a396a291f5f5949fecd3"
+    ],
+    [
+      "tests/test_formal_send_status_presentation_v1.py",
+      17254,
+      "e6d41be565d89d4dd3a0445f6b1593659b42f65cf52765c8dfba327fdfda875a"
+    ]
+  ],
+  "lock_changed": false,
+  "old_builders": 0,
+  "old_mains": 0,
+  "old_tests": 0,
+  "old_v1_main_executed": false,
+  "old_v2_main_executed": false,
+  "ordinary_graph_changed": false,
+  "original_cleanup_seconds": 60,
+  "original_window_seconds": 600,
+  "other_source_expected_nlink": 1,
+  "output_count": 27,
+  "output_pins": [
+    [
+      "candidate/formal-send-status-package-v3/exactsource-delta.json",
+      10759,
+      "90e70524c115ffd3a43e66dce7dcf5049bd597fb32a7bc50f681e82b5f8c3ebd"
+    ],
+    [
+      "candidate/formal-send-status-package-v3/runtime/ui_assets.py",
+      12526,
+      "430308223593d5d783c1ec1d29a90dcbe82606b33690fc263572b8353d9fd4e8"
+    ],
+    [
+      "candidate/formal-send-status-package-v3/runtime/ui_guardian.py",
+      43994,
+      "c36560f4d481677ce61ec9cbed5910f4f202e381215a4cd5f2eb564965712998"
+    ],
+    [
+      "candidate/formal-send-status-package-v3/runtime/ui_session.py",
+      46416,
+      "adc1561cd32d53257c5df123c4516c63e38198a7c08a04be0fc51249d2893c25"
+    ],
+    [
+      "out/mta-ui-send-status-v1-6d4fb1fd4af949cbb3515870/Bridge.qml",
+      2560,
+      "9018ae4e798684fbc100bf34fcfb6d88a41ae0d8e95bd0a9ded2680a2d0597f1"
+    ],
+    [
+      "out/mta-ui-send-status-v1-6d4fb1fd4af949cbb3515870/FormalEntry.qml",
+      4080,
+      "ae35b100ea7b1049bdd7abecde39b0f04c87d32d1fd420a33e6490b9d1a73f86"
+    ],
+    [
+      "out/mta-ui-send-status-v1-6d4fb1fd4af949cbb3515870/NaviPanel.embedded.qml",
+      6055,
+      "d834ef97368b2862e7b794064823f658effd6eb45dba427ca01f02bd81cf51e1"
+    ],
+    [
+      "out/mta-ui-send-status-v1-6d4fb1fd4af949cbb3515870/ReceiveComposition.qml",
+      402,
+      "a739489cfaf77f9500e3ac3585f34d9fadf152de92770a2ced525bfbb41eb360"
+    ],
+    [
+      "out/mta-ui-send-status-v1-6d4fb1fd4af949cbb3515870/SOURCE.sha256",
+      1603,
+      "5f0e30136af76a1fb998ed2e2b17e8727a623edf1fcd0c3ce02f1d49272b34ba"
+    ],
+    [
+      "out/mta-ui-send-status-v1-6d4fb1fd4af949cbb3515870/Z03.mta-ui-candidate",
+      4103844,
+      "9caf72924d110186a9e4f89e872bb1ca9debb096f9ece6c34263c00aba95d7cf"
+    ],
+    [
+      "out/mta-ui-send-status-v1-6d4fb1fd4af949cbb3515870/build-result.json",
+      1776,
+      "5f41e03f3087e9a2a6a8e9807cd10291837a2c66ffd7fcf173c6fbfa557d6f0d"
+    ],
+    [
+      "out/mta-ui-send-status-v1-6d4fb1fd4af949cbb3515870/mta/MtaButton.qml",
+      758,
+      "7e1d4e378b8e3293e617f4dc432cce3c70ae7fe377f2ea26950aa9bb11393bff"
+    ],
+    [
+      "out/mta-ui-send-status-v1-6d4fb1fd4af949cbb3515870/mta/MtaHost.qml",
+      6602,
+      "dcb6178f6d3179b7bab61e6818ae21a02443c902446f6b203c82bd16b8b479c3"
+    ],
+    [
+      "out/mta-ui-send-status-v1-6d4fb1fd4af949cbb3515870/mta/MtaKeyboard.qml",
+      5345,
+      "2de31e8cde68ab6ff76f4da85c386d5cddb466cccefb809987dddfce2f8c40cc"
+    ],
+    [
+      "out/mta-ui-send-status-v1-6d4fb1fd4af949cbb3515870/mta/MtaLabel.qml",
+      352,
+      "77caf248c2f83ed50f5221082084e5af360d08fc917df98eb84449e24903bd75"
+    ],
+    [
+      "out/mta-ui-send-status-v1-6d4fb1fd4af949cbb3515870/mta/MtaPage.qml",
+      27307,
+      "667b3e54c9fc7dbbd41e4fe8533e9926eab7a1942b6220248626bb30acf0f6fc"
+    ],
+    [
+      "out/mta-ui-send-status-v1-6d4fb1fd4af949cbb3515870/mta/MtaTheme.js",
+      262,
+      "5848aa8bf1dab57cfe590dd80da1122eb819c75c1f208f69ad4184bf669a99ff"
+    ],
+    [
+      "out/mta-ui-send-status-v1-6d4fb1fd4af949cbb3515870/stage-manifest.json",
+      4228,
+      "0498ebe2f531a4e34b787ca792ca0e748394c9c01c6766f206d7d9896adcf5f1"
+    ],
+    [
+      "out/mta-ui-send-status-v1-6d4fb1fd4af949cbb3515870/toolbox/Button.qml",
+      666,
+      "bc8878dfd7c50512934bb9a9a0aab2e54ed84ac86967d3db49d38cd87f3b6216"
+    ],
+    [
+      "out/mta-ui-send-status-v1-6d4fb1fd4af949cbb3515870/toolbox/ExtensionPage.qml",
+      10110,
+      "e7fac81643238b1e3aa0233bd4af0a8dfb0fbfc8ebe05562b44d84ecb7c74581"
+    ],
+    [
+      "out/mta-ui-send-status-v1-6d4fb1fd4af949cbb3515870/toolbox/FilesPage.qml",
+      11640,
+      "fd34d837b5790b950a41e86fc5cd23b4dd8458932379b59f37e4a42474939865"
+    ],
+    [
+      "out/mta-ui-send-status-v1-6d4fb1fd4af949cbb3515870/toolbox/Label.qml",
+      270,
+      "7a6d83a7ee45b450db32db224ac372e7d4fbdba57553a71c7230a02e77674376"
+    ],
+    [
+      "out/mta-ui-send-status-v1-6d4fb1fd4af949cbb3515870/toolbox/MtaEmbedded.qml",
+      6544,
+      "5c3fe62973da460bebd779f3c15ca2d9906f8ee52513e7fe4a4cb3b1d8982b89"
+    ],
+    [
+      "out/mta-ui-send-status-v1-6d4fb1fd4af949cbb3515870/toolbox/NativeIcon.qml",
+      2000,
+      "59ff989674ff862f661e2e8ccdf804eeda0e27cfbd229729219e92141d7d0b1d"
+    ],
+    [
+      "out/mta-ui-send-status-v1-6d4fb1fd4af949cbb3515870/toolbox/Theme.js",
+      245,
+      "792bd479b18abb45cd3a71ac8e393ec32064755ffdb605e098691e77681b31ad"
+    ],
+    [
+      "out/mta-ui-send-status-v1-6d4fb1fd4af949cbb3515870/toolbox/VideoPane.qml",
+      706,
+      "2e076a699b1dae83b316130db6f0df2ec69025d25ddcdd6dee78ddc438b7b230"
+    ]
+  ],
+  "payload_file_count": 18,
+  "phone": false,
+  "remote": "/mnt/data/p011-toolbox/mta-ui/6d4fb1fd4af949cbb3515870",
+  "rf": false,
+  "schema": "p011-formal-send-status-package-v3-generation",
+  "scope": "PC_SOURCE_ONLY_NOT_STAGED_NOT_RUN",
+  "sealed_qt_result_expected_nlink": 2,
+  "sealed_qt_result_open_and_path_stability": true,
+  "sealed_qt_result_pair": [
+    [
+      "results/formal-send-status-presentation-v1-host-20261006-084552-973b4819/result.json",
+      3555,
+      "64714ba0823759436cce100bf5a8b036a82b22a8e5e77ee61996ffed59788add"
+    ],
+    [
+      "results/formal-send-status-presentation-v1-host-20261006-084552-973b4819/private-seal/result.json",
+      3555,
+      "64714ba0823759436cce100bf5a8b036a82b22a8e5e77ee61996ffed59788add"
+    ]
+  ],
+  "sender_outer": [
+    "candidate/formal-send-filecenter-deploy-v7/runtime/formal_send_session.py",
+    24060,
+    "6cbd71d7ce054df6de4c419cd93c0ac8ba2049b2f7f9b692bd10bfb2af3b148f"
+  ],
+  "session": "6d4fb1fd4af949cbb3515870",
+  "signed_command_full_interface_stability": true,
+  "signed_command_path_fd_exact_mode_xor_0o111": true,
+  "signed_command_sources": [
+    [
+      "HOST_MTA_FORMAL_SEND_STATUS_PRESENTATION_V1_SOURCE_CHECK.cmd",
+      182,
+      "b4fcf6787238f0c55ea297c97b392816681e4dff74b96e9e6de18699e6f23216"
+    ],
+    [
+      "TEST_MTA_FORMAL_SEND_STATUS_PRESENTATION_V1.cmd",
+      193,
+      "8a0e37e09e935e8adf0605f142040f8a24f041a64c324ceffcb5982ff01da279"
+    ]
+  ],
+  "smoke_seconds": 20,
+  "source_manifest": [
+    "out/mta-ui-send-status-v1-6d4fb1fd4af949cbb3515870/SOURCE.sha256",
+    1603,
+    "5f0e30136af76a1fb998ed2e2b17e8727a623edf1fcd0c3ce02f1d49272b34ba"
+  ],
+  "stage_file_count": 19,
+  "stage_manifest": [
+    "out/mta-ui-send-status-v1-6d4fb1fd4af949cbb3515870/stage-manifest.json",
+    4228,
+    "0498ebe2f531a4e34b787ca792ca0e748394c9c01c6766f206d7d9896adcf5f1"
+  ],
+  "stage_spare": 9008,
+  "ui_validator": [
+    "candidate/formal-send-status-package-v3/runtime/ui_assets.py",
+    12526,
+    "430308223593d5d783c1ec1d29a90dcbe82606b33690fc263572b8353d9fd4e8"
+  ],
+  "unchanged_payload_files": 14,
+  "worker": [
+    "candidate/formal-send-status-package-v3/runtime/ui_session.py",
+    46416,
+    "adc1561cd32d53257c5df123c4516c63e38198a7c08a04be0fc51249d2893c25"
+  ]
+}

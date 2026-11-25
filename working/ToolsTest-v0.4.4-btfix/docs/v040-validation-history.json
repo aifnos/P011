@@ -1,0 +1,148 @@
+{
+  "version": "0.4",
+  "generated_at": "2026-09-15",
+  "scope": "Host/static/package validation; new tools still require P011 hardware test.",
+  "all_host_checks_passed": true,
+  "checks": [
+    {
+      "name": "required:START.cmd",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "required:STOP.cmd",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "required:COLLECT.cmd",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "required:SSH-USB.cmd",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "required:SSH-LAN.cmd",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "required:Start-P011.ps1",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "required:Connect-SSH.ps1",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "required:README.md",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "required:media/P011-audio-test.mp3",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "required:media/P011-video-test.mp4",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "page:AdbPage.qml",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "page:BatteryPage.qml",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "page:RadioPage.qml",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "page:BrowserPage.qml",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "page:MediaPage.qml",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "page:SshPage.qml",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "page:ToolboxPage.qml",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "python35:menu_policy.py",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "python35:tools_services.py",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "python35:menu_trial.py",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "python35:tools_bridge.py",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "python35:p011_json.py",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "python35:tools_metrics.py",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "feature-fixtures",
+      "passed": true,
+      "detail": "PASS 33 checks\n"
+    },
+    {
+      "name": "no bundled fonts",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "browser no no-sandbox",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "browser no ignoreCertificateError",
+      "passed": true,
+      "detail": ""
+    }
+  ],
+  "notes": [
+    "Base menu injection and manual rollback were previously validated on this P011.",
+    "ADB/Battery/Radio/Browser/Media/SSH pages in v0.4 are newly added and require hardware validation.",
+    "No permanent installation is performed by this test package."
+  ]
+}

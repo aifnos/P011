@@ -1,0 +1,131 @@
+{
+  "blocking_file_io_preemption_verified": false,
+  "cache_data_not_authority": true,
+  "changed_payload_roles": [
+    "mta_client_executor",
+    "mta_client_receive_factory",
+    "mta_client_state_bridge",
+    "mta_client_receive_boot",
+    "mta_client_service_owner",
+    "runtime35/mta_client_executor"
+  ],
+  "definitions_and_report_pins_omitted_to_avoid_cycles": true,
+  "definitions_path": "host/formal_receive_fc_mutex_v1_definitions.py",
+  "device_tested": false,
+  "exact_payload_roles": 69,
+  "filecenter_bytes": 115400,
+  "filecenter_cap": 131072,
+  "filecenter_changed_roles": [
+    "mta_filecenter_companion"
+  ],
+  "filecenter_exact_roles": 8,
+  "filecenter_remaining": 15672,
+  "filecenter_sources": 9,
+  "generator": [
+    "candidate/receive-fc-mutex-graph-v1/generate_graph.py",
+    43011,
+    "98ad07f8dabe99fdfdca601da63138dc6bbd62fcf7dcbc277c65a648162534c8"
+  ],
+  "generator_mother": [
+    "candidate/receive-startup-20s-graph-v1/generate_graph.py",
+    41819,
+    "e3b690ff769187c48d87448198371d8025ed8fcdd9ae78678f8e17cf56e338d8"
+  ],
+  "inherited_owner_scope_fc_http_cache_prepare20_provenance_preserved": true,
+  "mechanical_closure_count": 6,
+  "mother": [
+    "host/formal_receive_startup_20s_v1_definitions.py",
+    297239,
+    "49a56e7e809f2f515ca66735a38adf68d162aea1697e8d6a17cd74d0f68c61ca"
+  ],
+  "mutex_added_methods": [
+    "_MediaLock.__init__",
+    "_MediaLock.__enter__",
+    "_MediaLock.__exit__"
+  ],
+  "mutex_changed_methods": [
+    "_FileCenterHandler.dispatch",
+    "_FileCenterHandler.media",
+    "_Companion.open_file",
+    "_Companion.media_row",
+    "_Companion.audio_source_fd"
+  ],
+  "mutex_growth": 1568,
+  "mutex_source": [
+    "candidate/filecenter-media-lock-deadline-v1/receive/mta_filecenter_companion.py",
+    35198,
+    "44c14589ef7b6a0af98c6a3446b3bd7539640f5b7fccc23c5c9677c705ae02ca"
+  ],
+  "native_authority_changed": false,
+  "new_device_root_checked": false,
+  "new_mutex_business_closure_count": 1,
+  "old_main_prepare_verify_called": false,
+  "old_tests_replayed": 0,
+  "outer_deadlines_preserved": true,
+  "output_pins": [
+    [
+      "candidate/receive-fc-mutex-graph-v1/graph-exactsource-delta.json",
+      21930,
+      "8721bd4f28607c38339f66171c83eb7a5f8d94d5895f80758594a58715c895e1"
+    ],
+    [
+      "candidate/receive-fc-mutex-graph-v1/runtime/mta_client_executor.py",
+      124769,
+      "3f046452b5600685bf250a9b6a0091feeac7632b5461f99d820f98498e5355b2"
+    ],
+    [
+      "candidate/receive-fc-mutex-graph-v1/runtime/mta_client_receive_boot.py",
+      19697,
+      "410a92f143a8d5a44f7912f7db23a86dc8278f36a7a156672729c96f1f10a17f"
+    ],
+    [
+      "candidate/receive-fc-mutex-graph-v1/runtime/mta_client_receive_factory.py",
+      99675,
+      "824ded3340e41cdf396e1f803c1371fa60ccdbde260ef4af1fd92db4e7893cbe"
+    ],
+    [
+      "candidate/receive-fc-mutex-graph-v1/runtime/mta_client_service_owner.py",
+      107104,
+      "781d9c59086d0b2b418fdd92ad0852fd569000e1fab7118dcbaae44e4c7e03c7"
+    ],
+    [
+      "candidate/receive-fc-mutex-graph-v1/runtime/mta_client_state_bridge.py",
+      21356,
+      "d5270f33a5995ca57297a5cd33a0710f03ace709bf2dc0adf3986168108fa563"
+    ],
+    [
+      "candidate/receive-fc-mutex-graph-v1/runtime/mta_formal_receive_session.py",
+      79281,
+      "3264be86704d8ba467a4d949dbe7a8141c24e2a2b60d486687f4b72816ab8f36"
+    ],
+    [
+      "host/formal_receive_fc_mutex_v1_definition_manifest.json",
+      7922,
+      "beec44a972791940bf8dd8bea41c024e47489c0c23fcf15277f88853d283e34f"
+    ],
+    [
+      "host/formal_receive_fc_mutex_v1_private_source_manifest.json",
+      8162,
+      "25214a8a3af2781f7cb54ffa272a6333962add032f355794ab16c2b841621c48"
+    ]
+  ],
+  "owner_context_preserved": true,
+  "payload_bytes": 4193768,
+  "payload_cap": 4194304,
+  "payload_remaining": 536,
+  "phone_tested": false,
+  "private_roles_exact": 34,
+  "profile_cache_performance_verified": false,
+  "retained_prepare20_business_closure_count": 1,
+  "rf_requested": false,
+  "root": "p011-mta-rx-mlock1-v001",
+  "schema": "p011-receive-fc-mutex-v1-graph-generation",
+  "send_graph_changed": false,
+  "source_origin_count": 319,
+  "stage_tested": false,
+  "startup_collector_seconds": 10.0,
+  "startup_prepare_seconds": 20.0,
+  "state_protocol_proc_native_wpa_monitor_unchanged": true,
+  "status": "SOURCE_DERIVED_NOT_DEVICE_TESTED",
+  "whole_close_verified": false
+}

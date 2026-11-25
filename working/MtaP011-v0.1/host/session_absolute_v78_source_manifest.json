@@ -1,0 +1,23 @@
+{
+  "schema": "session-absolute-v78-host-source",
+  "sources": [
+    {
+      "path": "runtime/mta_transfer_session.py",
+      "bytes": 19442,
+      "sha256": "402f1b41e9b2f0b1f6a8ba0092a4b2fa96ef25782d1d805b4eb160ed7de28e16",
+      "python35_target": true
+    },
+    {
+      "path": "candidate/go-send-state-v78/runtime/mta_transfer_session.py",
+      "bytes": 20633,
+      "sha256": "e7321ad446318f96bf84b1a94f0e5e3c76b1e973e28826f1c2514527b6967859",
+      "python35_target": true
+    },
+    {
+      "path": "tests/test_transfer_session_absolute_v78.py",
+      "bytes": 11143,
+      "sha256": "4b6ef351ebc1ecefe9472eb0a11c253f97b20949c5c285ecbf614dc8027c57ec",
+      "python35_target": false
+    }
+  ]
+}

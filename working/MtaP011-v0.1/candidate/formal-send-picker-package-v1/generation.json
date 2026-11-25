@@ -1,0 +1,438 @@
+{
+  "asset_bytes": 4184758,
+  "bundle": "out/mta-ui-send-picker-v1-c69296a193ff43ce8e5b901d",
+  "cached_picker_qt_evidence": {
+    "boundary": "Actual HOST offscreen Qt/QML old and candidate picker, real Back/Done signal handlers and delayed request seam; original XHR/lifecycle transport is not executed. Old response overwrite counterexample and generation/stage/mode/reset/leave guards. No visible rendering/screenshot/physical touch/native send/network.",
+    "existing_pass": true,
+    "fixture_cases": 9,
+    "methods": 1,
+    "original_xhr_lifecycle_transport_executed": false,
+    "physical_rendering_verified": false,
+    "reexecuted": false,
+    "result": [
+      "results/receive-durable-picker-v1-host-20261006-000545-54ec793c/result.json",
+      3846,
+      "f4762f52a23b1eb5a03484ad1ee1dcac50986425f17a19a37aba7f3846f8d021"
+    ]
+  },
+  "caps": {
+    "file_bytes": 5242880,
+    "geometry": "800x268",
+    "input_text_bytes": 262144,
+    "qrc_slot_bytes": 1580,
+    "source_manifest_bytes": 4096,
+    "stage_bytes": 4194304,
+    "target_max_line": 2048
+  },
+  "changed_payload": [
+    "Bridge.qml",
+    "FormalEntry.qml",
+    "Z03.mta-ui-candidate",
+    "mta/MtaHost.qml"
+  ],
+  "control": "/var/volatile/tmp/p011-mta-ui-session-c69296a193ff43ce8e5b901d-formal-send-picker-package-v1",
+  "control_name": "p011-mta-ui-session-c69296a193ff43ce8e5b901d-formal-send-picker-package-v1",
+  "control_suffix": "-formal-send-picker-package-v1",
+  "deployed": false,
+  "device": false,
+  "entry_complete_forward_inverse": [
+    {
+      "changed_literal": "SESSION",
+      "complete_forward_inverse": true,
+      "occurrences": 1,
+      "path": "Bridge.qml"
+    },
+    {
+      "changed_literal": "SESSION",
+      "complete_forward_inverse": true,
+      "occurrences": 2,
+      "path": "FormalEntry.qml"
+    }
+  ],
+  "failed_partial_outputs_preserved": true,
+  "guardian_constant_replacements": [
+    {
+      "after": "SESSION = 'c69296a193ff43ce8e5b901d'",
+      "before": "SESSION = 'a44b98dd639095d9063c9e1a'",
+      "name": "SESSION"
+    },
+    {
+      "after": "CONTROL_NAME = 'p011-mta-ui-session-' + SESSION + '-formal-send-picker-package-v1'",
+      "before": "CONTROL_NAME = 'p011-mta-ui-session-' + SESSION + '-formal-send-filecenter-ui-v7'",
+      "name": "CONTROL_NAME"
+    }
+  ],
+  "inputs": [
+    [
+      "PROJECT:06_Firmware/backups/v2.4.0-20260923-162730/files/Z03",
+      4103844,
+      "cb8d6a78617d50f64c6adc8056427dd963bc83979cbb04e349275dd8e8ffb62a"
+    ],
+    [
+      "candidate/formal-send-filecenter-ui-v5/device/mta/MtaHost.qml",
+      6342,
+      "c151b0bd7a9b686f5110eef968c50506d9a814c14b5d9db9ccebfe8f05d7b322"
+    ],
+    [
+      "candidate/formal-send-filecenter-ui-v5/runtime/ui_assets.py",
+      12526,
+      "ac6bffe961034558da8be607d74bc4edb62209b23ce80b8a930138a8fc7eb890"
+    ],
+    [
+      "candidate/formal-send-filecenter-ui-v7/runtime/ui_guardian.py",
+      43993,
+      "30b7157cabf3dd75eb82a671a343a106c1f9e688c1ad60e12c7b8e172ffc255e"
+    ],
+    [
+      "candidate/formal-send-picker-generation-v1/device/mta/MtaHost.qml",
+      6602,
+      "dcb6178f6d3179b7bab61e6818ae21a02443c902446f6b203c82bd16b8b479c3"
+    ],
+    [
+      "candidate/formal-send-picker-generation-v1/exactsource-delta.json",
+      1840,
+      "cf3e8d6146b95cb6c27e941230d8eaa80fe0fd96a4cb8baf32f724f1bafa2b7e"
+    ],
+    [
+      "candidate/formal-send-picker-package-v1/generate_ui.py",
+      32033,
+      "8ed44c223b538ab13cdbc9d2d30dcfbd3e053c436b1177a0b68e3646a6aebd69"
+    ],
+    [
+      "host/build_formal_send_filecenter_ui_v5.py",
+      18604,
+      "6c97c44dd54059eb3b78150bfb2a033aa0a9e8273e900d748df2a0ebca829f49"
+    ],
+    [
+      "host/build_formal_ui_candidate_v1.py",
+      11889,
+      "5215ebff474016262900c0599355bfa9b6e48e5960ed0a20f07f17428f87e70c"
+    ],
+    [
+      "out/mta-ui-send-v5-a44b98dd639095d9063c9e1a/Bridge.qml",
+      2560,
+      "8d544f5641793605729ad0b9f82f14125780b9fb8a967c1c3950aedf8149d320"
+    ],
+    [
+      "out/mta-ui-send-v5-a44b98dd639095d9063c9e1a/FormalEntry.qml",
+      4080,
+      "5aca2ebb0524301f911f00f7305ecb028da0fd76fb2451046d7eef8452855629"
+    ],
+    [
+      "out/mta-ui-send-v5-a44b98dd639095d9063c9e1a/NaviPanel.embedded.qml",
+      6055,
+      "50dbab35c6a5a842a63bd4744e9aa88a3745eaea9db8b4c650a204702f8a669a"
+    ],
+    [
+      "out/mta-ui-send-v5-a44b98dd639095d9063c9e1a/ReceiveComposition.qml",
+      402,
+      "a739489cfaf77f9500e3ac3585f34d9fadf152de92770a2ced525bfbb41eb360"
+    ],
+    [
+      "out/mta-ui-send-v5-a44b98dd639095d9063c9e1a/SOURCE.sha256",
+      1603,
+      "34cf33ad9ad501f49ac819856c4e0b3bb0e351d6eb0f82299402900962699df7"
+    ],
+    [
+      "out/mta-ui-send-v5-a44b98dd639095d9063c9e1a/Z03.mta-ui-candidate",
+      4103844,
+      "cf1050165f3ee061020ccb4f9b239dd1d2b4c38c1ae03a88df20d0467cf2acd6"
+    ],
+    [
+      "out/mta-ui-send-v5-a44b98dd639095d9063c9e1a/build-result.json",
+      6009,
+      "92d940049426d547d8c978c1076c46cca9e88b345214f2f1e41df1d73f6f26f3"
+    ],
+    [
+      "out/mta-ui-send-v5-a44b98dd639095d9063c9e1a/mta/MtaButton.qml",
+      758,
+      "7e1d4e378b8e3293e617f4dc432cce3c70ae7fe377f2ea26950aa9bb11393bff"
+    ],
+    [
+      "out/mta-ui-send-v5-a44b98dd639095d9063c9e1a/mta/MtaHost.qml",
+      6342,
+      "c151b0bd7a9b686f5110eef968c50506d9a814c14b5d9db9ccebfe8f05d7b322"
+    ],
+    [
+      "out/mta-ui-send-v5-a44b98dd639095d9063c9e1a/mta/MtaKeyboard.qml",
+      5345,
+      "2de31e8cde68ab6ff76f4da85c386d5cddb466cccefb809987dddfce2f8c40cc"
+    ],
+    [
+      "out/mta-ui-send-v5-a44b98dd639095d9063c9e1a/mta/MtaLabel.qml",
+      352,
+      "77caf248c2f83ed50f5221082084e5af360d08fc917df98eb84449e24903bd75"
+    ],
+    [
+      "out/mta-ui-send-v5-a44b98dd639095d9063c9e1a/mta/MtaPage.qml",
+      26769,
+      "1084ea1a5a906bbf0f56ea20df031ea9b4a1fd0931879e80cd6dfb475f7eabc2"
+    ],
+    [
+      "out/mta-ui-send-v5-a44b98dd639095d9063c9e1a/mta/MtaTheme.js",
+      262,
+      "5848aa8bf1dab57cfe590dd80da1122eb819c75c1f208f69ad4184bf669a99ff"
+    ],
+    [
+      "out/mta-ui-send-v5-a44b98dd639095d9063c9e1a/stage-manifest.json",
+      4227,
+      "80eaec304c785b5fa267f5ae2be49790413293fa49ec392420f8ef18a641f270"
+    ],
+    [
+      "out/mta-ui-send-v5-a44b98dd639095d9063c9e1a/toolbox/Button.qml",
+      666,
+      "bc8878dfd7c50512934bb9a9a0aab2e54ed84ac86967d3db49d38cd87f3b6216"
+    ],
+    [
+      "out/mta-ui-send-v5-a44b98dd639095d9063c9e1a/toolbox/ExtensionPage.qml",
+      10110,
+      "e7fac81643238b1e3aa0233bd4af0a8dfb0fbfc8ebe05562b44d84ecb7c74581"
+    ],
+    [
+      "out/mta-ui-send-v5-a44b98dd639095d9063c9e1a/toolbox/FilesPage.qml",
+      11640,
+      "fd34d837b5790b950a41e86fc5cd23b4dd8458932379b59f37e4a42474939865"
+    ],
+    [
+      "out/mta-ui-send-v5-a44b98dd639095d9063c9e1a/toolbox/Label.qml",
+      270,
+      "7a6d83a7ee45b450db32db224ac372e7d4fbdba57553a71c7230a02e77674376"
+    ],
+    [
+      "out/mta-ui-send-v5-a44b98dd639095d9063c9e1a/toolbox/MtaEmbedded.qml",
+      6544,
+      "5c3fe62973da460bebd779f3c15ca2d9906f8ee52513e7fe4a4cb3b1d8982b89"
+    ],
+    [
+      "out/mta-ui-send-v5-a44b98dd639095d9063c9e1a/toolbox/NativeIcon.qml",
+      2000,
+      "59ff989674ff862f661e2e8ccdf804eeda0e27cfbd229729219e92141d7d0b1d"
+    ],
+    [
+      "out/mta-ui-send-v5-a44b98dd639095d9063c9e1a/toolbox/Theme.js",
+      245,
+      "792bd479b18abb45cd3a71ac8e393ec32064755ffdb605e098691e77681b31ad"
+    ],
+    [
+      "out/mta-ui-send-v5-a44b98dd639095d9063c9e1a/toolbox/VideoPane.qml",
+      706,
+      "2e076a699b1dae83b316130db6f0df2ec69025d25ddcdd6dee78ddc438b7b230"
+    ],
+    [
+      "results/receive-durable-picker-v1-host-20261006-000545-54ec793c/result.json",
+      3846,
+      "f4762f52a23b1eb5a03484ad1ee1dcac50986425f17a19a37aba7f3846f8d021"
+    ],
+    [
+      "tests/qml_candidate_fixture_v1.py",
+      7249,
+      "346c11f2a432101d0bc0cc40c8bcccb5b50c2f39eba4a396a291f5f5949fecd3"
+    ],
+    [
+      "tests/test_formal_send_picker_generation_v1.py",
+      8905,
+      "6a378b14edbca81ac84f99738908ce25759c1905a8ed572f7749bd5bd1dee367"
+    ]
+  ],
+  "nav_root_only_complete_inverse": true,
+  "needs_new_host_stage_capture_binding": true,
+  "needs_root_worker_outer_pin_integration": true,
+  "new_outputs_exclusive": true,
+  "old_builders": 0,
+  "old_bundle_same_slot": true,
+  "old_mains": 0,
+  "old_tests": 0,
+  "ordinary_sender_generated": false,
+  "original_elf_same_slot": true,
+  "other_399_original_records_unchanged": true,
+  "output_pins": [
+    [
+      "candidate/formal-send-picker-package-v1/runtime/ui_assets.py",
+      12526,
+      "7bf8bd1e239ab8cf21a6662ea9217de3e2bef634fb20f31880482abbaca4fd21"
+    ],
+    [
+      "candidate/formal-send-picker-package-v1/runtime/ui_guardian.py",
+      43994,
+      "c118e4f1a6c8f2000a6ae97680d58304af5d8cd55ea30c08cf3a96df16c61477"
+    ],
+    [
+      "out/mta-ui-send-picker-v1-c69296a193ff43ce8e5b901d/Bridge.qml",
+      2560,
+      "7b8a899e73b1d682374de6dd8585b927b8478c7fe41b0cd0a2e29275a2d832ee"
+    ],
+    [
+      "out/mta-ui-send-picker-v1-c69296a193ff43ce8e5b901d/FormalEntry.qml",
+      4080,
+      "f83df3553a8bbf19d69570a0cced61e24de34b94e35b639342c472040c6d1518"
+    ],
+    [
+      "out/mta-ui-send-picker-v1-c69296a193ff43ce8e5b901d/NaviPanel.embedded.qml",
+      6055,
+      "5837d04c90de9ad96e60f48d62587aee8fc711823937c14e2c997dd689f29b6b"
+    ],
+    [
+      "out/mta-ui-send-picker-v1-c69296a193ff43ce8e5b901d/ReceiveComposition.qml",
+      402,
+      "a739489cfaf77f9500e3ac3585f34d9fadf152de92770a2ced525bfbb41eb360"
+    ],
+    [
+      "out/mta-ui-send-picker-v1-c69296a193ff43ce8e5b901d/SOURCE.sha256",
+      1603,
+      "fe3733cb856e1065a9c82e34c5ce962c5097e2f732cd9bdcf2627b70499874e0"
+    ],
+    [
+      "out/mta-ui-send-picker-v1-c69296a193ff43ce8e5b901d/Z03.mta-ui-candidate",
+      4103844,
+      "22e56e86b27263048d9d009e24b6b79e16ca9f60cf978ce50d4fc0d3a33f955b"
+    ],
+    [
+      "out/mta-ui-send-picker-v1-c69296a193ff43ce8e5b901d/build-result.json",
+      4146,
+      "dd4e46cd4f31b8447d0597af90bfaa56d001a070414ad58dd51d86ccd968396c"
+    ],
+    [
+      "out/mta-ui-send-picker-v1-c69296a193ff43ce8e5b901d/mta/MtaButton.qml",
+      758,
+      "7e1d4e378b8e3293e617f4dc432cce3c70ae7fe377f2ea26950aa9bb11393bff"
+    ],
+    [
+      "out/mta-ui-send-picker-v1-c69296a193ff43ce8e5b901d/mta/MtaHost.qml",
+      6602,
+      "dcb6178f6d3179b7bab61e6818ae21a02443c902446f6b203c82bd16b8b479c3"
+    ],
+    [
+      "out/mta-ui-send-picker-v1-c69296a193ff43ce8e5b901d/mta/MtaKeyboard.qml",
+      5345,
+      "2de31e8cde68ab6ff76f4da85c386d5cddb466cccefb809987dddfce2f8c40cc"
+    ],
+    [
+      "out/mta-ui-send-picker-v1-c69296a193ff43ce8e5b901d/mta/MtaLabel.qml",
+      352,
+      "77caf248c2f83ed50f5221082084e5af360d08fc917df98eb84449e24903bd75"
+    ],
+    [
+      "out/mta-ui-send-picker-v1-c69296a193ff43ce8e5b901d/mta/MtaPage.qml",
+      26769,
+      "1084ea1a5a906bbf0f56ea20df031ea9b4a1fd0931879e80cd6dfb475f7eabc2"
+    ],
+    [
+      "out/mta-ui-send-picker-v1-c69296a193ff43ce8e5b901d/mta/MtaTheme.js",
+      262,
+      "5848aa8bf1dab57cfe590dd80da1122eb819c75c1f208f69ad4184bf669a99ff"
+    ],
+    [
+      "out/mta-ui-send-picker-v1-c69296a193ff43ce8e5b901d/stage-manifest.json",
+      4228,
+      "1bdc2b81999093cf38e24e2f38e89af080242f40bb71e34dd0c55d4c1e4ffa48"
+    ],
+    [
+      "out/mta-ui-send-picker-v1-c69296a193ff43ce8e5b901d/toolbox/Button.qml",
+      666,
+      "bc8878dfd7c50512934bb9a9a0aab2e54ed84ac86967d3db49d38cd87f3b6216"
+    ],
+    [
+      "out/mta-ui-send-picker-v1-c69296a193ff43ce8e5b901d/toolbox/ExtensionPage.qml",
+      10110,
+      "e7fac81643238b1e3aa0233bd4af0a8dfb0fbfc8ebe05562b44d84ecb7c74581"
+    ],
+    [
+      "out/mta-ui-send-picker-v1-c69296a193ff43ce8e5b901d/toolbox/FilesPage.qml",
+      11640,
+      "fd34d837b5790b950a41e86fc5cd23b4dd8458932379b59f37e4a42474939865"
+    ],
+    [
+      "out/mta-ui-send-picker-v1-c69296a193ff43ce8e5b901d/toolbox/Label.qml",
+      270,
+      "7a6d83a7ee45b450db32db224ac372e7d4fbdba57553a71c7230a02e77674376"
+    ],
+    [
+      "out/mta-ui-send-picker-v1-c69296a193ff43ce8e5b901d/toolbox/MtaEmbedded.qml",
+      6544,
+      "5c3fe62973da460bebd779f3c15ca2d9906f8ee52513e7fe4a4cb3b1d8982b89"
+    ],
+    [
+      "out/mta-ui-send-picker-v1-c69296a193ff43ce8e5b901d/toolbox/NativeIcon.qml",
+      2000,
+      "59ff989674ff862f661e2e8ccdf804eeda0e27cfbd229729219e92141d7d0b1d"
+    ],
+    [
+      "out/mta-ui-send-picker-v1-c69296a193ff43ce8e5b901d/toolbox/Theme.js",
+      245,
+      "792bd479b18abb45cd3a71ac8e393ec32064755ffdb605e098691e77681b31ad"
+    ],
+    [
+      "out/mta-ui-send-picker-v1-c69296a193ff43ce8e5b901d/toolbox/VideoPane.qml",
+      706,
+      "2e076a699b1dae83b316130db6f0df2ec69025d25ddcdd6dee78ddc438b7b230"
+    ]
+  ],
+  "payload_file_count": 18,
+  "picker_complete_forward_inverse": true,
+  "picker_replacements": [
+    {
+      "after": "    property string fileMode:\"select\"\n    property int listingGeneration:0\n    onStageChanged:if(stage!==\"files\")listingGeneration++\n",
+      "before": "    property string fileMode:\"select\"\n",
+      "count": 1,
+      "name": "picker_generation_state"
+    },
+    {
+      "after": "    function resetHost() {\n        listingGeneration++;\n",
+      "before": "    function resetHost() {\n",
+      "count": 1,
+      "name": "reset_invalidates_picker"
+    },
+    {
+      "after": "    function fetchFiles(mode) {\n        var generation=++listingGeneration;\n",
+      "before": "    function fetchFiles(mode) {\n",
+      "count": 1,
+      "name": "capture_current_picker_generation"
+    },
+    {
+      "after": "        request(\"/v1/files\",false,function(ok,value){\n            if(generation!==listingGeneration || stage!==\"files\" || fileMode!==mode)return;\n",
+      "before": "        request(\"/v1/files\",false,function(ok,value){\n",
+      "count": 1,
+      "name": "reject_noncurrent_picker_response_before_all_writes"
+    }
+  ],
+  "qrc_400_verified": true,
+  "remote": "/mnt/data/p011-toolbox/mta-ui/c69296a193ff43ce8e5b901d",
+  "rf": false,
+  "runtime_all_definitions_bytes_and_line_numbers_unchanged": true,
+  "runtime_complete_byte_ast_inverse": true,
+  "schema": "p011-formal-send-picker-package-generation-v1",
+  "session": "c69296a193ff43ce8e5b901d",
+  "source_manifest": [
+    "out/mta-ui-send-picker-v1-c69296a193ff43ce8e5b901d/SOURCE.sha256",
+    1603,
+    "fe3733cb856e1065a9c82e34c5ce962c5097e2f732cd9bdcf2627b70499874e0"
+  ],
+  "stage_device": false,
+  "stage_file_count": 19,
+  "stage_manifest": [
+    "out/mta-ui-send-picker-v1-c69296a193ff43ce8e5b901d/stage-manifest.json",
+    4228,
+    "1bdc2b81999093cf38e24e2f38e89af080242f40bb71e34dd0c55d4c1e4ffa48"
+  ],
+  "status": "PC_SOURCE_COMPUTED_NOT_DEVICE",
+  "ui_runtime": false,
+  "unchanged_payload_files": 14,
+  "validator_constant_replacements": [
+    {
+      "after": "SESSION = 'c69296a193ff43ce8e5b901d'",
+      "before": "SESSION = 'a44b98dd639095d9063c9e1a'",
+      "name": "SESSION"
+    },
+    {
+      "after": "MANIFEST_PIN = (1603, 'fe3733cb856e1065a9c82e34c5ce962c5097e2f732cd9bdcf2627b70499874e0')",
+      "before": "MANIFEST_PIN = (1603, '34cf33ad9ad501f49ac819856c4e0b3bb0e351d6eb0f82299402900962699df7')",
+      "name": "MANIFEST_PIN"
+    },
+    {
+      "after": "PINS = (\n    ('Bridge.qml', 2560, '7b8a899e73b1d682374de6dd8585b927b8478c7fe41b0cd0a2e29275a2d832ee'),\n    ('FormalEntry.qml', 4080, 'f83df3553a8bbf19d69570a0cced61e24de34b94e35b639342c472040c6d1518'),\n    ('ReceiveComposition.qml', 402, 'a739489cfaf77f9500e3ac3585f34d9fadf152de92770a2ced525bfbb41eb360'),\n    ('Z03.mta-ui-candidate', 4103844, '22e56e86b27263048d9d009e24b6b79e16ca9f60cf978ce50d4fc0d3a33f955b'),\n    ('mta/MtaButton.qml', 758, '7e1d4e378b8e3293e617f4dc432cce3c70ae7fe377f2ea26950aa9bb11393bff'),\n    ('mta/MtaHost.qml', 6602, 'dcb6178f6d3179b7bab61e6818ae21a02443c902446f6b203c82bd16b8b479c3'),\n    ('mta/MtaKeyboard.qml', 5345, '2de31e8cde68ab6ff76f4da85c386d5cddb466cccefb809987dddfce2f8c40cc'),\n    ('mta/MtaLabel.qml', 352, '77caf248c2f83ed50f5221082084e5af360d08fc917df98eb84449e24903bd75'),\n    ('mta/MtaPage.qml', 26769, '1084ea1a5a906bbf0f56ea20df031ea9b4a1fd0931879e80cd6dfb475f7eabc2'),\n    ('mta/MtaTheme.js', 262, '5848aa8bf1dab57cfe590dd80da1122eb819c75c1f208f69ad4184bf669a99ff'),\n    ('toolbox/Button.qml', 666, 'bc8878dfd7c50512934bb9a9a0aab2e54ed84ac86967d3db49d38cd87f3b6216'),\n    ('toolbox/ExtensionPage.qml', 10110, 'e7fac81643238b1e3aa0233bd4af0a8dfb0fbfc8ebe05562b44d84ecb7c74581'),\n    ('toolbox/FilesPage.qml', 11640, 'fd34d837b5790b950a41e86fc5cd23b4dd8458932379b59f37e4a42474939865'),\n    ('toolbox/Label.qml', 270, '7a6d83a7ee45b450db32db224ac372e7d4fbdba57553a71c7230a02e77674376'),\n    ('toolbox/MtaEmbedded.qml', 6544, '5c3fe62973da460bebd779f3c15ca2d9906f8ee52513e7fe4a4cb3b1d8982b89'),\n    ('toolbox/NativeIcon.qml', 2000, '59ff989674ff862f661e2e8ccdf804eeda0e27cfbd229729219e92141d7d0b1d'),\n    ('toolbox/Theme.js', 245, '792bd479b18abb45cd3a71ac8e393ec32064755ffdb605e098691e77681b31ad'),\n    ('toolbox/VideoPane.qml', 706, '2e076a699b1dae83b316130db6f0df2ec69025d25ddcdd6dee78ddc438b7b230'),\n)",
+      "before": "PINS = (\n    ('Bridge.qml', 2560, '8d544f5641793605729ad0b9f82f14125780b9fb8a967c1c3950aedf8149d320'),\n    ('FormalEntry.qml', 4080, '5aca2ebb0524301f911f00f7305ecb028da0fd76fb2451046d7eef8452855629'),\n    ('ReceiveComposition.qml', 402, 'a739489cfaf77f9500e3ac3585f34d9fadf152de92770a2ced525bfbb41eb360'),\n    ('Z03.mta-ui-candidate', 4103844, 'cf1050165f3ee061020ccb4f9b239dd1d2b4c38c1ae03a88df20d0467cf2acd6'),\n    ('mta/MtaButton.qml', 758, '7e1d4e378b8e3293e617f4dc432cce3c70ae7fe377f2ea26950aa9bb11393bff'),\n    ('mta/MtaHost.qml', 6342, 'c151b0bd7a9b686f5110eef968c50506d9a814c14b5d9db9ccebfe8f05d7b322'),\n    ('mta/MtaKeyboard.qml', 5345, '2de31e8cde68ab6ff76f4da85c386d5cddb466cccefb809987dddfce2f8c40cc'),\n    ('mta/MtaLabel.qml', 352, '77caf248c2f83ed50f5221082084e5af360d08fc917df98eb84449e24903bd75'),\n    ('mta/MtaPage.qml', 26769, '1084ea1a5a906bbf0f56ea20df031ea9b4a1fd0931879e80cd6dfb475f7eabc2'),\n    ('mta/MtaTheme.js', 262, '5848aa8bf1dab57cfe590dd80da1122eb819c75c1f208f69ad4184bf669a99ff'),\n    ('toolbox/Button.qml', 666, 'bc8878dfd7c50512934bb9a9a0aab2e54ed84ac86967d3db49d38cd87f3b6216'),\n    ('toolbox/ExtensionPage.qml', 10110, 'e7fac81643238b1e3aa0233bd4af0a8dfb0fbfc8ebe05562b44d84ecb7c74581'),\n    ('toolbox/FilesPage.qml', 11640, 'fd34d837b5790b950a41e86fc5cd23b4dd8458932379b59f37e4a42474939865'),\n    ('toolbox/Label.qml', 270, '7a6d83a7ee45b450db32db224ac372e7d4fbdba57553a71c7230a02e77674376'),\n    ('toolbox/MtaEmbedded.qml', 6544, '5c3fe62973da460bebd779f3c15ca2d9906f8ee52513e7fe4a4cb3b1d8982b89'),\n    ('toolbox/NativeIcon.qml', 2000, '59ff989674ff862f661e2e8ccdf804eeda0e27cfbd229729219e92141d7d0b1d'),\n    ('toolbox/Theme.js', 245, '792bd479b18abb45cd3a71ac8e393ec32064755ffdb605e098691e77681b31ad'),\n    ('toolbox/VideoPane.qml', 706, '2e076a699b1dae83b316130db6f0df2ec69025d25ddcdd6dee78ddc438b7b230'),\n)",
+      "name": "PINS"
+    }
+  ],
+  "worker_generated": false
+}

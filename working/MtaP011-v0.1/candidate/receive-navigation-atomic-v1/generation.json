@@ -1,0 +1,49 @@
+{
+  "generator": [
+    "candidate/receive-navigation-atomic-v1/generate.py",
+    11019,
+    "7a2cbc24c19c850c17244162ca033bf83e8b39246e901becc418fbe265e1f12d"
+  ],
+  "guards": {
+    "cached_four_guards_unchanged": true,
+    "cleanup_seconds": 60,
+    "device_executed": false,
+    "gui_rebuilt": false,
+    "gui_staged": false,
+    "navigation_failure_line": 1560,
+    "new_clock_calls": 0,
+    "new_probe_calls": 0,
+    "original_locks_once_retained": true,
+    "original_predicates_reused": true,
+    "public_fields": 51,
+    "run_fixed_line": 1246,
+    "runner_modified": false,
+    "runner_observer_line": 817,
+    "runtime75_modified": false,
+    "service_seconds": 600,
+    "startup_seconds": 10,
+    "state_then_trial_original_rlocks": true,
+    "tests_executed": false
+  },
+  "host_checked": false,
+  "outputs": [
+    [
+      "candidate/receive-navigation-atomic-v1/exactsource-delta.json",
+      7470,
+      "9af5097dda522efa3bd9b5f406308f3c43123e7159a1ef78251d835b8dd35613"
+    ],
+    [
+      "candidate/receive-navigation-atomic-v1/runtime/ui_session.py",
+      100162,
+      "cde8ae626632e5d86acb2cc741b7d22eb18582b58ed6d6fd48160c008b62225e"
+    ]
+  ],
+  "phone_tested": false,
+  "schema": "p011-receive-navigation-atomic-v1-generation",
+  "source": [
+    "candidate/receive-navigation-frame-v2/runtime/ui_session.py",
+    95351,
+    "0c53b23051e5d79cdc392b2f89d3d21de2425028ff4f76292284a72f631cb4fe"
+  ],
+  "status": "MECHANICAL_GENERATED_NOT_HOST_CHECKED"
+}

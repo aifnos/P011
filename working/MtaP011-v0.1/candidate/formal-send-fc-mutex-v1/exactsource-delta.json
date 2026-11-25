@@ -1,0 +1,540 @@
+{
+  "schema": "p011-formal-send-fc-mutex-v1-exactsource-delta",
+  "origin_package": [
+    "candidate/formal-send-fc-http-cap-v1/generation.json",
+    27597,
+    "a2bdae7d8e32c90e8f8926388fd1156c5c3169d1a41b0220f12895324ea33fb1"
+  ],
+  "origin_recipe": [
+    "candidate/formal-send-fc-http-cap-v1/generate_package.py",
+    33030,
+    "d949a5d68efd0d4d29a47412feb99a61bed1c9e058716e02522678d7aad7b91d"
+  ],
+  "origin_owner": [
+    "candidate/formal-send-fc-http-cap-v1/runtime/mta_client_service_owner.py",
+    103959,
+    "5ff1afa7a262fe4a427ea6b8a99fe208da177a3d719f75f5fe7299277ea81592"
+  ],
+  "origin_worker": [
+    "candidate/formal-send-fc-http-cap-v1/runtime/ui_session.py",
+    46414,
+    "7be5f60455b89b99d23ad25a8d1cb5055bacf7511755ffeac461fad3fffd1bb8"
+  ],
+  "source_records": [
+    {
+      "source": [
+        "candidate/formal-send-fc-http-cap-v1/runtime/mta_send_trial.py",
+        22052,
+        "f5548048a5cfcca85d96a49c181213521e6b0521c8575c8a31440527e5e1d865"
+      ],
+      "candidate": [
+        "candidate/formal-send-fc-mutex-v1/runtime/mta_send_trial.py",
+        22052,
+        "21beea6d39c2131c41830786ff02ade2da71afa383bc9ea4f56a46cedb9d7c70"
+      ],
+      "substitutions": [
+        {
+          "label": "independent_ordinary_root",
+          "before": "p011-mta-formal-send-filecenter-httpcp-v1",
+          "after": "p011-mta-formal-send-filecenter-mutex1-v1",
+          "count": 1
+        }
+      ],
+      "complete_byte_ast_inverse": true,
+      "definition_lines_unchanged": true,
+      "changed_definition_constants": [],
+      "other_definition_bytes_unchanged": true
+    },
+    {
+      "source": [
+        "candidate/formal-send-fc-http-cap-v1/runtime/mta_send_terminal_consumer.py",
+        12785,
+        "e7e440158b93f5e76994803bb9810dc2339d90086afd9ab0268f30c022c5f674"
+      ],
+      "candidate": [
+        "candidate/formal-send-fc-mutex-v1/runtime/mta_send_terminal_consumer.py",
+        12785,
+        "f1392d13a080834cf1b81553a4c4de0f6f1ade87dfb37300fa61fef3f6163666"
+      ],
+      "substitutions": [
+        {
+          "label": "independent_ordinary_root",
+          "before": "p011-mta-formal-send-filecenter-httpcp-v1",
+          "after": "p011-mta-formal-send-filecenter-mutex1-v1",
+          "count": 1
+        }
+      ],
+      "complete_byte_ast_inverse": true,
+      "definition_lines_unchanged": true,
+      "changed_definition_constants": [],
+      "other_definition_bytes_unchanged": true
+    },
+    {
+      "source": [
+        "candidate/formal-send-fc-http-cap-v1/runtime/mta_service.py",
+        145733,
+        "2b1ec27d4b0949d67d9da8f408d17e68aaa0c32b78e6e8e1ba6924108b924c9b"
+      ],
+      "candidate": [
+        "candidate/formal-send-fc-mutex-v1/runtime/mta_service.py",
+        145733,
+        "992c8c85aab6a6e5f8d0b2a86d92d314c3b1c30ea7409a085e0858bf7b6632bb"
+      ],
+      "substitutions": [
+        {
+          "label": "independent_ordinary_root",
+          "before": "p011-mta-formal-send-filecenter-httpcp-v1",
+          "after": "p011-mta-formal-send-filecenter-mutex1-v1",
+          "count": 1
+        }
+      ],
+      "complete_byte_ast_inverse": true,
+      "definition_lines_unchanged": true,
+      "changed_definition_constants": [],
+      "other_definition_bytes_unchanged": true
+    },
+    {
+      "source": [
+        "candidate/formal-send-fc-http-cap-v1/runtime/mta_client_receive_boot.py",
+        19583,
+        "4051ebd41ca18a8dc7485411a62ae8c9ed0dcf60aeacb4f26f5d59b9f03205d1"
+      ],
+      "candidate": [
+        "candidate/formal-send-fc-mutex-v1/runtime/mta_client_receive_boot.py",
+        19583,
+        "b8d33d2437b44637190d110f8ed8e874f45b3ce9b4850da848b82d05eab64ec4"
+      ],
+      "substitutions": [
+        {
+          "label": "independent_ordinary_root",
+          "before": "p011-mta-formal-send-filecenter-httpcp-v1",
+          "after": "p011-mta-formal-send-filecenter-mutex1-v1",
+          "count": 2
+        },
+        {
+          "label": "SOURCE_PINS.mta_send_trial",
+          "before": "f5548048a5cfcca85d96a49c181213521e6b0521c8575c8a31440527e5e1d865",
+          "after": "21beea6d39c2131c41830786ff02ade2da71afa383bc9ea4f56a46cedb9d7c70",
+          "count": 1
+        },
+        {
+          "label": "SOURCE_PINS.mta_send_terminal_consumer",
+          "before": "e7e440158b93f5e76994803bb9810dc2339d90086afd9ab0268f30c022c5f674",
+          "after": "f1392d13a080834cf1b81553a4c4de0f6f1ade87dfb37300fa61fef3f6163666",
+          "count": 1
+        },
+        {
+          "label": "SOURCE_PINS.mta_service",
+          "before": "2b1ec27d4b0949d67d9da8f408d17e68aaa0c32b78e6e8e1ba6924108b924c9b",
+          "after": "992c8c85aab6a6e5f8d0b2a86d92d314c3b1c30ea7409a085e0858bf7b6632bb",
+          "count": 1
+        }
+      ],
+      "complete_byte_ast_inverse": true,
+      "definition_lines_unchanged": true,
+      "changed_definition_constants": [],
+      "other_definition_bytes_unchanged": true
+    },
+    {
+      "source": [
+        "candidate/formal-send-fc-http-cap-v1/runtime/mta_client_service_owner.py",
+        103959,
+        "5ff1afa7a262fe4a427ea6b8a99fe208da177a3d719f75f5fe7299277ea81592"
+      ],
+      "candidate": [
+        "candidate/formal-send-fc-mutex-v1/runtime/mta_client_service_owner.py",
+        103959,
+        "769b19c90c8c1160e553f0632a9f90ff19fbd8425e7e2d5d0d92662ef3aa0ac1"
+      ],
+      "substitutions": [
+        {
+          "label": "independent_ordinary_root_and_anchor",
+          "before": "p011-mta-formal-send-filecenter-httpcp-v1",
+          "after": "p011-mta-formal-send-filecenter-mutex1-v1",
+          "count": 2
+        },
+        {
+          "label": "BOOT_PIN",
+          "before": "BOOT_PIN = (19583, '4051ebd41ca18a8dc7485411a62ae8c9ed0dcf60aeacb4f26f5d59b9f03205d1')",
+          "after": "BOOT_PIN = (19583, 'b8d33d2437b44637190d110f8ed8e874f45b3ce9b4850da848b82d05eab64ec4')",
+          "count": 1
+        },
+        {
+          "label": "FILECENTER_PINS.mta_filecenter_companion",
+          "before": "('mta_filecenter_companion', 26088, '5daa53f647db195f02a5588f0fb45d009b490eaa51d0af98de76205b00fdee0f')",
+          "after": "('mta_filecenter_companion', 27656, '57531992acaf8b3519e090f8e1cf61a2ac97dc18e14bee15662573dbb9ca5bfd')",
+          "count": 1
+        }
+      ],
+      "complete_byte_ast_inverse": true,
+      "definition_lines_unchanged": true,
+      "changed_definition_constants": [
+        "_LinuxIo._anchors"
+      ],
+      "other_definition_bytes_unchanged": true
+    },
+    {
+      "source": [
+        "candidate/formal-send-fc-http-cap-v1/runtime/formal_send_session.py",
+        24060,
+        "893b7d154ddc21ddd3120c356093f42fdd373e8df5101094535e00194ad10231"
+      ],
+      "candidate": [
+        "candidate/formal-send-fc-mutex-v1/runtime/formal_send_session.py",
+        24060,
+        "364b85bd8b95aa79373319a0671e14f2e20ca4c98cf78f0e918628d9a88dcc6b"
+      ],
+      "substitutions": [
+        {
+          "label": "independent_ordinary_root",
+          "before": "p011-mta-formal-send-filecenter-httpcp-v1",
+          "after": "p011-mta-formal-send-filecenter-mutex1-v1",
+          "count": 2
+        },
+        {
+          "label": "BOOT_PIN",
+          "before": "BOOT_PIN = (19583, '4051ebd41ca18a8dc7485411a62ae8c9ed0dcf60aeacb4f26f5d59b9f03205d1')",
+          "after": "BOOT_PIN = (19583, 'b8d33d2437b44637190d110f8ed8e874f45b3ce9b4850da848b82d05eab64ec4')",
+          "count": 1
+        },
+        {
+          "label": "OWNER_PIN",
+          "before": "OWNER_PIN = (103959, '5ff1afa7a262fe4a427ea6b8a99fe208da177a3d719f75f5fe7299277ea81592')",
+          "after": "OWNER_PIN = (103959, '769b19c90c8c1160e553f0632a9f90ff19fbd8425e7e2d5d0d92662ef3aa0ac1')",
+          "count": 1
+        }
+      ],
+      "complete_byte_ast_inverse": true,
+      "definition_lines_unchanged": true,
+      "changed_definition_constants": [],
+      "other_definition_bytes_unchanged": true
+    },
+    {
+      "source": [
+        "candidate/formal-send-fc-http-cap-v1/assets/filecenter-source-manifest.json",
+        2476,
+        "819879157ba075d1afeb5bfad88e911408f5b060402166199c67b4b654a1d8a5"
+      ],
+      "candidate": [
+        "candidate/formal-send-fc-mutex-v1/assets/filecenter-source-manifest.json",
+        2477,
+        "611ca4aa72fb01e7f4393a0e789344ee0590846c5dc955380aba141d689c59e3"
+      ],
+      "substitutions": [
+        {
+          "label": "schema",
+          "before": "p011-formal-send-fc-http-cap-v1-filecenter-source",
+          "after": "p011-formal-send-fc-mutex-v1-filecenter-source",
+          "count": 1
+        },
+        {
+          "label": "source_bytes",
+          "before": "\"source_bytes\": 100114",
+          "after": "\"source_bytes\": 101682",
+          "count": 1
+        },
+        {
+          "label": "source.mta_filecenter_companion",
+          "before": "\"source\": \"candidate/filecenter-http-parent-cap-v1/send/mta_filecenter_companion.py\",\n      \"bytes\": 26088,\n      \"sha256\": \"5daa53f647db195f02a5588f0fb45d009b490eaa51d0af98de76205b00fdee0f\"",
+          "after": "\"source\": \"candidate/filecenter-media-lock-deadline-v1/send/mta_filecenter_companion.py\",\n      \"bytes\": 27656,\n      \"sha256\": \"57531992acaf8b3519e090f8e1cf61a2ac97dc18e14bee15662573dbb9ca5bfd\"",
+          "count": 1
+        }
+      ],
+      "complete_byte_inverse": true,
+      "parsed_expected": true
+    },
+    {
+      "source": [
+        "candidate/formal-send-fc-http-cap-v1/assets/ordinary-source-manifest.json",
+        20762,
+        "6a478fc8bc8a61db8d43d1e89d10d1363c76fc3762fa51500dbe95539d794802"
+      ],
+      "candidate": [
+        "candidate/formal-send-fc-mutex-v1/assets/ordinary-source-manifest.json",
+        20738,
+        "61e2344234bb63677f61cb52317f84367b9250f69ef3832ff1288f17e74a2423"
+      ],
+      "substitutions": [
+        {
+          "label": "schema",
+          "before": "p011-formal-send-fc-http-cap-v1-ordinary-source-catalog",
+          "after": "p011-formal-send-fc-mutex-v1-ordinary-source-catalog",
+          "count": 1
+        },
+        {
+          "label": "independent_target_roots",
+          "before": "p011-mta-formal-send-filecenter-httpcp-v1",
+          "after": "p011-mta-formal-send-filecenter-mutex1-v1",
+          "count": 76
+        },
+        {
+          "label": "source.mta_send_trial",
+          "before": "\"source\": \"candidate/formal-send-fc-http-cap-v1/runtime/mta_send_trial.py\",\n      \"bytes\": 22052,\n      \"sha256\": \"f5548048a5cfcca85d96a49c181213521e6b0521c8575c8a31440527e5e1d865\"",
+          "after": "\"source\": \"candidate/formal-send-fc-mutex-v1/runtime/mta_send_trial.py\",\n      \"bytes\": 22052,\n      \"sha256\": \"21beea6d39c2131c41830786ff02ade2da71afa383bc9ea4f56a46cedb9d7c70\"",
+          "count": 1
+        },
+        {
+          "label": "source.mta_send_terminal_consumer",
+          "before": "\"source\": \"candidate/formal-send-fc-http-cap-v1/runtime/mta_send_terminal_consumer.py\",\n      \"bytes\": 12785,\n      \"sha256\": \"e7e440158b93f5e76994803bb9810dc2339d90086afd9ab0268f30c022c5f674\"",
+          "after": "\"source\": \"candidate/formal-send-fc-mutex-v1/runtime/mta_send_terminal_consumer.py\",\n      \"bytes\": 12785,\n      \"sha256\": \"f1392d13a080834cf1b81553a4c4de0f6f1ade87dfb37300fa61fef3f6163666\"",
+          "count": 1
+        },
+        {
+          "label": "source.mta_service",
+          "before": "\"source\": \"candidate/formal-send-fc-http-cap-v1/runtime/mta_service.py\",\n      \"bytes\": 145733,\n      \"sha256\": \"2b1ec27d4b0949d67d9da8f408d17e68aaa0c32b78e6e8e1ba6924108b924c9b\"",
+          "after": "\"source\": \"candidate/formal-send-fc-mutex-v1/runtime/mta_service.py\",\n      \"bytes\": 145733,\n      \"sha256\": \"992c8c85aab6a6e5f8d0b2a86d92d314c3b1c30ea7409a085e0858bf7b6632bb\"",
+          "count": 1
+        },
+        {
+          "label": "source.mta_client_receive_boot",
+          "before": "\"source\": \"candidate/formal-send-fc-http-cap-v1/runtime/mta_client_receive_boot.py\",\n      \"bytes\": 19583,\n      \"sha256\": \"4051ebd41ca18a8dc7485411a62ae8c9ed0dcf60aeacb4f26f5d59b9f03205d1\"",
+          "after": "\"source\": \"candidate/formal-send-fc-mutex-v1/runtime/mta_client_receive_boot.py\",\n      \"bytes\": 19583,\n      \"sha256\": \"b8d33d2437b44637190d110f8ed8e874f45b3ce9b4850da848b82d05eab64ec4\"",
+          "count": 1
+        },
+        {
+          "label": "source.mta_client_service_owner",
+          "before": "\"source\": \"candidate/formal-send-fc-http-cap-v1/runtime/mta_client_service_owner.py\",\n      \"bytes\": 103959,\n      \"sha256\": \"5ff1afa7a262fe4a427ea6b8a99fe208da177a3d719f75f5fe7299277ea81592\"",
+          "after": "\"source\": \"candidate/formal-send-fc-mutex-v1/runtime/mta_client_service_owner.py\",\n      \"bytes\": 103959,\n      \"sha256\": \"769b19c90c8c1160e553f0632a9f90ff19fbd8425e7e2d5d0d92662ef3aa0ac1\"",
+          "count": 1
+        },
+        {
+          "label": "source.formal_send_session",
+          "before": "\"source\": \"candidate/formal-send-fc-http-cap-v1/runtime/formal_send_session.py\",\n      \"bytes\": 24060,\n      \"sha256\": \"893b7d154ddc21ddd3120c356093f42fdd373e8df5101094535e00194ad10231\"",
+          "after": "\"source\": \"candidate/formal-send-fc-mutex-v1/runtime/formal_send_session.py\",\n      \"bytes\": 24060,\n      \"sha256\": \"364b85bd8b95aa79373319a0671e14f2e20ca4c98cf78f0e918628d9a88dcc6b\"",
+          "count": 1
+        },
+        {
+          "label": "fc_manifest",
+          "before": "\"source\": \"candidate/formal-send-fc-http-cap-v1/assets/filecenter-source-manifest.json\",\n    \"bytes\": 2476,\n    \"sha256\": \"819879157ba075d1afeb5bfad88e911408f5b060402166199c67b4b654a1d8a5\"",
+          "after": "\"source\": \"candidate/formal-send-fc-mutex-v1/assets/filecenter-source-manifest.json\",\n    \"bytes\": 2477,\n    \"sha256\": \"611ca4aa72fb01e7f4393a0e789344ee0590846c5dc955380aba141d689c59e3\"",
+          "count": 1
+        }
+      ],
+      "complete_byte_inverse": true,
+      "parsed_expected": true
+    },
+    {
+      "source": [
+        "candidate/formal-send-fc-http-cap-v1/runtime/formal_send_stage.py",
+        37421,
+        "50e5fcf4d439733c79f69f5665c1bc10efaebc5bbfc570f745bf619212d5e369"
+      ],
+      "candidate": [
+        "candidate/formal-send-fc-mutex-v1/runtime/formal_send_stage.py",
+        37421,
+        "6155769f9fe67e50cbcc9a34f2a17a7c51d0a695cec0454d0c7bed1b92c417cd"
+      ],
+      "substitutions": [
+        {
+          "label": "ordinary_profile_root",
+          "before": "p011-mta-formal-send-filecenter-httpcp-v1",
+          "after": "p011-mta-formal-send-filecenter-mutex1-v1",
+          "count": 1
+        },
+        {
+          "label": "PROFILE_FILES.mta_send_trial",
+          "before": "f5548048a5cfcca85d96a49c181213521e6b0521c8575c8a31440527e5e1d865",
+          "after": "21beea6d39c2131c41830786ff02ade2da71afa383bc9ea4f56a46cedb9d7c70",
+          "count": 1
+        },
+        {
+          "label": "PROFILE_FILES.mta_send_terminal_consumer",
+          "before": "e7e440158b93f5e76994803bb9810dc2339d90086afd9ab0268f30c022c5f674",
+          "after": "f1392d13a080834cf1b81553a4c4de0f6f1ade87dfb37300fa61fef3f6163666",
+          "count": 1
+        },
+        {
+          "label": "PROFILE_FILES.mta_service",
+          "before": "2b1ec27d4b0949d67d9da8f408d17e68aaa0c32b78e6e8e1ba6924108b924c9b",
+          "after": "992c8c85aab6a6e5f8d0b2a86d92d314c3b1c30ea7409a085e0858bf7b6632bb",
+          "count": 1
+        },
+        {
+          "label": "PROFILE_FILES.mta_client_receive_boot",
+          "before": "4051ebd41ca18a8dc7485411a62ae8c9ed0dcf60aeacb4f26f5d59b9f03205d1",
+          "after": "b8d33d2437b44637190d110f8ed8e874f45b3ce9b4850da848b82d05eab64ec4",
+          "count": 1
+        },
+        {
+          "label": "PROFILE_FILES.mta_client_service_owner",
+          "before": "5ff1afa7a262fe4a427ea6b8a99fe208da177a3d719f75f5fe7299277ea81592",
+          "after": "769b19c90c8c1160e553f0632a9f90ff19fbd8425e7e2d5d0d92662ef3aa0ac1",
+          "count": 1
+        },
+        {
+          "label": "PROFILE_FILES.formal_send_session",
+          "before": "893b7d154ddc21ddd3120c356093f42fdd373e8df5101094535e00194ad10231",
+          "after": "364b85bd8b95aa79373319a0671e14f2e20ca4c98cf78f0e918628d9a88dcc6b",
+          "count": 1
+        }
+      ],
+      "complete_byte_ast_inverse": true,
+      "definition_lines_unchanged": true,
+      "changed_definition_constants": [],
+      "other_definition_bytes_unchanged": true
+    },
+    {
+      "source": [
+        "candidate/formal-send-fc-http-cap-v1/runtime/ui_guardian.py",
+        43991,
+        "0eb853e9db532bc1bb28079da4170987e29d1ccb361b23c16e878b39a0199ad0"
+      ],
+      "candidate": [
+        "candidate/formal-send-fc-mutex-v1/runtime/ui_guardian.py",
+        43988,
+        "93a3d16cd580d841f11324ed5a31be4b676f0377ffb44d6552bc0d5ed32b43b5"
+      ],
+      "substitutions": [
+        {
+          "label": "independent_control_name",
+          "before": "-formal-send-fc-http-cap-v1",
+          "after": "-formal-send-fc-mutex-v1",
+          "count": 1
+        }
+      ],
+      "complete_byte_ast_inverse": true,
+      "definition_lines_unchanged": true,
+      "changed_definition_constants": [],
+      "other_definition_bytes_unchanged": true
+    },
+    {
+      "source": [
+        "candidate/formal-send-fc-http-cap-v1/runtime/ui_session.py",
+        46414,
+        "7be5f60455b89b99d23ad25a8d1cb5055bacf7511755ffeac461fad3fffd1bb8"
+      ],
+      "candidate": [
+        "candidate/formal-send-fc-mutex-v1/runtime/ui_session.py",
+        46411,
+        "84a68c021ac5b4f0e01fbbe8bb41dcb226113c11f380725a317ae9bcab034fc8"
+      ],
+      "substitutions": [
+        {
+          "label": "independent_sender_root",
+          "before": "p011-mta-formal-send-filecenter-httpcp-v1",
+          "after": "p011-mta-formal-send-filecenter-mutex1-v1",
+          "count": 2
+        },
+        {
+          "label": "independent_control_name",
+          "before": "-formal-send-fc-http-cap-v1",
+          "after": "-formal-send-fc-mutex-v1",
+          "count": 1
+        },
+        {
+          "label": "SENDER_PIN",
+          "before": "SENDER_PIN = (24060, '893b7d154ddc21ddd3120c356093f42fdd373e8df5101094535e00194ad10231')",
+          "after": "SENDER_PIN = (24060, '364b85bd8b95aa79373319a0671e14f2e20ca4c98cf78f0e918628d9a88dcc6b')",
+          "count": 1
+        },
+        {
+          "label": "GUARDIAN_PIN",
+          "before": "GUARDIAN_PIN = (43991, '0eb853e9db532bc1bb28079da4170987e29d1ccb361b23c16e878b39a0199ad0')",
+          "after": "GUARDIAN_PIN = (43988, '93a3d16cd580d841f11324ed5a31be4b676f0377ffb44d6552bc0d5ed32b43b5')",
+          "count": 1
+        },
+        {
+          "label": "FILECENTER_PINS.mta_filecenter_companion",
+          "before": "('mta_filecenter_companion', 26088, '5daa53f647db195f02a5588f0fb45d009b490eaa51d0af98de76205b00fdee0f')",
+          "after": "('mta_filecenter_companion', 27656, '57531992acaf8b3519e090f8e1cf61a2ac97dc18e14bee15662573dbb9ca5bfd')",
+          "count": 1
+        },
+        {
+          "label": "fixed_fc9_total_bytes",
+          "before": "sum(len(row[1]) for row in filecenter_sources) == 100114 and",
+          "after": "sum(len(row[1]) for row in filecenter_sources) == 101682 and",
+          "count": 1
+        }
+      ],
+      "complete_byte_ast_inverse": true,
+      "definition_lines_unchanged": true,
+      "changed_definition_constants": [
+        "_validate_filecenter_sources"
+      ],
+      "other_definition_bytes_unchanged": true
+    },
+    {
+      "source": [
+        "candidate/formal-send-fc-http-cap-v1/runtime/ui_assets.py",
+        12526,
+        "430308223593d5d783c1ec1d29a90dcbe82606b33690fc263572b8353d9fd4e8"
+      ],
+      "candidate": [
+        "candidate/formal-send-fc-mutex-v1/runtime/ui_assets.py",
+        12526,
+        "430308223593d5d783c1ec1d29a90dcbe82606b33690fc263572b8353d9fd4e8"
+      ],
+      "identical_bytes": true,
+      "no_constant_change": true
+    }
+  ],
+  "business_companion_source": [
+    "candidate/filecenter-media-lock-deadline-v1/send/mta_filecenter_companion.py",
+    27656,
+    "57531992acaf8b3519e090f8e1cf61a2ac97dc18e14bee15662573dbb9ca5bfd"
+  ],
+  "business_companion_exact_delta": [
+    "candidate/filecenter-media-lock-deadline-v1/send/exactsource-delta.json",
+    4751,
+    "690bbf7a2d8e79529567e4eba34086ff498020a9167be51d3ee306c9f7e710a6"
+  ],
+  "business_companion_replacements": [
+    {
+      "after": "\nclass _MediaLock:\n    \"\"\"Wait only within the retained parent/caller cap, without renewing it.\"\"\"\n    def __init__(self, companion, lock, deadline=None):\n        parent_until = companion.until\n        if type(parent_until) is not float or not math.isfinite(parent_until):\n            raise ValueError('original_finite_cap_required')\n        if deadline is not None and (type(deadline) is not float or not math.isfinite(deadline)):\n            raise ValueError('filecenter_finite_media_deadline_required')\n        self.companion, self.lock = companion, lock\n        self.deadline = parent_until if deadline is None else min(parent_until, deadline)\n\n    def __enter__(self):\n        while True:\n            self.companion.check()\n            remaining = self.deadline - time.monotonic()\n            if remaining <= 0: raise ValueError('filecenter_media_lock_deadline')\n            if self.lock.acquire(timeout=min(0.05, remaining)):\n                try:\n                    self.companion.check()\n                    if time.monotonic() >= self.deadline:\n                        raise ValueError('filecenter_media_lock_deadline')\n                except BaseException:\n                    self.lock.release()\n                    raise\n                return self\n\n    def __exit__(self, error_type, error, traceback):\n        self.lock.release()\n        return False\n\n\ndef _owner_binding(owner, module):\n",
+      "before": "\ndef _owner_binding(owner, module):\n",
+      "count": 1
+    },
+    {
+      "after": "self.server.companion.open_file(query.get('path', ''), deadline=self.deadline)",
+      "before": "self.server.companion.open_file(query.get('path', ''))",
+      "count": 1
+    },
+    {
+      "after": "        row = self.server.companion.media_row(query, deadline=self.deadline)\n        with _MediaLock(self.server.companion, row['lock'], self.deadline):\n",
+      "before": "        row = self.server.companion.media_row(query)\n        with row['lock']:\n",
+      "count": 1
+    },
+    {
+      "after": "    def open_file(self, path, deadline=None):\n",
+      "before": "    def open_file(self, path):\n",
+      "count": 1
+    },
+    {
+      "after": "        with _MediaLock(self, self.media_lock, deadline):\n            for row in self.media:\n",
+      "before": "        with self.media_lock:\n            for row in self.media:\n",
+      "count": 1
+    },
+    {
+      "after": "    def media_row(self, query, deadline=None):\n",
+      "before": "    def media_row(self, query):\n",
+      "count": 1
+    },
+    {
+      "after": "        with _MediaLock(self, self.media_lock, deadline):\n            rows = [row for row in self.media if row['cap'] == query['cap']]\n",
+      "before": "        with self.media_lock:\n            rows = [row for row in self.media if row['cap'] == query['cap']]\n",
+      "count": 1
+    },
+    {
+      "after": "        with _MediaLock(self, self.media_lock):\n            rows = [row for row in self.media if row['valid'] and row['kind']=='audio' and\n",
+      "before": "        with self.media_lock:\n            rows = [row for row in self.media if row['valid'] and row['kind']=='audio' and\n",
+      "count": 1
+    }
+  ],
+  "filecenter_other_eight_source_records_unchanged": true,
+  "ordinary_methods_logic_unchanged": true,
+  "definition_constant_exceptions": [
+    "mta_client_service_owner._LinuxIo._anchors: root literal only",
+    "ui_session._validate_filecenter_sources: FC9 total bytes only"
+  ],
+  "complete_companion_byte_ast_inverse": true,
+  "ui_payload_changed": false,
+  "assets_validator_identical": true,
+  "receive_successor_source_read_or_changed": false,
+  "original_caps_close_and_owner_identity_unchanged": true,
+  "no_runtime_definitions_executed": true,
+  "device": false,
+  "staged": false,
+  "host": false,
+  "rf": false,
+  "phone": false
+}

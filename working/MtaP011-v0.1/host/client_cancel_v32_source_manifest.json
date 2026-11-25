@@ -1,0 +1,216 @@
+{
+  "previous_manifest_sha256": "2e913b11702400441c3d831187d783b9c6ab986403b4230c9dc3f8e00d2014c0",
+  "schema": "client-cancel-v32-host",
+  "sources": [
+    {
+      "bytes": 8061,
+      "module": "p011_json",
+      "path": "runtime/p011_json.py",
+      "sha256": "fb6c803b185283258c2312e630df8bb80d6299007e95a1f3cf31250aa0e8ca88"
+    },
+    {
+      "bytes": 22049,
+      "module": "mta_ip",
+      "path": "runtime/mta_ip.py",
+      "sha256": "1fa5e72817772285fd966f52c57af105950ff0d3b6ea49b202983aebfbab40c5"
+    },
+    {
+      "bytes": 8827,
+      "module": "mta_client_tmp_alias",
+      "path": "candidate/client-tmp-alias-v11/runtime/mta_client_tmp_alias.py",
+      "sha256": "1a4a52bd0bae7add6ae42f66bd9827c43865a0170c666eaab00797d1f45f7f2f"
+    },
+    {
+      "bytes": 69966,
+      "module": "mta_p2p_client_init",
+      "path": "candidate/client-session-v28/runtime/mta_p2p_client_init.py",
+      "sha256": "178bd8a491e9e5ec03e8da3bce780f8e8e8c1c8781bfeaca7d8c3bac59fa364b"
+    },
+    {
+      "bytes": 16215,
+      "module": "mta_client_resource_budget",
+      "path": "candidate/client-session-v28/runtime/mta_client_resource_budget.py",
+      "sha256": "56d6dbe2370279b1572a563e67fd3313bf942c0baa78fbd8e36cd973ba09839e"
+    },
+    {
+      "bytes": 39384,
+      "module": "mta_client_proc",
+      "path": "candidate/client-proc-deadline-v25/runtime/mta_client_proc.py",
+      "sha256": "ede5953c33ba4c17d3aecb1fffe8a9358589497b37e3109034d5e1de3eadb3d6"
+    },
+    {
+      "bytes": 11821,
+      "module": "mta_client_caps",
+      "path": "runtime/mta_client_caps.py",
+      "sha256": "c1792c2294fed5da16ec4a676423fbcbe53d44e9bc4ddadc1bc26fd45afe046c"
+    },
+    {
+      "bytes": 19614,
+      "module": "mta_client_caps_transport",
+      "path": "runtime/mta_client_caps_transport.py",
+      "sha256": "df6b4cf3ede6039c684c6b689a8b61ffe1ba5b87259bb4a5581aa5c3ece84420"
+    },
+    {
+      "bytes": 29510,
+      "module": "mta_client_baseline",
+      "path": "candidate/client-proc-deadline-v25/runtime/mta_client_baseline.py",
+      "sha256": "b74696eb4fa0586b254633f667eb588634700234cc30d8b49d5453e4592782bf"
+    },
+    {
+      "bytes": 17450,
+      "module": "mta_client_journal_codec",
+      "path": "candidate/client-session-v28/runtime/mta_client_journal_codec.py",
+      "sha256": "2ffeca6b59498c9e2dfa4b9906bbe55db909d5d5e1d448fa0c795490996fe14a"
+    },
+    {
+      "bytes": 35591,
+      "module": "mta_client_coordination",
+      "path": "candidate/client-tmp-alias-v11/runtime/mta_client_coordination.py",
+      "sha256": "930e56d35ebf08d0b1c83fe7ccab843cbe6520ecd68c0799e9a07b2bbe40823f"
+    },
+    {
+      "bytes": 28938,
+      "module": "mta_client_files",
+      "path": "candidate/client-resource-v23/runtime/mta_client_files.py",
+      "sha256": "30c07bb4a5a28ce02aa76f35650ee1c87af63617f445e554c3fd7f73a2705864"
+    },
+    {
+      "bytes": 42432,
+      "module": "mta_client_pending",
+      "path": "candidate/client-recovery-budget-v8/runtime/mta_client_pending.py",
+      "sha256": "cfba740700268d5998eb3a91bf7cdc34d893fa8f0083377d716ea98950c3f5af"
+    },
+    {
+      "bytes": 71524,
+      "module": "mta_client_store",
+      "path": "candidate/client-peer-v29-r2/runtime/mta_client_store.py",
+      "sha256": "f328dcaa95ecfc5288c85a3715ecfdbdbdb8e83c83797b91cde3e334d188f4a2"
+    },
+    {
+      "bytes": 34361,
+      "module": "mta_client_process_owner",
+      "path": "candidate/client-transfer-v30-r2/runtime/mta_client_process_owner.py",
+      "sha256": "c144bc197a8fd1d4fbbfc358ba0172a84f5c9070058732189e4709c8c801ffeb"
+    },
+    {
+      "bytes": 21679,
+      "module": "mta_client_launch_registration",
+      "path": "runtime/mta_client_launch_registration.py",
+      "sha256": "833d46f5717e0b7e9db0c5392a0eb93d812d039b4b946a57d49d5903534a1aa0"
+    },
+    {
+      "bytes": 27155,
+      "module": "mta_client_two_phase_lease",
+      "path": "candidate/client-session-v28/runtime/mta_client_two_phase_lease.py",
+      "sha256": "91facc875902e66c9a6ddfecad68ae623b145ec006adb897e2cd435ab25d34f6"
+    },
+    {
+      "bytes": 18712,
+      "module": "mta_p2p_client_ctrl",
+      "path": "runtime/mta_p2p_client_ctrl.py",
+      "sha256": "793b784f1b39eca18001aa65a1f0d6cdbd6de466dc58b3cf2ada167f71d902b5"
+    },
+    {
+      "bytes": 39133,
+      "module": "mta_client_wpa_status",
+      "path": "candidate/client-proc-deadline-v25/runtime/mta_client_wpa_status.py",
+      "sha256": "47074a5af8d9f75746fa7cd72e1e42b50c8402fcbb612963f6523c875fe1c269"
+    },
+    {
+      "bytes": 17958,
+      "module": "mta_protocol",
+      "path": "runtime/mta_protocol.py",
+      "sha256": "4f7c2bd46cde114f0a2a0c33b31631aa463f09e71b156d26e34daf2251dd8a57"
+    },
+    {
+      "bytes": 20480,
+      "module": "mta_client_control_frame",
+      "path": "candidate/client-transfer-executor-v31/runtime/mta_client_control_frame.py",
+      "sha256": "3cf4a9106389d9865ff77fed9f46c534288ce20df6841909b21eaa15f5bf1434"
+    },
+    {
+      "bytes": 23702,
+      "module": "mta_client_kernel_proof",
+      "path": "candidate/client-association-v16/runtime/mta_client_kernel_proof.py",
+      "sha256": "4ebfedf198673e3bad2f64a4bd72c581e5d6af24cef83e589b4456d2a38f8ede"
+    },
+    {
+      "bytes": 22494,
+      "module": "mta_client_connection",
+      "path": "candidate/client-durable-connect-v19/runtime/mta_client_connection.py",
+      "sha256": "ae2932252bbef16b89e6bf4614c2ebdb1721d507274dbd9b9fe4d9db1d0ff159"
+    },
+    {
+      "bytes": 160287,
+      "module": "mta_client_linux_provider",
+      "path": "candidate/client-cancel-v32/runtime/mta_client_linux_provider.py",
+      "sha256": "130c30b2a4b44e98ebb146b01cf34327b17943aae4ae5ad9ee8ebee136e9600a"
+    },
+    {
+      "bytes": 98763,
+      "module": "mta_client_executor",
+      "path": "candidate/client-cancel-v32/runtime/mta_client_executor.py",
+      "sha256": "ea70c500cc7c2a324c9c709a70ff722a4211194876becbdedab94988ac6e0d8c"
+    },
+    {
+      "bytes": 15719,
+      "module": "mta_dhcp",
+      "path": "runtime/mta_dhcp.py",
+      "sha256": "631987bd7307580af069f1978e440d21fbd449ecc62c83e0e06195c330f50176"
+    },
+    {
+      "bytes": 12362,
+      "module": "mta_dhcp_client_core",
+      "path": "runtime/mta_dhcp_client_core.py",
+      "sha256": "13c03d181139fd9ead7ff3bf2bcbb4930669f1e795b17360da85834dc345e9fa"
+    },
+    {
+      "bytes": 24670,
+      "module": "mta_dhcp_client",
+      "path": "candidate/client-dhcp-v21/runtime/mta_dhcp_client.py",
+      "sha256": "794421678866d04a10ca46fa9eb7e17174f24c4d9e705cf59016b457702003a0"
+    },
+    {
+      "bytes": 48149,
+      "module": "mta_client_dora",
+      "path": "candidate/client-session-v28/runtime/mta_client_dora.py",
+      "sha256": "f17f8405b28799fda8ee8f3ea9d280f871cceb1e0c6b999fc855bcb652ab2f7e"
+    },
+    {
+      "bytes": 32427,
+      "module": "mta_client_dynamic_ip",
+      "path": "candidate/client-session-v28-r2/runtime/mta_client_dynamic_ip.py",
+      "sha256": "01476613eb965a05cd5441dfbfea53f15ce763da12213b76791ecdb23152199a"
+    },
+    {
+      "bytes": 31242,
+      "module": "mta_client_peer",
+      "path": "candidate/client-peer-v29-r3/runtime/mta_client_peer.py",
+      "sha256": "f8a15d046b505a8c5117a5be19d2ee59f38096759be1b29a0310535ceea08ec9"
+    },
+    {
+      "bytes": 26339,
+      "module": "mta_scoped_sockets",
+      "path": "runtime/mta_scoped_sockets.py",
+      "sha256": "b95cfbe724b43baf90511c9d2a4a39d869a40a57e78e2a87d398ea134f9f84b8"
+    },
+    {
+      "bytes": 14335,
+      "module": "mta_storage",
+      "path": "runtime/mta_storage.py",
+      "sha256": "3c5c5f65ef0c8eb9a0256a99f931faff40558484bb908e89acee1c1c0aa3b4d6"
+    },
+    {
+      "bytes": 35209,
+      "module": "mta_transport",
+      "path": "candidate/client-transfer-v30/runtime/mta_transport.py",
+      "sha256": "77d9cd45936318315cf3343ab1bd2594c6a3381e33a7d0fdcfd853916063eefa"
+    },
+    {
+      "bytes": 30747,
+      "module": "mta_client_transfer",
+      "path": "candidate/client-transfer-v30-r3/runtime/mta_client_transfer.py",
+      "sha256": "8633b2a1156c3012ec613e776eaee7e9339c14c76cffff9c8e5ff75646f35184"
+    }
+  ]
+}

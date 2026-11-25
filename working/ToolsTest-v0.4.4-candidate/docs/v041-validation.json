@@ -1,0 +1,78 @@
+{
+  "version": "0.4.1",
+  "scope": "Executed Linux host tests and source/package checks; NOT Windows or P011 v0.4.1 hardware execution.",
+  "all_executed_checks_passed": true,
+  "host_qt": {
+    "runtime": "Qt 5.15.15",
+    "engine": "Actual QQmlEngine/QQmlComponent through native ctypes; offscreen software rendering",
+    "original_reproduced": {
+      "visual_children": 0,
+      "null_parent_errors": true,
+      "png_unique_colors": 1
+    },
+    "corrected": {
+      "visual_children": 7,
+      "png_unique_colors": 741,
+      "child_components_instantiated": [
+        "AdbPage.qml",
+        "BatteryPage.qml",
+        "RadioPage.qml",
+        "SshPage.qml"
+      ]
+    },
+    "fixture_changes": "Host-only module registrations and imports; mock Style and local mock telemetry HTTP service; firmware icons absent. Distribution keeps original QtQuick 2.10 and qrc references.",
+    "not_instantiated": [
+      "BrowserPage.qml with WebEngine",
+      "MediaPage.qml with QtMultimedia"
+    ],
+    "does_not_verify": "P011 Qt5.10.1/Mali/Wayland input, real sensors, media playback, network browsing, SSH login or Windows launcher"
+  },
+  "regression_checks": {
+    "count": 48,
+    "all_passed": true,
+    "record": "MenuLab/tests/v041-regressions.json"
+  },
+  "backend_feature_fixtures": {
+    "count": 33,
+    "all_passed": true,
+    "record": "MenuLab/tests/tools-tests.json"
+  },
+  "old_alias_cleanup_mock_rules": {
+    "count": 7,
+    "all_passed": true,
+    "record": "MenuLab/tests/v041-alias-cleanup.json"
+  },
+  "supervisor_fake_process_tests": {
+    "count": 11,
+    "all_passed": true,
+    "cases": [
+      "normal",
+      "crash",
+      "stop",
+      "worker-killed",
+      "guardian-killed",
+      "busy-original",
+      "candidate-stubborn",
+      "preexisting-path",
+      "bad-parent",
+      "launcher-killed",
+      "leader-exited"
+    ],
+    "record": "MenuLab/tests/supervisor-results-normal-crash-stop-worker-killed-guardian-killed-busy-original-candidate-stubborn-preexisting-path-bad-parent-launcher-killed-leader-exited.json"
+  },
+  "python_runtime_syntax": "All six deployed runtime Python sources parse as Python3.5 grammar; target python execution pending.",
+  "page_resource_count": 16,
+  "windows_launcher_executed": false,
+  "p011_v041_executed": false,
+  "windows_startup_selftest": "v0.4.1 executes Test-P011ResultTools before ADB access; failure stops before the trial.",
+  "risk_boundary": "Temporary candidate only. Native vendor business code may use real services and data. Does not guarantee recovery after kernel hang/all guardians killed. Current uploaded Stop ended RECOVERY_NEEDS_ATTENTION; normal reboot to stock UI required before next trial.",
+  "non_changes": [
+    "original menu resource patch unchanged",
+    "stock Z03/startup untouched",
+    "no font files",
+    "no FDL or flashing",
+    "no automatic SSH enable",
+    "no automatic playback",
+    "no ADB hot-switch or reboot"
+  ]
+}

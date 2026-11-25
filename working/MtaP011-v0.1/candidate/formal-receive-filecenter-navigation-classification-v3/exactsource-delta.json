@@ -1,0 +1,215 @@
+{
+  "schema": "p011-receive-filecenter-navigation-classification-v3-exact-source-delta",
+  "evidence": "source_data_only_not_executed",
+  "sources": [
+    {
+      "role": "original_navigation_runner",
+      "path": "candidate/formal-receive-filecenter-navigation-publication-v3/runtime/mta_formal_receive_session.py",
+      "bytes": 88817,
+      "sha256": "a54c40de4ad1b0a59ed81191ad7768d6d0783d2acb4b7aa58a84d010bd3b812f"
+    },
+    {
+      "role": "original_navigation_worker",
+      "path": "candidate/formal-receive-filecenter-navigation-publication-v3/runtime/ui_session.py",
+      "bytes": 95419,
+      "sha256": "2661710612069f9381dea2049721147cab01f2b1ac67e3d22628fa609b90d80c"
+    },
+    {
+      "role": "parent_publication_definitions",
+      "path": "host/formal_receive_publication_anchor_clock_v1_definitions.py",
+      "bytes": 15660,
+      "sha256": "8a7ab2f16aca4b9af2660c2eb9331e9883e7f7f165e14deaf16db1195a9b68b4"
+    },
+    {
+      "role": "actual_classification_definitions",
+      "path": "host/formal_receive_profile_classification_clock_v1_definitions.py",
+      "bytes": 16712,
+      "sha256": "3a1cf025b4a088960e6d7a23f44ecac4ff7d3de35082d1c3795e52c377a9169e"
+    },
+    {
+      "role": "parent_publication_manifest",
+      "path": "host/formal_receive_publication_anchor_clock_v1_definition_manifest.json",
+      "bytes": 7980,
+      "sha256": "de379cac69169f15d214dcc038bbc7473409ac5e49f8a6b509aed7333b4c8485"
+    },
+    {
+      "role": "actual_classification_manifest",
+      "path": "host/formal_receive_profile_classification_clock_v1_definition_manifest.json",
+      "bytes": 8004,
+      "sha256": "e67fb9d0d0643c0c7f7796639aa38af455d00a1e5d62f393a11d94192df427d4"
+    },
+    {
+      "role": "parent_publication_private_manifest",
+      "path": "host/formal_receive_publication_anchor_clock_v1_private_source_manifest.json",
+      "bytes": 8157,
+      "sha256": "5cf980445a86633655c6316b5822052eb337e835584096a6dcff5dac52404695"
+    },
+    {
+      "role": "actual_classification_private_manifest",
+      "path": "host/formal_receive_profile_classification_clock_v1_private_source_manifest.json",
+      "bytes": 8161,
+      "sha256": "36c7ae14fa432ed9590951c67a26f570cf77fa508ca6d31520c4cf11412aa05f"
+    },
+    {
+      "role": "parent_publication_ordinary_runner",
+      "path": "candidate/formal-receive-publication-anchor-clock-v1/runtime/mta_formal_receive_session.py",
+      "bytes": 79246,
+      "sha256": "71b42ad391844cc67b86c019f80d96ade720dbe4be73270f12ce6210bf5ba5a6"
+    },
+    {
+      "role": "actual_classification_ordinary_runner",
+      "path": "candidate/formal-receive-profile-classification-clock-v1/runtime/mta_formal_receive_session.py",
+      "bytes": 79254,
+      "sha256": "3fe23e4e9d9e1c9900985ee04153ce4b479ca1f2bc194458b91a702cd4f8258f"
+    },
+    {
+      "role": "parent_publication_mta_client_executor",
+      "path": "candidate/formal-receive-publication-anchor-clock-v1/runtime/mta_client_executor.py",
+      "bytes": 117761,
+      "sha256": "34eddfee126c771776808e64a746f2186f61065cfce9a0c2e59e23e85d67ae23"
+    },
+    {
+      "role": "parent_publication_mta_client_state_bridge",
+      "path": "candidate/formal-receive-publication-anchor-clock-v1/runtime/mta_client_state_bridge.py",
+      "bytes": 21284,
+      "sha256": "4294f71f5b5b9cbb0deb4dd7d4c380e0c1011c4c8592cdc005aee6796ae84e5f"
+    },
+    {
+      "role": "parent_publication_mta_client_receive_factory",
+      "path": "candidate/formal-receive-publication-anchor-clock-v1/runtime/mta_client_receive_factory.py",
+      "bytes": 94393,
+      "sha256": "887942d83faf27f781981f426cce5890fa4894219365545901df9310887cd8d3"
+    },
+    {
+      "role": "parent_publication_minhttp",
+      "path": "candidate/formal-receive-publication-anchor-clock-v1/runtime/minhttp.py",
+      "bytes": 9690,
+      "sha256": "bf5648457b19b60ad0f17320f8bd0431064f9cb4edf0d238d82136000eb57235"
+    },
+    {
+      "role": "parent_publication_mta_client_receive_boot",
+      "path": "candidate/formal-receive-publication-anchor-clock-v1/runtime/mta_client_receive_boot.py",
+      "bytes": 19739,
+      "sha256": "1ca8aae23cffca5e3ca97b66790c24a44b3e35d546710994221e279994ca8146"
+    },
+    {
+      "role": "parent_publication_mta_client_service_owner",
+      "path": "candidate/formal-receive-publication-anchor-clock-v1/runtime/mta_client_service_owner.py",
+      "bytes": 107068,
+      "sha256": "745c9569d43711d2dd3f1cf3b29b415020d7163fc7a956bf3b64347a0bda4bcb"
+    },
+    {
+      "role": "actual_classification_mta_client_executor",
+      "path": "candidate/formal-receive-profile-classification-clock-v1/runtime/mta_client_executor.py",
+      "bytes": 117765,
+      "sha256": "d7f67463aa6587bb512bfae188e1cb1fffd2eb3763de93081912b99c473906cf"
+    },
+    {
+      "role": "actual_classification_mta_client_state_bridge",
+      "path": "candidate/formal-receive-profile-classification-clock-v1/runtime/mta_client_state_bridge.py",
+      "bytes": 21284,
+      "sha256": "849613b9e62cffdca6fe91ed6a9ba787b6c9b93a53b1a6e4df704b03d1a5b962"
+    },
+    {
+      "role": "actual_classification_mta_client_receive_factory",
+      "path": "candidate/formal-receive-profile-classification-clock-v1/runtime/mta_client_receive_factory.py",
+      "bytes": 97809,
+      "sha256": "8f37fcbfaaeedb7a0b86704c7a0368d1b23e93365423eeb5ff67e583f3e57549"
+    },
+    {
+      "role": "actual_classification_minhttp",
+      "path": "candidate/formal-receive-profile-classification-clock-v1/runtime/minhttp.py",
+      "bytes": 9690,
+      "sha256": "bf5648457b19b60ad0f17320f8bd0431064f9cb4edf0d238d82136000eb57235"
+    },
+    {
+      "role": "actual_classification_mta_client_receive_boot",
+      "path": "candidate/formal-receive-profile-classification-clock-v1/runtime/mta_client_receive_boot.py",
+      "bytes": 19747,
+      "sha256": "e3ee7b5d3644f4ccddb67348c40b2f5a8bf6fc575b7769773dd9473126572c7c"
+    },
+    {
+      "role": "actual_classification_mta_client_service_owner",
+      "path": "candidate/formal-receive-profile-classification-clock-v1/runtime/mta_client_service_owner.py",
+      "bytes": 107076,
+      "sha256": "de6d01dad6cde8f731a90b02e8af6f73956d02eb5b2143b3e24f6ef788a7e860"
+    }
+  ],
+  "candidates": [
+    {
+      "path": "candidate/formal-receive-filecenter-navigation-classification-v3/runtime/mta_formal_receive_session.py",
+      "bytes": 88825,
+      "sha256": "421e8aa52f224e3a1f6d5ee9508af7bb2f49efc7d246a5bf59315b01e45e4ae3"
+    },
+    {
+      "path": "candidate/formal-receive-filecenter-navigation-classification-v3/runtime/ui_session.py",
+      "bytes": 95430,
+      "sha256": "2d607a1b68ce640d0c981b76342b654a9190933ed65cc459813ffea41ef7e02a"
+    }
+  ],
+  "replacements": [
+    {
+      "name": "runner_root",
+      "file": "runtime/mta_formal_receive_session.py",
+      "before": "p011-mta-receive-publication-anchor-clock-v1",
+      "after": "p011-mta-receive-profile-classification-clock-v1",
+      "count": 2
+    },
+    {
+      "name": "runner_mta_client_executor",
+      "file": "runtime/mta_formal_receive_session.py",
+      "before": "('mta_client_executor', 117761, '34eddfee126c771776808e64a746f2186f61065cfce9a0c2e59e23e85d67ae23')",
+      "after": "('mta_client_executor', 117765, 'd7f67463aa6587bb512bfae188e1cb1fffd2eb3763de93081912b99c473906cf')",
+      "count": 2
+    },
+    {
+      "name": "runner_mta_client_state_bridge",
+      "file": "runtime/mta_formal_receive_session.py",
+      "before": "('mta_client_state_bridge', 21284, '4294f71f5b5b9cbb0deb4dd7d4c380e0c1011c4c8592cdc005aee6796ae84e5f')",
+      "after": "('mta_client_state_bridge', 21284, '849613b9e62cffdca6fe91ed6a9ba787b6c9b93a53b1a6e4df704b03d1a5b962')",
+      "count": 1
+    },
+    {
+      "name": "runner_mta_client_receive_factory",
+      "file": "runtime/mta_formal_receive_session.py",
+      "before": "('mta_client_receive_factory', 94393, '887942d83faf27f781981f426cce5890fa4894219365545901df9310887cd8d3')",
+      "after": "('mta_client_receive_factory', 97809, '8f37fcbfaaeedb7a0b86704c7a0368d1b23e93365423eeb5ff67e583f3e57549')",
+      "count": 1
+    },
+    {
+      "name": "runner_mta_client_receive_boot",
+      "file": "runtime/mta_formal_receive_session.py",
+      "before": "('mta_client_receive_boot', 19739, '1ca8aae23cffca5e3ca97b66790c24a44b3e35d546710994221e279994ca8146')",
+      "after": "('mta_client_receive_boot', 19747, 'e3ee7b5d3644f4ccddb67348c40b2f5a8bf6fc575b7769773dd9473126572c7c')",
+      "count": 1
+    },
+    {
+      "name": "runner_mta_client_service_owner",
+      "file": "runtime/mta_formal_receive_session.py",
+      "before": "('mta_client_service_owner', 107068, '745c9569d43711d2dd3f1cf3b29b415020d7163fc7a956bf3b64347a0bda4bcb')",
+      "after": "('mta_client_service_owner', 107076, 'de6d01dad6cde8f731a90b02e8af6f73956d02eb5b2143b3e24f6ef788a7e860')",
+      "count": 1
+    },
+    {
+      "name": "worker_runner_pin",
+      "file": "runtime/ui_session.py",
+      "before": "RUNNER_PIN = (88817, 'a54c40de4ad1b0a59ed81191ad7768d6d0783d2acb4b7aa58a84d010bd3b812f')\n",
+      "after": "RUNNER_PIN = (88825, '421e8aa52f224e3a1f6d5ee9508af7bb2f49efc7d246a5bf59315b01e45e4ae3')\n",
+      "count": 1
+    },
+    {
+      "name": "worker_control_suffix",
+      "file": "runtime/ui_session.py",
+      "before": "CONTROL_NAME = 'p011-mta-ui-session-' + SESSION + '-formal-receive-filecenter-navigation-publication-v3'\n",
+      "after": "CONTROL_NAME = 'p011-mta-ui-session-' + SESSION + '-formal-receive-filecenter-navigation-classification-v3'\n",
+      "count": 1
+    },
+    {
+      "name": "worker_root",
+      "file": "runtime/ui_session.py",
+      "before": "p011-mta-receive-publication-anchor-clock-v1",
+      "after": "p011-mta-receive-profile-classification-clock-v1",
+      "count": 2
+    }
+  ]
+}

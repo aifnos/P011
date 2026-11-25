@@ -1,0 +1,68 @@
+<!doctype html>
+<!-- SPDX-License-Identifier: GPL-3.0-or-later -->
+<html lang="zh-CN">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline'; connect-src data:; form-action 'none'; base-uri 'none'">
+<title>P011 local compatibility probe</title>
+<style>
+html { color-scheme: dark; background: #10202b; color: #eaf3f7; font: 19px sans-serif; }
+body { margin: 12px 18px; line-height: 1.5; }
+h1 { font-size: 23px; margin: 0 0 4px; }
+p { margin: 4px 0 10px; }
+.checks { display: grid; grid-template-columns: 1fr 1fr; gap: 3px 20px; }
+.pass { color: #81e6b5; } .wait { color: #ffd68a; }
+input { box-sizing: border-box; width: 100%; font: inherit; padding: 9px; color: #f5fbff; background: #19394a; border: 1px solid #70a2bc; }
+section { margin-top: 18px; padding: 12px; border: 1px solid #456275; }
+footer { margin-top: 140px; padding: 12px; color: #81e6b5; }
+</style>
+<h1>本地页面已显示</h1>
+<p>检查现代 JavaScript、Fetch、DOM 输入与可滚动页面；物理触摸和输入法需要另行操作。</p>
+<div class="checks">
+  <span id="module" class="wait">ES Module：等待</span>
+  <span id="optional" class="wait">可选链：等待</span>
+  <span id="fetch" class="wait">Fetch / JSON：等待</span>
+  <span id="input" class="wait">DOM 输入事件：等待</span>
+</div>
+<section>
+  <label for="typing">点击输入框，检查焦点与系统输入法（内容不会记录）</label>
+  <input id="typing" type="text" autocomplete="off" placeholder="可输入中文或英文">
+  <p id="manual">实际输入事件：尚未观察到</p>
+</section>
+<section>请向上滑动页面，直到看到底部绿色标记。程序只读取固定能力位，不读取输入内容。</section>
+<footer>滚动到底部 · P011 本地探针</footer>
+<script>
+window.p011ProbeFlags = 0;
+window.p011ProbeMark = function(id, bit) {
+    var row = document.getElementById(id);
+    row.className = 'pass';
+    row.textContent = row.textContent.replace('等待', '通过');
+    window.p011ProbeFlags |= bit;
+};
+document.getElementById('typing').addEventListener('input', function(event) {
+    if (event.isTrusted) document.getElementById('manual').textContent = '实际输入事件：已观察到';
+});
+</script>
+<script type="module">
+window.p011ProbeMark('module', 1);
+const sample = { nested: { value: 122 } };
+if (sample?.nested?.value === 122 && (sample?.missing ?? 7) === 7)
+    window.p011ProbeMark('optional', 2);
+// In-memory data isolates the Fetch API from network state and qrc scheme rules.
+fetch('data:application/json,%7B%22probe%22%3A122%7D')
+    .then(response => response.json())
+    .then(value => { if (value.probe === 122) window.p011ProbeMark('fetch', 4); })
+    .catch(() => {});
+const field = document.getElementById('typing');
+let syntheticInputObserved = false;
+field.addEventListener('input', event => { if (!event.isTrusted) syntheticInputObserved = true; }, { once: true });
+field.value = 'P011';
+field.dispatchEvent(new Event('input', { bubbles: true }));
+if (field.value === 'P011' && syntheticInputObserved) window.p011ProbeMark('input', 8);
+field.value = '';
+requestAnimationFrame(() => {
+    if (document.documentElement.scrollHeight > document.documentElement.clientHeight)
+        window.p011ProbeFlags |= 16;
+});
+</script>
+</html>

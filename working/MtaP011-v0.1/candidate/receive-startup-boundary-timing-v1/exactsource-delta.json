@@ -1,0 +1,46 @@
+{
+  "schema": "p011-startup-boundary-timing-source-delta-v1",
+  "evidence": "READBACK_BYTE_INVERSE_ONLY",
+  "source": [
+    "candidate/formal-receive-startup-alias-clock-v1/runtime/mta_client_receive_factory.py",
+    89379,
+    "4a1043e3eb3fbcc3e80927b64640d80c350c38d4bd2c6ecf73eeff68bf15c35d"
+  ],
+  "candidate": [
+    "candidate/receive-startup-boundary-timing-v1/runtime/mta_client_receive_factory.py",
+    89974,
+    "b4803dea9eeb9421d773a991e1fc7315dfd7990c42ae629879bfa06b912bdc81"
+  ],
+  "replacements": [
+    {
+      "name": "startup_initial_original_value",
+      "before": "        value = self.check_active()\n        self.prepare_until = self.original_prepare_until = min(self.original_until, value + STARTUP_READ_SECONDS)",
+      "after": "        value = self.check_active()\n        self.startup_boundary_init = value\n        self.startup_boundary_private_sources = None\n        self.startup_boundary_wpa = None\n        self.startup_boundary_profile = None\n        self.startup_boundary_postimport = None\n        self.prepare_until = self.original_prepare_until = min(self.original_until, value + STARTUP_READ_SECONDS)",
+      "count": 1
+    },
+    {
+      "name": "private_sources_last_original_boundary",
+      "before": "                scope.payloads[name] = raw\n            scope.wpa = scope.files.read(ASSET_PHYSICAL_ROOT + '/native/mta-wpa-supplicant',",
+      "after": "                scope.payloads[name] = raw\n            scope.startup_boundary_private_sources = scope.last\n            scope.wpa = scope.files.read(ASSET_PHYSICAL_ROOT + '/native/mta-wpa-supplicant',",
+      "count": 1
+    },
+    {
+      "name": "wpa_last_original_boundary",
+      "before": "            if len(scope.wpa) != WPA_BYTES:\n                _fail('publication_pin_changed')\n            scope.profile = _live_profile(scope)",
+      "after": "            if len(scope.wpa) != WPA_BYTES:\n                _fail('publication_pin_changed')\n            scope.startup_boundary_wpa = scope.last\n            scope.profile = _live_profile(scope)",
+      "count": 1
+    },
+    {
+      "name": "profile_last_original_boundary",
+      "before": "            scope.profile = _live_profile(scope)\n            scope.profile['baseline_manifest'] = BASELINE_MANIFEST",
+      "after": "            scope.profile = _live_profile(scope)\n            scope.startup_boundary_profile = scope.last\n            scope.profile['baseline_manifest'] = BASELINE_MANIFEST",
+      "count": 1
+    },
+    {
+      "name": "postimport_original_call_and_exception_preserved",
+      "before": "            scope.module_originals = tuple((name, value[name], value[name].__dict__)\n                                           for name in executor.MODULES)\n            scope.check_active()",
+      "after": "            scope.module_originals = tuple((name, value[name], value[name].__dict__)\n                                           for name in executor.MODULES)\n            try:\n                scope.check_active()\n            finally:\n                try:\n                    scope.startup_boundary_postimport = scope.last\n                except BaseException:\n                    pass",
+      "count": 1
+    }
+  ]
+}

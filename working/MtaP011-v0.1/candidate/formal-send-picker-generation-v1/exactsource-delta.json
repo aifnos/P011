@@ -1,0 +1,51 @@
+{
+  "schema": "p011-formal-send-picker-generation-source-delta-v1",
+  "evidence": "SOURCE_ONLY_NOT_EXECUTED",
+  "source": [
+    "candidate/formal-send-filecenter-ui-v5/device/mta/MtaHost.qml",
+    6342,
+    "c151b0bd7a9b686f5110eef968c50506d9a814c14b5d9db9ccebfe8f05d7b322"
+  ],
+  "candidate": [
+    "candidate/formal-send-picker-generation-v1/device/mta/MtaHost.qml",
+    6602,
+    "dcb6178f6d3179b7bab61e6818ae21a02443c902446f6b203c82bd16b8b479c3"
+  ],
+  "bindings": [
+    [
+      "out/mta-ui-send-v5-a44b98dd639095d9063c9e1a/mta/MtaHost.qml",
+      6342,
+      "c151b0bd7a9b686f5110eef968c50506d9a814c14b5d9db9ccebfe8f05d7b322"
+    ]
+  ],
+  "replacements": [
+    {
+      "name": "picker_generation_state",
+      "before": "    property string fileMode:\"select\"\n",
+      "after": "    property string fileMode:\"select\"\n    property int listingGeneration:0\n    onStageChanged:if(stage!==\"files\")listingGeneration++\n",
+      "count": 1
+    },
+    {
+      "name": "reset_invalidates_picker",
+      "before": "    function resetHost() {\n",
+      "after": "    function resetHost() {\n        listingGeneration++;\n",
+      "count": 1
+    },
+    {
+      "name": "capture_current_picker_generation",
+      "before": "    function fetchFiles(mode) {\n",
+      "after": "    function fetchFiles(mode) {\n        var generation=++listingGeneration;\n",
+      "count": 1
+    },
+    {
+      "name": "reject_noncurrent_picker_response_before_all_writes",
+      "before": "        request(\"/v1/files\",false,function(ok,value){\n",
+      "after": "        request(\"/v1/files\",false,function(ok,value){\n            if(generation!==listingGeneration || stage!==\"files\" || fileMode!==mode)return;\n",
+      "count": 1
+    }
+  ],
+  "runtime_source_only": true,
+  "deployed": false,
+  "actions_changed": false,
+  "native_changed": false
+}

@@ -1,0 +1,304 @@
+--- v0.3/MenuLab/P011-MenuTest.ps1
++++ v0.3.1/MenuLab/P011-MenuTest.ps1
+@@ -1,4 +1,4 @@
+-# P011 MenuLab v0.3: local candidate build + device-side guarded, temporary trial.
++# P011 MenuLab v0.3.1: local candidate build + device-side guarded, temporary trial.
+ # Windows PowerShell 5.1 / PowerShell 7. No flasher, remount, stock overwrite or
+ # startup configuration edit. Trial DOES stop/restart the original native app.
+ [CmdletBinding()]
+@@ -26,6 +26,10 @@
+ $lastFile = Join-Path $WorkRoot 'state\MenuTest-last-session.json'
+ $hostState = @{ CallIndex = 0 }
+ $startAttempted = $false
++$phase = 'HOST_SETUP'
++$failurePhase = ''
++$rootConfirmed = $false
++$parserVerified = $false
+ 
+ function Log-Line {
+     param([string]$Text)
+@@ -100,21 +104,45 @@
+ }
+ function Target-Command {
+     param([string]$Command,[string]$Tag,[int]$TimeoutSeconds=25,[switch]$AllowFail)
+-    # Old embedded adbd may not propagate a shell exit code. Capture it explicitly.
+-    $marker = '__P011_REMOTE_EXIT__='
++    # One per-call status token; supports old adbd without shell exit propagation.
++    $marker = '__P011_REMOTE_EXIT_' + [Guid]::NewGuid().ToString('N') + '__='
+     $wrapped = $Command + '; _p011_rc=$?; printf "\n' + $marker + '%s\n" "$_p011_rc"'
+     $r = Adb-Call -Argv @('-s',$serial,'shell',$wrapped) -Tag $Tag -TimeoutSeconds $TimeoutSeconds -AllowFail:$AllowFail
+-    $matches = [regex]::Matches($r.Out,'(?m)^__P011_REMOTE_EXIT__=(\d+)\r?$')
+-    if ($matches.Count -ne 1) {
+-        if ($AllowFail) { return [PSCustomObject]@{Text=$r.Out;Exit=-999} }
+-        throw ('No trustworthy remote exit status for ' + $Tag + '. Raw output: ' + $r.Out + ' ' + $r.Err)
+-    }
+-    $code = [int]$matches[0].Groups[1].Value
+-    $text = $r.Out.Remove($matches[0].Index,$matches[0].Length).Trim()
+-    if ($code -ne 0 -and -not $AllowFail) {
+-        throw ('Target failed at ' + $Tag + ' (exit ' + $code + '): ' + $text + ' ' + $r.Err)
+-    }
+-    return [PSCustomObject]@{Text=$text;Exit=$code}
++    $prefix = Join-Path $outDir ('{0:D3}-{1}' -f $hostState.CallIndex,$Tag)
++    $normalized = ConvertTo-P011CanonicalText -Text $r.Out
++    [IO.File]::WriteAllText($prefix + '-stdout-normalized.txt',$normalized,$utf8)
++    $status=[ordered]@{
++        parser_version='0.3.1'; tag=$Tag; host_exit=$r.Exit; marker=$marker;
++        raw_characters=$r.Out.Length; normalized_characters=$normalized.Length;
++        raw_cr_count=[regex]::Matches($r.Out,'\r').Count;
++        raw_lf_count=[regex]::Matches($r.Out,'\n').Count;
++        normalization_changed=($r.Out -cne $normalized);
++        marker_verified=$false; remote_exit=$null; error=''
++    }
++    $parsed=$null
++    try {
++        # A marker never overrides a failed/timeout host adb process.
++        if ($r.Exit -ne 0) { throw ('ADB_TRANSPORT_FAILED: host exit '+$r.Exit) }
++        $parsed=Read-P011ExitEnvelope -Text $r.Out -Marker $marker
++        $status.marker_verified=$true
++        $status.remote_exit=$parsed.Exit
++        if ($status.normalization_changed) { Log-Line ('TEXT_EOL_NORMALIZED: '+$Tag+'; raw output preserved.') }
++        Log-Line ('REMOTE_EXIT: '+$Tag+'='+$parsed.Exit)
++        if ($parsed.Exit -ne 0 -and -not $AllowFail) {
++            throw ('Target failed at '+$Tag+' (exit '+$parsed.Exit+'): '+$parsed.Text+' '+$r.Err)
++        }
++        return [PSCustomObject]@{Text=$parsed.Text;Exit=$parsed.Exit}
++    } catch {
++        $status.error=$_.Exception.Message
++        if ($AllowFail) {
++            $failedCode=-999
++            if ($r.Exit -ne 0) { $failedCode=$r.Exit }
++            return [PSCustomObject]@{Text=$normalized;Exit=$failedCode}
++        }
++        throw ('Remote status check failed at '+$Tag+': '+$status.error+'. Original output preserved in '+$prefix+'-stdout.txt')
++    } finally {
++        [IO.File]::WriteAllText($prefix+'-remote-status.json',($status|ConvertTo-Json -Depth 4),$utf8)
++    }
+ }
+ function Bytes-Hash {
+     param([byte[]]$Bytes)
+@@ -143,13 +171,21 @@
+ }
+ 
+ try {
+-    Log-Line 'P011 MenuLab v0.3: one-click trial with device-side rollback and evidence collection.'
++    Log-Line 'P011 MenuLab v0.3.1: one-click trial with device-side rollback and evidence collection.'
+     Log-Line ('WORK_ROOT: ' + $WorkRoot)
+     Log-Line ('MODE: ' + $Mode)
++    $parserPath=Join-Path $PackageDir 'host\RemoteText.ps1'
++    . ([scriptblock]::Create((Get-Content -LiteralPath $parserPath -Raw -Encoding UTF8)))
++    $parserTests=@(Test-P011RemoteText)
++    [IO.File]::WriteAllText((Join-Path $outDir 'host-parser-selftest.json'),
++        (@{scope='actual PowerShell host, offline parser only';cases=$parserTests;device_io=$false}|ConvertTo-Json -Depth 5),$utf8)
++    $parserVerified=$true
++    Log-Line ('HOST_PARSER_SELFTEST_OK: '+$parserTests.Count+' cases; no device I/O.')
+     if ($env:OS -ne 'Windows_NT') { throw 'Use this host launcher on Windows.' }
+     if ($AdbPath) { $adb=(Resolve-Path -LiteralPath $AdbPath).Path }
+     else { $adb=(Get-Command adb -CommandType Application -ErrorAction Stop | Select-Object -First 1).Source }
+     Log-Line ('ADB: '+$adb)
++    $phase='ADB_DISCOVERY'
+     $deviceWait=[Diagnostics.Stopwatch]::StartNew()
+     do {
+         $devices=Adb-Call -Argv @('devices') -Tag 'devices'
+@@ -164,10 +200,14 @@
+         Start-Sleep -Seconds 2
+     } while ($true)
+     $serial=$ids[0]
++    $phase='ROOT_IDENTITY'
+     $id=Target-Command -Command 'id -u' -Tag 'identity'
+     if ($id.Text.Trim() -ne '0') { throw 'Current adb shell is not root.' }
++    $rootConfirmed=$true
++    Log-Line 'ROOT_IDENTITY_OK: id -u=0 and remote exit=0 verified.'
+ 
+     if ($Mode -in @('Stop','Status','Collect')) {
++        $phase='SESSION_'+$Mode.ToUpperInvariant()
+         if (-not (Test-Path -LiteralPath $lastFile)) { throw 'No last-trial.json was saved. Nothing to stop.' }
+         $last=Get-Content -LiteralPath $lastFile -Raw -Encoding UTF8 | ConvertFrom-Json
+         if ($last.serial -cne $serial) { throw 'Connected device differs from the saved trial. Nothing sent.' }
+@@ -190,8 +230,9 @@
+         $result=$Mode.ToUpperInvariant() + '_DONE'
+     } else {
+         foreach($name in @('patch\manifest.json','patch\NaviPanel.resource-block.bin','runtime\menu_trial.py','runtime\menu_policy.py','runtime\p011_json.py')) {
+-            if (-not (Test-Path -LiteralPath (Join-Path $PackageDir $name) -PathType Leaf)) { throw ('Package missing: '+$name+'. Extract the complete one-click v0.3 ZIP.') }
+-        }
++            if (-not (Test-Path -LiteralPath (Join-Path $PackageDir $name) -PathType Leaf)) { throw ('Package missing: '+$name+'. Extract the complete one-click v0.3.1 ZIP.') }
++        }
++        $phase='BUILD_CANDIDATE'
+         $stage=Join-Path $outDir 'staging'
+         [void][IO.Directory]::CreateDirectory($stage)
+         $pulled=Join-Path $outDir 'Z03.original'
+@@ -210,9 +251,11 @@
+         }
+         Copy-Item -LiteralPath (Join-Path $PackageDir 'examples\device') -Destination (Join-Path $stage 'pages') -Recurse
+         $remote='/tmp/p011-menutest-' + (Get-Date -Format 'yyyyMMdd-HHmmssfff')
++        $phase='DEPLOY_TEMP_FILES'
+         Log-Line ('DEPLOY: ' + $remote + '; stock executable and startup files are NOT overwritten.')
+         [void](Adb-Call -Argv @('-s',$serial,'push',$stage,$remote) -Tag 'push-trial' -TimeoutSeconds 60)
+         [void](Target-Command -Command ("chmod 700 $remote/Z03 && test -f $remote/menu_trial.py") -Tag 'prepare')
++        $phase='DEVICE_PREFLIGHT'
+         $check=Target-Command -Command ("python3 -B $remote/menu_trial.py inspect") -Tag 'preflight' -TimeoutSeconds 40
+         Log-Line $check.Text
+         $result='CHECK_OK'
+@@ -240,9 +283,11 @@
+             }
+             [void][IO.Directory]::CreateDirectory((Split-Path $lastFile))
+             @{serial=$serial;remote=$remote;host_result=$outDir;seconds=$Seconds} | ConvertTo-Json | Set-Content -LiteralPath $lastFile -Encoding UTF8
++            $phase='TRIAL_START'
+             $startAttempted=$true
+             $r=Target-Command -Command ("python3 -B $remote/menu_trial.py start $Seconds") -Tag 'start' -TimeoutSeconds 25
+             Log-Line $r.Text
++            $phase='TRIAL_MONITOR'
+             $timer=[Diagnostics.Stopwatch]::StartNew()
+             $prev='';$finished=$false; $guided=$false; $trialClock=$null
+             while($timer.Elapsed.TotalSeconds -lt ($Seconds+90)) {
+@@ -276,7 +321,9 @@
+         }
+     }
+ } catch {
++    $failurePhase=$phase
+     $result='STOPPED: '+$result
++    Log-Line ('FAILURE_PHASE: '+$failurePhase)
+     Log-Line ('ERROR: '+$_.Exception.Message)
+     if($startAttempted) { Log-Line 'A device guardian may still be running. Use -Mode Stop; do not kill Z03/Weston by name.' }
+ } finally {
+@@ -291,7 +338,8 @@
+     $engineResult=[ordered]@{
+         result=$result; mode=$Mode; seconds=$Seconds;
+         folder=$outDir; remote_session=$remote;
+-        start_attempted=$startAttempted;
++        start_attempted=$startAttempted; failure_phase=$failurePhase;
++        root_identity_confirmed=$rootConfirmed; host_parser_selftest_passed=$parserVerified;
+         note='Process and file checks do not automatically verify visual or touch correctness.'
+     }
+     [IO.File]::WriteAllText((Join-Path $outDir 'engine-result.json'),($engineResult | ConvertTo-Json -Depth 5),$utf8)
+--- v0.3/Host/ResultTools.ps1
++++ v0.3.1/Host/ResultTools.ps1
+@@ -12,8 +12,21 @@
+     $utf8=[Text.UTF8Encoding]::new($false)
+     $enginePath=Join-Path $RunFolder 'engine-result.json'
+     $engineResult='BOOTSTRAP_STOPPED'
++    $engine=$null
++    $explicitNoStart=$false
++    $failurePhase=''
++    $rootConfirmed=$null
+     if (Test-Path -LiteralPath $enginePath) {
+-        try { $engineResult=(Read-P011Text $enginePath | ConvertFrom-Json).result } catch { }
++        try {
++            $engine=Read-P011Text $enginePath | ConvertFrom-Json
++            $engineResult=$engine.result
++            if ($null -ne $engine.PSObject.Properties['start_attempted'] -and $engine.start_attempted -is [bool]) {
++                $explicitNoStart=($engine.start_attempted -eq $false)
++            }
++            if ($null -ne $engine.PSObject.Properties['failure_phase']) { $failurePhase=$engine.failure_phase }
++            if ($null -ne $engine.PSObject.Properties['root_identity_confirmed']) { $rootConfirmed=$engine.root_identity_confirmed }
++        } catch { }
++
+     }
+     $deviceDir=Join-Path $RunFolder 'device'
+     $deviceFiles=@()
+@@ -30,7 +43,11 @@
+     $restore='UNCONFIRMED'
+     if ($finished -ceq 'RESTORED' -and $trial -match '\bRESTORED_STOCK_PROCESS:') { $restore='STOCK_PROCESS_RESTORED' }
+     elseif ($finished -match 'RECOVERY_NEEDS_ATTENTION') { $restore='RECOVERY_NEEDS_ATTENTION' }
+-    elseif (-not $launched -and $trial -notmatch 'RESTART_LOOP_PAUSED|ORIGINAL_TERM_SENT') { $restore='NOT_SWITCHED_OR_NO_DEVICE_LOG' }
++    elseif ($explicitNoStart -and -not $launched -and $trial -notmatch 'RESTART_LOOP_PAUSED|ORIGINAL_TERM_SENT') { $restore='NOT_SWITCHED' }
++    # Absence of device logs alone must not be interpreted as a successful restore.
++    $phaseErrorLines=@($report -split '\r?\n' | Where-Object {$_ -match '\bERROR:|\bFAILURE_PHASE:'} | Select-Object -Last 8)
++    $failureDetail=$phaseErrorLines -join "`n"
++
+     $events=@([regex]::Matches($candidate,'P011_MENULAB_EVENT\|(\d+)\|([^\r\n]*)') | ForEach-Object {
+         [PSCustomObject]@{device_epoch_ms=$_.Groups[1].Value;event=$_.Groups[2].Value.Trim()}
+     })
+@@ -51,8 +68,9 @@
+     } | Select-Object -First 60)
+     $pngs=@($deviceFiles | Where-Object {$_.Extension -ieq '.png'})
+     $summary=[ordered]@{
+-        schema='p011.menu.oneclick.v0.3'; action=$Action; generated_host=(Get-Date -Format o);
+-        engine_result=$engineResult; bootstrap_error=$BootstrapError;
++        schema='p011.menu.oneclick.v0.3.1'; action=$Action; generated_host=(Get-Date -Format o);
++        engine_result=$engineResult; bootstrap_error=$BootstrapError; failure_phase=$failurePhase; failure_detail=$failureDetail;
++        root_identity_confirmed=$rootConfirmed; start_not_requested=$explicitNoStart;
+         preflight_marker_seen=$checked; candidate_running_marker_seen=$launched;
+         restoration=$restore; finished_file=$finished;
+         original_files_unchanged_confirmed=($restore -eq 'STOCK_PROCESS_RESTORED');
+@@ -68,13 +86,23 @@
+     $brief=@(
+         'P011 菜单一键测试结果',
+         ('流程结果：'+$engineResult),
++        ('停止阶段：'+$failurePhase),
++        ('root 身份校验：'+$rootConfirmed),
+         ('原厂进程恢复：'+$restore),
+         ('候选运行记录：'+$launched),
+         ('工具箱截图数量：'+$pngs.Count),
+         '',
+         '页面加载记录（未观察到不等于功能失败）：'
+     )
+-    foreach($row in $pageRows){ $label='未观察到'; if($row.observed){$label='已观察到'}; $brief+=($row.name+'：'+$label) }
++    if ($restore -eq 'NOT_SWITCHED') { $brief+= '本轮未请求启动候选，原厂界面没有因本轮测试而切换，无需恢复。' }
++    if ($failureDetail) { $brief+=@('', '具体错误：', $failureDetail) }
++    foreach($row in $pageRows){
++        $label='未观察到'
++        if (-not $launched) { $label='未测试（候选尚无启动记录）' }
++        if($row.observed){$label='已观察到'}
++        $brief+=($row.name+'：'+$label)
++    }
++
+     $brief+=@('', '请将本次 ZIP 上传到当前对话。没有自动上传。',
+         '页面加载/点击事件不能替代对实际画面、触摸和恢复界面的人工确认。',
+         '截图仅记录自定义工具箱页面，不是整机屏幕录像。',
+@@ -102,14 +130,14 @@
+     $encode={param($v) [Net.WebUtility]::HtmlEncode([string]$v)}
+     [void]$body.Append('<!doctype html><html lang="zh-CN"><meta charset="utf-8"><title>P011 菜单测试结果</title><style>body{font:16px/1.65 system-ui,sans-serif;background:#f3f6f8;color:#192835;max-width:1100px;margin:32px auto;padding:0 20px}section{background:white;padding:22px;border-radius:12px;margin:18px 0}table{border-collapse:collapse;width:100%}td,th{padding:9px;text-align:left;border-bottom:1px solid #e4e9ee}pre{white-space:pre-wrap;overflow-wrap:anywhere}img{max-width:100%;height:auto;border:1px solid #ccd6dd}figure{margin:20px 0}code{background:#eef2f5;padding:3px}h1{margin-bottom:4px}</style><h1>P011 原厂菜单测试结果</h1>')
+     [void]$body.Append('<p>根据真实日志整理；“页面有加载记录”不等于显示、触摸和所有功能均验收通过。</p><section><h2>流程结果</h2><table>')
+-    foreach($row in @(@('主流程',$engineResult),@('检查标记',$checked),@('候选运行标记',$launched),@('原厂恢复',$restore),@('截图数量',$pngs.Count),@('主菜单模式记录',($modes -join ', ')))) {
++    foreach($row in @(@('主流程',$engineResult),@('停止阶段',$failurePhase),@('root 身份',$rootConfirmed),@('检查标记',$checked),@('候选运行标记',$launched),@('原厂恢复',$restore),@('截图数量',$pngs.Count),@('主菜单模式记录',($modes -join ', ')))) {
+         [void]$body.Append('<tr><th>'+(& $encode $row[0])+'</th><td>'+(& $encode $row[1])+'</td></tr>')
+     }
+     [void]$body.Append('</table></section><section><h2>页面及点击记录</h2><table>')
+-    foreach($r in $pageRows) { $label='未观察到（可能未点击）'; if($r.observed){$label='已观察到加载事件'}; [void]$body.Append('<tr><th>'+(& $encode $r.name)+'</th><td>'+(& $encode $label)+'</td></tr>') }
++    foreach($r in $pageRows) { $label='未观察到（可能未点击）'; if(-not $launched){$label='未测试（候选尚无启动记录）'}; if($r.observed){$label='已观察到加载事件'}; [void]$body.Append('<tr><th>'+(& $encode $r.name)+'</th><td>'+(& $encode $label)+'</td></tr>') }
+     foreach($r in $inputRows) { [void]$body.Append('<tr><th>'+(& $encode $r.event)+'</th><td>'+(& $encode $r.count)+'</td></tr>') }
+     [void]$body.Append('</table><p>点击记录见 <a href="page-events.csv">page-events.csv</a>；原始过程见 <a href="report.txt">report.txt</a>，机器可读结果见 <a href="summary.json">summary.json</a>。</p></section>')
+-    [void]$body.Append('<section><h2>错误线索</h2><pre>'+(& $encode ($BootstrapError+"`n"+($errorLines -join "`n")))+'</pre><p>没有匹配到错误文本，并不等于所有业务都通过。</p></section><section><h2>工具箱截图</h2><p>以下仅是工具箱 QML 元素的离屏渲染抓取，不包含原厂主页、其他窗口或最终物理面板效果。未打开工具箱、截图不受支持或保存失败时可能没有图片。</p>')
++    [void]$body.Append('<section><h2>错误线索</h2><pre>'+(& $encode ($BootstrapError+"`n"+$failureDetail+"`n"+($errorLines -join "`n")))+'</pre><p>没有匹配到错误文本，并不等于所有业务都通过。</p></section><section><h2>工具箱截图</h2><p>以下仅是工具箱 QML 元素的离屏渲染抓取，不包含原厂主页、其他窗口或最终物理面板效果。未打开工具箱、截图不受支持或保存失败时可能没有图片。</p>')
+     $savedPngs=@(Get-ChildItem -LiteralPath $share -Recurse -File -Filter '*.png')
+     foreach($f in $savedPngs) {
+         $rel=$f.FullName.Substring($share.TrimEnd('\','/').Length).TrimStart('\','/').Replace('\','/')
+--- v0.3/Start-P011.ps1
++++ v0.3.1/Start-P011.ps1
+@@ -1,4 +1,4 @@
+-# P011 MenuTest v0.3 one-click host entry. Local files only; no downloads.
++# P011 MenuTest v0.3.1 one-click host entry. Local files only; no downloads.
+ [CmdletBinding()]
+ param([ValidateSet('Run','Stop','Collect')][string]$Action='Run')
+ $ErrorActionPreference='Stop'
+@@ -50,7 +50,7 @@
+ try {
+     [void][IO.Directory]::CreateDirectory($runFolder)
+     Bootstrap-Log '===================================================='
+-    Bootstrap-Log ' P011 原厂菜单一键测试 v0.3'
++    Bootstrap-Log ' P011 原厂菜单一键测试 v0.3.1'
+     Bootstrap-Log ' 自动检查 → 临时候选 → 180 秒体验 → 恢复 → 打包结果'
+     Bootstrap-Log '===================================================='
+     Bootstrap-Log ('工作目录：'+$WorkRoot)
+@@ -68,10 +68,10 @@
+     $manifestPath=Join-Path $SourceRoot 'package-manifest.json'
+     if(-not (Test-Path -LiteralPath $manifestPath)){throw '请完整解压压缩包后运行 START.cmd，不要只复制一个文件。'}
+     $manifest=Get-Content -LiteralPath $manifestPath -Raw -Encoding UTF8 | ConvertFrom-Json
+-    if($manifest.version -cne '0.3' -or @($manifest.files).Count -lt 10){throw '安装包版本或清单无效。'}
++    if($manifest.version -cne '0.3.1' -or @($manifest.files).Count -lt 10){throw '安装包版本或清单无效。'}
+     Verify-PackageFiles -Root $SourceRoot -Manifest $manifest
+     $stamp=(Get-FileHash -LiteralPath $manifestPath -Algorithm SHA256).Hash.Substring(0,12).ToLowerInvariant()
+-    $installed=Join-Path $WorkRoot ('packages\MenuTest-v0.3-'+$stamp)
++    $installed=Join-Path $WorkRoot ('packages\MenuTest-v0.3.1-'+$stamp)
+     if(-not (Test-Path -LiteralPath $installed)) {
+         [void][IO.Directory]::CreateDirectory($installed)
+         foreach($entry in $manifest.files) {
+@@ -87,7 +87,7 @@
+     Bootstrap-Log ('ADB：'+$adb)
+     [IO.File]::WriteAllText((Join-Path $runFolder 'host.json'),(@{
+         action=$Action; powershell=$PSVersionTable.PSVersion.ToString();
+-        work_root=$WorkRoot; package_version='0.3'; package_manifest_sha256=(Get-FileHash -LiteralPath $manifestPath -Algorithm SHA256).Hash;
++        work_root=$WorkRoot; package_version='0.3.1'; package_manifest_sha256=(Get-FileHash -LiteralPath $manifestPath -Algorithm SHA256).Hash;
+         os_version=[Environment]::OSVersion.VersionString; adb_path=$adb
+     } | ConvertTo-Json -Depth 4),$utf8)
+     $mode='OneClick'

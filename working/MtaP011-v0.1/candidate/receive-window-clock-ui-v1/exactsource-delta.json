@@ -1,0 +1,51 @@
+{
+  "candidate": [
+    "candidate/receive-window-clock-ui-v1/runtime/ui_session.py",
+    95350,
+    "ed08e5fa40f44170e9d5e7c64c3944e23ab91e3eb17472e4cb8e7f4a5fa9d997"
+  ],
+  "evidence": "MECHANICAL_GENERATED_NOT_HOST_CHECKED",
+  "generator": [
+    "candidate/receive-window-clock-ui-v1/generate.py",
+    5010,
+    "7dc84f00ea512e90e5345d616ec3fc0a34453c127646a54a3a881758540de544"
+  ],
+  "guards": {
+    "business_bytes_unchanged": true,
+    "cleanup_seconds": 60,
+    "device_executed": false,
+    "gui_rebuilt": false,
+    "gui_staged": false,
+    "navigation_seconds": 20,
+    "public_fields": 51,
+    "ready_seconds": 10,
+    "runtime75_modified": false,
+    "service_seconds": 600,
+    "tests_executed": false
+  },
+  "replacements": [
+    {
+      "after": "RUNNER_PIN = (88850, '2aa5c840d9df5293fe10d385060821269d5170da4261b751c49af091ccf31f48')\n",
+      "before": "RUNNER_PIN = (88773, 'a5dffa34a9dac7fdcc240dd59e1472448dbe7f076ec5d1240804401cbaa1c0a3')\n",
+      "count": 1,
+      "name": "fixed_runner_pin"
+    },
+    {
+      "after": "CONTROL_NAME = 'p011-mta-ui-session-' + SESSION + '-receive-window-clock-ui-v1'\n",
+      "before": "CONTROL_NAME = 'p011-mta-ui-session-' + SESSION + '-formal-receive-durable-ui-v1'\n",
+      "count": 1,
+      "name": "exclusive_control_suffix"
+    }
+  ],
+  "runner": [
+    "candidate/receive-window-clock-v1/runtime/mta_formal_receive_navigation_session.py",
+    88850,
+    "2aa5c840d9df5293fe10d385060821269d5170da4261b751c49af091ccf31f48"
+  ],
+  "schema": "p011-receive-window-clock-ui-v1-worker-delta",
+  "source": [
+    "candidate/formal-receive-durable-ui-v1/runtime/ui_session.py",
+    95352,
+    "7690e2c87f8438c3422986d180381858e7e47588ee60c725c9eb8f73dd628972"
+  ]
+}

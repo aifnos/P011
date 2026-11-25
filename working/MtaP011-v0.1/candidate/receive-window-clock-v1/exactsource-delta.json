@@ -1,0 +1,101 @@
+{
+  "entries": [
+    {
+      "all_other_ast_identical": true,
+      "candidate": [
+        "candidate/receive-window-clock-v1/runtime/mta_formal_receive_session.py",
+        79279,
+        "88c3dc8daac2f4315affb7f439e01a7a60a9c764053019fe9043f891b676a5aa"
+      ],
+      "constructor_and_deadline_byte_identical": true,
+      "full_forward_inverse": true,
+      "function": {
+        "candidate_line": 200,
+        "candidate_sha256": "4fa9271bc6dfc9c11b53b99595b44fc1ddc5c2085e596161fdb386484d5eb5b4",
+        "name": "FixedSession.window_current",
+        "source_line": 200,
+        "source_sha256": "310377e97951b999b56ca133fb3830d8686682919a24997752dacff0f087111e"
+      },
+      "outside_function_byte_identical": true,
+      "replacements": [
+        {
+          "after": "                self.until == self.window_started_at + (\n                    600.0 if self.profile == 'receive-interactive-v1' else 60.0) and\n",
+          "before": "                self.until - self.window_started_at == (\n                    600.0 if self.profile == 'receive-interactive-v1' else 60.0) and\n",
+          "count": 1,
+          "name": "duration_matches_original_construction"
+        },
+        {
+          "after": "                self.cleanup_until == self.until + 60.0 and\n                self.window_started_at < self.until < self.cleanup_until)\n",
+          "before": "                self.cleanup_until - self.until == 60.0)\n",
+          "count": 1,
+          "name": "cleanup_matches_original_construction_and_strict_positive_spans"
+        }
+      ],
+      "role": "ordinary",
+      "source": [
+        "candidate/formal-receive-durable-state-v1/runtime/mta_formal_receive_session.py",
+        79202,
+        "38b7345454df94b1f5742d8c2f6a91a4cd8d0b1262909d4deacea2d48456008e"
+      ]
+    },
+    {
+      "all_other_ast_identical": true,
+      "candidate": [
+        "candidate/receive-window-clock-v1/runtime/mta_formal_receive_navigation_session.py",
+        88850,
+        "2aa5c840d9df5293fe10d385060821269d5170da4261b751c49af091ccf31f48"
+      ],
+      "constructor_and_deadline_byte_identical": true,
+      "full_forward_inverse": true,
+      "function": {
+        "candidate_line": 200,
+        "candidate_sha256": "4fa9271bc6dfc9c11b53b99595b44fc1ddc5c2085e596161fdb386484d5eb5b4",
+        "name": "FixedSession.window_current",
+        "source_line": 200,
+        "source_sha256": "310377e97951b999b56ca133fb3830d8686682919a24997752dacff0f087111e"
+      },
+      "outside_function_byte_identical": true,
+      "replacements": [
+        {
+          "after": "                self.until == self.window_started_at + (\n                    600.0 if self.profile == 'receive-interactive-v1' else 60.0) and\n",
+          "before": "                self.until - self.window_started_at == (\n                    600.0 if self.profile == 'receive-interactive-v1' else 60.0) and\n",
+          "count": 1,
+          "name": "duration_matches_original_construction"
+        },
+        {
+          "after": "                self.cleanup_until == self.until + 60.0 and\n                self.window_started_at < self.until < self.cleanup_until)\n",
+          "before": "                self.cleanup_until - self.until == 60.0)\n",
+          "count": 1,
+          "name": "cleanup_matches_original_construction_and_strict_positive_spans"
+        }
+      ],
+      "role": "navigation",
+      "source": [
+        "candidate/formal-receive-durable-ui-v1/runtime/mta_formal_receive_session.py",
+        88773,
+        "a5dffa34a9dac7fdcc240dd59e1472448dbe7f076ec5d1240804401cbaa1c0a3"
+      ]
+    }
+  ],
+  "evidence": "MECHANICAL_GENERATED_NOT_HOST_CHECKED",
+  "generator": [
+    "candidate/receive-window-clock-v1/generate.py",
+    8591,
+    "aacf1c4127d029f72480e05ade9214cbf3598166d34871b7b5e1ff27dca0dfc6"
+  ],
+  "guards": {
+    "actual_clock_reads_added": 0,
+    "actual_device_window_values_collected": false,
+    "cleanup_seconds": 60,
+    "complete_fixed_session_constructed": false,
+    "deadline_check_changed": false,
+    "device_executed": false,
+    "diagnostic_seconds": 60,
+    "epsilon_added": false,
+    "identity_guards_unchanged": true,
+    "interactive_seconds": 600,
+    "renewal_added": false,
+    "strict_positive_spans": true
+  },
+  "schema": "p011-receive-window-clock-v1-mechanical-delta"
+}

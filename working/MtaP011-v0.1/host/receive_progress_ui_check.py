@@ -1,0 +1,319 @@
+"""Fixed PC-only receive-progress UI check; ROOT owns the first execution.
+
+One new Qt method, eight explicit status fixtures, a single Python3.12 -I -B
+child and a 30-second limit, no retry or old test invocation. Four pinned QML
+files, the pinned new test and this checker form six private source copies;
+the one-click CMD is separately pinned/copied. All root bytes must survive.
+Two actual, unedited HOST grabWindow PNGs require 800x268 and valid chunk CRC.
+Failure raw/captures stay private. No HTTP, State, transport, device or RF.
+"""
+import datetime
+import hashlib
+import json
+import os
+from pathlib import Path
+import re
+import stat
+import struct
+import subprocess
+import sys
+import time
+import uuid
+import zipfile
+import zlib
+
+
+BASE = Path(__file__).resolve().parents[1]
+CHECKER = 'host/receive_progress_ui_check.py'
+TEST = 'tests/test_receive_progress_ui.py'
+METHOD = 'ReceiveProgressUiTests.test_archive_download_and_verified_file_stages'
+FIXED = (
+    ('device/MtaPage.qml', 23429,
+     'b8470eb81b8ab608cf81f96e301679bc3ced5cc2243a23428812d1aed92bdecf'),
+    ('device/MtaButton.qml', 757,
+     '5abb4dabbd735ef4a071e8e10a65cf5c946e505cceb2373a12fa5f54827d1339'),
+    ('device/MtaLabel.qml', 351,
+     'e6298ebb141e4eba23b7acd1dee6900c141d1065ed194be953d1b3daff77eaa3'),
+    ('device/MtaTheme.js', 261,
+     'b795cd24c1bae4c9423c6c9c3e45303b0494c267a897715c4f8eab14f8f12f2c'),
+    (TEST, 13737,
+     '5f0268a5dec87eebdb6c6dcbac3163137ea08866ed9dfb8f6cd56ca452df0592'),
+)
+COMMAND = ('HOST_MTA_RECEIVE_PROGRESS_UI_CHECK.cmd', 847,
+           'f14fe9c626f3d921838b31fe87402a54b8b707dc02ba4e5317281781aaaa02e7')
+PYTHON = Path('C:/Users/P011_USER/AppData/Local/Programs/Python/Python312/python.exe')
+PYTHON_PIN = (103192, '42ac541168e97dedb9aabd8be335539fc41c682e414b9e8d137b164fb68683b0')
+MARKER = (b'HOST_RECEIVE_PROGRESS_UI new_methods=1 old_methods=0 cases=8 '
+          b'qt_host=true status_model=true network=false device=false phone=false\n')
+CAPTURES = ('host-receive-download.png', 'host-receive-verification.png')
+CHILD_SECONDS = 30
+PNG_LIMIT = 4 * 1024 * 1024
+SUMMARY = rb'-{70}\r?\nRan 1 test in [0-9]+\.[0-9]+s\r?\n\r?\nOK\r?\n'
+QT_SAFE_LINES = (
+    b'This plugin does not support propagateSizeHints()',
+    b'This plugin does not support raise()',
+)
+
+
+def sha(raw):
+    return hashlib.sha256(raw).hexdigest()
+
+
+def read_regular(path):
+    before = path.lstat()
+    if not stat.S_ISREG(before.st_mode):
+        raise ValueError('source_not_regular')
+    raw = path.read_bytes()
+    after = path.lstat()
+    fields = ('st_dev', 'st_ino', 'st_mode', 'st_size', 'st_mtime_ns', 'st_ctime_ns')
+    if (len(raw) != before.st_size or
+            any(getattr(before, key) != getattr(after, key) for key in fields)):
+        raise ValueError('readback_changed')
+    return raw
+
+
+def verify():
+    if (os.name != 'nt' or sys.version_info[:2] != (3, 12) or
+            os.path.normcase(str(Path(sys.executable).resolve())) !=
+            os.path.normcase(str(PYTHON.resolve()))):
+        raise ValueError('fixed_windows_python_required')
+    binary = read_regular(PYTHON)
+    if len(binary) != PYTHON_PIN[0] or sha(binary) != PYTHON_PIN[1]:
+        raise ValueError('fixed_python_changed')
+    inputs = {CHECKER: read_regular(BASE / CHECKER)}
+    for path, size, digest in FIXED:
+        raw = read_regular(BASE / path)
+        if len(raw) != size or sha(raw) != digest:
+            raise ValueError('fixed_source_changed')
+        inputs[path] = raw
+    path, size, digest = COMMAND
+    command = read_regular(BASE / path)
+    if len(inputs) != 6 or len(command) != size or sha(command) != digest:
+        raise ValueError('input_count_or_command_changed')
+    return inputs, command
+
+
+def review_stderr(raw):
+    """Only bounded exact non-identifying Qt constants before Ran1/OK."""
+    count, remaining = 0, raw
+    while count < 8:
+        found = False
+        for line in QT_SAFE_LINES:
+            for ending in (b'\r\n', b'\n'):
+                prefix = line + ending
+                if remaining.startswith(prefix):
+                    remaining = remaining[len(prefix):]
+                    count += 1
+                    found = True
+                    break
+            if found:
+                break
+        if not found:
+            break
+    return re.fullmatch(SUMMARY, remaining) is not None, count
+
+
+def png_facts(raw):
+    """Inspect actual PNG bytes without Qt import or image modification."""
+    if not 100 < len(raw) <= PNG_LIMIT or raw[:8] != b'\x89PNG\r\n\x1a\n':
+        raise ValueError('host_png_invalid')
+    offset, chunks, idat, width, height, ended = 8, 0, 0, None, None, False
+    while offset < len(raw):
+        if ended or offset + 12 > len(raw):
+            raise ValueError('host_png_chunks_invalid')
+        length = struct.unpack('!I', raw[offset:offset + 4])[0]
+        kind = raw[offset + 4:offset + 8]
+        end = offset + 12 + length
+        if length > PNG_LIMIT or end > len(raw):
+            raise ValueError('host_png_chunk_size_invalid')
+        data = raw[offset + 8:offset + 8 + length]
+        crc = struct.unpack('!I', raw[offset + 8 + length:end])[0]
+        if (zlib.crc32(kind + data) & 0xffffffff) != crc:
+            raise ValueError('host_png_crc_invalid')
+        if chunks == 0:
+            if kind != b'IHDR' or length != 13:
+                raise ValueError('host_png_header_invalid')
+            width, height, depth, colour, compression, filtering, interlace = struct.unpack('!IIBBBBB', data)
+            if ((width, height) != (800, 268) or depth != 8 or colour not in (2, 6) or
+                    compression != 0 or filtering != 0 or interlace not in (0, 1)):
+                raise ValueError('host_png_dimensions_or_format_invalid')
+        elif kind == b'IHDR':
+            raise ValueError('host_png_duplicate_header')
+        if kind == b'IDAT':
+            idat += 1
+        if kind == b'IEND':
+            if length != 0 or end != len(raw) or not idat:
+                raise ValueError('host_png_end_invalid')
+            ended = True
+        chunks += 1
+        if chunks > 4096:
+            raise ValueError('host_png_chunk_count_invalid')
+        offset = end
+    if not ended:
+        raise ValueError('host_png_incomplete')
+    return dict(bytes=len(raw), sha256=sha(raw), width=width, height=height,
+                chunk_count=chunks, chunk_crc_verified=True)
+
+
+def save_new(path, raw):
+    with path.open('xb') as handle:
+        handle.write(raw)
+    if read_regular(path) != raw:
+        raise ValueError('saved_readback_changed')
+
+
+def main():
+    if len(sys.argv) != 1:
+        print('PC_ONLY fixed HOST Qt check; no device/network/path arguments')
+        return 2
+    output = BASE / 'results' / ('receive-progress-ui-host-' +
+        datetime.datetime.now(datetime.timezone.utc).strftime('%Y%m%d-%H%M%S') + '-' + uuid.uuid4().hex[:8])
+    output.mkdir()
+    inputs, rows, command, command_row = {}, [], None, None
+    private, capture_dir, verified, error = None, None, False, None
+    try:
+        inputs, command = verify()
+        private = output / 'private-inputs' / 'project' / 'working' / 'MtaP011-v0.1'
+        for path, raw in sorted(inputs.items()):
+            destination = private / path
+            destination.parent.mkdir(parents=True, exist_ok=True)
+            save_new(destination, raw)
+            rows.append(dict(path=path, bytes=len(raw), sha256=sha(raw)))
+        save_new(private / COMMAND[0], command)
+        command_row = dict(path=COMMAND[0], bytes=len(command), sha256=sha(command))
+        capture_dir = output / 'private-captures'
+        capture_dir.mkdir()
+        verified = True
+    except (OSError, ValueError, UnicodeError):
+        error = 'source_or_snapshot_invalid'
+    stdout, stderr, code, timeout, invoked = b'', b'', None, False, False
+    started = time.monotonic()
+    if verified:
+        env = dict(os.environ)
+        env.pop('PYTHONPATH', None)
+        env.pop('PYTHONSTARTUP', None)
+        try:
+            invoked = True
+            child = subprocess.run([str(PYTHON), '-I', '-B', str(private / TEST), '-q', METHOD,
+                '--capture-dir', str(capture_dir)], cwd=str(private), env=env,
+                stdout=subprocess.PIPE, stderr=subprocess.PIPE,
+                timeout=CHILD_SECONDS, check=False)
+            stdout, stderr, code = child.stdout, child.stderr, child.returncode
+        except subprocess.TimeoutExpired as failure:
+            stdout, stderr, timeout = failure.stdout or b'', failure.stderr or b'', True
+        except OSError:
+            error = 'child_not_started'
+    elapsed = time.monotonic() - started
+    save_new(output / 'stdout.raw', stdout)
+    save_new(output / 'stderr.raw', stderr)
+    sources_preserved, command_preserved, snapshots_preserved = False, False, False
+    try:
+        sources_preserved = bool(inputs) and all(read_regular(BASE / path) == raw
+                                                for path, raw in inputs.items())
+        command_preserved = command is not None and read_regular(BASE / COMMAND[0]) == command
+        snapshots_preserved = (private is not None and bool(inputs) and
+            all(read_regular(private / path) == raw for path, raw in inputs.items()) and
+            command is not None and read_regular(private / COMMAND[0]) == command)
+    except (OSError, ValueError):
+        pass
+    images, screenshots = {}, {}
+    if invoked and capture_dir is not None:
+        try:
+            if {path.name for path in capture_dir.iterdir()} != set(CAPTURES):
+                raise ValueError('host_capture_inventory_invalid')
+            for name in CAPTURES:
+                raw = read_regular(capture_dir / name)
+                facts = png_facts(raw)
+                if read_regular(capture_dir / name) != raw:
+                    raise ValueError('host_capture_readback_changed')
+                images[name], screenshots[name] = raw, facts
+        except (OSError, ValueError, struct.error):
+            images, screenshots = {}, {}
+            if error is None:
+                error = 'host_capture_invalid_or_missing'
+    stdout_ok = stdout in (MARKER, MARKER.replace(b'\n', b'\r\n'))
+    stderr_ok, hints = review_stderr(stderr)
+    passed = (verified and invoked and code == 0 and not timeout and stdout_ok and stderr_ok and
+              sources_preserved and command_preserved and snapshots_preserved and
+              set(screenshots) == set(CAPTURES) and error is None)
+    if passed:
+        for name in CAPTURES:
+            save_new(output / name, images[name])
+    value = dict(schema='receive-progress-ui-host', passed=passed,
+        source_verified=verified, source_snapshot_count=len(rows), inputs=rows,
+        command_snapshot=command_row, private_snapshot_count=len(rows) + int(command_row is not None),
+        new_methods=[METHOD], completed_fixtures=8 if passed else None,
+        child_invocations=int(invoked), old_test_methods_invoked=0, retry=False,
+        python312_executable_verified=verified, python_executable_sha256=PYTHON_PIN[1],
+        child_isolated=True, child_bytecode_disabled=True, child_exit=code,
+        timeout=timeout, elapsed_seconds=elapsed, child_timeout_seconds=CHILD_SECONDS,
+        verification_error=error, qt_host=True, status_model=True, http_model=False,
+        late_xhr=False, network=False, device=False, phone=False, rf=False,
+        qt_platform='windows', qt_software_backend=True, brief_host_window=True,
+        receive_available=False, send_available=False, restore=False, production_admission=False,
+        actual_qt_host_cases_tested=passed, state_constructed=False, transport_executed=False,
+        archive_download_executed=False, crc_or_commit_verified=False, peer_ack_verified=False,
+        p011_qt510_tested=False, physical_touch_tested=False, physical_display_tested=False,
+        old_test_replayed=False, candidate_deployed=False, bundled_fonts_added=False,
+        archive_total_invented=False, progress_does_not_grant_completion=True,
+        root_qml_pre_verified=verified, root_qml_post_verified=sources_preserved,
+        fixed_sources_preserved=sources_preserved, command_preserved=command_preserved,
+        private_snapshot_bytes_preserved=snapshots_preserved,
+        stdout_fixed_marker_reviewed=stdout_ok, stderr_unittest_reviewed=stderr_ok,
+        stderr_safe_qt_constant_count=hints, stdout_bytes=len(stdout), stderr_bytes=len(stderr),
+        stdout_sha256=sha(stdout), stderr_sha256=sha(stderr), screenshots=screenshots,
+        screenshot_actual_host=len(screenshots) == 2, screenshot_edited=False,
+        screenshot_fixture_labels_only=True, screenshot_public_included=passed,
+        public_raw_included=passed, public_zip_member_count=6 if passed else 2,
+        zip_verification_required=True)
+    result = (json.dumps(value, sort_keys=True, indent=2) + '\n').encode('ascii')
+    readme = (
+        'PC-only receive-progress UI: one new method, eight fresh status fixtures, '
+        'one fixed Python3.12 -I -B child, 30 seconds and no retry or old test replay. '
+        'Six private SOURCE snapshots plus one separately pinned CMD are preserved '
+        'byte-for-byte before/after. The actual current page and three existing '
+        'QML dependencies are loaded/rendered; status data are explicit HOST fixtures. '
+        'Endpoint/token stay empty: no HTTP, State, archive transport or service. '
+        'Downloaded ZIP bytes are separate from unpack/check processing bytes; '
+        'there is no supplied archive total and no fabricated download percent. '
+        'Processing bytes are not complete CRC, commit or peer ACK evidence. '
+        'Sending/legacy fallback and confirmation/restoration/terminal text are '
+        'only UI boundaries, never completion or restoration grants. '
+        'Qt platform=windows, software rendering, child-only DPI=1, brief actual '
+        'HOST windows. Two new unedited grabWindow PNGs are 800x268 and display '
+        'the HOST badge; their dimensions, chunk CRC, SHA and saved bytes are checked. '
+        'HOST Qt is not P011 Qt5.10.1, physical display/touch, phone, GATT, Wi-Fi, '
+        'receive/send availability, production admission or full restoration. '
+        'Success requires exit0, no timeout, exact marker and strict Ran1/OK '
+        'with only bounded exact non-identifying Qt constants allowed. Success ZIP '
+        'has result/README/raw/two HOST PNGs; failure ZIP only result/README, '
+        'with original failure raw and captures retained privately. No private '
+        'inputs or credentials enter the public ZIP. ZIP inventory/CRC/bytes '
+        'must be verified before the checker returns success.\n').encode('ascii')
+    save_new(output / 'result.json', result)
+    save_new(output / 'README.txt', readme)
+    members = {'result.json': result, 'README.txt': readme}
+    if passed:
+        members.update({'stdout.raw': stdout, 'stderr.raw': stderr})
+        for name in CAPTURES:
+            members[name] = images[name]
+    archive = output / 'public-result.zip'
+    with zipfile.ZipFile(archive, 'x', zipfile.ZIP_DEFLATED) as bundle:
+        for name, raw in members.items():
+            bundle.writestr(name, raw)
+    with zipfile.ZipFile(archive) as bundle:
+        if bundle.namelist() != list(members) or bundle.testzip() is not None:
+            raise ValueError('zip_inventory_changed')
+        for name, raw in members.items():
+            info = bundle.getinfo(name)
+            if (bundle.read(name) != raw or info.file_size != len(raw) or
+                    info.CRC != (zlib.crc32(raw) & 0xffffffff) or read_regular(output / name) != raw):
+                raise ValueError('zip_member_changed')
+    print(json.dumps(dict(passed=passed, child_exit=code, timeout=timeout,
+        elapsed_seconds=elapsed, result_zip=str(archive), zip_sha256=sha(read_regular(archive)),
+        zip_members_verified=True)))
+    return 0 if passed else 2 if error else 1
+
+
+if __name__ == '__main__':
+    sys.exit(main())

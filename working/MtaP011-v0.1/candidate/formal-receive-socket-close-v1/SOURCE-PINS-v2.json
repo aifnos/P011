@@ -1,0 +1,104 @@
+{
+  "kind": "formal-receive-socket-close-v1-source-and-contract-recorder-pins",
+  "frozen": true,
+  "runnable_graph": false,
+  "source_base": {
+    "path": "candidate/formal-receive-alias-clock-v1/runtime/mta_client_service_owner.py",
+    "bytes": 72108,
+    "sha256": "6ac819c9af70fd38a69f0271e1ea11d983db261fc54f400a4d08e151cc619e6a"
+  },
+  "donor": {
+    "path": "candidate/formal-send-filecenter-deploy-v5/runtime/mta_client_service_owner.py",
+    "bytes": 89599,
+    "sha256": "a9a5aa60d4cf5c26df46d6de88a9c79fb1df76eb88ff869f186fcf277ea7af11"
+  },
+  "fixture_reused": {
+    "path": "tests/test_formal_socket_close_v5_linux.py",
+    "bytes": 23512,
+    "sha256": "550f071e8c74a77fc37ce069345856ed8a0843f80feacfd769850cef95b27bf0",
+    "definitions_only": true,
+    "old_test_methods_executed": false
+  },
+  "source_report": {
+    "path": "candidate/formal-receive-socket-close-v1/SOURCE-report.json",
+    "bytes": 568,
+    "sha256": "eaf36cc9acd95fde900adf1f9efd3512b983c5c07e599022ba65b0c6a99d9d5d"
+  },
+  "source_diff": {
+    "path": "candidate/formal-receive-socket-close-v1/source-changes.diff",
+    "bytes": 11222,
+    "sha256": "9f4c6cf05129b20c7a20c0626f45c338292742d90d023667c457962b2287a321"
+  },
+  "new_files": [
+    {
+      "path": "candidate/formal-receive-socket-close-v1/runtime/mta_client_service_owner.py",
+      "bytes": 78755,
+      "sha256": "7073b4140c62314416237428c1fdffb124407a9dab0043b9dd2f83e48e55992f"
+    },
+    {
+      "path": "candidate/formal-receive-socket-close-v1/runtime/minhttp.py",
+      "bytes": 9690,
+      "sha256": "bf5648457b19b60ad0f17320f8bd0431064f9cb4edf0d238d82136000eb57235"
+    },
+    {
+      "path": "tests/test_formal_receive_socket_close_v1_linux.py",
+      "bytes": 11888,
+      "sha256": "b1b2c6c53e3e64960ad1da552c7779f8b123caed94b0df931eda33646fb20064"
+    }
+  ],
+  "unchanged_active_graph": {
+    "root": "/tmp/p011-mta-formal-receive-alias-clock-v1",
+    "owner_source_untouched": true,
+    "constants_roots_pins_imports_preserved": true,
+    "no_boot_graph_reattachment": true,
+    "no_ui_adapter_guardian_change": true,
+    "no_phone_entry_change": true,
+    "no_manifest_stage_or_runtime_entry_created": true
+  },
+  "validation": {
+    "source_ast_diff_only": true,
+    "source_passed": true,
+    "test_syntax_only": true,
+    "host_tests_run_by_author": 0,
+    "wsl_run_by_author": false,
+    "adb_actions_by_author": 0,
+    "full_owner_pass": false,
+    "ui_pass": false,
+    "radio_pass": false,
+    "phone_acceptance": false
+  },
+  "contract_scope": "Actual new Receive socket methods and original _http_closed borrower gates, native slot reuse and seal reuse; original fixture definitions only. No sender test matrix or minhttp/slot-model rerun.",
+  "root_only_command": "TEST_MTA_RECEIVE_SOCKET_CLOSE_V1.cmd --run-linux",
+  "previous_source_pins": {
+    "path": "candidate/formal-receive-socket-close-v1/SOURCE-PINS.json",
+    "bytes": 2955,
+    "sha256": "0364180b284de43c3bdb0a4bf3ac2e580602b79674546d61bb05b524218bd8eb",
+    "preserved": true
+  },
+  "contract_recorder": {
+    "path": "host/receive_socket_close_v1_contract_check.py",
+    "bytes": 8702,
+    "sha256": "4449dbd6b48ce976a86d1b02ba130442a89ad285cd14936510e1dfdb357930e9",
+    "default_mode": "SOURCE",
+    "source_run_by_author": false,
+    "linux_run_by_author": false,
+    "timeout_seconds": 60,
+    "distro": "kali-linux",
+    "method_count": 1,
+    "private_raw_streams": [
+      "stdout.raw",
+      "stderr.raw",
+      "host-exit.raw"
+    ],
+    "public_zip": "PC_RESULTS.zip",
+    "raw_streams_in_zip": false,
+    "owner_source_graph_replayed": false,
+    "original_minhttp_retested": false
+  },
+  "contract_cmd": {
+    "path": "TEST_MTA_RECEIVE_SOCKET_CLOSE_V1.cmd",
+    "bytes": 241,
+    "sha256": "8007d2f5de56668dcb69ed56541d29035d5523b99af5e41832bf69e0730e2bb7"
+  },
+  "root_default_source_command": "TEST_MTA_RECEIVE_SOCKET_CLOSE_V1.cmd"
+}

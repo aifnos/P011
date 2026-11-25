@@ -1,0 +1,88 @@
+{
+  "device_executed": false,
+  "file_transfer_tested": false,
+  "generator": [
+    "candidate/formal-receive-durable-ui-v1/generate_mechanical.py",
+    10893,
+    "b1d13651880bcd49ebafbc36b2a54a1c7006d4b1d1e1c95e68791d6962da711f"
+  ],
+  "guards": {
+    "business_logic_changed": false,
+    "cleanup_seconds": 60,
+    "device_executed": false,
+    "display_origin": "launched",
+    "filecenter_source_cap": 131072,
+    "filecenter_sources": 9,
+    "frozen_core_changed": false,
+    "frozen_gui_changed": false,
+    "guardian_margins": [
+      68,
+      135
+    ],
+    "navigation_display_seconds": 20,
+    "ordinary_roles": 35,
+    "original_preflight_privateassets_stage_retained": true,
+    "owner_seconds": 600,
+    "private_roles": 35,
+    "public_ui_fields": 51,
+    "ready_seconds": 10,
+    "resource_gates_changed": false,
+    "runtime_roles": 75,
+    "source_check_executed": false,
+    "tests_executed": false
+  },
+  "observer_bytes": 9571,
+  "observer_sha256": "a030215a7fb95f9524c11b6afd5998cfba7f26a241ae26a88b8156d6f2a6560c",
+  "outputs": [
+    [
+      "candidate/formal-receive-durable-ui-v1/exactsource-delta.json",
+      15404,
+      "465584428e4e9a1c4967279a7e8889abbd66b6d2a77aede06d49ac6dc70929c6"
+    ],
+    [
+      "candidate/formal-receive-durable-ui-v1/runtime/mta_formal_receive_session.py",
+      88773,
+      "a5dffa34a9dac7fdcc240dd59e1472448dbe7f076ec5d1240804401cbaa1c0a3"
+    ],
+    [
+      "candidate/formal-receive-durable-ui-v1/runtime/ui_session.py",
+      95352,
+      "7690e2c87f8438c3422986d180381858e7e47588ee60c725c9eb8f73dd628972"
+    ]
+  ],
+  "phone_tested": false,
+  "restoration_verified": false,
+  "runner_inverse_verified": true,
+  "schema": "p011-formal-receive-durable-ui-v1-generation",
+  "source_checked": false,
+  "sources": [
+    [
+      "candidate/formal-receive-profile-classification-clock-v1/runtime/mta_formal_receive_session.py",
+      79254,
+      "3fe23e4e9d9e1c9900985ee04153ce4b479ca1f2bc194458b91a702cd4f8258f"
+    ],
+    [
+      "candidate/formal-receive-filecenter-navigation-classification-v3/runtime/mta_formal_receive_session.py",
+      88825,
+      "421e8aa52f224e3a1f6d5ee9508af7bb2f49efc7d246a5bf59315b01e45e4ae3"
+    ],
+    [
+      "candidate/formal-receive-filecenter-navigation-classification-v3/runtime/ui_session.py",
+      95430,
+      "2d607a1b68ce640d0c981b76342b654a9190933ed65cc459813ffea41ef7e02a"
+    ],
+    [
+      "candidate/formal-receive-durable-state-v1/runtime/mta_formal_receive_session.py",
+      79202,
+      "38b7345454df94b1f5742d8c2f6a91a4cd8d0b1262909d4deacea2d48456008e"
+    ],
+    [
+      "candidate/formal-receive-durable-state-gui-v1/runtime/ui_assets.py",
+      12798,
+      "67e3d2d1bd7654cde6993d9746c8dd2cb3447676f0fb0f4bb2dec4a2ffb8d1bb"
+    ]
+  ],
+  "status": "MECHANICAL_GENERATED_NOT_SOURCE_CHECKED",
+  "test_executed": false,
+  "worker_inverse_verified": true
+}

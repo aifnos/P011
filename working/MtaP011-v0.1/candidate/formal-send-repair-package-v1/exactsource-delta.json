@@ -1,0 +1,96 @@
+{
+  "byte_inverse": true,
+  "candidate": [
+    "candidate/formal-send-repair-package-v1/runtime/ui_session.py",
+    46416,
+    "719507f6207c2d94720007f5593092a6d6c5da5b8f1ec7428140347b9525996e"
+  ],
+  "device": false,
+  "origin": [
+    "candidate/formal-send-filecenter-ui-v7/runtime/ui_session.py",
+    46415,
+    "bbbaf091f20715531e045d1b7b1a281bc78d569f5bac6089da1b105d2282dbe4"
+  ],
+  "other_ast_unchanged": true,
+  "phone": false,
+  "replacements": [
+    {
+      "after": "SENDER_PIN = (24059, '9c7f87dc4eb7cca9cc09e65a75063365429c363ea1e68da27e9597f228bbf036')\n",
+      "before": "SENDER_PIN = (24059, '5b827482ee82e9edcf4bff07ad75e24166a4a1bda3d949a1f4f617a93dd488c3')\n",
+      "count": 1,
+      "name": "SENDER_PIN"
+    },
+    {
+      "after": "GUARDIAN_PIN = (43994, 'c118e4f1a6c8f2000a6ae97680d58304af5d8cd55ea30c08cf3a96df16c61477')\n",
+      "before": "GUARDIAN_PIN = (43993, '30b7157cabf3dd75eb82a671a343a106c1f9e688c1ad60e12c7b8e172ffc255e')\n",
+      "count": 1,
+      "name": "GUARDIAN_PIN"
+    },
+    {
+      "after": "ASSETS_PIN = (12526, '7bf8bd1e239ab8cf21a6662ea9217de3e2bef634fb20f31880482abbaca4fd21')\n",
+      "before": "ASSETS_PIN = (12526, 'ac6bffe961034558da8be607d74bc4edb62209b23ce80b8a930138a8fc7eb890')\n",
+      "count": 1,
+      "name": "ASSETS_PIN"
+    },
+    {
+      "after": "SENDER_ROOT = '/tmp/p011-mta-formal-send-filecenter-deploy-v6'\n",
+      "before": "SENDER_ROOT = '/tmp/p011-mta-formal-send-filecenter-deploy-v5'\n",
+      "count": 1,
+      "name": "SENDER_ROOT"
+    },
+    {
+      "after": "SENDER_PHYSICAL_ROOT = '/var/volatile/tmp/p011-mta-formal-send-filecenter-deploy-v6'\n",
+      "before": "SENDER_PHYSICAL_ROOT = '/var/volatile/tmp/p011-mta-formal-send-filecenter-deploy-v5'\n",
+      "count": 1,
+      "name": "SENDER_PHYSICAL_ROOT"
+    },
+    {
+      "after": "SESSION = 'c69296a193ff43ce8e5b901d'\n",
+      "before": "SESSION = 'a44b98dd639095d9063c9e1a'\n",
+      "count": 1,
+      "name": "SESSION"
+    },
+    {
+      "after": "CONTROL_NAME = 'p011-mta-ui-session-' + SESSION + '-formal-send-picker-package-v1'\n",
+      "before": "CONTROL_NAME = 'p011-mta-ui-session-' + SESSION + '-formal-send-filecenter-ui-v7'\n",
+      "count": 1,
+      "name": "CONTROL_NAME"
+    },
+    {
+      "after": "SENDER_ASSET_SEAL = (SESSION, ASSETS, (1603, 'fe3733cb856e1065a9c82e34c5ce962c5097e2f732cd9bdcf2627b70499874e0'))\n",
+      "before": "SENDER_ASSET_SEAL = (SESSION, ASSETS, (1603, '34cf33ad9ad501f49ac819856c4e0b3bb0e351d6eb0f82299402900962699df7'))\n",
+      "count": 1,
+      "name": "SENDER_ASSET_SEAL"
+    }
+  ],
+  "rf": false,
+  "runtime_definitions_invoked": false,
+  "schema": "p011-formal-send-repair-worker-v1-source",
+  "source_inputs": [
+    {
+      "bytes": 46415,
+      "path": "candidate/formal-send-filecenter-ui-v7/runtime/ui_session.py",
+      "sha256": "bbbaf091f20715531e045d1b7b1a281bc78d569f5bac6089da1b105d2282dbe4"
+    },
+    {
+      "bytes": 20796,
+      "path": "candidate/formal-send-filecenter-deploy-v6/assets/ordinary-source-manifest.json",
+      "sha256": "d2300225159796bee6f6d2664ba86cdd1d13f8033899596effeb0431c7633052"
+    },
+    {
+      "bytes": 24059,
+      "path": "candidate/formal-send-filecenter-deploy-v6/runtime/formal_send_session.py",
+      "sha256": "9c7f87dc4eb7cca9cc09e65a75063365429c363ea1e68da27e9597f228bbf036"
+    },
+    {
+      "bytes": 43994,
+      "path": "candidate/formal-send-picker-package-v1/runtime/ui_guardian.py",
+      "sha256": "c118e4f1a6c8f2000a6ae97680d58304af5d8cd55ea30c08cf3a96df16c61477"
+    },
+    {
+      "bytes": 12526,
+      "path": "candidate/formal-send-picker-package-v1/runtime/ui_assets.py",
+      "sha256": "7bf8bd1e239ab8cf21a6662ea9217de3e2bef634fb20f31880482abbaca4fd21"
+    }
+  ]
+}

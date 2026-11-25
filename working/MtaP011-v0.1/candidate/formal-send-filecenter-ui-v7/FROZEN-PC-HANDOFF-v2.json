@@ -1,0 +1,193 @@
+{
+  "kind": "formal-send-filecenter-deploy-v5-ui-v7-pc-frozen-v2",
+  "frozen": true,
+  "scope": "original-socket close receipt and minhttp finally; no QML or RF changes",
+  "validation": {
+    "ordinary_source": true,
+    "ui_source": true,
+    "linux_contract_run_by_author": false,
+    "host_tests_run_by_author": 0,
+    "adb_actions_by_author": 0,
+    "device_acceptance": false,
+    "visual_acceptance": false,
+    "radio_acceptance": false,
+    "phone_acceptance": false
+  },
+  "ordinary": {
+    "physical_root": "/var/volatile/tmp/p011-mta-formal-send-filecenter-deploy-v5",
+    "logical_root": "/tmp/p011-mta-formal-send-filecenter-deploy-v5",
+    "files": 37,
+    "bytes": 1353583,
+    "sender_prerequisite_root": "/var/volatile/tmp/p011-mta-go-send-filecenter-v3-assets",
+    "observer_prerequisite_root": "/var/volatile/tmp/p011-mta-go-observer-libc-v1",
+    "observer_files": 41,
+    "observer_bytes": 1442508,
+    "rebuild_sender": false,
+    "stage_sender": false,
+    "rebuild_observer": false,
+    "stage_observer": false
+  },
+  "ui": {
+    "session": "a44b98dd639095d9063c9e1a",
+    "bundle": "out/mta-ui-send-v5-a44b98dd639095d9063c9e1a",
+    "files": 19,
+    "directories": 3,
+    "bytes": 4184498,
+    "rebuild": false,
+    "restage": false,
+    "validator": {
+      "path": "candidate/formal-send-filecenter-ui-v5/runtime/ui_assets.py",
+      "bytes": 12526,
+      "sha256": "ac6bffe961034558da8be607d74bc4edb62209b23ce80b8a930138a8fc7eb890"
+    },
+    "control": "/var/volatile/tmp/p011-mta-ui-session-a44b98dd639095d9063c9e1a-formal-send-filecenter-ui-v7",
+    "smoke_seconds": 20,
+    "original_activity_seconds": 600,
+    "original_cleanup_seconds": 60
+  },
+  "changes": [
+    "Seal original socket close only after strict full pre-metadata/object/fd binding, None return and strict original-object fileno -1, plus actual EBADF or different dev/ino/resource-type post-identity.",
+    "Consume retained immutable original receipt, not current occupants of historical numeric descriptors. Never close a historical number.",
+    "Bind only the two newly introduced receipt helper definitions by same immutable tuple and class-function identity; passive proof performs no pid/context IO.",
+    "Execute worker pop and slot release in nested finally even when close raises; preserve original close exception identity. Owner failure remains a refusal.",
+    "Project only finite post outcome and strict bool/None flags in v7 diagnostic; no fd, addresses, metadata or exception text.",
+    "New ordinary root plus mechanical Boot/Outer/service root and exact pin updates; old v4/v5/v6 and original minhttp retained."
+  ],
+  "source_evidence": [
+    {
+      "passed": true,
+      "path": "results/formal-send-filecenter-ordinary-v5-source-20261005-031305-a55062b9/RESULTS.zip",
+      "bytes": 1239,
+      "sha256": "95142f7f21b1e1dd5c439c4ebff730c6ab7b4fc9d058c8b1b086a26344062aa2"
+    },
+    {
+      "passed": true,
+      "path": "results/formal-send-filecenter-ui-v7-source-20261005-031815-5beb2da6/RESULTS.zip",
+      "bytes": 1504,
+      "sha256": "51e02615320eb92e58b2db9da072bd79218a150cbfb7b305a27df2120479db6e"
+    }
+  ],
+  "files": [
+    {
+      "path": "candidate/formal-send-filecenter-deploy-v5/runtime/minhttp.py",
+      "bytes": 9690,
+      "sha256": "bf5648457b19b60ad0f17320f8bd0431064f9cb4edf0d238d82136000eb57235"
+    },
+    {
+      "path": "candidate/formal-send-filecenter-deploy-v5/runtime/mta_service.py",
+      "bytes": 145540,
+      "sha256": "64a74b3e9082ac06070377d541544e29766f93887c39dcc92d72a87d7ceb7e51"
+    },
+    {
+      "path": "candidate/formal-send-filecenter-deploy-v5/runtime/mta_send_trial.py",
+      "bytes": 22052,
+      "sha256": "4cb4c5f5b4dab967178c5fc8ffed6682aa885f9bd3d7f0d44b94ea2cd42f02d6"
+    },
+    {
+      "path": "candidate/formal-send-filecenter-deploy-v5/runtime/mta_send_terminal_consumer.py",
+      "bytes": 12785,
+      "sha256": "301ec1990e87d3162c738797035ca511a8d9183b1af164da728c75457bde2225"
+    },
+    {
+      "path": "candidate/formal-send-filecenter-deploy-v5/runtime/mta_client_receive_boot.py",
+      "bytes": 19583,
+      "sha256": "34cc9989bcd2914c4e9f6e6050da0f3a067abd84695e1fb4dbf16b1d48ba5082"
+    },
+    {
+      "path": "candidate/formal-send-filecenter-deploy-v5/runtime/mta_client_service_owner.py",
+      "bytes": 89599,
+      "sha256": "a9a5aa60d4cf5c26df46d6de88a9c79fb1df76eb88ff869f186fcf277ea7af11"
+    },
+    {
+      "path": "candidate/formal-send-filecenter-deploy-v5/runtime/formal_send_session.py",
+      "bytes": 24059,
+      "sha256": "5b827482ee82e9edcf4bff07ad75e24166a4a1bda3d949a1f4f617a93dd488c3"
+    },
+    {
+      "path": "candidate/formal-send-filecenter-deploy-v5/runtime/formal_send_stage.py",
+      "bytes": 37417,
+      "sha256": "7ea5f8a058da636c7f1b16f29199b3c6cd2bc2541a4825791668005413ba6398"
+    },
+    {
+      "path": "candidate/formal-send-filecenter-deploy-v5/assets/ordinary-source-manifest.json",
+      "bytes": 20796,
+      "sha256": "d000945a5e749a7f4d651305ef0e3a0b9f7fce96ffc2360dfed04b0d37ba230c"
+    },
+    {
+      "path": "host/device_formal_send_filecenter_ordinary_v5_check.py",
+      "bytes": 20322,
+      "sha256": "8a0b9a45cb529068fd364e93dc1fdbea7b2ab6157e2d82d68590f7a3d7dea2f4"
+    },
+    {
+      "path": "STAGE_MTA_FORMAL_SEND_FILECENTER_ORDINARY_V5.cmd",
+      "bytes": 244,
+      "sha256": "ab9f1b55dc1b424ad0adc7706457986af23afb28cad51e3f133a3cf80d047463"
+    },
+    {
+      "path": "candidate/formal-send-filecenter-ui-v7/runtime/ui_guardian.py",
+      "bytes": 43993,
+      "sha256": "30b7157cabf3dd75eb82a671a343a106c1f9e688c1ad60e12c7b8e172ffc255e"
+    },
+    {
+      "path": "candidate/formal-send-filecenter-ui-v7/runtime/ui_session.py",
+      "bytes": 46415,
+      "sha256": "bbbaf091f20715531e045d1b7b1a281bc78d569f5bac6089da1b105d2282dbe4"
+    },
+    {
+      "path": "host/device_formal_send_filecenter_ui_v7_check.py",
+      "bytes": 28635,
+      "sha256": "b888055f21b21eb60d003e8dd00fde62646ef1dd2628d568146b987689ed2449"
+    },
+    {
+      "path": "TEST_MTA_FORMAL_SEND_FILECENTER_UI_V7.cmd",
+      "bytes": 238,
+      "sha256": "97718d8c8e93225417354a369058078d41ffb49178535739bc940fa50064ccc2"
+    },
+    {
+      "path": "tests/test_formal_socket_close_v5_linux.py",
+      "bytes": 23512,
+      "sha256": "550f071e8c74a77fc37ce069345856ed8a0843f80feacfd769850cef95b27bf0"
+    },
+    {
+      "path": "candidate/formal-send-filecenter-ui-v7/source-changes.diff",
+      "bytes": 17192,
+      "sha256": "39d2bd8dedd1303f6e1a4b4690c02104939541dcd9aa8877fd93d6f05069a170"
+    }
+  ],
+  "root_only_commands": {
+    "linux_one_contract": "wsl.exe -d kali-linux -- python3 -I -B /mnt/d/project/P011/working/MtaP011-v0.1/tests/test_formal_socket_close_v5_linux.py SocketCloseV5Contract.test_real_fd_reuse_original_receipt_and_http_finally -v",
+    "ordinary_stage": "STAGE_MTA_FORMAL_SEND_FILECENTER_ORDINARY_V5.cmd --stage-device",
+    "ui_smoke": "TEST_MTA_FORMAL_SEND_FILECENTER_UI_V7.cmd --check-device",
+    "screenshot": "Use ROOT's already-written host/capture_formal_ui_v7_ready.py with its explicit --check-device, only during the one actual v7 smoke after actual FORMAL_UI_READY."
+  },
+  "supersedes": {
+    "path": "candidate/formal-send-filecenter-ui-v7/FROZEN-PC-HANDOFF.json",
+    "sha256": "a6fae6ce4a02818d393df353d6114896b85c1606d2773964e94264e95b7be3d5",
+    "historical_preserved": true
+  },
+  "previous_source_evidence": [
+    {
+      "passed": true,
+      "path": "results/formal-send-filecenter-ordinary-v5-source-20261005-031305-a55062b9/RESULTS.zip",
+      "bytes": 1239,
+      "sha256": "95142f7f21b1e1dd5c439c4ebff730c6ab7b4fc9d058c8b1b086a26344062aa2"
+    },
+    {
+      "passed": true,
+      "path": "results/formal-send-filecenter-ui-v7-source-20261005-031106-e01964de/RESULTS.zip",
+      "bytes": 1504,
+      "sha256": "5273010320b13ef4bde95c17481a9edb6f1d29d3236e5d021d14ec93fbdde2ff"
+    },
+    {
+      "passed": false,
+      "reason": "one stale Outer hash in initial catalog/stager after helper identity addition; preserved, corrected only new pin closure",
+      "path": "results/formal-send-filecenter-ordinary-v5-source-20261005-031105-3ac3b3be/RESULTS.zip",
+      "bytes": 1087,
+      "sha256": "4386a4424a938363fa9c0b88b87b9c2090ac171b0db3520c4564547110aff887"
+    }
+  ],
+  "test_only_amendments": [
+    "Actual BoundedSemaphore(1) acquired before actual process close exception, capacity re-acquired exactly once afterward.",
+    "Existing helper mutation cases add sealed listener/request proof with passive True before class helper substitution; only substitution causes passive False, restoring original causes True."
+  ]
+}

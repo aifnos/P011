@@ -1,0 +1,259 @@
+{
+  "catalog_complete_byte_inverse": true,
+  "catalog_edits": [
+    {
+      "after": "p011-go-observer-native-v2-fixed-asset-catalog",
+      "before": "p011-go-observer-diag-v1-fixed-asset-catalog",
+      "count": 1,
+      "label": "catalog_schema"
+    },
+    {
+      "after": "/var/volatile/tmp/p011-mta-go-observer-native-v2",
+      "before": "/var/volatile/tmp/p011-mta-go-observer-diag-v1",
+      "count": 44,
+      "label": "catalog_observer_roots"
+    },
+    {
+      "after": "\"/tmp/p011-mta-go-observer-native-v2\"",
+      "before": "\"/tmp/p011-mta-go-observer-diag-v1\"",
+      "count": 1,
+      "label": "catalog_quoted_alias"
+    },
+    {
+      "after": "candidate/go-observer-native-v2/runtime/",
+      "before": "candidate/go-observer-diag-v1/runtime/",
+      "count": 4,
+      "label": "four_existing_candidate_sources"
+    },
+    {
+      "after": "\"candidate/go-observer-native-v2/runtime/mta_observer_packet.py\"",
+      "before": "\"candidate/go-send-terminal-channel-v94/runtime/mta_observer_packet.py\"",
+      "count": 1,
+      "label": "packet_candidate_source"
+    },
+    {
+      "after": "\"bytes\": 64962,\n      \"sha256\": \"ad190dff407fcacd06353713c318aa05489f3d2ec2dad6d0f05546a1ef5c5e75\"",
+      "before": "\"bytes\": 64948,\n      \"sha256\": \"a10d6c9ff9ec4bf4b2d542120b19af3e36a111caf1153eaa8bc7d842aaa245eb\"",
+      "count": 1,
+      "label": "actual_catalog_pin_mta_go_readonly_preflight"
+    },
+    {
+      "after": "\"bytes\": 36547,\n      \"sha256\": \"67fe8e424f5e6caf0ed308970bcfd4225170df2f9b3e2e1d7019e3eefe2ab304\"",
+      "before": "\"bytes\": 36543,\n      \"sha256\": \"18de54e9dd3db344aaff522a873bc1094798eda6766b1a80259a71999dff919d\"",
+      "count": 1,
+      "label": "actual_catalog_pin_mta_go_readonly_loader"
+    },
+    {
+      "after": "\"bytes\": 48277,\n      \"sha256\": \"41fa92e056c0ca6ab4d89b3b0ca6c580f03e29221c271bc4ac1a80150a381853\"",
+      "before": "\"bytes\": 48253,\n      \"sha256\": \"004ff5616924a4529ce3a3f710ac83a8d2dedbd55ae2edb790998a68f68fe40f\"",
+      "count": 1,
+      "label": "actual_catalog_pin_mta_observer_packet"
+    },
+    {
+      "after": "\"bytes\": 151255,\n      \"sha256\": \"d28f4dce77b64cd8d9017d614d1567aeced15aa6f5b50b286cb4cfe4e7905b34\"",
+      "before": "\"bytes\": 151251,\n      \"sha256\": \"930775277dc3b6872ee8b34d7ae0ffc9aeac2dc098b3597a474c3dbecc98c53b\"",
+      "count": 1,
+      "label": "actual_catalog_pin_mta_go_readonly_entry"
+    },
+    {
+      "after": "\"bytes\": 52886,\n    \"sha256\": \"1e7279cbfb60db5a7bf5058f33e366df00d85162c61159e0884790ae9f8d0b1f\"",
+      "before": "\"bytes\": 52882,\n    \"sha256\": \"9ef36a53b80427af03e1bcc51b198e08917eebe22ce1545b53fa88f8bac58b06\"",
+      "count": 1,
+      "label": "actual_catalog_pin_mta_go_readonly_parent"
+    },
+    {
+      "after": "\"changed_asset_modules\": [\n    \"mta_go_readonly_preflight\",\n    \"mta_go_readonly_loader\",\n    \"mta_observer_packet\",\n    \"mta_go_readonly_entry\"\n  ]",
+      "before": "\"changed_asset_modules\": [\n    \"mta_go_readonly_preflight\",\n    \"mta_go_readonly_loader\",\n    \"mta_go_readonly_entry\"\n  ]",
+      "count": 1,
+      "label": "four_changed_modules"
+    },
+    {
+      "after": "\"unchanged_asset_count\": 37,",
+      "before": "\"unchanged_asset_count\": 38,",
+      "count": 1,
+      "label": "37_unchanged_assets"
+    },
+    {
+      "after": "\"source_bytes\": 1548495,",
+      "before": "\"source_bytes\": 1548449,",
+      "count": 1,
+      "label": "actual_source_bytes"
+    }
+  ],
+  "changed_assets": 4,
+  "parent_outside_assets": true,
+  "roles": [
+    {
+      "complete_byte_ast_inverse": true,
+      "definitions_bytes_and_lines_unchanged": true,
+      "edits": [
+        {
+          "after": "ROOT = '/var/volatile/tmp/p011-mta-go-observer-native-v2'\n",
+          "before": "ROOT = '/var/volatile/tmp/p011-mta-go-observer-diag-v1'\n",
+          "count": 1,
+          "label": "observer_root"
+        },
+        {
+          "after": "STATE_ROOT = '/var/volatile/tmp/p011-mta-go-readonly-native-v1'\n",
+          "before": "STATE_ROOT = '/var/volatile/tmp/p011-mta-state-v69'\n",
+          "count": 1,
+          "label": "independent_native_root"
+        }
+      ],
+      "module": "mta_go_readonly_preflight",
+      "new": {
+        "bytes": 64962,
+        "sha256": "ad190dff407fcacd06353713c318aa05489f3d2ec2dad6d0f05546a1ef5c5e75"
+      },
+      "old": {
+        "bytes": 64948,
+        "sha256": "a10d6c9ff9ec4bf4b2d542120b19af3e36a111caf1153eaa8bc7d842aaa245eb"
+      },
+      "original_definition_count": 59
+    },
+    {
+      "complete_byte_ast_inverse": true,
+      "definitions_bytes_and_lines_unchanged": true,
+      "edits": [
+        {
+          "after": "    ('/var/volatile/tmp/p011-mta-go-readonly-native-v1/native/mta-bluez-helper',\n",
+          "before": "    ('/var/volatile/tmp/p011-mta-state-v69/native/mta-bluez-helper',\n",
+          "count": 1,
+          "label": "packet_helper_path_mta-bluez-helper"
+        },
+        {
+          "after": "    ('/var/volatile/tmp/p011-mta-go-readonly-native-v1/native/mta-network-helper',\n",
+          "before": "    ('/var/volatile/tmp/p011-mta-state-v69/native/mta-network-helper',\n",
+          "count": 1,
+          "label": "packet_helper_path_mta-network-helper"
+        }
+      ],
+      "module": "mta_observer_packet",
+      "new": {
+        "bytes": 48277,
+        "sha256": "41fa92e056c0ca6ab4d89b3b0ca6c580f03e29221c271bc4ac1a80150a381853"
+      },
+      "old": {
+        "bytes": 48253,
+        "sha256": "004ff5616924a4529ce3a3f710ac83a8d2dedbd55ae2edb790998a68f68fe40f"
+      },
+      "original_definition_count": 70
+    },
+    {
+      "complete_byte_ast_inverse": true,
+      "definitions_bytes_and_lines_unchanged": true,
+      "edits": [
+        {
+          "after": "ROOT = '/var/volatile/tmp/p011-mta-go-observer-native-v2'\n",
+          "before": "ROOT = '/var/volatile/tmp/p011-mta-go-observer-diag-v1'\n",
+          "count": 1,
+          "label": "observer_root"
+        },
+        {
+          "after": "ALIAS_ROOT = '/tmp/p011-mta-go-observer-native-v2'\n",
+          "before": "ALIAS_ROOT = '/tmp/p011-mta-go-observer-diag-v1'\n",
+          "count": 1,
+          "label": "observer_alias"
+        },
+        {
+          "after": "    ('mta_go_readonly_preflight', 64962, 'ad190dff407fcacd06353713c318aa05489f3d2ec2dad6d0f05546a1ef5c5e75'),\n",
+          "before": "    ('mta_go_readonly_preflight', 64948, 'a10d6c9ff9ec4bf4b2d542120b19af3e36a111caf1153eaa8bc7d842aaa245eb'),\n",
+          "count": 1,
+          "label": "actual_body_pin"
+        }
+      ],
+      "module": "mta_go_readonly_loader",
+      "new": {
+        "bytes": 36547,
+        "sha256": "67fe8e424f5e6caf0ed308970bcfd4225170df2f9b3e2e1d7019e3eefe2ab304"
+      },
+      "old": {
+        "bytes": 36543,
+        "sha256": "18de54e9dd3db344aaff522a873bc1094798eda6766b1a80259a71999dff919d"
+      },
+      "original_definition_count": 28
+    },
+    {
+      "complete_byte_ast_inverse": true,
+      "definitions_bytes_and_lines_unchanged": true,
+      "edits": [
+        {
+          "after": "ROOT = '/var/volatile/tmp/p011-mta-go-observer-native-v2'\n",
+          "before": "ROOT = '/var/volatile/tmp/p011-mta-go-observer-diag-v1'\n",
+          "count": 1,
+          "label": "observer_root"
+        },
+        {
+          "after": "ALIAS = '/tmp/p011-mta-go-observer-native-v2'\n",
+          "before": "ALIAS = '/tmp/p011-mta-go-observer-diag-v1'\n",
+          "count": 1,
+          "label": "observer_alias"
+        },
+        {
+          "after": "    ('mta_go_readonly_loader', 36547,\n     '67fe8e424f5e6caf0ed308970bcfd4225170df2f9b3e2e1d7019e3eefe2ab304'),\n",
+          "before": "    ('mta_go_readonly_loader', 36543,\n     '18de54e9dd3db344aaff522a873bc1094798eda6766b1a80259a71999dff919d'),\n",
+          "count": 1,
+          "label": "actual_pin_mta_go_readonly_loader"
+        },
+        {
+          "after": "    ('mta_observer_packet', 48277,\n     '41fa92e056c0ca6ab4d89b3b0ca6c580f03e29221c271bc4ac1a80150a381853'),\n",
+          "before": "    ('mta_observer_packet', 48253,\n     '004ff5616924a4529ce3a3f710ac83a8d2dedbd55ae2edb790998a68f68fe40f'),\n",
+          "count": 1,
+          "label": "actual_pin_mta_observer_packet"
+        }
+      ],
+      "module": "mta_go_readonly_entry",
+      "new": {
+        "bytes": 151255,
+        "sha256": "d28f4dce77b64cd8d9017d614d1567aeced15aa6f5b50b286cb4cfe4e7905b34"
+      },
+      "old": {
+        "bytes": 151251,
+        "sha256": "930775277dc3b6872ee8b34d7ae0ffc9aeac2dc098b3597a474c3dbecc98c53b"
+      },
+      "original_definition_count": 52
+    },
+    {
+      "complete_byte_ast_inverse": true,
+      "definitions_bytes_and_lines_unchanged": true,
+      "edits": [
+        {
+          "after": "ROOT = '/var/volatile/tmp/p011-mta-go-observer-native-v2'\n",
+          "before": "ROOT = '/var/volatile/tmp/p011-mta-go-observer-diag-v1'\n",
+          "count": 1,
+          "label": "observer_root"
+        },
+        {
+          "after": "ALIAS = '/tmp/p011-mta-go-observer-native-v2'\n",
+          "before": "ALIAS = '/tmp/p011-mta-go-observer-diag-v1'\n",
+          "count": 1,
+          "label": "observer_alias"
+        },
+        {
+          "after": "    ('mta_observer_packet', 48277, '41fa92e056c0ca6ab4d89b3b0ca6c580f03e29221c271bc4ac1a80150a381853'),\n",
+          "before": "    ('mta_observer_packet', 48253, '004ff5616924a4529ce3a3f710ac83a8d2dedbd55ae2edb790998a68f68fe40f'),\n",
+          "count": 1,
+          "label": "actual_parent_packet_pin"
+        },
+        {
+          "after": "ENTRY_PIN = ('mta_go_readonly_entry', 151255,\n             'd28f4dce77b64cd8d9017d614d1567aeced15aa6f5b50b286cb4cfe4e7905b34')\n",
+          "before": "ENTRY_PIN = ('mta_go_readonly_entry', 151251,\n             '930775277dc3b6872ee8b34d7ae0ffc9aeac2dc098b3597a474c3dbecc98c53b')\n",
+          "count": 1,
+          "label": "actual_entry_pin"
+        }
+      ],
+      "module": "mta_go_readonly_parent",
+      "new": {
+        "bytes": 52886,
+        "sha256": "1e7279cbfb60db5a7bf5058f33e366df00d85162c61159e0884790ae9f8d0b1f"
+      },
+      "old": {
+        "bytes": 52882,
+        "sha256": "9ef36a53b80427af03e1bcc51b198e08917eebe22ce1545b53fa88f8bac58b06"
+      },
+      "original_definition_count": 50
+    }
+  ],
+  "schema": "p011-go-observer-native-v2-exact-delta",
+  "unchanged_assets": 37
+}

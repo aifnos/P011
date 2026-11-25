@@ -1,0 +1,201 @@
+{
+  "schema": "p011-formal-receive-durable-state-gui-source-delta-v1",
+  "evidence": "SOURCE_ONLY_NOT_EXECUTED",
+  "sources": [
+    [
+      "host/build_formal_receive_filecenter_navigation_gui_v1.py",
+      19656,
+      "64a35eef8041ac3773a64aaa5412973e043cd669e9baadd2eb532788e86eaf3b"
+    ],
+    [
+      "candidate/formal-receive-filecenter-navigation-anchor-v1/runtime/ui_assets.py",
+      12642,
+      "a620878186a3005f36febf5487675c3031c8831fd91d5e8962660ad99466c4be"
+    ],
+    [
+      "candidate/receive-durable-state-v1/device/mta/MtaPage.qml",
+      28426,
+      "b5f69f032395999c5bd2bdbb3759e7cb47859baee0a87fe462341b1b99ff0755"
+    ]
+  ],
+  "candidates": [
+    [
+      "host/build_formal_receive_durable_state_gui_v1.py",
+      28199,
+      "d4664732e7255b071e211eb4d3536846be66df510038fb1e2b87732cc15d37cc"
+    ],
+    [
+      "candidate/formal-receive-durable-state-gui-v1/runtime/ui_assets.py.in",
+      10917,
+      "1bde9f77ff72785c87cb130d16e72d1a6d257fd469e37a080dd0dd930e26ac37"
+    ],
+    [
+      "candidate/formal-receive-durable-state-gui-v1/device/mta/MtaPage.qml",
+      28426,
+      "b5f69f032395999c5bd2bdbb3759e7cb47859baee0a87fe462341b1b99ff0755"
+    ]
+  ],
+  "bindings": [
+    [
+      "out/mta-ui-receive-filecenter-navigation-gui-v1-a87de5c1d0e0b90b35bb2a91/stage-manifest.json",
+      4571,
+      "099321f576d36d9a0c798a22028147ccba36a1fb1b316a4adf3c5dab55a5ff75"
+    ],
+    [
+      "out/mta-ui-receive-filecenter-navigation-gui-v1-a87de5c1d0e0b90b35bb2a91/build-result.json",
+      7986,
+      "611c5423294ca0758f7ae46b33e82be96f92221e7cb04ae0549bdf41bb7a04ef"
+    ]
+  ],
+  "groups": [
+    {
+      "source": 0,
+      "candidate": 0,
+      "replacements": [
+        {
+          "name": "durable_builder_documentation",
+          "before": "\"\"\"Fixed PC-only navigation GUI source check and explicit exclusive build.\n",
+          "after": "\"\"\"Fixed PC-only durable-state GUI source check and explicit exclusive build.\n\nMechanical derivation of the old navigation GUI20 builder; only the new page\nbusiness source is selected. The original builder is never imported/executed.\nThe validator remains an UNBOUND .py.in until ROOT binds actual build/readback.\n",
+          "count": 1
+        },
+        {
+          "name": "actual_parent_page_package_and_unbound_template_pins",
+          "before": "BASE = Path(__file__).resolve().parents[1]\n",
+          "after": "BASE = Path(__file__).resolve().parents[1]\n\nPARENT_BUILDER = BASE / 'host/build_formal_receive_filecenter_navigation_gui_v1.py'\nPARENT_BUILDER_PIN = (19656, '64a35eef8041ac3773a64aaa5412973e043cd669e9baadd2eb532788e86eaf3b')\nDURABLE_ROOT = BASE / 'candidate/formal-receive-durable-state-gui-v1/device'\nDURABLE_PIN = ('mta/MtaPage.qml',\n    'candidate/formal-receive-durable-state-gui-v1/device/mta/MtaPage.qml', 28426,\n    'b5f69f032395999c5bd2bdbb3759e7cb47859baee0a87fe462341b1b99ff0755')\nDURABLE_ORIGIN = ('candidate/receive-durable-state-v1/device/mta/MtaPage.qml', 28426,\n    'b5f69f032395999c5bd2bdbb3759e7cb47859baee0a87fe462341b1b99ff0755')\nOLD_BUNDLE = BASE / 'out/mta-ui-receive-filecenter-navigation-gui-v1-a87de5c1d0e0b90b35bb2a91'\nOLD_STAGE_PIN = (4571, '099321f576d36d9a0c798a22028147ccba36a1fb1b316a4adf3c5dab55a5ff75')\nOLD_RESULT_PIN = (7986, '611c5423294ca0758f7ae46b33e82be96f92221e7cb04ae0549bdf41bb7a04ef')\nVALIDATOR_TEMPLATE = BASE / 'candidate/formal-receive-durable-state-gui-v1/runtime/ui_assets.py.in'\nVALIDATOR_TEMPLATE_PIN = (10917, '1bde9f77ff72785c87cb130d16e72d1a6d257fd469e37a080dd0dd930e26ac37')\n",
+          "count": 1
+        },
+        {
+          "name": "exclusive_output_identity",
+          "before": "OUTPUT_PREFIX = 'mta-ui-receive-filecenter-navigation-gui-v1-'\n",
+          "after": "OUTPUT_PREFIX = 'mta-ui-receive-durable-state-gui-v1-'\n",
+          "count": 1
+        },
+        {
+          "name": "new_page_and_old_package_read_only_inventories",
+          "before": "def inputs():\n",
+          "after": "\ndef durable_inventory(directory):\n    \"\"\"One new QML only; runtime/template and PC proof files are outside device.\"\"\"\n    directory(DURABLE_ROOT)\n    directory(DURABLE_ROOT / 'mta')\n    for relative, expected in (('', {'mta'}), ('mta', {'MtaPage.qml'})):\n        root = DURABLE_ROOT if relative == '' else DURABLE_ROOT / relative\n        found = set()\n        with os.scandir(root) as names:\n            for count, entry in enumerate(names):\n                require(count < 4, 'durable_inventory_budget')\n                value = entry.stat(follow_symlinks=False)\n                require(not stat.S_ISLNK(value.st_mode) and\n                        not getattr(value, 'st_file_attributes', 0) & 0x400, 'durable_inventory_link')\n                require(entry.name in expected and entry.name not in found and\n                        (stat.S_ISDIR(value.st_mode) if relative == '' else stat.S_ISREG(value.st_mode)),\n                        'durable_inventory_extra')\n                found.add(entry.name)\n        require(found == expected, 'durable_inventory_incomplete')\n\n\ndef frozen_gui_inputs(read, directory):\n    \"\"\"Read the actual old GUI20, not a fixture or a newly claimed runtime pass.\"\"\"\n    stage_raw = read(OLD_BUNDLE / 'stage-manifest.json', *OLD_STAGE_PIN)\n    result_raw = read(OLD_BUNDLE / 'build-result.json', *OLD_RESULT_PIN)\n    stage, result = json.loads(stage_raw.decode('ascii')), json.loads(result_raw.decode('ascii'))\n    require(stage['schema'] == 'p011-formal-receive-filecenter-navigation-gui-v1-stage' and\n            stage['session'] == 'a87de5c1d0e0b90b35bb2a91' and\n            stage['remote'] == '/mnt/data/p011-toolbox/mta-ui/' + stage['session'] and\n            stage['navigation_argument'] == NAVIGATION_ARGUMENT and\n            stage['payload_file_count'] == 19 and stage['staged_file_count'] == 20 and\n            stage['directories'] == [dict(path=name, mode='0700') for name in ('', 'mta', 'toolbox')] and\n            stage['excluded_pc_files'] == ['NaviPanel.embedded.qml', 'stage-manifest.json', 'build-result.json'],\n            'frozen_gui_identity')\n    require(result['builder_bytes'] == PARENT_BUILDER_PIN[0] and\n            result['builder_sha256'] == PARENT_BUILDER_PIN[1] and\n            result['source_ui_files'] == 17 and result['planned_stage_bytes'] == 4191494 and\n            result['source_text_bytes'] == 85852, 'frozen_gui_result')\n    files, pins = {}, []\n    for row in stage['files']:\n        name = row['path']\n        require(type(name) is str and re.fullmatch(r'[A-Za-z0-9_./-]{1,128}', name) is not None and\n                not PurePosixPath(name).is_absolute() and\n                all(part not in ('', '.', '..') for part in name.split('/')) and name not in files and\n                row['mode'] == ('0500' if name == 'Z03.mta-ui-candidate' else '0400'), 'frozen_gui_file')\n        files[name] = read(OLD_BUNDLE / name, row['bytes'], row['sha256'])\n        pins.append((name, row['bytes'], row['sha256']))\n    require(len(files) == 20 and 'SOURCE.sha256' in files and\n            sum(len(raw) for raw in files.values()) == 4191494 and\n            (len(files['SOURCE.sha256']), hashlib.sha256(files['SOURCE.sha256']).hexdigest()) ==\n                (1691, '0227be7f467e24b2150efba70a52be5607ece0a8a8d757dfc0bdcc6be77aae98'),\n            'frozen_gui_payload')\n    payload_pins = sorted(row for row in pins if row[0] != 'SOURCE.sha256')\n    expected = ''.join(sha + ' ' + str(size) + ' ' + name + '\\n'\n                       for name, size, sha in payload_pins).encode('ascii')\n    require(files['SOURCE.sha256'] == expected and\n            (len(files['mta/MtaPage.qml']), hashlib.sha256(files['mta/MtaPage.qml']).hexdigest()) ==\n                (27441, '6f87bdfc8e3b00a85642dd849963219962c47b563d71bf65c291d1e73bcb77b2'),\n            'frozen_gui_manifest')\n    for relative in ('', 'mta', 'toolbox'):\n        root = OLD_BUNDLE if relative == '' else OLD_BUNDLE / relative\n        directory(root)\n        wanted = {str(PurePosixPath(name).name) for name in files\n                  if ('' if str(PurePosixPath(name).parent) == '.' else str(PurePosixPath(name).parent)) == relative}\n        if relative == '':\n            wanted.update(('mta', 'toolbox') + tuple(stage['excluded_pc_files']))\n        found = set()\n        with os.scandir(root) as names:\n            for count, entry in enumerate(names):\n                require(count < 32, 'frozen_gui_inventory_budget')\n                value = entry.stat(follow_symlinks=False)\n                is_directory = relative == '' and entry.name in ('mta', 'toolbox')\n                require(entry.name in wanted and entry.name not in found and\n                        not stat.S_ISLNK(value.st_mode) and\n                        not getattr(value, 'st_file_attributes', 0) & 0x400 and\n                        (stat.S_ISDIR(value.st_mode) if is_directory else stat.S_ISREG(value.st_mode)),\n                        'frozen_gui_inventory')\n                found.add(entry.name)\n        require(found == wanted, 'frozen_gui_inventory_incomplete')\n    return dict(stage_raw=stage_raw, result_raw=result_raw, files=files)\n\n\ndef inputs():\n",
+          "count": 1
+        },
+        {
+          "name": "retain_actual_parent_package_and_template_bytes",
+          "before": "    read, directory = fn['read_pinned'], fn['directory']\n",
+          "after": "    read, directory = fn['read_pinned'], fn['directory']\n    parent_raw = read(PARENT_BUILDER, *PARENT_BUILDER_PIN)\n    durable_origin = read(BASE / DURABLE_ORIGIN[0], *DURABLE_ORIGIN[1:])\n    template_raw = read(VALIDATOR_TEMPLATE, *VALIDATOR_TEMPLATE_PIN)\n    old_gui = frozen_gui_inputs(read, directory)\n",
+          "count": 1
+        },
+        {
+          "name": "new_qml_inventory_before_inputs",
+          "before": "    navigation_inventory(directory)\n",
+          "after": "    navigation_inventory(directory)\n    durable_inventory(directory)\n",
+          "count": 1
+        },
+        {
+          "name": "only_new_business_source_replacement",
+          "before": "    replacements = {row[0]: row for row in NAVIGATION_PINS[:2]}\n",
+          "after": "    replacements = {row[0]: row for row in NAVIGATION_PINS[:2]}\n    replacements[DURABLE_PIN[0]] = DURABLE_PIN\n",
+          "count": 1
+        },
+        {
+          "name": "prove_unchanged_actual_old_gui_sources",
+          "before": "    require(sum(len(raw) for raw in files.values()) + len(bridge) <= donor['SOURCE_BUDGET'],\n",
+          "after": "    require(files['mta/MtaPage.qml'] == durable_origin, 'durable_page_actual_source')\n    for name, raw in files.items():\n        if name == 'mta/MtaPage.qml':\n            continue\n        expected = (fn['render_template'](raw, 'a87de5c1d0e0b90b35bb2a91',\n                    '/mnt/data/p011-toolbox/mta-ui/a87de5c1d0e0b90b35bb2a91', True)\n                    if name == 'FormalEntry.qml' else raw)\n        require(old_gui['files'][name] == expected, 'old_gui_unchanged_source')\n    require(sum(len(raw) for raw in files.values()) + len(bridge) <= donor['SOURCE_BUDGET'],\n",
+          "count": 1
+        },
+        {
+          "name": "exact_unchanged_budget_and_retained_source_inputs",
+          "before": "                manifest_size=manifest_size, stage_size=stage_size)\n",
+          "after": "                manifest_size=manifest_size, stage_size=stage_size, parent_raw=parent_raw,\n                durable_origin=durable_origin, template_raw=template_raw, old_gui=old_gui)\n",
+          "count": 1
+        },
+        {
+          "name": "exact_planned_gui_budget",
+          "before": "    require(manifest_size <= 4096 and stage_size <= 4 * 1024 * 1024, 'planned_stage_budget')\n",
+          "after": "    require(manifest_size <= 4096 and stage_size <= 4 * 1024 * 1024, 'planned_stage_budget')\n    require(manifest_size == 1691 and stage_size == 4192479 and\n            sum(len(raw) for raw in files.values()) + len(bridge) == 86837, 'durable_exact_gui_budget')\n",
+          "count": 1
+        },
+        {
+          "name": "readback_all_added_pc_inputs",
+          "before": "    donor['source_inventory'](fn['directory'])\n    navigation_inventory(fn['directory'])\n",
+          "after": "    require(read(PARENT_BUILDER, *PARENT_BUILDER_PIN) == value['parent_raw'] and\n            read(BASE / DURABLE_ORIGIN[0], *DURABLE_ORIGIN[1:]) == value['durable_origin'] and\n            read(VALIDATOR_TEMPLATE, *VALIDATOR_TEMPLATE_PIN) == value['template_raw'] and\n            frozen_gui_inputs(read, fn['directory']) == value['old_gui'], 'durable_pc_input_readback')\n    donor['source_inventory'](fn['directory'])\n    navigation_inventory(fn['directory'])\n    durable_inventory(fn['directory'])\n",
+          "count": 1
+        },
+        {
+          "name": "source_identity",
+          "before": "    return dict(schema='p011-formal-receive-filecenter-navigation-gui-v1-source',\n",
+          "after": "    return dict(schema='p011-formal-receive-durable-state-gui-v1-source',\n        parent_navigation_builder_source_checked=True, parent_navigation_builder_executed=False,\n        parent_navigation_builder_pin=dict(bytes=PARENT_BUILDER_PIN[0], sha256=PARENT_BUILDER_PIN[1]),\n        old_gui20_pc_readback_verified=True, old_gui20_bytes=4191494,\n        only_business_qml_replaced='mta/MtaPage.qml',\n        validator_binding_state='UNBOUND_TEMPLATE_NOT_DEPLOYABLE',\n        validator_template_path=str(VALIDATOR_TEMPLATE.relative_to(BASE)),\n        validator_template_bytes=VALIDATOR_TEMPLATE_PIN[0], validator_template_sha256=VALIDATOR_TEMPLATE_PIN[1],\n        future_session=None, future_bundle_pins=None,\n",
+          "count": 1
+        },
+        {
+          "name": "stage_identity",
+          "before": "    stage = dict(schema='p011-formal-receive-filecenter-navigation-gui-v1-stage', session=session, remote=remote,\n",
+          "after": "    stage = dict(schema='p011-formal-receive-durable-state-gui-v1-stage', session=session, remote=remote,\n",
+          "count": 1
+        },
+        {
+          "name": "build_identity",
+          "before": "    result.update(schema='p011-formal-receive-filecenter-navigation-gui-v1-pc-build', evidence_level='PC_BUILD_ONLY',\n",
+          "after": "    result.update(schema='p011-formal-receive-durable-state-gui-v1-pc-build', evidence_level='PC_BUILD_ONLY',\n",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "source": 1,
+      "candidate": 1,
+      "replacements": [
+        {
+          "name": "explicit_unbound_template_banner",
+          "before": "\"\"\"Fixed 20-file validator for the true Receiver plus attached FileCenter GUI.\n",
+          "after": "# UNBOUND PC template only. This .py.in is not a deployable validator.\n# ROOT must bind actual fresh bundle identities with apply_patch after PC build/readback.\n\"\"\"Fixed 20-file validator for the true Receiver plus attached FileCenter GUI.\n",
+          "count": 1
+        },
+        {
+          "name": "unbound_identity_and_actual_future_pins",
+          "before": "SESSION = 'a87de5c1d0e0b90b35bb2a91'\nREMOTE = '/mnt/data/p011-toolbox/mta-ui/' + SESSION\nMANIFEST_PIN = (1691, '0227be7f467e24b2150efba70a52be5607ece0a8a8d757dfc0bdcc6be77aae98')\nPINS = (\n    ('Bridge.qml', 2560, '9476064de9c54b2d9a103d4181afd8af7f045a584334088f647039a83811f26f'),\n    ('FormalEntry.qml', 5757, '79c62cae6073104f994a7bae50f1d285a0e63bc7ca9038d819cd507bacac1297'),\n    ('NavigationTest.qml', 8731, 'efb77831d309e2deba30f646521be8d747efb8e4e05cfc72d25b8e3da0df2216'),\n    ('ReceiveComposition.qml', 420, 'ea295bccae4dd3ad4afa3110acbea158da10c9febe2290fc809e8e0fe3b84c66'),\n    ('Z03.mta-ui-candidate', 4103844, '01a2cd09ee8a15ce221bf97e4405293dda769e1dc7c3fb90263e7d0f98c4e671'),\n    ('mta/MtaButton.qml', 758, '7e1d4e378b8e3293e617f4dc432cce3c70ae7fe377f2ea26950aa9bb11393bff'),\n    ('mta/MtaHost.qml', 1683, 'd7c336fd5aa5803d394685d1c33ad66deb1afa4de2c6e75f1ddf1632f27e66e4'),\n    ('mta/MtaKeyboard.qml', 5345, '2de31e8cde68ab6ff76f4da85c386d5cddb466cccefb809987dddfce2f8c40cc'),\n    ('mta/MtaLabel.qml', 352, '77caf248c2f83ed50f5221082084e5af360d08fc917df98eb84449e24903bd75'),\n    ('mta/MtaPage.qml', 27441, '6f87bdfc8e3b00a85642dd849963219962c47b563d71bf65c291d1e73bcb77b2'),\n    ('mta/MtaTheme.js', 262, '5848aa8bf1dab57cfe590dd80da1122eb819c75c1f208f69ad4184bf669a99ff'),\n    ('toolbox/Button.qml', 666, 'bc8878dfd7c50512934bb9a9a0aab2e54ed84ac86967d3db49d38cd87f3b6216'),\n    ('toolbox/ExtensionPage.qml', 9955, '3647a4070d68e9ce5918a40432e05a075a9dfbf8c9ebf99599d3c4cb5ee27bbc'),\n    ('toolbox/FilesPage.qml', 11973, '4d4deb4c57a0e90360e2f95b9ee55dfcf43e0cbe464e3441823418a43feff867'),\n    ('toolbox/Label.qml', 270, '7a6d83a7ee45b450db32db224ac372e7d4fbdba57553a71c7230a02e77674376'),\n    ('toolbox/MtaEmbedded.qml', 6805, '2c5e508d2b2f31f872089061596092993ee0d0cc4794983abc73fec3396a6565'),\n    ('toolbox/NativeIcon.qml', 2000, '59ff989674ff862f661e2e8ccdf804eeda0e27cfbd229729219e92141d7d0b1d'),\n    ('toolbox/Theme.js', 245, '792bd479b18abb45cd3a71ac8e393ec32064755ffdb605e098691e77681b31ad'),\n    ('toolbox/VideoPane.qml', 736, 'd83b52d208d53565519ec5a6af067dbcacfeabc6a3fb216d6cc4e9e7df102210'),\n)\n",
+          "after": "SESSION = '@UNBOUND_SESSION@'\nREMOTE = '/mnt/data/p011-toolbox/mta-ui/' + SESSION\nMANIFEST_PIN = None  # UNBOUND until the actual fresh SOURCE.sha256 is read back.\nPINS = None  # UNBOUND until the actual fresh 19 payload files are read back.\n",
+          "count": 1
+        },
+        {
+          "name": "unbound_template_main_marker",
+          "before": "    print('SOURCE_FORMAL_RECEIVE_FILECENTER_UI_V1_ASSETS validation=false service=false credentials=false radio=false')\n",
+          "after": "    print('UNBOUND_RECEIVE_DURABLE_STATE_GUI_V1_TEMPLATE validation=false service=false credentials=false radio=false')\n",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "source": 2,
+      "candidate": 2,
+      "replacements": []
+    }
+  ],
+  "gui_plan": {
+    "old_stage_bytes": 4191494,
+    "page_delta_bytes": 985,
+    "planned_stage_bytes": 4192479,
+    "stage_budget_bytes": 4194304,
+    "stage_remaining_bytes": 1825,
+    "source_text_bytes": 86837,
+    "source_text_budget_bytes": 262144,
+    "source_text_remaining_bytes": 175307,
+    "source_manifest_bytes": 1691,
+    "source_manifest_lines": 19,
+    "source_ui_files": 17,
+    "source_qml_files": 15,
+    "source_js_files": 2,
+    "payload_file_count": 19,
+    "staged_file_count": 20,
+    "staged_directory_count": 3,
+    "elf_total_bytes": 4103844,
+    "nav_slot_bytes": 1580,
+    "navigation_argument": "--p011-mta-navigation-qt-test-v1",
+    "qt_test_import": "import QtTest 1.2 as Testing"
+  },
+  "validator_binding_state": "UNBOUND_TEMPLATE_NOT_DEPLOYABLE",
+  "future_session": null,
+  "future_elf_sha256": null,
+  "future_source_manifest_sha256": null,
+  "runtime_source_only": true,
+  "deployed": false,
+  "protocol_graph_changed": false,
+  "device_executed": false
+}

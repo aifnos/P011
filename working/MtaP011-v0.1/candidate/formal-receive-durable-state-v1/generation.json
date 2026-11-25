@@ -1,0 +1,123 @@
+{
+  "device_tested": false,
+  "file_transfer_tested": false,
+  "guards": {
+    "business_changed_roles": 5,
+    "cleanup_seconds": 60,
+    "device_tested": false,
+    "filecenter_cap": 131072,
+    "filecenter_count": 9,
+    "gui_changed": false,
+    "historical_verifier_called": false,
+    "native_changed": false,
+    "ordinary_changed_roles": 8,
+    "ordinary_count": 35,
+    "owner_seconds": 600,
+    "payload_cap": 4194304,
+    "prepare_seconds": 120,
+    "private_changed_roles": 4,
+    "private_count": 35,
+    "resource_gates_changed": false,
+    "role_count": 75,
+    "source_cap": 2097152,
+    "startup_seconds": 10,
+    "target_line_cap": 256
+  },
+  "gui_included": false,
+  "old_verifier_executed": false,
+  "ordinary_changed_roles": [
+    "mta_storage",
+    "mta_transport",
+    "mta_client_control_frame",
+    "mta_client_executor",
+    "mta_client_state_bridge",
+    "mta_client_receive_factory",
+    "mta_client_receive_boot",
+    "mta_client_service_owner"
+  ],
+  "outputs": [
+    [
+      "candidate/formal-receive-durable-state-v1/exactsource-mechanical-delta.json",
+      42775,
+      "c70e8e01ca24bef36a7c87cf8894ada7aa781a7d020f2666bd1b5f47a2fe0cc1"
+    ],
+    [
+      "candidate/formal-receive-durable-state-v1/runtime/mta_client_control_frame.py",
+      21203,
+      "66eae58a95eaf8344934d15aca2685de1c176b8408a56786995e9f9078c6032c"
+    ],
+    [
+      "candidate/formal-receive-durable-state-v1/runtime/mta_client_executor.py",
+      124768,
+      "e9c18a3368cd1e10641e8ddf7cae1e98cfacad858917d1a7084531ba67873008"
+    ],
+    [
+      "candidate/formal-receive-durable-state-v1/runtime/mta_client_receive_boot.py",
+      19695,
+      "9d7dea20a0544d8b43ddfaebcc80cc579072cc9ae14863f001576a2f20e0d3a1"
+    ],
+    [
+      "candidate/formal-receive-durable-state-v1/runtime/mta_client_receive_factory.py",
+      97757,
+      "6db5950043ba9fac63712ad6af4ece5062d805714f6b04136ce04af95cb8e2af"
+    ],
+    [
+      "candidate/formal-receive-durable-state-v1/runtime/mta_client_service_owner.py",
+      107024,
+      "1bd7a77f22216e0b8653973f4d86a15e620de8088a17a8e851226a785777074d"
+    ],
+    [
+      "candidate/formal-receive-durable-state-v1/runtime/mta_client_state_bridge.py",
+      21356,
+      "d7d01552fa007d807ea8cd9d8e972e15ebbbc13013fa9175e7ac53904254bc35"
+    ],
+    [
+      "candidate/formal-receive-durable-state-v1/runtime/mta_formal_receive_session.py",
+      79202,
+      "38b7345454df94b1f5742d8c2f6a91a4cd8d0b1262909d4deacea2d48456008e"
+    ],
+    [
+      "candidate/formal-receive-durable-state-v1/runtime/mta_storage.py",
+      56595,
+      "365490e2dfe8a2c65d2b38fc8ae1a49747d09ed3b127677e9fe61e69866052d0"
+    ],
+    [
+      "candidate/formal-receive-durable-state-v1/runtime/mta_transport.py",
+      41435,
+      "9b05ef49059e9b06536de32186e7de1cfd531461d3e096eb266d49f760069f8e"
+    ],
+    [
+      "host/formal_receive_durable_state_v1_definition_manifest.json",
+      7952,
+      "2c9883367f8d61e0936ae7bf82841de04a59753795b908aada7ace5656bc6ebd"
+    ],
+    [
+      "host/formal_receive_durable_state_v1_definitions.py",
+      45031,
+      "b98c66604bdb250820630f1844e5ea4b0af9bbd260e05388478034e37254e43b"
+    ],
+    [
+      "host/formal_receive_durable_state_v1_private_source_manifest.json",
+      8169,
+      "7a11e023d97b5b54235e6cdf7d1a014f814b4ff5192a40e503d693d8a234cc0d"
+    ]
+  ],
+  "private_changed_roles": [
+    "mta_storage",
+    "mta_transport",
+    "mta_client_control_frame",
+    "mta_client_executor"
+  ],
+  "restoration_verified": false,
+  "runtime_definition_closure_count": 9,
+  "schema": "p011-receive-durable-mechanical-generation-v1",
+  "source_check_executed": false,
+  "source_origin_count": 164,
+  "status": "MECHANICAL_GENERATED_NOT_SOURCE_CHECKED",
+  "tests_executed": false,
+  "totals": {
+    "filecenter_bytes": 113690,
+    "payload_bytes": 4191752,
+    "payload_remaining": 2552
+  }
+}

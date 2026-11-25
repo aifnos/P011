@@ -1,0 +1,45 @@
+{
+  "candidate": [
+    "candidate/receive-proc-freezer-v1/runtime/mta_client_proc.py",
+    39398,
+    "2894a8ffb1e361bd1f4785e6da2b0df9e5ee8bff7711e21ee745ae3cd1f9653d"
+  ],
+  "evidence": "MECHANICAL_GENERATED_NOT_HOST_CHECKED",
+  "generator": [
+    "candidate/receive-proc-freezer-v1/generate_proc.py",
+    8164,
+    "c9e725dc092436a7c8fd82d84e38954dabac7cbf1571b2c736fd53fce55faad1"
+  ],
+  "guards": {
+    "actor_pass_line": 484,
+    "admission": false,
+    "boot_exe_cmdline_tasks_directory_checks_unchanged": true,
+    "deadlines_and_resource_accounting_unchanged": true,
+    "device_executed": false,
+    "identity_failure_line": 524,
+    "mask": 1073741824,
+    "original_flags_and_raw_preserved": true,
+    "original_source_unchanged": true,
+    "other_flags_bits_preserved": 31,
+    "parse_stat_unchanged": true,
+    "pf_kthread_checks_unchanged": true,
+    "restoration_verified": false,
+    "return_line": 121,
+    "stable_key_line": 120,
+    "tests_executed": false
+  },
+  "replacements": [
+    {
+      "after": "        return self.pid, self.start, self.comm, self.flags & ~0x40000000, self.ppid\n",
+      "before": "        return self.pid, self.start, self.comm, self.flags, self.ppid\n",
+      "count": 1,
+      "name": "stable_key_masks_only_pf_freezer_skip"
+    }
+  ],
+  "schema": "p011-receive-proc-freezer-v1-proc-delta",
+  "source": [
+    "candidate/client-proc-deadline-v25/runtime/mta_client_proc.py",
+    39384,
+    "ede5953c33ba4c17d3aecb1fffe8a9358589497b37e3109034d5e1de3eadb3d6"
+  ]
+}

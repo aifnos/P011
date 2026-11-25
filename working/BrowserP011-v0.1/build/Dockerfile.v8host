@@ -1,0 +1,7 @@
+FROM browser685-builder:gcc11
+# Qt 6.8.5's src/host/CMakeLists.txt actually try-compiles -m32 when producing
+# ARMv7 V8 snapshots from an x86_64 GNU host. Keep target cross tools installed.
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends --no-remove g++-11-multilib \
+    && arm-linux-gnueabihf-g++-11 --version \
+    && rm -rf /var/lib/apt/lists/*

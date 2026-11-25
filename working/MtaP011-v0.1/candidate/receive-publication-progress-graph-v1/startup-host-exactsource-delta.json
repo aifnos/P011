@@ -1,0 +1,101 @@
+{
+  "candidate": [
+    "host/device_receive_publication_progress_v1_startup_check.py",
+    18494,
+    "f47479a85dd54dd1e192509dfe125d1da336edae20a4cd607fa24e5cca02dadf"
+  ],
+  "definitions": [
+    "host/formal_receive_publication_progress_v1_definitions.py",
+    123101,
+    "3ae9820d752c9ed2d7ea582ece3ae6e248a9a69596e047e2a3dd5ed6ae294e49"
+  ],
+  "device_executed": false,
+  "edits": [
+    {
+      "after": "SELF = 'host/device_receive_publication_progress_v1_startup_check.py'\n",
+      "before": "SELF = 'host/device_receive_proc_freezer_v1_startup_check.py'\n",
+      "count": 1,
+      "name": "self"
+    },
+    {
+      "after": "CMDS = ('HOST_MTA_RECEIVE_PUBLICATION_PROGRESS_V1_STARTUP_CHECK.cmd', 'TEST_MTA_RECEIVE_PUBLICATION_PROGRESS_V1_STARTUP.cmd')\n",
+      "before": "CMDS = ('HOST_MTA_RECEIVE_PROC_FREEZER_V1_STARTUP_CHECK.cmd',\n        'TEST_MTA_RECEIVE_PROC_FREEZER_V1_STARTUP.cmd')\n",
+      "count": 1,
+      "name": "commands"
+    },
+    {
+      "after": "DEFINITIONS = ('host/formal_receive_publication_progress_v1_definitions.py', 123101, '3ae9820d752c9ed2d7ea582ece3ae6e248a9a69596e047e2a3dd5ed6ae294e49')\n",
+      "before": "DEFINITIONS = ('host/formal_receive_proc_freezer_v1_definitions.py', 114824, '3eb522f95f199a1efea2c2d1505a76ab6677f7f1f419e54d64d5a0866cafc21a')\n",
+      "count": 1,
+      "name": "definitions"
+    },
+    {
+      "after": "ROOT_NAME = 'p011-mta-rx-progress-v1'\n",
+      "before": "ROOT_NAME = 'p011-mta-rx-freezer-v1'\n",
+      "count": 1,
+      "name": "root"
+    },
+    {
+      "after": "PAYLOAD_BYTES = 4193272\n",
+      "before": "PAYLOAD_BYTES = 4191766\n",
+      "count": 1,
+      "name": "payload"
+    },
+    {
+      "after": "receive-publication-progress-v1-startup",
+      "before": "receive-proc-freezer-v1-startup",
+      "count": 4,
+      "name": "result_labels"
+    },
+    {
+      "after": "len(definitions.ORIGIN_SOURCE_PINS) == 230",
+      "before": "len(definitions.ORIGIN_SOURCE_PINS) == 208",
+      "count": 1,
+      "name": "origin_count_gate"
+    },
+    {
+      "after": "definitions.verify_inputs(inputs) == 6, 'new_progress_mechanical_closures'",
+      "before": "definitions.verify_inputs(inputs) == 8, 'new_freezer_mechanical_closures'",
+      "count": 1,
+      "name": "mechanical_gate"
+    },
+    {
+      "after": "payload_remaining_bytes=1032",
+      "before": "payload_remaining_bytes=2538",
+      "count": 1,
+      "name": "remaining_report"
+    },
+    {
+      "after": "flat_origin_pins=230",
+      "before": "flat_origin_pins=208",
+      "count": 1,
+      "name": "origin_count_report"
+    },
+    {
+      "after": "mechanical_closures=6",
+      "before": "mechanical_closures=8",
+      "count": 1,
+      "name": "closure_count_report"
+    },
+    {
+      "after": "Actual flat230 provenance and new 6 mechanical closures",
+      "before": "Actual flat208 provenance and new 8 mechanical closures",
+      "count": 1,
+      "name": "readme_origin"
+    },
+    {
+      "after": "Actual75/4193272 retains",
+      "before": "Actual75/4191766 retains",
+      "count": 1,
+      "name": "readme_payload"
+    }
+  ],
+  "old_entry_executed": false,
+  "schema": "publication-progress-startup-host-delta",
+  "source": [
+    "host/device_receive_proc_freezer_v1_startup_check.py",
+    18436,
+    "e92a65f81bf1a2ad729b03b5c82579c81cc7c5c496ff5d33ae7817dc6590ac0b"
+  ],
+  "tests_executed": false
+}

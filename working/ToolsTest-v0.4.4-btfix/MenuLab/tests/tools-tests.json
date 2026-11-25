@@ -1,0 +1,155 @@
+{
+  "scope": "Linux host fixture/static tests, not hardware or Windows",
+  "cases": [
+    {
+      "name": "Python3.5 syntax menu_policy.py",
+      "passed": true
+    },
+    {
+      "name": "Python3.5 syntax menu_trial.py",
+      "passed": true
+    },
+    {
+      "name": "Python3.5 syntax p011_json.py",
+      "passed": true
+    },
+    {
+      "name": "Python3.5 syntax tools_bridge.py",
+      "passed": true
+    },
+    {
+      "name": "Python3.5 syntax tools_metrics.py",
+      "passed": true
+    },
+    {
+      "name": "Python3.5 syntax tools_services.py",
+      "passed": true
+    },
+    {
+      "name": "battery voltage microV -> V",
+      "passed": true
+    },
+    {
+      "name": "current sign preserved",
+      "passed": true
+    },
+    {
+      "name": "temperature tenths -> C",
+      "passed": true
+    },
+    {
+      "name": "battery-side calculated power",
+      "passed": true
+    },
+    {
+      "name": "missing cycle count is unavailable",
+      "passed": true
+    },
+    {
+      "name": "health is not converted to capacity percent",
+      "passed": true
+    },
+    {
+      "name": "missing battery does not invent capacity",
+      "passed": true
+    },
+    {
+      "name": "ADB changes only debug field and preserves CRLF",
+      "passed": true
+    },
+    {
+      "name": "ADB real daemon is never controlled by setting",
+      "passed": true
+    },
+    {
+      "name": "ADB rollback byte exact",
+      "passed": true
+    },
+    {
+      "name": "external config edits are not overwritten",
+      "passed": true
+    },
+    {
+      "name": "private Wi-Fi addresses accepted",
+      "passed": true
+    },
+    {
+      "name": "public/loopback/invalid addresses rejected",
+      "passed": true
+    },
+    {
+      "name": "media whitelist + symlink containment",
+      "passed": true
+    },
+    {
+      "name": "authenticated loopback GET accepted",
+      "passed": true
+    },
+    {
+      "name": "missing token",
+      "passed": true
+    },
+    {
+      "name": "web origin blocked",
+      "passed": true
+    },
+    {
+      "name": "wrong Host blocked",
+      "passed": true
+    },
+    {
+      "name": "transfer encoding blocked",
+      "passed": true
+    },
+    {
+      "name": "arbitrary paths blocked",
+      "passed": true
+    },
+    {
+      "name": "duplicate headers blocked",
+      "passed": true
+    },
+    {
+      "name": "no arbitrary action/shell evaluator",
+      "passed": true
+    },
+    {
+      "name": "invalid audio action rejected media_play:-1:25",
+      "passed": true
+    },
+    {
+      "name": "invalid audio action rejected media_play:0:101",
+      "passed": true
+    },
+    {
+      "name": "invalid audio action rejected media_play:x:25",
+      "passed": true
+    },
+    {
+      "name": "app-local JSON encoder response",
+      "passed": true
+    },
+    {
+      "name": "radio sampler never queries ConnMan",
+      "passed": true
+    },
+    {
+      "name": "SSH password and empty-password auth disabled",
+      "passed": true
+    },
+    {
+      "name": "SSH authorized keys not below /tmp",
+      "passed": true
+    },
+    {
+      "name": "no account unlock / shadow edit",
+      "passed": true
+    },
+    {
+      "name": "no remount/reboot/erase commands in feature bridge",
+      "passed": true
+    }
+  ],
+  "count": 37,
+  "all_passed": true
+}

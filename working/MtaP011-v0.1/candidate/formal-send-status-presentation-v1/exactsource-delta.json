@@ -1,0 +1,62 @@
+{
+  "schema": "p011-formal-send-status-presentation-source-delta-v1",
+  "evidence": "SOURCE_ONLY_NOT_EXECUTED",
+  "source": [
+    "candidate/formal-send-filecenter-ui-v5/device/mta/MtaPage.qml",
+    26769,
+    "1084ea1a5a906bbf0f56ea20df031ea9b4a1fd0931879e80cd6dfb475f7eabc2"
+  ],
+  "candidate": [
+    "candidate/formal-send-status-presentation-v1/device/mta/MtaPage.qml",
+    27307,
+    "667b3e54c9fc7dbbd41e4fe8533e9926eab7a1942b6220248626bb30acf0f6fc"
+  ],
+  "bindings": [
+    [
+      "candidate/formal-send-filecenter-ui-v5/device/mta/MtaPage.qml",
+      26769,
+      "1084ea1a5a906bbf0f56ea20df031ea9b4a1fd0931879e80cd6dfb475f7eabc2"
+    ],
+    [
+      "out/mta-ui-send-picker-v1-c69296a193ff43ce8e5b901d/mta/MtaPage.qml",
+      26769,
+      "1084ea1a5a906bbf0f56ea20df031ea9b4a1fd0931879e80cd6dfb475f7eabc2"
+    ]
+  ],
+  "replacements": [
+    {
+      "name": "presentation_fence_property",
+      "before": "    property var lifetime: ({alive: true, epoch: 0})\n",
+      "after": "    property var lifetime: ({alive: true, epoch: 0})\n    property var statusPresentationFence: ({}) // Local presentation only; never backend authority.\n",
+      "count": 1
+    },
+    {
+      "name": "refresh_presentation_fence",
+      "before": "    function refresh() {\n        if (statusPending || leaving) return;\n        statusPending = true;\n        request(\"/v1/status\", null, function(ok, value) {\n            statusPending = false;\n            if (ok) applyStatus(value);\n            else { backendOnline = false; connectionReason = String(value.reason || value.error || \"连接中断，传输状态待核实\"); }\n        });\n    }\n",
+      "after": "    function refresh() {\n        if (statusPending || actionPending || leaving) return;\n        var fence = statusPresentationFence;\n        statusPending = true;\n        request(\"/v1/status\", null, function(ok, value) {\n            if (fence !== statusPresentationFence) return;\n            statusPending = false;\n            if (ok) applyStatus(value);\n            else { backendOnline = false; connectionReason = String(value.reason || value.error || \"连接中断，传输状态待核实\"); }\n        });\n    }\n",
+      "count": 1
+    },
+    {
+      "name": "action_presentation_fence",
+      "before": "        actionPending = true; actionObserved(action);\n        request(\"/v1/action\", body, function(ok, value) {\n            actionPending = false;\n",
+      "after": "        // A pre-action GET may finish later, but cannot present an older snapshot.\n        statusPresentationFence = {};\n        var fence = statusPresentationFence;\n        statusPending = false;\n        actionPending = true; actionObserved(action);\n        request(\"/v1/action\", body, function(ok, value) {\n            if (fence !== statusPresentationFence) return;\n            actionPending = false;\n",
+      "count": 1
+    },
+    {
+      "name": "leave_presentation_fence",
+      "before": "        leaving = true; lifetime.epoch++;\n",
+      "after": "        leaving = true; lifetime.epoch++; statusPresentationFence = {};\n",
+      "count": 1
+    },
+    {
+      "name": "reset_presentation_fence",
+      "before": "        // Late replies from an old token/service must not re-enable actions.\n        lifetime.epoch++;\n",
+      "after": "        // Late replies from an old token/service must not re-enable actions.\n        lifetime.epoch++; statusPresentationFence = {};\n",
+      "count": 1
+    }
+  ],
+  "runtime_source_only": true,
+  "deployed": false,
+  "actions_changed": false,
+  "native_changed": false
+}

@@ -1,0 +1,23 @@
+{
+  "source_only": true,
+  "passed": true,
+  "constants_imports_preserved": true,
+  "unchanged_owner_methods": 28,
+  "changed_owner_methods": [
+    "__init__",
+    "_close_socket",
+    "_http_closed",
+    "_socket_row"
+  ],
+  "added_owner_helpers": [
+    "_socket_receipt",
+    "_socket_receipt_closed"
+  ],
+  "donor_algorithm_ast_equal": true,
+  "receive_http_original_body_preserved_after_removing_only_additive_checks": true,
+  "minhttp_exact_frozen_copy": true,
+  "test_syntax_only": true,
+  "host_tests_run": 0,
+  "device_actions": 0,
+  "runnable_graph": false
+}

@@ -1,0 +1,14 @@
+{
+  "P011-PlayLab.ps1": "3c0592ccca95c43fccf4e1a6d6aa4d67d5c2d4f0ef5f26ba234c53f247d5eb4d",
+  "p011_lab.py": "a6204fba56a1a4793d141db42c795fbd64d71cd91f920c80e2a85bf0b901b2a4",
+  "p011_screen.py": "a7d6ccf425c7b1e8fcc9f8a9801aa22f17b40caf97e018a61f8a6213c7a4c8a2",
+  "p011_display.py": "60a6a611b33a28db2bf2114d2f0d81b9dddef0bb29ae1f3c0b23620f027ad0bc",
+  "README.md": "172d8d6ceb2959e5f99cfe2a6a6c1a6659b5ba552b62a8dd9dded7d36911bdd1",
+  "P011-Screenshot.ps1": "e7831c4d4dce539d8392534f57edd833789a484967238e634e0f18bb683a0c40",
+  "p011_preflight.py": "81045512f4c559588a9187f81fba849f0b943ce03f1665007a5edb00c67bf903",
+  "p011_json.py": "e32cf4433b966714a16e725e405052fa905715ce108b80199f8d50904abe5c7c",
+  "evidence/previous-demo-report.txt": "d57b4b63df808b102b2967d431b1e1f6e38d62fa5ec95f92c0680b4da2fee00b",
+  "evidence/regression-results.txt": "97009aa81d1acc8a72f74dfc45f4aa2ddd3f417c6b764f2842a24c98d1a2db92",
+  "evidence/host-test-script-reference.py": "fd97dad3231317e1dd2acd78680bd2b89f7203c2db5332dee6d8dc895ef758ef",
+  "evidence/old-geometry-source-excerpt.txt": "044c7f43f580f46cd1a17d7b4508c1d62fba014a40a364beb2603f493f73e921"
+}

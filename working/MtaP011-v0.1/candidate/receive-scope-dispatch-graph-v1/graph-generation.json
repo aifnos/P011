@@ -1,0 +1,83 @@
+{
+  "business_closure_count": 1,
+  "changed_payload_roles": [
+    "mta_client_executor",
+    "mta_client_receive_factory",
+    "mta_client_state_bridge",
+    "mta_client_receive_boot",
+    "mta_client_service_owner",
+    "runtime35/mta_client_executor"
+  ],
+  "definitions_and_report_pins_omitted_to_avoid_cycles": true,
+  "definitions_path": "host/formal_receive_scope_dispatch_v1_definitions.py",
+  "device_tested": false,
+  "exact_payload_roles": 69,
+  "generator": [
+    "candidate/receive-scope-dispatch-graph-v1/generate_graph.py",
+    24987,
+    "ad8932e0de8648e3e459a1c9442e29dc5f6a25dd62b91422ec93ac1ea19a955a"
+  ],
+  "headless_only": true,
+  "measured_owner_context_preserved": true,
+  "mechanical_closure_count": 6,
+  "navigation_ui_outputs": false,
+  "old_main_build_verify_called": false,
+  "old_tests_replayed": 0,
+  "output_pins": [
+    [
+      "candidate/receive-scope-dispatch-graph-v1/graph-exactsource-delta.json",
+      35729,
+      "b5730c5e04d2dc279b4a79464563772307d9293fe2ec2ec1d44ab481035fb267"
+    ],
+    [
+      "candidate/receive-scope-dispatch-graph-v1/runtime/mta_client_executor.py",
+      124769,
+      "345762f64d63977d0c8f1ee1c2f4d5ee0368e0c11b5888863b1edbbad83fb8c2"
+    ],
+    [
+      "candidate/receive-scope-dispatch-graph-v1/runtime/mta_client_receive_boot.py",
+      19697,
+      "c7c4d0410a27bb94d51ba5e7e2023b0e340f9efd2141d95fe44ec22ac540f367"
+    ],
+    [
+      "candidate/receive-scope-dispatch-graph-v1/runtime/mta_client_receive_factory.py",
+      99371,
+      "0c5269ed0e62b69626b59a3dfcb3214c61572e654d70d85e428a703fd5ecca0a"
+    ],
+    [
+      "candidate/receive-scope-dispatch-graph-v1/runtime/mta_client_service_owner.py",
+      107104,
+      "4c46913a4bb5f1fe1e1d1c055215606137d53e9c66c7a077286ce77c06f71786"
+    ],
+    [
+      "candidate/receive-scope-dispatch-graph-v1/runtime/mta_client_state_bridge.py",
+      21356,
+      "8ab5dc13989a7096a8f7573316ccf56c450d0111f67f3e0fa0d15315fef38a55"
+    ],
+    [
+      "candidate/receive-scope-dispatch-graph-v1/runtime/mta_formal_receive_session.py",
+      79281,
+      "70a348bbe1288edbd3fdf2f26c774289372bd81510a4d15809a0e5ff8e1905a7"
+    ],
+    [
+      "host/formal_receive_scope_dispatch_v1_definition_manifest.json",
+      7952,
+      "548816ee90f71bc030270b6e1c1b29d847b6e289440261d37c9c365bc09bc3e6"
+    ],
+    [
+      "host/formal_receive_scope_dispatch_v1_private_source_manifest.json",
+      8168,
+      "52f0360b3fb0138b8fa6fd5589bb2d9f29e68d47e601e6d63ff5ebf60e3942ca"
+    ]
+  ],
+  "payload_bytes": 4193464,
+  "payload_remaining": 840,
+  "phone_tested": false,
+  "private_roles_exact": 34,
+  "proc_native_fc9_unchanged": true,
+  "root": "p011-mta-rx-scope-v0001",
+  "schema": "p011-receive-scope-dispatch-v1-graph-generation",
+  "scope_business_growth": 114,
+  "source_origin_count": 260,
+  "status": "MECHANICALLY_DERIVED_NOT_NEW_DEVICE_TESTED"
+}

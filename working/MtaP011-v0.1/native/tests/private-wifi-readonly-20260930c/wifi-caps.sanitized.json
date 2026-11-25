@@ -1,0 +1,110 @@
+{
+  "wpa_cli_help": {
+    "client_p2p_group_add": false,
+    "not_server_build_proof": true,
+    "query_ok": true,
+    "client_p2p_find": false
+  },
+  "wpa_modes": {
+    "not_p2p_absence_proof": true,
+    "query_ok": true,
+    "values": [
+      "AP"
+    ]
+  },
+  "supplicant_registered_interfaces": {
+    "count": 0,
+    "query_ok": true,
+    "error_name": null
+  },
+  "supplicant_root_api": {
+    "has_p2p_interface_namespace": false,
+    "has_get_interface": false,
+    "query_ok": false
+  },
+  "read_only": true,
+  "supplicant_global_capabilities": {
+    "query_ok": true,
+    "unknown_value_count": 0,
+    "values": [
+      "ap"
+    ]
+  },
+  "supplicant_existing_interface": {
+    "found": false,
+    "query_ok": false,
+    "error_name": "fi.w1.wpa_supplicant1.InterfaceUnknown"
+  },
+  "nl80211": {
+    "query_ok": true,
+    "phys": [
+      {
+        "commands": {
+          "start_p2p_device": true,
+          "start_ap": true,
+          "new_interface": true
+        },
+        "iftypes_present": true,
+        "index": 0,
+        "combinations": [
+          {
+            "max_interfaces": 3,
+            "station_plus_ap_same_channel": false,
+            "num_channels": 2,
+            "limits": [
+              {
+                "types": [
+                  "station",
+                  "ap"
+                ],
+                "max": 1
+              },
+              {
+                "types": [
+                  "p2p_client",
+                  "p2p_go"
+                ],
+                "max": 1
+              },
+              {
+                "types": [
+                  "p2p_device"
+                ],
+                "max": 1
+              }
+            ],
+            "station_plus_go_same_channel": true
+          }
+        ],
+        "iftypes": [
+          "ap",
+          "p2p_client",
+          "p2p_device",
+          "p2p_go",
+          "station"
+        ],
+        "combinations_present": true,
+        "software_iftypes": []
+      }
+    ]
+  },
+  "supplicant_instances": {
+    "instances": [
+      {
+        "uses_system_binary": true,
+        "wlan0_flag": true,
+        "u_flag": false,
+        "global_ctrl_flag": false,
+        "bus_owner": false
+      },
+      {
+        "uses_system_binary": true,
+        "wlan0_flag": false,
+        "u_flag": true,
+        "global_ctrl_flag": false,
+        "bus_owner": true
+      }
+    ],
+    "bus_pid_query_ok": true
+  }
+}

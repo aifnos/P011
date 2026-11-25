@@ -1,0 +1,54 @@
+{
+  "schema": "p011-affected-host-contract-v1",
+  "test": "tests/test_receive_durable_control_bridge_v1.py",
+  "selector": "ReceiveDurableControlBridgeFixture.test_one_affected_saved_failed_contract",
+  "marker": "RECEIVE_DURABLE_CONTROL_BRIDGE_FIXTURE_CONTRACT=1",
+  "inputs": [
+    {
+      "path": "tests/test_receive_durable_control_bridge_v1.py",
+      "bytes": 16688,
+      "sha256": "d8b66ec2a6f527d757ea144870ecbd0964b33a12267fe7de4d54681f25fe4d50"
+    },
+    {
+      "path": "candidate/client-integrated-v37/runtime/mta_client_control_frame.py",
+      "bytes": 20942,
+      "sha256": "d1a8fce91ab705524f14edac8d81e8d391c0cddbf8f4ac96ee7a6446c0512278"
+    },
+    {
+      "path": "candidate/receive-durable-state-v1/runtime/mta_client_control_frame.py",
+      "bytes": 21203,
+      "sha256": "66eae58a95eaf8344934d15aca2685de1c176b8408a56786995e9f9078c6032c"
+    },
+    {
+      "path": "candidate/formal-receive-profile-classification-clock-v1/runtime/mta_client_state_bridge.py",
+      "bytes": 21284,
+      "sha256": "849613b9e62cffdca6fe91ed6a9ba787b6c9b93a53b1a6e4df704b03d1a5b962"
+    },
+    {
+      "path": "candidate/receive-durable-state-v1/runtime/mta_client_state_bridge.py",
+      "bytes": 21356,
+      "sha256": "239e353c336b678638502d1a3dd612e6ce5110c005b1a0228f697d3af56cdc29"
+    },
+    {
+      "path": "runtime/p011_json.py",
+      "bytes": 8061,
+      "sha256": "fb6c803b185283258c2312e630df8bb80d6299007e95a1f3cf31250aa0e8ca88"
+    },
+    {
+      "path": "runtime/mta_protocol.py",
+      "bytes": 17958,
+      "sha256": "4f7c2bd46cde114f0a2a0c33b31631aa463f09e71b156d26e34daf2251dd8a57"
+    },
+    {
+      "path": "candidate/receive-durable-state-v1/exactsource-control-bridge-delta.json",
+      "bytes": 4478,
+      "sha256": "41b1cd371fb5908e0292c42e6debc6b0238e2ca7195eb78922534c40bbcff4db"
+    },
+    {
+      "path": "HOST_MTA_RECEIVE_DURABLE_CONTROL_BRIDGE_V1_CHECK.cmd",
+      "bytes": 180,
+      "sha256": "d212f388889dba38744dbb12efb60ecd221cf8346aebee7bace3827fa02037f4"
+    }
+  ],
+  "boundary": "Actual codec/json/protocol definitions and selected Bridge _project/run/status AST; Owner/Factory/Parent/finish/Session and restore are explicit fixtures. Saved_failed preserves failure and local saved DATA without success Outcome. No native disk save is performed by this contract."
+}

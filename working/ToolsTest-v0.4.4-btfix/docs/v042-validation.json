@@ -1,0 +1,32 @@
+{
+  "version": "0.4.2",
+  "generated_at": "2026-09-15",
+  "scope": "Static/container package verification. Container has no PowerShell runtime, so Windows PowerShell host self-test remains to run on user PC before ADB access.",
+  "checks": [
+    {
+      "name": "package-manifest-version",
+      "passed": true
+    },
+    {
+      "name": "old-io-compression-shorthand-removed-from-executable-scripts",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "name": "full-ziparchive-type-present",
+      "passed": true
+    },
+    {
+      "name": "system-io-compression-load-attempt-present",
+      "passed": true
+    },
+    {
+      "name": "device-payload-unchanged-v041",
+      "passed": true,
+      "detail": "Host-only packaging fix; MenuLab payload intentionally unchanged."
+    }
+  ],
+  "all_static_checks_passed": true,
+  "known_trigger": "Unable to find type [IO.Compression.ZipArchiveMode].",
+  "device_access_on_failed_v041_run": "none: Start-P011.ps1 calls Test-P011ResultTools before Find-Adb and before MenuLab engine."
+}

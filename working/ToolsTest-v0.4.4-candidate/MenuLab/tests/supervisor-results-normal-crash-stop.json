@@ -1,0 +1,62 @@
+{
+  "scope": "Host Linux fake-process tests, NOT P011/Qt/Windows",
+  "cases": [
+    {
+      "case": "normal",
+      "pass": true,
+      "evidence": [
+        "18:13:33 CHECK_OK: original PID=1115, restart-loop PID=1114; hashes and Wayland verified.",
+        "18:13:34 TOOLS_BRIDGE_READY: loopback authenticated API; SSH remains OFF until explicit action.",
+        "18:13:34 GUARDIAN_ARMED: timeout and rollback run ON the pen, not in PowerShell.",
+        "18:13:35 RESTART_LOOP_PAUSED",
+        "18:13:35 ORIGINAL_TERM_SENT: waiting for exit; original app is never SIGKILLed.",
+        "18:13:35 CANDIDATE_RUNNING: PID=1149; test window=1s; inspect the pen screen now.",
+        "18:13:36 TEST_WINDOW_ENDED: guardian will restore stock.",
+        "18:13:36 WORKER_EXIT: 0",
+        "18:13:36 RESTORING_STOCK",
+        "18:13:37 TOOLS_RECOVERY: OK",
+        "18:13:37 TEMP_MENU_ALIAS_REMOVED",
+        "18:13:37 RESTART_LOOP_RESUMED: PID=1114",
+        "18:13:39 RESTORED_STOCK_PROCESS: PID=1150; original files unchanged. Visual recovery still needs user confirmation."
+      ]
+    },
+    {
+      "case": "crash",
+      "pass": true,
+      "evidence": [
+        "18:13:39 CHECK_OK: original PID=1162, restart-loop PID=1161; hashes and Wayland verified.",
+        "18:13:40 TOOLS_BRIDGE_READY: loopback authenticated API; SSH remains OFF until explicit action.",
+        "18:13:40 GUARDIAN_ARMED: timeout and rollback run ON the pen, not in PowerShell.",
+        "18:13:41 RESTART_LOOP_PAUSED",
+        "18:13:41 ORIGINAL_TERM_SENT: waiting for exit; original app is never SIGKILLed.",
+        "18:13:41 CANDIDATE_RUNNING: PID=1196; test window=1s; inspect the pen screen now.",
+        "18:13:41 CANDIDATE_EXITED: code=23; guardian will restore stock.",
+        "18:13:41 WORKER_EXIT: 0",
+        "18:13:41 RESTORING_STOCK",
+        "18:13:42 TOOLS_RECOVERY: OK",
+        "18:13:42 TEMP_MENU_ALIAS_REMOVED",
+        "18:13:42 RESTART_LOOP_RESUMED: PID=1161",
+        "18:13:44 RESTORED_STOCK_PROCESS: PID=1197; original files unchanged. Visual recovery still needs user confirmation."
+      ]
+    },
+    {
+      "case": "stop",
+      "pass": true,
+      "evidence": [
+        "18:13:44 CHECK_OK: original PID=1209, restart-loop PID=1208; hashes and Wayland verified.",
+        "18:13:45 TOOLS_BRIDGE_READY: loopback authenticated API; SSH remains OFF until explicit action.",
+        "18:13:45 GUARDIAN_ARMED: timeout and rollback run ON the pen, not in PowerShell.",
+        "18:13:45 RESTART_LOOP_PAUSED",
+        "18:13:45 ORIGINAL_TERM_SENT: waiting for exit; original app is never SIGKILLed.",
+        "18:13:45 CANDIDATE_RUNNING: PID=1243; test window=30s; inspect the pen screen now.",
+        "18:13:46 GUARDIAN_STOP_REQUEST",
+        "18:13:46 STOP_REQUEST_RECEIVED",
+        "18:13:46 RESTORING_STOCK",
+        "18:13:46 TOOLS_RECOVERY: OK",
+        "18:13:46 TEMP_MENU_ALIAS_REMOVED",
+        "18:13:46 RESTART_LOOP_RESUMED: PID=1208",
+        "18:13:48 RESTORED_STOCK_PROCESS: PID=1244; original files unchanged. Visual recovery still needs user confirmation."
+      ]
+    }
+  ]
+}

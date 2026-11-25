@@ -1,0 +1,522 @@
+{
+  "schema": "p011-formal-send-filecenter-deploy-v4-fixed-asset-sources",
+  "scope": "SOURCE_ONLY_UNADMITTED",
+  "sender_source_table": [
+    "host/go_send_fixed_terminal_v98_asset_sources.json",
+    5634,
+    "c6293f477248dd36c7b8ad695527ae65901225d7ac976432ea953dd90d87fc3c"
+  ],
+  "observer_source_table": [
+    "candidate/go-observer-libc-v1/assets/observer-source-catalog.json",
+    15861,
+    "8aaadd3f5a32b184bb851b422781ae8038d699d3e9555cb479cd49f4d090648a"
+  ],
+  "sender_root": "/var/volatile/tmp/p011-mta-go-send-filecenter-v3-assets",
+  "observer_root": "/var/volatile/tmp/p011-mta-go-observer-libc-v1",
+  "sender_source_count": 25,
+  "sender_source_bytes": 1047589,
+  "observer_source_count": 41,
+  "observer_source_bytes": 1442508,
+  "observer_load_count": 38,
+  "observer_readonly_manifest_sha256": "8e7882aed5237eb4a2a704bee36bd8a8bdf930c079efae20a90d7dfc26a89b60",
+  "source_mode": "0400",
+  "directory_mode": "0700",
+  "sender_sources": [
+    {
+      "module": "p011_json",
+      "source": "runtime/p011_json.py",
+      "target": "/var/volatile/tmp/p011-mta-go-send-filecenter-v3-assets/runtime/p011_json.py",
+      "bytes": 8061,
+      "sha256": "fb6c803b185283258c2312e630df8bb80d6299007e95a1f3cf31250aa0e8ca88"
+    },
+    {
+      "module": "mta_ip",
+      "source": "runtime/mta_ip.py",
+      "target": "/var/volatile/tmp/p011-mta-go-send-filecenter-v3-assets/runtime/mta_ip.py",
+      "bytes": 22049,
+      "sha256": "1fa5e72817772285fd966f52c57af105950ff0d3b6ea49b202983aebfbab40c5"
+    },
+    {
+      "module": "mta_client_tmp_alias",
+      "source": "candidate/client-tmp-alias-v11/runtime/mta_client_tmp_alias.py",
+      "target": "/var/volatile/tmp/p011-mta-go-send-filecenter-v3-assets/runtime/mta_client_tmp_alias.py",
+      "bytes": 8827,
+      "sha256": "1a4a52bd0bae7add6ae42f66bd9827c43865a0170c666eaab00797d1f45f7f2f"
+    },
+    {
+      "module": "mta_p2p_client_init",
+      "source": "candidate/client-session-v28/runtime/mta_p2p_client_init.py",
+      "target": "/var/volatile/tmp/p011-mta-go-send-filecenter-v3-assets/runtime/mta_p2p_client_init.py",
+      "bytes": 69966,
+      "sha256": "178bd8a491e9e5ec03e8da3bce780f8e8e8c1c8781bfeaca7d8c3bac59fa364b"
+    },
+    {
+      "module": "mta_snapshot_data",
+      "source": "candidate/go-send-observer-v85/runtime/mta_snapshot_data.py",
+      "target": "/var/volatile/tmp/p011-mta-go-send-filecenter-v3-assets/runtime/mta_snapshot_data.py",
+      "bytes": 17217,
+      "sha256": "cb5e8f16c78cc4c879a8986dd9c2ab8ed5e6c055f105baad3ce60eb9a10d2a26"
+    },
+    {
+      "module": "mta_client_resource_budget",
+      "source": "candidate/client-session-v28/runtime/mta_client_resource_budget.py",
+      "target": "/var/volatile/tmp/p011-mta-go-send-filecenter-v3-assets/runtime/mta_client_resource_budget.py",
+      "bytes": 16215,
+      "sha256": "56d6dbe2370279b1572a563e67fd3313bf942c0baa78fbd8e36cd973ba09839e"
+    },
+    {
+      "module": "mta_client_proc",
+      "source": "candidate/client-proc-deadline-v25/runtime/mta_client_proc.py",
+      "target": "/var/volatile/tmp/p011-mta-go-send-filecenter-v3-assets/runtime/mta_client_proc.py",
+      "bytes": 39384,
+      "sha256": "ede5953c33ba4c17d3aecb1fffe8a9358589497b37e3109034d5e1de3eadb3d6"
+    },
+    {
+      "module": "mta_client_journal_codec",
+      "source": "candidate/client-session-v28/runtime/mta_client_journal_codec.py",
+      "target": "/var/volatile/tmp/p011-mta-go-send-filecenter-v3-assets/runtime/mta_client_journal_codec.py",
+      "bytes": 17450,
+      "sha256": "2ffeca6b59498c9e2dfa4b9906bbe55db909d5d5e1d448fa0c795490996fe14a"
+    },
+    {
+      "module": "mta_client_coordination",
+      "source": "candidate/client-tmp-alias-v11/runtime/mta_client_coordination.py",
+      "target": "/var/volatile/tmp/p011-mta-go-send-filecenter-v3-assets/runtime/mta_client_coordination.py",
+      "bytes": 35591,
+      "sha256": "930e56d35ebf08d0b1c83fe7ccab843cbe6520ecd68c0799e9a07b2bbe40823f"
+    },
+    {
+      "module": "mta_client_files",
+      "source": "candidate/client-resource-v23/runtime/mta_client_files.py",
+      "target": "/var/volatile/tmp/p011-mta-go-send-filecenter-v3-assets/runtime/mta_client_files.py",
+      "bytes": 28938,
+      "sha256": "30c07bb4a5a28ce02aa76f35650ee1c87af63617f445e554c3fd7f73a2705864"
+    },
+    {
+      "module": "mta_client_pending",
+      "source": "candidate/client-recovery-budget-v8/runtime/mta_client_pending.py",
+      "target": "/var/volatile/tmp/p011-mta-go-send-filecenter-v3-assets/runtime/mta_client_pending.py",
+      "bytes": 42432,
+      "sha256": "cfba740700268d5998eb3a91bf7cdc34d893fa8f0083377d716ea98950c3f5af"
+    },
+    {
+      "module": "mta_client_store",
+      "source": "candidate/client-peer-v29-r2/runtime/mta_client_store.py",
+      "target": "/var/volatile/tmp/p011-mta-go-send-filecenter-v3-assets/runtime/mta_client_store.py",
+      "bytes": 71524,
+      "sha256": "f328dcaa95ecfc5288c85a3715ecfdbdbdb8e83c83797b91cde3e334d188f4a2"
+    },
+    {
+      "module": "mta_go_process_owner",
+      "source": "candidate/go-bootstrap-v33-r3/runtime/mta_go_process_owner.py",
+      "target": "/var/volatile/tmp/p011-mta-go-send-filecenter-v3-assets/runtime/mta_go_process_owner.py",
+      "bytes": 42612,
+      "sha256": "78a480728a348e98e578acf4e7c778be50bfae3411ba5d34bb563493e1ba6583"
+    },
+    {
+      "module": "mta_go_deployment",
+      "source": "candidate/go-send-preflight-key-v90/runtime/mta_go_deployment.py",
+      "target": "/var/volatile/tmp/p011-mta-go-send-filecenter-v3-assets/runtime/mta_go_deployment.py",
+      "bytes": 26543,
+      "sha256": "e8dc91c0a44a48d6cecf066257e79185fe590385f98300d01835edddb8114efe"
+    },
+    {
+      "module": "mta_go_executor",
+      "source": "candidate/go-send-terminal-source-v93/runtime/mta_go_executor.py",
+      "target": "/var/volatile/tmp/p011-mta-go-send-filecenter-v3-assets/runtime/mta_go_executor.py",
+      "bytes": 62728,
+      "sha256": "f33ad96651e8aed38adab1ca931da6de7455130b8dbcedd774e1038ee39c8ed0"
+    },
+    {
+      "module": "mta_ip_lease",
+      "source": "runtime/mta_ip_lease.py",
+      "target": "/var/volatile/tmp/p011-mta-go-send-filecenter-v3-assets/runtime/mta_ip_lease.py",
+      "bytes": 18704,
+      "sha256": "39373dba355557ee73cfac354bdbaa95eaf0ddde4e27313450edf0e74742f12c"
+    },
+    {
+      "module": "mta_dhcp",
+      "source": "runtime/mta_dhcp.py",
+      "target": "/var/volatile/tmp/p011-mta-go-send-filecenter-v3-assets/runtime/mta_dhcp.py",
+      "bytes": 15719,
+      "sha256": "631987bd7307580af069f1978e440d21fbd449ecc62c83e0e06195c330f50176"
+    },
+    {
+      "module": "mta_go_bootstrap_store",
+      "source": "candidate/go-dhcp-setup-v74/runtime/mta_go_bootstrap_store.py",
+      "target": "/var/volatile/tmp/p011-mta-go-send-filecenter-v3-assets/runtime/mta_go_bootstrap_store.py",
+      "bytes": 78430,
+      "sha256": "24620844c7d24f4777114ba9bfb4ea292ded2020a281681dd8e71fe07c7a4eae"
+    },
+    {
+      "module": "mta_go_dhcp",
+      "source": "candidate/go-send-transport-v76/runtime/mta_go_dhcp.py",
+      "target": "/var/volatile/tmp/p011-mta-go-send-filecenter-v3-assets/runtime/mta_go_dhcp.py",
+      "bytes": 21997,
+      "sha256": "3f7dbab30c8925cf0ea288a1e011787d436c07d3a8178a8a45934db3597f9312"
+    },
+    {
+      "module": "mta_go_native",
+      "source": "candidate/go-send-transport-v76/runtime/mta_go_native.py",
+      "target": "/var/volatile/tmp/p011-mta-go-send-filecenter-v3-assets/runtime/mta_go_native.py",
+      "bytes": 200317,
+      "sha256": "ee46d8313fe31cbc5a0d16d0d14aff7ce2b3fb507f3cdac572e59bc5f16dfa9f"
+    },
+    {
+      "module": "mta_go_bootstrap",
+      "source": "candidate/go-send-preflight-key-v90/runtime/mta_go_bootstrap.py",
+      "target": "/var/volatile/tmp/p011-mta-go-send-filecenter-v3-assets/runtime/mta_go_bootstrap.py",
+      "bytes": 31964,
+      "sha256": "93bc97ccb9d83d5727c2f528f0a2934f09d8cae093591821a9bf5ad60f425697"
+    },
+    {
+      "module": "mta_protocol",
+      "source": "runtime/mta_protocol.py",
+      "target": "/var/volatile/tmp/p011-mta-go-send-filecenter-v3-assets/runtime/mta_protocol.py",
+      "bytes": 17958,
+      "sha256": "4f7c2bd46cde114f0a2a0c33b31631aa463f09e71b156d26e34daf2251dd8a57"
+    },
+    {
+      "module": "mta_transport",
+      "source": "runtime/mta_transport.py",
+      "target": "/var/volatile/tmp/p011-mta-go-send-filecenter-v3-assets/runtime/mta_transport.py",
+      "bytes": 31883,
+      "sha256": "29e5ea6bf8f5de9ddae33824c158f4e401bab391d51b18dc0b8a1ab2cbc2dc72"
+    },
+    {
+      "module": "mta_sender_pump",
+      "source": "runtime/mta_sender_pump.py",
+      "target": "/var/volatile/tmp/p011-mta-go-send-filecenter-v3-assets/runtime/mta_sender_pump.py",
+      "bytes": 33455,
+      "sha256": "81c3d7ff98ab71cde2ac2858daaffd267f129033b28ebde1dbd2f13f19ff447c"
+    },
+    {
+      "module": "mta_go_send_bridge",
+      "source": "candidate/go-send-terminal-source-v93/runtime/mta_go_send_bridge.py",
+      "target": "/var/volatile/tmp/p011-mta-go-send-filecenter-v3-assets/runtime/mta_go_send_bridge.py",
+      "bytes": 87625,
+      "sha256": "027be64bf7b1b4f6ae57d09921b821e4cc77db44c602b9a5d99d901ed5736f02"
+    }
+  ],
+  "observer_sources": [
+    {
+      "module": "p011_json",
+      "source": "runtime/p011_json.py",
+      "target": "/var/volatile/tmp/p011-mta-go-observer-libc-v1/runtime/p011_json.py",
+      "bytes": 8061,
+      "sha256": "fb6c803b185283258c2312e630df8bb80d6299007e95a1f3cf31250aa0e8ca88"
+    },
+    {
+      "module": "mta_ip",
+      "source": "runtime/mta_ip.py",
+      "target": "/var/volatile/tmp/p011-mta-go-observer-libc-v1/runtime/mta_ip.py",
+      "bytes": 22049,
+      "sha256": "1fa5e72817772285fd966f52c57af105950ff0d3b6ea49b202983aebfbab40c5"
+    },
+    {
+      "module": "mta_client_tmp_alias",
+      "source": "candidate/client-tmp-alias-v11/runtime/mta_client_tmp_alias.py",
+      "target": "/var/volatile/tmp/p011-mta-go-observer-libc-v1/runtime/mta_client_tmp_alias.py",
+      "bytes": 8827,
+      "sha256": "1a4a52bd0bae7add6ae42f66bd9827c43865a0170c666eaab00797d1f45f7f2f"
+    },
+    {
+      "module": "mta_p2p_client_init",
+      "source": "candidate/client-parent-cap-v33/runtime/mta_p2p_client_init.py",
+      "target": "/var/volatile/tmp/p011-mta-go-observer-libc-v1/runtime/mta_p2p_client_init.py",
+      "bytes": 71315,
+      "sha256": "d3b51493d3ae778aeb72c1304dc50e5a6221428f7775bc7a28d15a3f19abeaaa"
+    },
+    {
+      "module": "mta_client_resource_budget",
+      "source": "candidate/client-session-v28/runtime/mta_client_resource_budget.py",
+      "target": "/var/volatile/tmp/p011-mta-go-observer-libc-v1/runtime/mta_client_resource_budget.py",
+      "bytes": 16215,
+      "sha256": "56d6dbe2370279b1572a563e67fd3313bf942c0baa78fbd8e36cd973ba09839e"
+    },
+    {
+      "module": "mta_client_proc",
+      "source": "candidate/client-proc-deadline-v25/runtime/mta_client_proc.py",
+      "target": "/var/volatile/tmp/p011-mta-go-observer-libc-v1/runtime/mta_client_proc.py",
+      "bytes": 39384,
+      "sha256": "ede5953c33ba4c17d3aecb1fffe8a9358589497b37e3109034d5e1de3eadb3d6"
+    },
+    {
+      "module": "mta_client_caps",
+      "source": "runtime/mta_client_caps.py",
+      "target": "/var/volatile/tmp/p011-mta-go-observer-libc-v1/runtime/mta_client_caps.py",
+      "bytes": 11821,
+      "sha256": "c1792c2294fed5da16ec4a676423fbcbe53d44e9bc4ddadc1bc26fd45afe046c"
+    },
+    {
+      "module": "mta_client_caps_transport",
+      "source": "runtime/mta_client_caps_transport.py",
+      "target": "/var/volatile/tmp/p011-mta-go-observer-libc-v1/runtime/mta_client_caps_transport.py",
+      "bytes": 19614,
+      "sha256": "df6b4cf3ede6039c684c6b689a8b61ffe1ba5b87259bb4a5581aa5c3ece84420"
+    },
+    {
+      "module": "mta_client_baseline",
+      "source": "candidate/client-readonly-proc-vanish-v51/runtime/mta_client_baseline.py",
+      "target": "/var/volatile/tmp/p011-mta-go-observer-libc-v1/runtime/mta_client_baseline.py",
+      "bytes": 31338,
+      "sha256": "e950877bd99ee7907c66ee237e3140960ac8e4d64f979310b82bfdab2fa271ea"
+    },
+    {
+      "module": "mta_client_journal_codec",
+      "source": "candidate/client-session-v28/runtime/mta_client_journal_codec.py",
+      "target": "/var/volatile/tmp/p011-mta-go-observer-libc-v1/runtime/mta_client_journal_codec.py",
+      "bytes": 17450,
+      "sha256": "2ffeca6b59498c9e2dfa4b9906bbe55db909d5d5e1d448fa0c795490996fe14a"
+    },
+    {
+      "module": "mta_client_coordination",
+      "source": "candidate/client-budget-refusal-v36/runtime/mta_client_coordination.py",
+      "target": "/var/volatile/tmp/p011-mta-go-observer-libc-v1/runtime/mta_client_coordination.py",
+      "bytes": 36295,
+      "sha256": "5b8a4295a5479cb5693182085fc8d35c6041bb0f14d9efb660ec11f024a5eeb3"
+    },
+    {
+      "module": "mta_client_files",
+      "source": "candidate/client-resource-v23/runtime/mta_client_files.py",
+      "target": "/var/volatile/tmp/p011-mta-go-observer-libc-v1/runtime/mta_client_files.py",
+      "bytes": 28938,
+      "sha256": "30c07bb4a5a28ce02aa76f35650ee1c87af63617f445e554c3fd7f73a2705864"
+    },
+    {
+      "module": "mta_client_pending",
+      "source": "candidate/client-budget-refusal-v36/runtime/mta_client_pending.py",
+      "target": "/var/volatile/tmp/p011-mta-go-observer-libc-v1/runtime/mta_client_pending.py",
+      "bytes": 53132,
+      "sha256": "deaf62f9830b951584b36100de0f88548bcd6356b7327c3be0fa8578b65aba8a"
+    },
+    {
+      "module": "mta_client_store",
+      "source": "candidate/client-integrated-v37/runtime/mta_client_store.py",
+      "target": "/var/volatile/tmp/p011-mta-go-observer-libc-v1/runtime/mta_client_store.py",
+      "bytes": 74676,
+      "sha256": "bc51d3c64d3c92a87da331c740d93cea7466c535c5a81969422a45b8c5b68f63"
+    },
+    {
+      "module": "mta_client_process_owner",
+      "source": "candidate/client-transfer-v30-r2/runtime/mta_client_process_owner.py",
+      "target": "/var/volatile/tmp/p011-mta-go-observer-libc-v1/runtime/mta_client_process_owner.py",
+      "bytes": 34361,
+      "sha256": "c144bc197a8fd1d4fbbfc358ba0172a84f5c9070058732189e4709c8c801ffeb"
+    },
+    {
+      "module": "mta_client_launch_registration",
+      "source": "runtime/mta_client_launch_registration.py",
+      "target": "/var/volatile/tmp/p011-mta-go-observer-libc-v1/runtime/mta_client_launch_registration.py",
+      "bytes": 21679,
+      "sha256": "833d46f5717e0b7e9db0c5392a0eb93d812d039b4b946a57d49d5903534a1aa0"
+    },
+    {
+      "module": "mta_client_two_phase_lease",
+      "source": "candidate/client-parent-cap-v33/runtime/mta_client_two_phase_lease.py",
+      "target": "/var/volatile/tmp/p011-mta-go-observer-libc-v1/runtime/mta_client_two_phase_lease.py",
+      "bytes": 27606,
+      "sha256": "c227989ec5188c272ad0a212974d569572704d3bb07c4c61c72670abcd0981a5"
+    },
+    {
+      "module": "mta_p2p_client_ctrl",
+      "source": "runtime/mta_p2p_client_ctrl.py",
+      "target": "/var/volatile/tmp/p011-mta-go-observer-libc-v1/runtime/mta_p2p_client_ctrl.py",
+      "bytes": 18712,
+      "sha256": "793b784f1b39eca18001aa65a1f0d6cdbd6de466dc58b3cf2ada167f71d902b5"
+    },
+    {
+      "module": "mta_client_wpa_status",
+      "source": "candidate/client-proc-deadline-v25/runtime/mta_client_wpa_status.py",
+      "target": "/var/volatile/tmp/p011-mta-go-observer-libc-v1/runtime/mta_client_wpa_status.py",
+      "bytes": 39133,
+      "sha256": "47074a5af8d9f75746fa7cd72e1e42b50c8402fcbb612963f6523c875fe1c269"
+    },
+    {
+      "module": "mta_protocol",
+      "source": "runtime/mta_protocol.py",
+      "target": "/var/volatile/tmp/p011-mta-go-observer-libc-v1/runtime/mta_protocol.py",
+      "bytes": 17958,
+      "sha256": "4f7c2bd46cde114f0a2a0c33b31631aa463f09e71b156d26e34daf2251dd8a57"
+    },
+    {
+      "module": "mta_client_control_frame",
+      "source": "candidate/client-integrated-v37/runtime/mta_client_control_frame.py",
+      "target": "/var/volatile/tmp/p011-mta-go-observer-libc-v1/runtime/mta_client_control_frame.py",
+      "bytes": 20942,
+      "sha256": "d1a8fce91ab705524f14edac8d81e8d391c0cddbf8f4ac96ee7a6446c0512278"
+    },
+    {
+      "module": "mta_client_kernel_proof",
+      "source": "candidate/client-association-v16/runtime/mta_client_kernel_proof.py",
+      "target": "/var/volatile/tmp/p011-mta-go-observer-libc-v1/runtime/mta_client_kernel_proof.py",
+      "bytes": 23702,
+      "sha256": "4ebfedf198673e3bad2f64a4bd72c581e5d6af24cef83e589b4456d2a38f8ede"
+    },
+    {
+      "module": "mta_client_connection",
+      "source": "candidate/client-durable-connect-v19/runtime/mta_client_connection.py",
+      "target": "/var/volatile/tmp/p011-mta-go-observer-libc-v1/runtime/mta_client_connection.py",
+      "bytes": 22494,
+      "sha256": "ae2932252bbef16b89e6bf4614c2ebdb1721d507274dbd9b9fe4d9db1d0ff159"
+    },
+    {
+      "module": "mta_client_linux_provider",
+      "source": "candidate/client-integrated-v37/runtime/mta_client_linux_provider.py",
+      "target": "/var/volatile/tmp/p011-mta-go-observer-libc-v1/runtime/mta_client_linux_provider.py",
+      "bytes": 174220,
+      "sha256": "5f080f8a0d53d7232ec95c303e0e84036d22d4e0927ac98dd3195291cf6d56ba"
+    },
+    {
+      "module": "mta_client_executor",
+      "source": "candidate/client-integrated-v37/runtime/mta_client_executor.py",
+      "target": "/var/volatile/tmp/p011-mta-go-observer-libc-v1/runtime/mta_client_executor.py",
+      "bytes": 105182,
+      "sha256": "f3f7c9fb54e46f82b4321152dfac6f4ab9b037943c403d76716f8254700bb17e"
+    },
+    {
+      "module": "mta_dhcp",
+      "source": "runtime/mta_dhcp.py",
+      "target": "/var/volatile/tmp/p011-mta-go-observer-libc-v1/runtime/mta_dhcp.py",
+      "bytes": 15719,
+      "sha256": "631987bd7307580af069f1978e440d21fbd449ecc62c83e0e06195c330f50176"
+    },
+    {
+      "module": "mta_dhcp_client_core",
+      "source": "runtime/mta_dhcp_client_core.py",
+      "target": "/var/volatile/tmp/p011-mta-go-observer-libc-v1/runtime/mta_dhcp_client_core.py",
+      "bytes": 12362,
+      "sha256": "13c03d181139fd9ead7ff3bf2bcbb4930669f1e795b17360da85834dc345e9fa"
+    },
+    {
+      "module": "mta_dhcp_client",
+      "source": "candidate/client-dhcp-v21/runtime/mta_dhcp_client.py",
+      "target": "/var/volatile/tmp/p011-mta-go-observer-libc-v1/runtime/mta_dhcp_client.py",
+      "bytes": 24670,
+      "sha256": "794421678866d04a10ca46fa9eb7e17174f24c4d9e705cf59016b457702003a0"
+    },
+    {
+      "module": "mta_client_dora",
+      "source": "candidate/client-session-v28/runtime/mta_client_dora.py",
+      "target": "/var/volatile/tmp/p011-mta-go-observer-libc-v1/runtime/mta_client_dora.py",
+      "bytes": 48149,
+      "sha256": "f17f8405b28799fda8ee8f3ea9d280f871cceb1e0c6b999fc855bcb652ab2f7e"
+    },
+    {
+      "module": "mta_client_dynamic_ip",
+      "source": "candidate/client-session-v28-r2/runtime/mta_client_dynamic_ip.py",
+      "target": "/var/volatile/tmp/p011-mta-go-observer-libc-v1/runtime/mta_client_dynamic_ip.py",
+      "bytes": 32427,
+      "sha256": "01476613eb965a05cd5441dfbfea53f15ce763da12213b76791ecdb23152199a"
+    },
+    {
+      "module": "mta_client_peer",
+      "source": "candidate/client-peer-v29-r3/runtime/mta_client_peer.py",
+      "target": "/var/volatile/tmp/p011-mta-go-observer-libc-v1/runtime/mta_client_peer.py",
+      "bytes": 31242,
+      "sha256": "f8a15d046b505a8c5117a5be19d2ee59f38096759be1b29a0310535ceea08ec9"
+    },
+    {
+      "module": "mta_scoped_sockets",
+      "source": "runtime/mta_scoped_sockets.py",
+      "target": "/var/volatile/tmp/p011-mta-go-observer-libc-v1/runtime/mta_scoped_sockets.py",
+      "bytes": 26339,
+      "sha256": "b95cfbe724b43baf90511c9d2a4a39d869a40a57e78e2a87d398ea134f9f84b8"
+    },
+    {
+      "module": "mta_storage",
+      "source": "runtime/mta_storage.py",
+      "target": "/var/volatile/tmp/p011-mta-go-observer-libc-v1/runtime/mta_storage.py",
+      "bytes": 14335,
+      "sha256": "3c5c5f65ef0c8eb9a0256a99f931faff40558484bb908e89acee1c1c0aa3b4d6"
+    },
+    {
+      "module": "mta_transport",
+      "source": "candidate/client-transfer-v30/runtime/mta_transport.py",
+      "target": "/var/volatile/tmp/p011-mta-go-observer-libc-v1/runtime/mta_transport.py",
+      "bytes": 35209,
+      "sha256": "77d9cd45936318315cf3343ab1bd2594c6a3381e33a7d0fdcfd853916063eefa"
+    },
+    {
+      "module": "mta_client_transfer",
+      "source": "candidate/client-transfer-v30-r3/runtime/mta_client_transfer.py",
+      "target": "/var/volatile/tmp/p011-mta-go-observer-libc-v1/runtime/mta_client_transfer.py",
+      "bytes": 30747,
+      "sha256": "8633b2a1156c3012ec613e776eaee7e9339c14c76cffff9c8e5ff75646f35184"
+    },
+    {
+      "module": "mta_client_readonly_baseline",
+      "source": "candidate/client-readonly-proc-vanish-v51/runtime/mta_client_readonly_baseline.py",
+      "target": "/var/volatile/tmp/p011-mta-go-observer-libc-v1/runtime/mta_client_readonly_baseline.py",
+      "bytes": 13934,
+      "sha256": "c2052c39fdad148d25f83743476b95a51a88e7f9e16ec2235c91d4de6adc9aad"
+    },
+    {
+      "module": "mta_snapshot_data",
+      "source": "candidate/go-send-observer-v85/runtime/mta_snapshot_data.py",
+      "target": "/var/volatile/tmp/p011-mta-go-observer-libc-v1/runtime/mta_snapshot_data.py",
+      "bytes": 17217,
+      "sha256": "cb5e8f16c78cc4c879a8986dd9c2ab8ed5e6c055f105baad3ce60eb9a10d2a26"
+    },
+    {
+      "module": "mta_go_readonly_preflight",
+      "source": "candidate/go-observer-libc-v1/runtime/mta_go_readonly_preflight.py",
+      "target": "/var/volatile/tmp/p011-mta-go-observer-libc-v1/runtime/mta_go_readonly_preflight.py",
+      "bytes": 64948,
+      "sha256": "802ad7c3b80ea6e9ea4678a4112bd2ec95be08cff5fe6684e1162f127ae55f44"
+    },
+    {
+      "module": "mta_go_readonly_loader",
+      "source": "candidate/go-observer-libc-v1/runtime/mta_go_readonly_loader.py",
+      "target": "/var/volatile/tmp/p011-mta-go-observer-libc-v1/runtime/mta_go_readonly_loader.py",
+      "bytes": 36543,
+      "sha256": "8e60e8f86a0cd4a261ca65f657739e9189137cf37dc04f4af1495263ce1b8e56"
+    },
+    {
+      "module": "mta_observer_packet",
+      "source": "candidate/go-send-terminal-channel-v94/runtime/mta_observer_packet.py",
+      "target": "/var/volatile/tmp/p011-mta-go-observer-libc-v1/runtime/mta_observer_packet.py",
+      "bytes": 48253,
+      "sha256": "004ff5616924a4529ce3a3f710ac83a8d2dedbd55ae2edb790998a68f68fe40f"
+    },
+    {
+      "module": "mta_go_readonly_entry",
+      "source": "candidate/go-observer-libc-v1/runtime/mta_go_readonly_entry.py",
+      "target": "/var/volatile/tmp/p011-mta-go-observer-libc-v1/runtime/mta_go_readonly_entry.py",
+      "bytes": 45310,
+      "sha256": "b97328b01617ce1944d3576bb4c0e22160414120c737b336e2509004d0031ffa"
+    }
+  ],
+  "wpa": {
+    "source": "native/private-p2p-candidate-20261001-v2/mta-wpa-supplicant",
+    "target": "/var/volatile/tmp/p011-mta-go-send-filecenter-v3-assets/native/mta-wpa-supplicant",
+    "mode": "0500",
+    "bytes": 1351192,
+    "sha256": "e069aef76a089215367f502015266e9ce59cf4ebb7d7246974815ff60d67f301"
+  },
+  "sender_manifest": {
+    "source": "candidate/formal-send-v1/assets/sender-source-manifest.json",
+    "target": "/var/volatile/tmp/p011-mta-go-send-filecenter-v3-assets/source-manifest.json",
+    "schema": "p011-go-send-assets-v76",
+    "bytes": 3677,
+    "sha256": "be67d8cec589b4e54235d8205660a67f02a188f23e99251bf2219b35b147f3d5"
+  },
+  "admission": false,
+  "native_startup_verified": false,
+  "restoration_verified": false,
+  "device": false,
+  "phone": false,
+  "notes": [
+    "Source mapping is not target readback, RF permission or a restoration receipt.",
+    "Sender25 plus manifest and WPA remain at the actually staged unchanged v3 root; no duplicate sender root is created.",
+    "Observer41 uses the isolated libc-v1 root: only Body/Loader/Entry differ, the other 38 assets retain original bytes.",
+    "Observer41 stage inventory and readonly load/report count38 remain distinct contracts.",
+    "Ordinary Parent reuses the actually passed readonly child candidate; that is not whole v4 Owner/UI evidence.",
+    "Reject conflicting/partial inventories; no overwrite, deletion, pending/history handling or restoration grant."
+  ],
+  "original_observer_source_table": [
+    "host/go_readonly_terminal_v97_asset_sources.json",
+    9751,
+    "8205740cb49b819923845f126a6fb1e22d04a614877bcac4e10ea3533705c5cc"
+  ]
+}

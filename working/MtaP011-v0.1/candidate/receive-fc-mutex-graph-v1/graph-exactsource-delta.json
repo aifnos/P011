@@ -1,0 +1,512 @@
+{
+  "blocking_file_io_preemption_verified": false,
+  "cache_data_not_authority": true,
+  "changed_payload_roles": [
+    "mta_client_executor",
+    "mta_client_receive_factory",
+    "mta_client_state_bridge",
+    "mta_client_receive_boot",
+    "mta_client_service_owner",
+    "runtime35/mta_client_executor"
+  ],
+  "close_method_bytes_preserved": true,
+  "device_tested": false,
+  "filecenter_bytes": 115400,
+  "filecenter_cap": 131072,
+  "filecenter_changed_roles": [
+    "mta_filecenter_companion"
+  ],
+  "filecenter_exact_roles": 8,
+  "filecenter_growth": 1568,
+  "inherited_owner_scope_fc_http_cache_prepare20_provenance_preserved": true,
+  "manifests": [
+    {
+      "candidate": [
+        "host/formal_receive_fc_mutex_v1_definition_manifest.json",
+        7922,
+        "beec44a972791940bf8dd8bea41c024e47489c0c23fcf15277f88853d283e34f"
+      ],
+      "changes": [
+        [
+          0,
+          {
+            "bytes": 124769,
+            "module": "mta_client_executor",
+            "path": "candidate/receive-startup-20s-graph-v1/runtime/mta_client_executor.py",
+            "sha256": "8be9784ab137fdd4e779d8bd5bb1368381ca60e56aae737e4d3c51ede9b8d0fb"
+          },
+          {
+            "bytes": 124769,
+            "module": "mta_client_executor",
+            "path": "candidate/receive-fc-mutex-graph-v1/runtime/mta_client_executor.py",
+            "sha256": "3f046452b5600685bf250a9b6a0091feeac7632b5461f99d820f98498e5355b2"
+          }
+        ],
+        [
+          20,
+          {
+            "bytes": 99675,
+            "module": "mta_client_receive_factory",
+            "path": "candidate/receive-startup-20s-graph-v1/runtime/mta_client_receive_factory.py",
+            "sha256": "e1a30f457ca77321c4ebfb15644137ee9498b9fd6e94f5685991a040fdb449a5"
+          },
+          {
+            "bytes": 99675,
+            "module": "mta_client_receive_factory",
+            "path": "candidate/receive-fc-mutex-graph-v1/runtime/mta_client_receive_factory.py",
+            "sha256": "824ded3340e41cdf396e1f803c1371fa60ccdbde260ef4af1fd92db4e7893cbe"
+          }
+        ],
+        [
+          21,
+          {
+            "bytes": 21356,
+            "module": "mta_client_state_bridge",
+            "path": "candidate/receive-startup-20s-graph-v1/runtime/mta_client_state_bridge.py",
+            "sha256": "247714d59f500b7f2c60eb605ff0fc341301f76dccae8d058e678db20fa30562"
+          },
+          {
+            "bytes": 21356,
+            "module": "mta_client_state_bridge",
+            "path": "candidate/receive-fc-mutex-graph-v1/runtime/mta_client_state_bridge.py",
+            "sha256": "d5270f33a5995ca57297a5cd33a0710f03ace709bf2dc0adf3986168108fa563"
+          }
+        ],
+        [
+          33,
+          {
+            "bytes": 19697,
+            "module": "mta_client_receive_boot",
+            "path": "candidate/receive-startup-20s-graph-v1/runtime/mta_client_receive_boot.py",
+            "sha256": "167daaa1dbf754ff03e77578e838153f9f38d1a7b32c600718a83f915553b645"
+          },
+          {
+            "bytes": 19697,
+            "module": "mta_client_receive_boot",
+            "path": "candidate/receive-fc-mutex-graph-v1/runtime/mta_client_receive_boot.py",
+            "sha256": "410a92f143a8d5a44f7912f7db23a86dc8278f36a7a156672729c96f1f10a17f"
+          }
+        ],
+        [
+          34,
+          {
+            "bytes": 107104,
+            "module": "mta_client_service_owner",
+            "path": "candidate/receive-startup-20s-graph-v1/runtime/mta_client_service_owner.py",
+            "sha256": "a9d8e4812dd26cd3a573e03257ec68fdd4b065c4daddec2119a7e21d6346db6c"
+          },
+          {
+            "bytes": 107104,
+            "module": "mta_client_service_owner",
+            "path": "candidate/receive-fc-mutex-graph-v1/runtime/mta_client_service_owner.py",
+            "sha256": "781d9c59086d0b2b418fdd92ad0852fd569000e1fab7118dcbaae44e4c7e03c7"
+          }
+        ]
+      ],
+      "private": false,
+      "source": [
+        "host/formal_receive_startup_20s_v1_definition_manifest.json",
+        7937,
+        "b33bf4d703603691b4751ccc5a632cbb248c773a6e757f0687c476aae6d74503"
+      ]
+    },
+    {
+      "candidate": [
+        "host/formal_receive_fc_mutex_v1_private_source_manifest.json",
+        8162,
+        "25214a8a3af2781f7cb54ffa272a6333962add032f355794ab16c2b841621c48"
+      ],
+      "changes": [
+        [
+          24,
+          {
+            "bytes": 124769,
+            "module": "mta_client_executor",
+            "path": "candidate/receive-startup-20s-graph-v1/runtime/mta_client_executor.py",
+            "sha256": "8be9784ab137fdd4e779d8bd5bb1368381ca60e56aae737e4d3c51ede9b8d0fb"
+          },
+          {
+            "bytes": 124769,
+            "module": "mta_client_executor",
+            "path": "candidate/receive-fc-mutex-graph-v1/runtime/mta_client_executor.py",
+            "sha256": "3f046452b5600685bf250a9b6a0091feeac7632b5461f99d820f98498e5355b2"
+          }
+        ]
+      ],
+      "private": true,
+      "source": [
+        "host/formal_receive_startup_20s_v1_private_source_manifest.json",
+        8165,
+        "94e9344d76d96891b61177ac23b6ace4aa67e7754fd5e8df94288079a89fcfde"
+      ]
+    }
+  ],
+  "mechanical": [
+    {
+      "candidate": [
+        "candidate/receive-fc-mutex-graph-v1/runtime/mta_client_executor.py",
+        124769,
+        "3f046452b5600685bf250a9b6a0091feeac7632b5461f99d820f98498e5355b2"
+      ],
+      "edits": [
+        {
+          "after": "    if (directory != '/var/volatile/tmp/p011-mta-rx-mlock1-v001/runtime35' and\n",
+          "before": "    if (directory != '/var/volatile/tmp/p011-mta-rx-prep20-v001/runtime35' and\n",
+          "count": 1,
+          "name": "private_runtime_root"
+        }
+      ],
+      "functions_unchanged": false,
+      "name": "mta_client_executor",
+      "source": [
+        "candidate/receive-startup-20s-graph-v1/runtime/mta_client_executor.py",
+        124769,
+        "8be9784ab137fdd4e779d8bd5bb1368381ca60e56aae737e4d3c51ede9b8d0fb"
+      ]
+    },
+    {
+      "candidate": [
+        "candidate/receive-fc-mutex-graph-v1/runtime/mta_client_state_bridge.py",
+        21356,
+        "d5270f33a5995ca57297a5cd33a0710f03ace709bf2dc0adf3986168108fa563"
+      ],
+      "edits": [
+        {
+          "after": "PARENT_SOURCE_SHA = '3f046452b5600685bf250a9b6a0091feeac7632b5461f99d820f98498e5355b2'\n",
+          "before": "PARENT_SOURCE_SHA = '8be9784ab137fdd4e779d8bd5bb1368381ca60e56aae737e4d3c51ede9b8d0fb'\n",
+          "count": 1,
+          "name": "PARENT_SOURCE_SHA_constant"
+        }
+      ],
+      "functions_unchanged": true,
+      "name": "mta_client_state_bridge",
+      "source": [
+        "candidate/receive-startup-20s-graph-v1/runtime/mta_client_state_bridge.py",
+        21356,
+        "247714d59f500b7f2c60eb605ff0fc341301f76dccae8d058e678db20fa30562"
+      ]
+    },
+    {
+      "candidate": [
+        "candidate/receive-fc-mutex-graph-v1/runtime/mta_client_receive_factory.py",
+        99675,
+        "824ded3340e41cdf396e1f803c1371fa60ccdbde260ef4af1fd92db4e7893cbe"
+      ],
+      "edits": [
+        {
+          "after": "ASSET_ROOT = '/tmp/p011-mta-rx-mlock1-v001'\n",
+          "before": "ASSET_ROOT = '/tmp/p011-mta-rx-prep20-v001'\n",
+          "count": 1,
+          "name": "ASSET_ROOT_constant"
+        },
+        {
+          "after": "ASSET_PHYSICAL_ROOT = '/var/volatile/tmp/p011-mta-rx-mlock1-v001'\n",
+          "before": "ASSET_PHYSICAL_ROOT = '/var/volatile/tmp/p011-mta-rx-prep20-v001'\n",
+          "count": 1,
+          "name": "ASSET_PHYSICAL_ROOT_constant"
+        },
+        {
+          "after": "SOURCE_MANIFEST_SHA = '25214a8a3af2781f7cb54ffa272a6333962add032f355794ab16c2b841621c48'\n",
+          "before": "SOURCE_MANIFEST_SHA = '94e9344d76d96891b61177ac23b6ace4aa67e7754fd5e8df94288079a89fcfde'\n",
+          "count": 1,
+          "name": "SOURCE_MANIFEST_SHA_constant"
+        },
+        {
+          "after": "F_SHA = '3f046452b5600685bf250a9b6a0091feeac7632b5461f99d820f98498e5355b2'\n",
+          "before": "F_SHA = '8be9784ab137fdd4e779d8bd5bb1368381ca60e56aae737e4d3c51ede9b8d0fb'\n",
+          "count": 1,
+          "name": "F_SHA_constant"
+        }
+      ],
+      "functions_unchanged": true,
+      "name": "mta_client_receive_factory",
+      "source": [
+        "candidate/receive-startup-20s-graph-v1/runtime/mta_client_receive_factory.py",
+        99675,
+        "e1a30f457ca77321c4ebfb15644137ee9498b9fd6e94f5685991a040fdb449a5"
+      ]
+    },
+    {
+      "candidate": [
+        "candidate/receive-fc-mutex-graph-v1/runtime/mta_client_receive_boot.py",
+        19697,
+        "410a92f143a8d5a44f7912f7db23a86dc8278f36a7a156672729c96f1f10a17f"
+      ],
+      "edits": [
+        {
+          "after": "ROOT = '/tmp/p011-mta-rx-mlock1-v001'\n",
+          "before": "ROOT = '/tmp/p011-mta-rx-prep20-v001'\n",
+          "count": 1,
+          "name": "ROOT_constant"
+        },
+        {
+          "after": "PHYSICAL_ROOT = '/var/volatile/tmp/p011-mta-rx-mlock1-v001'\n",
+          "before": "PHYSICAL_ROOT = '/var/volatile/tmp/p011-mta-rx-prep20-v001'\n",
+          "count": 1,
+          "name": "PHYSICAL_ROOT_constant"
+        },
+        {
+          "after": "CLIENT_MANIFEST_SHA = '25214a8a3af2781f7cb54ffa272a6333962add032f355794ab16c2b841621c48'\n",
+          "before": "CLIENT_MANIFEST_SHA = '94e9344d76d96891b61177ac23b6ace4aa67e7754fd5e8df94288079a89fcfde'\n",
+          "count": 1,
+          "name": "CLIENT_MANIFEST_SHA_constant"
+        },
+        {
+          "after": "F37_SHA = '3f046452b5600685bf250a9b6a0091feeac7632b5461f99d820f98498e5355b2'\n",
+          "before": "F37_SHA = '8be9784ab137fdd4e779d8bd5bb1368381ca60e56aae737e4d3c51ede9b8d0fb'\n",
+          "count": 1,
+          "name": "F37_SHA_constant"
+        },
+        {
+          "after": "    ('mta_client_receive_factory', 99675, '824ded3340e41cdf396e1f803c1371fa60ccdbde260ef4af1fd92db4e7893cbe'),\n",
+          "before": "    ('mta_client_receive_factory', 99675, 'e1a30f457ca77321c4ebfb15644137ee9498b9fd6e94f5685991a040fdb449a5'),\n",
+          "count": 1,
+          "name": "mta_client_receive_factory_tuple"
+        },
+        {
+          "after": "    ('mta_client_state_bridge', 21356, 'd5270f33a5995ca57297a5cd33a0710f03ace709bf2dc0adf3986168108fa563'),\n",
+          "before": "    ('mta_client_state_bridge', 21356, '247714d59f500b7f2c60eb605ff0fc341301f76dccae8d058e678db20fa30562'),\n",
+          "count": 1,
+          "name": "mta_client_state_bridge_tuple"
+        }
+      ],
+      "functions_unchanged": true,
+      "name": "mta_client_receive_boot",
+      "source": [
+        "candidate/receive-startup-20s-graph-v1/runtime/mta_client_receive_boot.py",
+        19697,
+        "167daaa1dbf754ff03e77578e838153f9f38d1a7b32c600718a83f915553b645"
+      ]
+    },
+    {
+      "candidate": [
+        "candidate/receive-fc-mutex-graph-v1/runtime/mta_client_service_owner.py",
+        107104,
+        "781d9c59086d0b2b418fdd92ad0852fd569000e1fab7118dcbaae44e4c7e03c7"
+      ],
+      "edits": [
+        {
+          "after": "ROOT = '/tmp/p011-mta-rx-mlock1-v001'\n",
+          "before": "ROOT = '/tmp/p011-mta-rx-prep20-v001'\n",
+          "count": 1,
+          "name": "ROOT_constant"
+        },
+        {
+          "after": "BOOT_PIN = (19697, '410a92f143a8d5a44f7912f7db23a86dc8278f36a7a156672729c96f1f10a17f')\n",
+          "before": "BOOT_PIN = (19697, '167daaa1dbf754ff03e77578e838153f9f38d1a7b32c600718a83f915553b645')\n",
+          "count": 1,
+          "name": "BOOT_PIN_constant"
+        },
+        {
+          "after": "        physical = '/var/volatile/tmp/p011-mta-rx-mlock1-v001'\n",
+          "before": "        physical = '/var/volatile/tmp/p011-mta-rx-prep20-v001'\n",
+          "count": 1,
+          "name": "held_physical_root"
+        },
+        {
+          "after": "    ('mta_filecenter_companion', 35198, '44c14589ef7b6a0af98c6a3446b3bd7539640f5b7fccc23c5c9677c705ae02ca'),\n",
+          "before": "    ('mta_filecenter_companion', 33630, '8b3ab84e17de135622b3a58e29138ca556376172e6c523eb9ab22ef44f4880ba'),\n",
+          "count": 1,
+          "name": "mta_filecenter_companion_tuple"
+        }
+      ],
+      "functions_unchanged": false,
+      "name": "mta_client_service_owner",
+      "source": [
+        "candidate/receive-startup-20s-graph-v1/runtime/mta_client_service_owner.py",
+        107104,
+        "a9d8e4812dd26cd3a573e03257ec68fdd4b065c4daddec2119a7e21d6346db6c"
+      ]
+    },
+    {
+      "candidate": [
+        "candidate/receive-fc-mutex-graph-v1/runtime/mta_formal_receive_session.py",
+        79281,
+        "3264be86704d8ba467a4d949dbe7a8141c24e2a2b60d486687f4b72816ab8f36"
+      ],
+      "edits": [
+        {
+          "after": "STATE_ROOT = '/var/volatile/tmp/p011-mta-rx-mlock1-v001'\n",
+          "before": "STATE_ROOT = '/var/volatile/tmp/p011-mta-rx-prep20-v001'\n",
+          "count": 1,
+          "name": "STATE_ROOT_constant"
+        },
+        {
+          "after": "STATE_ALIAS = '/tmp/p011-mta-rx-mlock1-v001'\n",
+          "before": "STATE_ALIAS = '/tmp/p011-mta-rx-prep20-v001'\n",
+          "count": 1,
+          "name": "STATE_ALIAS_constant"
+        },
+        {
+          "after": "    ('mta_client_executor', 124769, '3f046452b5600685bf250a9b6a0091feeac7632b5461f99d820f98498e5355b2'),\n",
+          "before": "    ('mta_client_executor', 124769, '8be9784ab137fdd4e779d8bd5bb1368381ca60e56aae737e4d3c51ede9b8d0fb'),\n",
+          "count": 2,
+          "name": "mta_client_executor_tuple"
+        },
+        {
+          "after": "    ('mta_client_receive_factory', 99675, '824ded3340e41cdf396e1f803c1371fa60ccdbde260ef4af1fd92db4e7893cbe'),\n",
+          "before": "    ('mta_client_receive_factory', 99675, 'e1a30f457ca77321c4ebfb15644137ee9498b9fd6e94f5685991a040fdb449a5'),\n",
+          "count": 1,
+          "name": "mta_client_receive_factory_tuple"
+        },
+        {
+          "after": "    ('mta_client_state_bridge', 21356, 'd5270f33a5995ca57297a5cd33a0710f03ace709bf2dc0adf3986168108fa563'),\n",
+          "before": "    ('mta_client_state_bridge', 21356, '247714d59f500b7f2c60eb605ff0fc341301f76dccae8d058e678db20fa30562'),\n",
+          "count": 1,
+          "name": "mta_client_state_bridge_tuple"
+        },
+        {
+          "after": "    ('mta_client_receive_boot', 19697, '410a92f143a8d5a44f7912f7db23a86dc8278f36a7a156672729c96f1f10a17f'),\n",
+          "before": "    ('mta_client_receive_boot', 19697, '167daaa1dbf754ff03e77578e838153f9f38d1a7b32c600718a83f915553b645'),\n",
+          "count": 1,
+          "name": "mta_client_receive_boot_tuple"
+        },
+        {
+          "after": "    ('mta_client_service_owner', 107104, '781d9c59086d0b2b418fdd92ad0852fd569000e1fab7118dcbaae44e4c7e03c7'),\n",
+          "before": "    ('mta_client_service_owner', 107104, 'a9d8e4812dd26cd3a573e03257ec68fdd4b065c4daddec2119a7e21d6346db6c'),\n",
+          "count": 1,
+          "name": "mta_client_service_owner_tuple"
+        }
+      ],
+      "functions_unchanged": true,
+      "name": "mta_formal_receive_session",
+      "source": [
+        "candidate/receive-startup-20s-graph-v1/runtime/mta_formal_receive_session.py",
+        79281,
+        "fe0aa4d5b00ef071ac213056c4db6215527c0ac2df78be471b2dcc7721453554"
+      ]
+    }
+  ],
+  "mechanical_closure_count": 6,
+  "mother": [
+    "host/formal_receive_startup_20s_v1_definitions.py",
+    297239,
+    "49a56e7e809f2f515ca66735a38adf68d162aea1697e8d6a17cd74d0f68c61ca"
+  ],
+  "mutex_business": {
+    "candidate": [
+      "candidate/filecenter-media-lock-deadline-v1/receive/mta_filecenter_companion.py",
+      35198,
+      "44c14589ef7b6a0af98c6a3446b3bd7539640f5b7fccc23c5c9677c705ae02ca"
+    ],
+    "delta": [
+      "candidate/filecenter-media-lock-deadline-v1/receive/exactsource-delta.json",
+      4760,
+      "8f5d938dd5aac90374b1cf8be999756e35ba645e11f362c8726ad24c388cea35"
+    ],
+    "delta_expected": {
+      "added_methods": [
+        "_MediaLock.__init__",
+        "_MediaLock.__enter__",
+        "_MediaLock.__exit__"
+      ],
+      "all_other_definition_bytes_unchanged": true,
+      "already_acquired_lock_released_on_error": true,
+      "blocking_file_io_preemption_verified": false,
+      "candidate": {
+        "bytes": 35198,
+        "path": "candidate/filecenter-media-lock-deadline-v1/receive/mta_filecenter_companion.py",
+        "sha256": "44c14589ef7b6a0af98c6a3446b3bd7539640f5b7fccc23c5c9677c705ae02ca"
+      },
+      "changed_methods": [
+        "_FileCenterHandler.dispatch",
+        "_FileCenterHandler.media",
+        "_Companion.open_file",
+        "_Companion.media_row",
+        "_Companion.audio_source_fd"
+      ],
+      "close_method_bytes_unchanged": true,
+      "complete_ast_inverse": true,
+      "complete_byte_inverse": true,
+      "device_verified": false,
+      "fd_identity_io_http_status_unchanged": true,
+      "graph_changed": false,
+      "handler_absolute_deadline_forwarded": true,
+      "host_test_executed": false,
+      "lock_wait_slice_seconds": 0.05,
+      "new_deadline_created": false,
+      "origin": {
+        "bytes": 33630,
+        "path": "candidate/filecenter-http-parent-cap-v1/receive/mta_filecenter_companion.py",
+        "sha256": "8b3ab84e17de135622b3a58e29138ca556376172e6c523eb9ab22ef44f4880ba"
+      },
+      "original_guard_bytes_unchanged": true,
+      "owner_authority_granted": false,
+      "parent_original_until_unchanged": true,
+      "radio_operation_requested": false,
+      "replacements": [
+        {
+          "after": "\nclass _MediaLock:\n    \"\"\"Wait only within the retained parent/caller cap, without renewing it.\"\"\"\n    def __init__(self, companion, lock, deadline=None):\n        parent_until = companion.until\n        if type(parent_until) is not float or not math.isfinite(parent_until):\n            raise ValueError('original_finite_cap_required')\n        if deadline is not None and (type(deadline) is not float or not math.isfinite(deadline)):\n            raise ValueError('filecenter_finite_media_deadline_required')\n        self.companion, self.lock = companion, lock\n        self.deadline = parent_until if deadline is None else min(parent_until, deadline)\n\n    def __enter__(self):\n        while True:\n            self.companion.check()\n            remaining = self.deadline - time.monotonic()\n            if remaining <= 0: raise ValueError('filecenter_media_lock_deadline')\n            if self.lock.acquire(timeout=min(0.05, remaining)):\n                try:\n                    self.companion.check()\n                    if time.monotonic() >= self.deadline:\n                        raise ValueError('filecenter_media_lock_deadline')\n                except BaseException:\n                    self.lock.release()\n                    raise\n                return self\n\n    def __exit__(self, error_type, error, traceback):\n        self.lock.release()\n        return False\n\n\ndef _owner_binding(owner, module):\n",
+          "before": "\ndef _owner_binding(owner, module):\n",
+          "count": 1
+        },
+        {
+          "after": "self.server.companion.open_file(query.get('path', ''), deadline=self.deadline)",
+          "before": "self.server.companion.open_file(query.get('path', ''))",
+          "count": 1
+        },
+        {
+          "after": "        row = self.server.companion.media_row(query, deadline=self.deadline)\n        with _MediaLock(self.server.companion, row['lock'], self.deadline):\n",
+          "before": "        row = self.server.companion.media_row(query)\n        with row['lock']:\n",
+          "count": 1
+        },
+        {
+          "after": "    def open_file(self, path, deadline=None):\n",
+          "before": "    def open_file(self, path):\n",
+          "count": 1
+        },
+        {
+          "after": "        with _MediaLock(self, self.media_lock, deadline):\n            for row in self.media:\n",
+          "before": "        with self.media_lock:\n            for row in self.media:\n",
+          "count": 1
+        },
+        {
+          "after": "    def media_row(self, query, deadline=None):\n",
+          "before": "    def media_row(self, query):\n",
+          "count": 1
+        },
+        {
+          "after": "        with _MediaLock(self, self.media_lock, deadline):\n            rows = [row for row in self.media if row['cap'] == query['cap']]\n",
+          "before": "        with self.media_lock:\n            rows = [row for row in self.media if row['cap'] == query['cap']]\n",
+          "count": 1
+        },
+        {
+          "after": "        with _MediaLock(self, self.media_lock):\n            rows = [row for row in self.media if row['valid'] and row['kind']=='audio' and\n",
+          "before": "        with self.media_lock:\n            rows = [row for row in self.media if row['valid'] and row['kind']=='audio' and\n",
+          "count": 1
+        }
+      ],
+      "schema": "filecenter-media-lock-deadline-v1-exactsource-delta",
+      "side": "receive",
+      "unowned_lock_released": false
+    },
+    "generator": [
+      "candidate/filecenter-media-lock-deadline-v1/generate_candidate.py",
+      10637,
+      "e7e2b8e4d82e2efc8bb5bca10f9415227f946a197976cd58b9c9c26b0ad0059b"
+    ],
+    "source": [
+      "candidate/filecenter-http-parent-cap-v1/receive/mta_filecenter_companion.py",
+      33630,
+      "8b3ab84e17de135622b3a58e29138ca556376172e6c523eb9ab22ef44f4880ba"
+    ]
+  },
+  "mutex_business_closure_count": 1,
+  "native_authority_changed": false,
+  "outer_deadlines_preserved": true,
+  "owner_context_preserved": true,
+  "payload_bytes": 4193768,
+  "payload_cap": 4194304,
+  "payload_growth": 0,
+  "phone_tested": false,
+  "private_roles_exact": 34,
+  "retained_prepare20_business_closure_count": 1,
+  "rf_requested": false,
+  "root": "p011-mta-rx-mlock1-v001",
+  "schema": "p011-receive-fc-mutex-v1-graph-delta",
+  "send_graph_changed": false,
+  "startup_collector_seconds": 10.0,
+  "startup_prepare_seconds": 20.0,
+  "state_protocol_proc_native_wpa_monitor_unchanged": true,
+  "unchanged_payload_roles": 69
+}

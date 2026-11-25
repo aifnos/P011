@@ -1,0 +1,85 @@
+{
+  "additional_clock_calls": 0,
+  "additional_io_calls": 0,
+  "business_delta_count": 1,
+  "business_methods": [
+    "_live_profile"
+  ],
+  "byte_delta": 304,
+  "cache_append_count": 6,
+  "cache_field": "profile_cache",
+  "cache_initial_tuple": true,
+  "cache_labels": [
+    "python",
+    "proc",
+    "daemon",
+    "namespace",
+    "endpoint",
+    "continuity"
+  ],
+  "cached_original_last_only": true,
+  "candidate": {
+    "bytes": 99675,
+    "path": "candidate/receive-profile-cache-v1/runtime/mta_client_receive_factory.py",
+    "sha256": "7ec346f3e9e6d6339eba1f74e48464106a9aaca68072dcf4e5321d2b4e86c943"
+  },
+  "complete_ast_inverse": true,
+  "complete_byte_inverse": true,
+  "deadlines_changed": false,
+  "device_executed": false,
+  "guards_removed": false,
+  "io_boundaries_changed": false,
+  "later_definition_line_delta": 8,
+  "measured_performance_claim": false,
+  "no_other_call_or_control_delta": true,
+  "origin": {
+    "bytes": 99371,
+    "path": "candidate/receive-fc-http-cap-graph-v1/runtime/mta_client_receive_factory.py",
+    "sha256": "e1e02b700b51ca40dffc536622ab69647d58b93788b1458eb9db0f9cf017612b"
+  },
+  "other_definition_bytes_unchanged": true,
+  "permission_cache_created": false,
+  "precise_wall_time_claim": false,
+  "prospective_payload_bytes": 4193768,
+  "prospective_payload_remaining": 536,
+  "replacements": [
+    {
+      "after": "    attempt.profile_cache = ()\n    files = attempt.files\n",
+      "before": "    files = attempt.files\n",
+      "count": 1
+    },
+    {
+      "after": "    attempt.now()\n    attempt.profile_cache += (attempt.last,)\n    names = os.listdir('/proc')\n",
+      "before": "    attempt.now(); names = os.listdir('/proc')\n",
+      "count": 1
+    },
+    {
+      "after": "    attempt.profile_cache += (attempt.last,)\n    if len(found) != 1: _fail('publication_daemon_data')\n",
+      "before": "    if len(found) != 1: _fail('publication_daemon_data')\n",
+      "count": 1
+    },
+    {
+      "after": "    attempt.profile_cache += (attempt.last,)\n    namespace_rows = []\n",
+      "before": "    namespace_rows = []\n",
+      "count": 1
+    },
+    {
+      "after": "    attempt.profile_cache += (attempt.last,)\n    unix = files.read('/proc/' + str(attempt.pid) + '/net/unix', 1048576, proc=True)[0]\n",
+      "before": "    unix = files.read('/proc/' + str(attempt.pid) + '/net/unix', 1048576, proc=True)[0]\n",
+      "count": 1
+    },
+    {
+      "after": "    if not socket_refs: _fail('publication_endpoint_data')\n    attempt.profile_cache += (attempt.last,)\n",
+      "before": "    if not socket_refs: _fail('publication_endpoint_data')\n",
+      "count": 1
+    },
+    {
+      "after": "    attempt.profile_cache += (attempt.last,)\n    return {'python_exe': PYTHON, 'python_sha': python_sha,\n",
+      "before": "    return {'python_exe': PYTHON, 'python_sha': python_sha,\n",
+      "count": 1
+    }
+  ],
+  "rf_executed": false,
+  "schema": "p011-receive-profile-cache-v1-exactsource-delta",
+  "source_payload_bytes": 4193464
+}

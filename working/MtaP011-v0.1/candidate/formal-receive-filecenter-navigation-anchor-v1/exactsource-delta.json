@@ -1,0 +1,209 @@
+{
+  "schema": "p011-receive-filecenter-navigation-anchor-v1-exact-source-delta",
+  "evidence": "SOURCE_DATA_ONLY; author did not execute AST, SOURCE, tests, build or device. Ordered literal substitutions reverse byte-for-byte to the actual current anchor Runner/Worker; the 6300-byte passive observer and navigation logic come from the frozen prior navigation source. Existing 75-source graph, FC9, GUI bytes, parent caps, original smoke and finally remain outside this delta.",
+  "sources": [
+    {
+      "role": "current_anchor_runner",
+      "path": "candidate/formal-receive-startup-anchor-clock-v1/runtime/mta_formal_receive_session.py",
+      "bytes": 79238,
+      "sha256": "8bff07e82b49d5d6bd540b78dc20179ae842f417c5a3b8d12fd042770741c93b"
+    },
+    {
+      "role": "current_anchor_worker",
+      "path": "candidate/formal-receive-startup-anchor-clock-ui-v1/runtime/ui_session.py",
+      "bytes": 91436,
+      "sha256": "91a20c6b601dbe60b85652558f04de5d4aeb00c3bf84e5783e83cb058a875b94"
+    },
+    {
+      "role": "navigation_observer_donor",
+      "path": "candidate/formal-receive-filecenter-navigation-v1/runtime/mta_formal_receive_session.py",
+      "bytes": 85532,
+      "sha256": "f7a9552bc368e488a494abefcc32aaf6914d18f06ab667c3a0760e6f344ea212"
+    },
+    {
+      "role": "navigation_worker_delta_donor",
+      "path": "candidate/formal-receive-filecenter-navigation-v1/runtime/ui_session.py",
+      "bytes": 95122,
+      "sha256": "326b8719d01d6d9c94bcc4e308148ec8fe6043d9366d9082a95caedf02bf59af"
+    },
+    {
+      "role": "donor_runner_baseline",
+      "path": "candidate/formal-receive-filecenter-v1/runtime/mta_formal_receive_session.py",
+      "bytes": 79232,
+      "sha256": "c8c4a0cafe08e2f2d269fd08c4b0167978c19e4b752dc01c9687c88c0aaefa1b"
+    },
+    {
+      "role": "donor_worker_baseline",
+      "path": "candidate/formal-receive-filecenter-ui-v4/runtime/ui_session.py",
+      "bytes": 91420,
+      "sha256": "53465b7cdcd576fa689d5c08e0de38a6c53a360efa76b88563e39f0182382e18"
+    },
+    {
+      "role": "actual_gui20_validator_binding",
+      "path": "candidate/formal-receive-filecenter-navigation-anchor-v1/runtime/ui_assets.py",
+      "bytes": 12642,
+      "sha256": "a620878186a3005f36febf5487675c3031c8831fd91d5e8962660ad99466c4be"
+    }
+  ],
+  "candidates": [
+    {
+      "path": "candidate/formal-receive-filecenter-navigation-anchor-v1/runtime/mta_formal_receive_session.py",
+      "bytes": 85538,
+      "sha256": "9c5786d96a20751b97cae6c5a2d95757892a14092a3a7096ce96cec3a8ccbe40"
+    },
+    {
+      "path": "candidate/formal-receive-filecenter-navigation-anchor-v1/runtime/ui_session.py",
+      "bytes": 95247,
+      "sha256": "1c8ba7b41148d1d4261ebeb1245a99d756dfbf9228abae1a7ebada539bba4547"
+    }
+  ],
+  "replacements": [
+    {
+      "name": "retained_6300_byte_cancelled_empty_observer",
+      "file": "runtime/mta_formal_receive_session.py",
+      "before": "    def load_owner(self):\n",
+      "after": "    def original_receive_ui_cancelled_empty(self):\n        \"\"\"Observe the original unclaimed cancel outcome; never grant work.\n\n        This is distinct from original_receive_ui_idle(): the once-owned Trial\n        must already be revoked specifically by cancel. It cannot renew a cap,\n        reset the Gate, accept a Session or claim physical RF restoration.\n        State then Trial lock order matches the original action/status path.\n        Only retained fields/binds and the original HTTP thread are observed.\n        \"\"\"\n        try:\n            owner, loader, module = self.owner, self.loader, self.owner_module\n            if (type(self) is not FixedSession or owner is None or loader is None or\n                    type(module) is not types.ModuleType or\n                    type(owner) is not module.FixedStateServiceOwner or\n                    owner._startup_owner_type_original is not module.FixedStateServiceOwner or\n                    owner._startup_namespace_original is not module.__dict__ or\n                    module.FixedStateServiceOwner.__init__.__globals__ is not module.__dict__ or\n                    owner.loader is not loader or owner.worker is not self.worker or\n                    owner.pid != self.pid or owner.until is not self.until or\n                    owner.original_until is not self.until or loader._original_until is not self.until or\n                    self.receive_trial_requested is not True or\n                    self._receive_trial_requested_original is not True or\n                    owner.receive_trial_requested is not True or\n                    owner._receive_trial_requested_original is not True or\n                    owner.start_complete is not True or owner.stop_called is not False or\n                    owner.close_called is not False or\n                    owner.threads is not owner._threads_original or\n                    type(owner.threads) is not list or not owner.threads):\n                return False\n            http_ticket = owner.threads[0]\n            http_thread = owner.thread\n            if (type(http_ticket) is not dict or type(http_thread) is not threading.Thread or\n                    http_ticket.get('thread') is not http_thread or\n                    http_ticket.get('thread_original') is not http_thread or\n                    any(http_ticket.get(key) is not True for key in ('initialized', 'called', 'returned')) or\n                    http_ticket.get('unknown') is not False or http_ticket.get('failure') is not None or\n                    http_thread.is_alive() is not True):\n                return False\n            service = loader.modules.get('mta_service')\n            gate_module = loader.modules.get('mta_receive_trial')\n            state, trial = owner.state, owner.receive_trial\n            if (type(service) is not types.ModuleType or owner.service is not service or\n                    sys.modules.get('mta_service') is not service or type(state) is not service.State or\n                    state is not owner._state_original or type(gate_module) is not types.ModuleType or\n                    sys.modules.get('mta_receive_trial') is not gate_module or\n                    type(trial) is not gate_module.FixedReceiveTrial or\n                    trial is not owner._receive_trial_original or trial._lock is not trial._lock_original):\n                return False\n            with state.lock:\n                with trial._lock_original:\n                    return (service.State._receive_trial_exact(state) is True and\n                        trial is state._receive_trial_original and trial.requested is True and\n                        trial.revoked is True and trial.revoke_reason == 'cancelled' and\n                        trial.reason == 'cancelled' and trial.expired is False and trial.failure is None and\n                        type(trial.claim_count) is int and trial.claim_count == 0 and\n                        trial.claimed_operation is None and trial._claimed_operation_original is None and\n                        trial.session is None and trial._session_original is None and\n                        type(state.native_epoch) is int and type(trial._epoch) is int and\n                        state.native_epoch == trial._epoch == 0 and\n                        state.state == 'idle' and state.closing is False and\n                        state.receive_available is False and state.send_available is False and\n                        state.scan_available is False and state.operation is None and state.session is None and\n                        all(getattr(state, name) is None for name in\n                            ('helper', 'key', 'crypto', 'lease', 'transport', 'worker', 'request')) and\n                        state.discoverable is False and state.scanning is False and\n                        state.wifi_restore_pending is False and state.radio_restore_pending is False and\n                        state.accepted is False and\n                        all(type(getattr(state, name)) is list and not getattr(state, name)\n                            for name in ('history', 'received')) and\n                        all(type(getattr(state, name)) is dict and not getattr(state, name)\n                            for name in ('devices', 'peer_seen', 'transfer', 'event_counts')) and\n                        state.radio_restore_probes is trial._restore_probes and\n                        type(state.radio_restore_probes) is list and not state.radio_restore_probes and\n                        state.probe_actors is owner.probe_rows and state.probe_actors is trial.probes and\n                        type(state.probe_actors) is list and len(state.probe_actors) == 2 and\n                        len(trial._probe_prefix) == 2 and\n                        all(a is b and type(a) is dict and a.get('closed') is True\n                            for a, b in zip(state.probe_actors, trial._probe_prefix)) and\n                        type(state.cancelled) is threading.Event and\n                        type(state.decision) is threading.Event and\n                        threading.Event.is_set(state.cancelled) is True and\n                        threading.Event.is_set(state.decision) is True)\n        except (AttributeError, KeyError, TypeError, ValueError, RuntimeError):\n            return False\n\n    def load_owner(self):\n",
+      "count": 1
+    },
+    {
+      "name": "navigation_source_notice",
+      "file": "runtime/ui_session.py",
+      "before": "\"\"\"Fixed Receiver/FileCenter UI; one original 600-second service window.\n\n",
+      "after": "\"\"\"Receiver/FileCenter navigation SOURCE candidate; original service window.\n\nNot packaged: ROOT must bind the new Runner pin before any execution.\nDefault interaction can observe only the original cancelled-unclaimed-empty\nState while showing Files. This grants no receive qualification and never\nresets a Trial. smoke_only retains its original unrevoked-idle predicate.\nnavigation_test is separately selected, same launched+20 display cap, and its\nextra facts describe only passive cancellation/navigation observations.\n\nFixed Receiver/FileCenter UI; one original 600-second service window.\n\n",
+      "count": 1
+    },
+    {
+      "name": "retained_navigation_delta_3",
+      "file": "runtime/ui_session.py",
+      "before": "def _receive_ui_display_allowed(component, observe_receive):\n",
+      "after": "def _receive_ui_cancelled_empty(component):\n    \"\"\"Call only the retained new Runner observer, never a replaced helper.\"\"\"\n    retained = _RETAINED.get('navigation_observer') if type(_RETAINED) is dict else None\n    if type(retained) is not tuple or len(retained) != 3:\n        return False\n    cls, method, code = retained\n    if (type(component) is not cls or type(method) is not types.FunctionType or\n            getattr(cls, 'original_receive_ui_cancelled_empty', None) is not method or\n            method.__code__ is not code or method.__globals__.get('FixedSession') is not cls):\n        return False\n    return method(component) is True\n\n\ndef _receive_ui_display_allowed(component, observe_receive):\n",
+      "count": 1
+    },
+    {
+      "name": "retained_navigation_delta_4",
+      "file": "runtime/ui_session.py",
+      "before": "             observe_receive(component) is True) and\n",
+      "after": "             _receive_ui_cancelled_empty(component) is True or\n             observe_receive(component) is True) and\n",
+      "count": 1
+    },
+    {
+      "name": "retained_navigation_delta_5",
+      "file": "runtime/ui_session.py",
+      "before": "def run_fixed(runner_raw, artifacts, validator_raw, smoke_only=False, filecenter_sources=()):\n",
+      "after": "def run_fixed(runner_raw, artifacts, validator_raw, smoke_only=False, filecenter_sources=(),\n              navigation_test=False):\n",
+      "count": 1
+    },
+    {
+      "name": "retained_navigation_delta_6",
+      "file": "runtime/ui_session.py",
+      "before": "    need(_RETAINED is None and not any(type(name) is str and name.startswith(('mta_', 'p011_'))\n",
+      "after": "    need(type(navigation_test) is bool and not (smoke_only and navigation_test), 'navigation_profile')\n    need(_RETAINED is None and not any(type(name) is str and name.startswith(('mta_', 'p011_'))\n",
+      "count": 1
+    },
+    {
+      "name": "retained_navigation_delta_7",
+      "file": "runtime/ui_session.py",
+      "before": "    need(runner.STATE_ROOT == STATE_ROOT and runner.STATE_ALIAS == STATE_ALIAS and\n",
+      "after": "    navigation_observer = getattr(runner.FixedSession, 'original_receive_ui_cancelled_empty', None)\n    need(type(navigation_observer) is types.FunctionType and\n         navigation_observer.__globals__ is runner.__dict__, 'navigation_observer_source')\n    need(runner.STATE_ROOT == STATE_ROOT and runner.STATE_ALIAS == STATE_ALIAS and\n",
+      "count": 1
+    },
+    {
+      "name": "retained_navigation_delta_8",
+      "file": "runtime/ui_session.py",
+      "before": "                     monitor_row=None, monitor_raw=None, receive_window=window, filecenter=None)\n",
+      "after": "                     monitor_row=None, monitor_raw=None, receive_window=window, filecenter=None,\n                     navigation_observer=(runner.FixedSession, navigation_observer, navigation_observer.__code__))\n",
+      "count": 1
+    },
+    {
+      "name": "retained_navigation_delta_9",
+      "file": "runtime/ui_session.py",
+      "before": "    facts.update(filecenter_constructed=False, filecenter_credentials_issued=False,\n",
+      "after": "    if navigation_test:\n        facts.update(navigation_test_requested=True, navigation_display_seconds=20,\n                     navigation_display_finished=False, navigation_cancelled_empty_observed=False,\n                     navigation_receive_activity_free=False)\n    facts.update(filecenter_constructed=False, filecenter_credentials_issued=False,\n",
+      "count": 1
+    },
+    {
+      "name": "retained_navigation_delta_10",
+      "file": "runtime/ui_session.py",
+      "before": "        display_until = min(window[5], launched + SMOKE_DISPLAY_SECONDS) if smoke_only else window[5]\n",
+      "after": "        display_until = min(window[5], launched + SMOKE_DISPLAY_SECONDS) if (smoke_only or navigation_test) else window[5]\n",
+      "count": 1
+    },
+    {
+      "name": "retained_navigation_delta_11",
+      "file": "runtime/ui_session.py",
+      "before": "            need(_alive(_refresh(_RETAINED['guardian'])), 'guardian_missing')\n",
+      "after": "            if navigation_test:\n                facts['navigation_receive_activity_free'] = False\n                cancelled_empty = _receive_ui_cancelled_empty(component)\n                need((component.original_receive_ui_idle() is True or cancelled_empty) and\n                     trial_observed['claimed'] is False and trial_observed['claim_count'] == 0 and\n                     trial_observed['session_attached'] is False and trial_observed['expired'] is False,\n                     'navigation_receive_activity')\n                facts['navigation_cancelled_empty_observed'] = (\n                    facts['navigation_cancelled_empty_observed'] or cancelled_empty)\n                facts['navigation_receive_activity_free'] = True\n            need(_alive(_refresh(_RETAINED['guardian'])), 'guardian_missing')\n",
+      "count": 1
+    },
+    {
+      "name": "retained_navigation_delta_12",
+      "file": "runtime/ui_session.py",
+      "before": "            if ui.poll() is not None or leave or facts['interactive_window_expired'] or facts['smoke_display_finished']:\n",
+      "after": "            if navigation_test and now >= display_until:\n                facts['navigation_display_finished'] = True\n            if (ui.poll() is not None or leave or facts['interactive_window_expired'] or\n                    facts['smoke_display_finished'] or\n                    navigation_test and facts['navigation_display_finished']):\n",
+      "count": 1
+    },
+    {
+      "name": "retained_navigation_delta_13",
+      "file": "runtime/ui_session.py",
+      "before": "                           'receive_ui_smoke_finished' if facts['smoke_display_finished'] else 'ui_finished')\n",
+      "after": "                           'receive_filecenter_navigation_finished' if navigation_test and facts['navigation_display_finished'] else\n                           'receive_ui_smoke_finished' if facts['smoke_display_finished'] else 'ui_finished')\n",
+      "count": 1
+    },
+    {
+      "name": "retained_navigation_delta_14",
+      "file": "runtime/ui_session.py",
+      "before": "        _RETAINED['failures'].append(error)\n        facts['reason'] = error.code if type(error) is UiSessionError else 'session_failed'\n",
+      "after": "        if navigation_test:\n            facts['navigation_receive_activity_free'] = False\n        _RETAINED['failures'].append(error)\n        facts['reason'] = error.code if type(error) is UiSessionError else 'session_failed'\n",
+      "count": 1
+    },
+    {
+      "name": "retained_navigation_delta_15",
+      "file": "runtime/ui_session.py",
+      "before": "    # Only this scalar allowlist returns. Original failures/objects stay private.\n",
+      "after": "    if navigation_test:\n        facts['complete'] = (facts['complete'] and facts['navigation_display_finished'] and\n                             facts['navigation_cancelled_empty_observed'] and\n                             facts['navigation_receive_activity_free'] and\n                             facts['receive_trial_claimed'] is False and\n                             facts['receive_trial_claim_count'] == 0 and\n                             facts['receive_trial_session_attached'] is False)\n    # Only this scalar allowlist returns. Original failures/objects stay private.\n",
+      "count": 1
+    },
+    {
+      "name": "notice_validator_unsealed",
+      "file": "runtime/ui_session.py",
+      "before": "\"\"\"Receiver/FileCenter navigation SOURCE candidate; original service window.\n\nNot packaged: ROOT must bind the new Runner pin before any execution.\n",
+      "after": "\"\"\"Receiver/FileCenter navigation anchor SOURCE candidate; original service window.\n\nNot packaged: the new GUI validator must be sealed before any execution.\n",
+      "count": 1
+    },
+    {
+      "name": "actual_navigation_anchor_runner_pin",
+      "file": "runtime/ui_session.py",
+      "before": "RUNNER_PIN = (79238, '8bff07e82b49d5d6bd540b78dc20179ae842f417c5a3b8d12fd042770741c93b')",
+      "after": "RUNNER_PIN = (85538, '9c5786d96a20751b97cae6c5a2d95757892a14092a3a7096ce96cec3a8ccbe40')",
+      "count": 1
+    },
+    {
+      "name": "actual_navigation_gui_validator_pin",
+      "file": "runtime/ui_session.py",
+      "before": "VALIDATOR_PIN = (12518, '358d69056955b85458acbabeae28dc909a8ea1e0870862db99633566bfe6cc39')",
+      "after": "VALIDATOR_PIN = (12642, 'a620878186a3005f36febf5487675c3031c8831fd91d5e8962660ad99466c4be')",
+      "count": 1
+    },
+    {
+      "name": "actual_gui_session",
+      "file": "runtime/ui_session.py",
+      "before": "SESSION = '1293b528d39ff32746dbe196'",
+      "after": "SESSION = 'a87de5c1d0e0b90b35bb2a91'",
+      "count": 1
+    },
+    {
+      "name": "exclusive_navigation_anchor_control",
+      "file": "runtime/ui_session.py",
+      "before": "CONTROL_NAME = 'p011-mta-ui-session-' + SESSION + '-formal-receive-startup-anchor-clock-ui-v1'",
+      "after": "CONTROL_NAME = 'p011-mta-ui-session-' + SESSION + '-formal-receive-filecenter-navigation-anchor-v1'",
+      "count": 1
+    },
+    {
+      "name": "explicit_navigation_only_candidate_argv",
+      "file": "runtime/ui_session.py",
+      "before": "            ui = subprocess.Popen([CANDIDATE, '-platform', 'wayland'], stdin=stdin,\n",
+      "after": "            ui = subprocess.Popen([CANDIDATE, '-platform', 'wayland'] +\n                                  (['--p011-mta-navigation-qt-test-v1'] if navigation_test else []), stdin=stdin,\n",
+      "count": 1
+    }
+  ]
+}

@@ -1,0 +1,67 @@
+CLIENT STATUS V35 - SOURCE ONLY; NO INVOCATION BY THIS AUTHOR
+
+Original immutable baseline:
+  candidate/client-cancel-v32-r2/runtime/mta_client_linux_provider.py
+  c4274b398285853325a7e9a8109e3ddff3de23d0e04d87e44d25e980663fa4e1 / 160257 bytes
+
+Frozen isolated Provider:
+  candidate/client-status-v35/runtime/mta_client_linux_provider.py
+  3393663e4e286bd327708cd6e9ed3505cbcd133c89319906a38f70e4000e229b / 174159 bytes
+
+Fixed source manifest:
+  host/client_status_v35_source_manifest.json
+  1968909869e20a3f1db02d6cae80b2b919435fa025c041fc5f3702493e14eb2f / 8057 bytes
+  Parent b5acd21f1a25d4e70ad357afb4ea18e7269381212d3de127e25e713d524641af.
+  35 entries: only Provider replaced; other 34 original entries unchanged.
+
+Unique new affected method:
+  ClientStatusV35Tests.test_actual_f_receive_status_once_original_context_and_phase_budget
+  tests/test_client_status_v35.py
+  bdb64b4a1c782c026c3adc1dc053938a7e9aa60fe9115c6d702fb310126151ff / 89016 bytes
+
+Fixed PC checker:
+  host/client_status_v35_check.py
+  9eb8c71ebb37dc236a6768a314c76643482173e1950e765438f7f838d746fb22 / 30516 bytes
+
+Provider source delta:
+  - Constructor retains bounded private STATUS history and one active original.
+  - Only b'STATUS', event False, synchronous reply True and poll False qualify.
+  - Actual send-entry full context/channel gate is retained, then the private
+    original is inventoried before the send. Actual send return is retained.
+  - Receive entry consumes that original once; a validation failure also uses
+    the attempt. Exact current worker/owned native RLock, native Store/Lease,
+    canonical and issuance originals, epochs/device/binding/command/transaction,
+    child and original FD/endpoints/anchors, native peer/Transfer fixed scopes,
+    cancellation and original absolute until are checked without recursive Proc.
+  - The original anchor, descriptor, endpoint and credential checks remain live.
+  - Post-packet full gate remains native and reissues its actual current context.
+    Only that real context may subsequently issue an AssociationReceipt.
+  - Finally revokes the original and clears active state on all outcomes. This
+    is not a physical close or restoration fact; unknown resource inventory and
+    native closed_facts/FinishReceipt requirements are unchanged.
+  - Writes, ATTACH, standalone event/poll and independent exchanges remain full.
+  - No new TTL/profile, quota, clock increment, credit refund, or RF grant.
+
+HOST source scope:
+  Original v32-r3 fixed fixture and all existing lifecycle assertions are copied,
+  not invoked as an old method. Observer wrappers only retain inclusive native
+  resource counts, call the actual original method, preserve its return/exception,
+  and record final counts. The four real Transfer full stages are not removed.
+  Counts overlap between nesting levels and are not physical FD quantities.
+  One strictly typed numeric stdout marker is permitted. Failure raw remains
+  private; success requires the original method assertions, exact Ran1/OK, exit0,
+  fixed snapshot identities, and reviewed counts. No method was run by author.
+
+Independent unresolved item:
+  Known reserve-before-generation exhaustion may be remapped by Pending/Coord
+  into sticky unknown and then Store.resource_pending, blocking native cleanup.
+  This candidate does not alter that exception chain, clear unknown, or claim
+  that a happy-path performance result would verify that failure restoration.
+
+Not included / not verified:
+  - cap33/v34/combined changes; ticket-negative boundary method.
+  - new target imports, AST, algorithm or HOST execution by this author.
+  - physical F/Parent spawn/wait, Linux RF/socket/TCP/TLS, actual deployment.
+  - P011 access, transfer/restoration, Xiaomi15Ultra native interoperability.
+  - production send/receive availability; State gate remains unavailable.
+  Root owns the first affected invocation and evidence reconciliation.

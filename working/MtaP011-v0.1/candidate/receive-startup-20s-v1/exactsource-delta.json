@@ -1,0 +1,54 @@
+{
+  "additional_clock_calls": 0,
+  "additional_io_calls": 0,
+  "alarm240_changed": false,
+  "all_class_function_bytes_unchanged": true,
+  "all_class_function_position_ast_unchanged": true,
+  "automatic_phone_window_requested": false,
+  "business_constants": [
+    "STARTUP_READ_SECONDS"
+  ],
+  "business_delta_count": 1,
+  "business_methods": [],
+  "byte_delta": 0,
+  "candidate": {
+    "bytes": 99675,
+    "path": "candidate/receive-startup-20s-v1/runtime/mta_client_receive_factory.py",
+    "sha256": "32784fee80f5e74d8e49e4a517e5dc5d45f297c0ad2f5bad42b343b81872da4d"
+  },
+  "complete_ast_inverse": true,
+  "complete_byte_inverse": true,
+  "device_executed": false,
+  "guards_removed": false,
+  "host250_changed": false,
+  "independent_candidate_only": true,
+  "io_boundaries_changed": false,
+  "later_definition_line_delta": 0,
+  "measured_performance_claim": false,
+  "origin": {
+    "bytes": 99675,
+    "path": "candidate/receive-profile-cache-graph-v1/runtime/mta_client_receive_factory.py",
+    "sha256": "3f0ca3d039301a221fce10b5b72cb50e0bf6d374298656879ff748de61ec5cf5"
+  },
+  "original_10s_sources_and_history_unchanged": true,
+  "original_factory_prepare_seconds_changed": false,
+  "outer_60_plus_60_caps_changed": false,
+  "permission_cache_created": false,
+  "proc_dispatch_candidate_integrated": false,
+  "profile_cache_changed": false,
+  "prospective_payload_bytes": 4193768,
+  "prospective_payload_remaining": 536,
+  "replacements": [
+    {
+      "after": "STARTUP_READ_SECONDS = 20.0\n",
+      "before": "STARTUP_READ_SECONDS = 10.0\n",
+      "count": 1
+    }
+  ],
+  "rf_executed": false,
+  "schema": "p011-receive-startup-20s-v1-exactsource-delta",
+  "source_payload_bytes": 4193768,
+  "stage_close_caps_changed": false,
+  "startup_prepare_seconds_after": 20.0,
+  "startup_prepare_seconds_before": 10.0
+}

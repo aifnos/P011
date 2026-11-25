@@ -1,0 +1,144 @@
+{
+  "version": 1,
+  "kind": "client-connect-v14-source-only",
+  "sources": [
+    {
+      "module": "p011_json",
+      "path": "runtime/p011_json.py",
+      "sha256": "fb6c803b185283258c2312e630df8bb80d6299007e95a1f3cf31250aa0e8ca88",
+      "bytes": 8061
+    },
+    {
+      "module": "mta_ip",
+      "path": "runtime/mta_ip.py",
+      "sha256": "1fa5e72817772285fd966f52c57af105950ff0d3b6ea49b202983aebfbab40c5",
+      "bytes": 22049
+    },
+    {
+      "module": "mta_client_tmp_alias",
+      "path": "candidate/client-tmp-alias-v11/runtime/mta_client_tmp_alias.py",
+      "sha256": "1a4a52bd0bae7add6ae42f66bd9827c43865a0170c666eaab00797d1f45f7f2f",
+      "bytes": 8827
+    },
+    {
+      "module": "mta_p2p_client_init",
+      "path": "candidate/client-caps-v7/runtime/mta_p2p_client_init.py",
+      "sha256": "bb22e43ec191c04624e009539f954a9bcbb7b98520fb32adf6fd4f18f4e8139a",
+      "bytes": 61503
+    },
+    {
+      "module": "mta_client_proc",
+      "path": "runtime/mta_client_proc.py",
+      "sha256": "2f0ef52379be897d47b5cb311ef90f24b5c8a2c283e72780f139a8dd77626591",
+      "bytes": 25511
+    },
+    {
+      "module": "mta_client_caps",
+      "path": "runtime/mta_client_caps.py",
+      "sha256": "c1792c2294fed5da16ec4a676423fbcbe53d44e9bc4ddadc1bc26fd45afe046c",
+      "bytes": 11821
+    },
+    {
+      "module": "mta_client_caps_transport",
+      "path": "runtime/mta_client_caps_transport.py",
+      "sha256": "df6b4cf3ede6039c684c6b689a8b61ffe1ba5b87259bb4a5581aa5c3ece84420",
+      "bytes": 19614
+    },
+    {
+      "module": "mta_client_baseline",
+      "path": "candidate/client-readparts-v6/runtime/mta_client_baseline.py",
+      "sha256": "1df29147a9cface972c9a2f486fee45c0f33d7979c6ad49dd02cdc330fe9dcc1",
+      "bytes": 29412
+    },
+    {
+      "module": "mta_client_journal_codec",
+      "path": "runtime/mta_client_journal_codec.py",
+      "sha256": "17d362826a90da7fe9d77a82495a34bbc56b4c67aaca608aa5565ee1d3369f73",
+      "bytes": 14431
+    },
+    {
+      "module": "mta_client_coordination",
+      "path": "candidate/client-tmp-alias-v11/runtime/mta_client_coordination.py",
+      "sha256": "930e56d35ebf08d0b1c83fe7ccab843cbe6520ecd68c0799e9a07b2bbe40823f",
+      "bytes": 35591
+    },
+    {
+      "module": "mta_client_files",
+      "path": "candidate/client-tmp-alias-v11/runtime/mta_client_files.py",
+      "sha256": "8bb891db2ec7d34a40420aef9633ef1c6798f93788bbe240732b1a0c4624b1f6",
+      "bytes": 25415
+    },
+    {
+      "module": "mta_client_pending",
+      "path": "candidate/client-recovery-budget-v8/runtime/mta_client_pending.py",
+      "sha256": "cfba740700268d5998eb3a91bf7cdc34d893fa8f0083377d716ea98950c3f5af",
+      "bytes": 42432
+    },
+    {
+      "module": "mta_client_store",
+      "path": "candidate/client-recovery-budget-v8/runtime/mta_client_store.py",
+      "sha256": "2c1bcd60013e416fe4d0ef961ceef3bc700ceae6bc40c4c079bab0a663b411cb",
+      "bytes": 50690
+    },
+    {
+      "module": "mta_client_process_owner",
+      "path": "candidate/client-init-nlink2/runtime/mta_client_process_owner.py",
+      "sha256": "219156a42a6598fb3e6669f191c269bfe3ac75da8f2f95190fb23b3867794b76",
+      "bytes": 27057
+    },
+    {
+      "module": "mta_client_launch_registration",
+      "path": "runtime/mta_client_launch_registration.py",
+      "sha256": "833d46f5717e0b7e9db0c5392a0eb93d812d039b4b946a57d49d5903534a1aa0",
+      "bytes": 21679
+    },
+    {
+      "module": "mta_client_two_phase_lease",
+      "path": "candidate/client-diagnostic-v12/runtime/mta_client_two_phase_lease.py",
+      "sha256": "03210b8c83df82993a0322398169f1ac42836d52ab8e3add92617c34b9191bad",
+      "bytes": 26626
+    },
+    {
+      "module": "mta_p2p_client_ctrl",
+      "path": "runtime/mta_p2p_client_ctrl.py",
+      "sha256": "793b784f1b39eca18001aa65a1f0d6cdbd6de466dc58b3cf2ada167f71d902b5",
+      "bytes": 18712
+    },
+    {
+      "module": "mta_client_wpa_status",
+      "path": "runtime/mta_client_wpa_status.py",
+      "sha256": "4f0fa75132c8c81427f1d593fdc415b01657b061cd9d1dbcbcde789b52daf742",
+      "bytes": 39045
+    },
+    {
+      "module": "mta_protocol",
+      "path": "runtime/mta_protocol.py",
+      "sha256": "4f7c2bd46cde114f0a2a0c33b31631aa463f09e71b156d26e34daf2251dd8a57",
+      "bytes": 17958
+    },
+    {
+      "module": "mta_client_control_frame",
+      "path": "candidate/client-connect-v13/runtime/mta_client_control_frame.py",
+      "sha256": "b20d72f17197132820d3be765cbc2e3c2a41d8256e4bdaeeb5e23f441c065b4f",
+      "bytes": 11615
+    },
+    {
+      "module": "mta_client_connection",
+      "path": "candidate/client-connect-v14/runtime/mta_client_connection.py",
+      "sha256": "6ea9c395669ccb321011ea195095e3868a3f3d7e3ad5a02cb97cab4d1a591eb0",
+      "bytes": 13787
+    },
+    {
+      "module": "mta_client_linux_provider",
+      "path": "candidate/client-connect-v14/runtime/mta_client_linux_provider.py",
+      "sha256": "4683e4ddc0e9b41adb44c028fb9dd102a63e3b62180e9f7e011fa1508414218c",
+      "bytes": 95392
+    },
+    {
+      "module": "mta_client_executor",
+      "path": "candidate/client-connect-v14/runtime/mta_client_executor.py",
+      "sha256": "8a32cae89c01346072836294935201032a49758aa6316a829b7100b22bc6cf40",
+      "bytes": 68631
+    }
+  ]
+}

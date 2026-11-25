@@ -1,0 +1,45 @@
+{
+  "device_executed": false,
+  "inputs": [
+    [
+      "host/device_receive_proc_freezer_v1_startup_check.py",
+      18436,
+      "e92a65f81bf1a2ad729b03b5c82579c81cc7c5c496ff5d33ae7817dc6590ac0b"
+    ],
+    [
+      "host/formal_receive_publication_progress_v1_definitions.py",
+      123101,
+      "3ae9820d752c9ed2d7ea582ece3ae6e248a9a69596e047e2a3dd5ed6ae294e49"
+    ],
+    [
+      "candidate/receive-publication-progress-graph-v1/generate_startup_host.py",
+      7392,
+      "3ee6c5a564df899ed38f129160769775171a409750ff77f21c3b02a7aee175db"
+    ]
+  ],
+  "original_full_byte_ast_inverse": true,
+  "output_pins": [
+    [
+      "host/device_receive_publication_progress_v1_startup_check.py",
+      18494,
+      "f47479a85dd54dd1e192509dfe125d1da336edae20a4cd607fa24e5cca02dadf"
+    ],
+    [
+      "HOST_MTA_RECEIVE_PUBLICATION_PROGRESS_V1_STARTUP_CHECK.cmd",
+      157,
+      "2aeb98f4083c34ffa20a4b59acfd2a8120161e289c7b3168a08e92522004a140"
+    ],
+    [
+      "TEST_MTA_RECEIVE_PUBLICATION_PROGRESS_V1_STARTUP.cmd",
+      172,
+      "19c881191f3768c3ea7a991c00a8a47b018caa71d60f00c877bd086bc6377f14"
+    ],
+    [
+      "candidate/receive-publication-progress-graph-v1/startup-host-exactsource-delta.json",
+      3364,
+      "ba65e0faceca6f3b691de6cbca2fb71355360d8e91f8e03d1548e40385ce38b0"
+    ]
+  ],
+  "schema": "publication-progress-startup-host-generation",
+  "tests_executed": false
+}

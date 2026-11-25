@@ -1,0 +1,117 @@
+P011 static source staging v40-r2 — SOURCE ONLY, not executed
+
+Workspace: D:\project\P011\working\MtaP011-v0.1
+No candidate algorithm, import, AST, checker, ADB, target write or RF operation
+was run by this author. ROOT owns the first source/AST/default check and any
+explicit single physical static-stage invocation. No hardware PASS is claimed.
+
+Frozen new sources
+1. candidate/client-static-stage-v40-r2/runtime/mta_client_static_stage.py
+   30601 bytes
+   SHA256 64773fe9a3c75f9cce8e9938dc8f9dc1d4914e4d00728dcef728d686b90ba0a2
+2. host/client_static_stage_v40_r2_p011.py
+   28215 bytes
+   SHA256 bd48a8a0987e109fc6714e2f00686796a557f19c9edcd96a57cc458445c41f4f
+
+Historical v40 sources remain byte-identical and were not executed
+- Stage e0b4b1d596ca629024cebef6fbee53218bbbc26ad53a1a2d163d36d6bb40c3e0 /28860
+- HOST 661d3392088690d1e8db3cf42f3a30a8b7ca71193353c5bf83e2545b9f096bd6 /27969
+- Their prior SOURCE-HANDOFF and all retained stages/results are unchanged.
+
+Exact affected source boundaries
+Stage delta: header; directory() cap directly before/after actual mkdir;
+close_row() original owner/row binding and stable file close identity;
+publish() initial original close identity, chmod-attempt inventory and original
+cap checks before/after write/read/fstat boundaries, file fsync/lseek/fchmod;
+stage() directory fsync before/after original-cap checks; private inventory
+includes close_identity/close_mode/close_observed/chmod_attempted/returned.
+StaticStagingTask and fixed source pins are unchanged.
+HOST delta: header, new exact Stage path/SHA/bytes, PC SOURCE schema and private
+result directory prefix. TARGET_BODY, typed V40 markers and fields, selection,
+shell exact-length stdin, 512-character Base64 chunks, original payloads,
+150s HOST timeout, flags and public ZIP contract are unchanged.
+
+Known FD closure correction
+The first actual valid fstat of each new EXCL regular root-owned nlink1 file
+records original (dev, ino, S_IFMT(mode), uid, gid, nlink). Business publication
+continues to demand exact written bytes/count, full metadata/size, readback,
+fsync and sealed anchored metadata. Publication failure is never success.
+Cleanup separately fresh-fstats the retained original FD, verifies that stable
+identity, original row inventory and same exact Task/Writer/clock/cap object,
+worker/PID. Current size must pass original executor._meta unsigned validation
+but may differ after a partial write. Allowed current mode is only initial
+0600, or this file's original 0400/0500 target after chmod_attempted was recorded
+immediately before the actual fchmod syscall. Target400 cannot borrow target500
+and no arbitrary mode/owner/type/link change is accepted.
+Physical identity/read/close/EBADF uncertainty stays sticky unknown/pending.
+The actual close is once-only and followed by actual fresh EBADF proof. Known
+original FD close does not call the expired active clock; expiry still rejects
+every later publication operation/result. Data/IO/durability failure preserves
+the original Task error and partial files; it does not erase unknown, delete,
+retry, declare a static package or authorize another write.
+
+Original deadline correction
+One original task until is captured before factories, max120s. Each of two
+actual original readonly owners gets once min(original_until, now+30s).
+Nothing renews original task/phase until. Every file fsync/lseek/fchmod and
+directory fsync has original owner/cap check directly before and after the
+syscall; EXCL file open/mkdir have a direct pre-mutation check. A returned-late
+write/read/fstat cannot lead into another seal/sync/mutation. Same-worker/PID
+known FD closure remains available after expiry, not a business success path.
+
+Fixed graphs remain distinct
+Actually loaded readonly 35 definitions:
+  host/client_integrated_v37_source_manifest.json
+  SHA256 4b9ea54997194ca895a3459cf88cd715b2ccc05e46c55b533920f8182314d07a /8077
+Original actual readonly leaf:
+  candidate/client-readonly-baseline-v39/runtime/mta_client_readonly_baseline.py
+  SHA256 cd4c3ef940ef12783dd0b91aba2805a4f4cbe50f2fe2bdccbddaa1db32f4b7ff /13811
+Only staged native byte graph:
+  host/client_refusal_prescreen_v38_source_manifest.json
+  SHA256 0ea4db9b3ac41d1036d5796602db48b7740f6c51f1f0281604d6d8ebeb19319c /8084
+Only changed staged Pending bytes (never executed by this static task):
+  14e85b8297868a7a07d964a598bc3cbc665e1e6cf19d615466e165386a27f524 /57246
+Original WPA bytes are staged, never started:
+  e069aef76a089215367f502015266e9ce59cf4ebb7d7246974815ff60d67f301 /1351192
+Fixed PC source reader b5659c2af52a4af99fc28882d2f53c73847d584a2f92201f77f3ab1e34142bdf
+is loaded only as definitions with private __name__, not its old main.
+
+Physical static-stage contract (future explicit invocation only)
+Default HOST call is PC SOURCE-only and never invokes ADB. Physical staging
+requires together --stage-sources, the exact reviewed new HOST SHA above,
+and --transport-id from one fresh uniquely identified P011 enumeration.
+The fixed ADB binary pin is checked; emulators and ambiguous transports reject.
+At most one target shell/length-delimited stdin invocation; no exec-out fallback,
+retry, repair, old main, deployment launch, reset or source-path self-selection.
+ROOT must first review the exact new source and source hashes. A previous saved
+readonly PASS is not an input grant. This task itself constructs, retains,
+collects and closes the two fresh original readonly owners under its original
+cap; stock3/current device identity/full two-round baseline/PENDING are actual.
+
+Append-only scope and failure behavior
+ROOT stays the native fixed /tmp/p011-mta-client-rfinit via authenticated actual
+tmp aliases. Existing private root must already be0700 and inode-authenticated;
+it is neither created, chmoded nor repaired. Bounded original root entry names
+and anchored nofollow metadata are retained. Only one fresh client-token child
+is mkdir EXCL, then new runtime/native/ctrl and 38 files: fixed35 sources, WPA,
+candidate.json and static-source.json. Every file is EXCL, fsync/readback/sealed.
+Final root set equals original entries plus new token, with every old entry
+metadata unchanged. No old subtree is opened/read, no old entry overwritten,
+deleted, renamed or chmoded. No user Received directory is touched.
+Failure/timeout leaves partial new token directory unchanged. Original stdout,
+stderr, HOST exit and observed remote exit/markers are retained privately;
+attempted payload differs from observed STARTED. Public four-entry ZIP is
+limited typed status/source pins/README/checksums, excludes private identities,
+IP/process/source/raw evidence. Failure does not auto-delete or re-stage.
+
+Nonclaims / unfinished layers
+device_exclusive_lease=false; rf_admission=false; source_factory_ready=false;
+deployment_available=false; send_available=false; receive_available=false;
+parent_started=false; rf_requested=false; phone_tested=false;
+restoration_verified=false. Pending absence, entry/baseline checks are observed
+facts, not atomic exclusion. No global lock/Coord lease, deployment.json,
+LoadedDeployment, Handoff, F/Parent/watchdog, wireless scan/join/pair/GO, grant,
+TCP/TLS/file transfer, recovery or Xiaomi15Ultra interoperability is performed.
+The source package alone cannot flip production UI availability. Formal startup
+still needs independently audited original lifecycle/locks/fresh baseline,
+deployment source authentication and genuine peer/user confirmation/closure.

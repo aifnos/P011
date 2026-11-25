@@ -1,0 +1,39 @@
+--- a/src/drivers/driver_nl80211.c
++++ b/src/drivers/driver_nl80211.c
+@@ -3487,6 +3487,7 @@
+ 	int send_rfkill_event = 0;
+ 	enum nl80211_iftype nlmode;
+ 	bool first = drv->first_bss == bss;
++	bool mta_private_initial = false;
+ 
+ 	bss->ifindex = if_nametoindex(bss->ifname);
+ 	if (first)
+@@ -3539,6 +3540,20 @@
+ 	if (driver_params && nl80211_set_param(bss, driver_params) < 0)
+ 		return -1;
+ 
++#ifdef CONFIG_P2P
++	/* Project-only lease: never claim or retune the original wlan0. */
++	if (driver_params && os_strstr(driver_params, "mta_p2p_initial=1")) {
++		if (os_strlen(bss->ifname) != 11 ||
++		    os_strncmp(bss->ifname, "mta", 3) != 0 ||
++		    strspn(bss->ifname + 3, "0123456789abcdef") != 8 ||
++		    !is_p2p_net_interface(nl80211_get_ifmode(bss)))
++			return -1;
++		mta_private_initial = true;
++		/* Use only the leased netdev, not an implicitly owned wdev. */
++		drv->capa.flags &= ~WPA_DRIVER_FLAGS_DEDICATED_P2P_DEVICE;
++	}
++#endif /* CONFIG_P2P */
++
+ 	wpa_printf(MSG_DEBUG, "nl80211: interface %s in phy %s",
+ 		   bss->ifname, drv->phyname);
+ 
+@@ -3559,6 +3574,6 @@
+ 	if (drv->hostapd || bss->static_ap)
+ 		nlmode = NL80211_IFTYPE_AP;
+-	else if (bss->if_dynamic ||
++	else if (mta_private_initial || bss->if_dynamic ||
+ 		 nl80211_get_ifmode(bss) == NL80211_IFTYPE_MESH_POINT)
+ 		nlmode = nl80211_get_ifmode(bss);
+ 	else

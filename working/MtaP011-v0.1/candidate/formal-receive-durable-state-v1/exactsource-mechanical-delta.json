@@ -1,0 +1,765 @@
+{
+  "business": [
+    {
+      "candidate": [
+        "candidate/receive-durable-result-v1/runtime/mta_storage.py",
+        56595,
+        "365490e2dfe8a2c65d2b38fc8ae1a49747d09ed3b127677e9fe61e69866052d0"
+      ],
+      "name": "mta_storage",
+      "proof": [
+        "candidate/receive-durable-result-v1/exactsource-delta.json",
+        4371,
+        "78c9861b737f7d3a598805283e3cfdd1bd523a510a9140542a0e387838cd0485"
+      ],
+      "replacements": [
+        {
+          "after": "        self._bound_failure, self._root_fd = None, None\n        self._durable_result = None\n",
+          "before": "        self._bound_failure, self._root_fd = None, None\n",
+          "count": 1,
+          "name": "mta_storage_business_0"
+        },
+        {
+          "after": "    def durable_result(self):\n        \"\"\"Historical durable publication, not success/closure/peer authority.\n\n        Only the bound lane records this after actual CRC, directory binding\n        and fsync checks. A fresh plain copy cannot renew a cap or imply that\n        the directory is currently intact. Late failure/cancel remains failure.\n        \"\"\"\n        value = self._durable_result\n        if value is None:\n            return None\n        task, directory, files, count, size = value\n        return dict(taskId=task, directory=directory, files=list(files),\n                    fileCount=count, totalSize=size, peer_ack_verified=False)\n\n    def _bound_space(self, needed):\n",
+          "before": "    def _bound_space(self, needed):\n",
+          "count": 1,
+          "name": "mta_storage_business_1"
+        },
+        {
+          "after": "                for entry in result_entries:\n                    entry['published'] = True\n                # Retain the actual durable point before fallible close/cancel.\n                # This never turns the following failure into a successful run.\n                self._durable_result = (task_id,\n                    os.path.join(self.root, _public_name(result_dir['name'])),\n                    tuple(committed), len(committed), total)\n                for row in reversed(self._bound_rows):\n",
+          "before": "                for entry in result_entries:\n                    entry['published'] = True\n                for row in reversed(self._bound_rows):\n",
+          "count": 1,
+          "name": "mta_storage_business_2"
+        }
+      ],
+      "source": [
+        "candidate/receive-directory-fd-v1/runtime/mta_storage.py",
+        55562,
+        "ea3d3df1177019125c9b3124b8ebaf33196dd1013db95ac24580e1fe1a96c8d1"
+      ]
+    },
+    {
+      "candidate": [
+        "candidate/receive-durable-result-v1/runtime/mta_transport.py",
+        41435,
+        "9b05ef49059e9b06536de32186e7de1cfd531461d3e096eb266d49f760069f8e"
+      ],
+      "name": "mta_transport",
+      "proof": [
+        "candidate/receive-durable-result-v1/exactsource-delta.json",
+        4371,
+        "78c9861b737f7d3a598805283e3cfdd1bd523a510a9140542a0e387838cd0485"
+      ],
+      "replacements": [
+        {
+          "after": "from mta_storage import DirectoryBinding, SafeZipReceiver\n",
+          "before": "from mta_storage import DirectoryBinding\n",
+          "count": 1,
+          "name": "mta_transport_business_0"
+        },
+        {
+          "after": "                original_receiver,original_binding=self.receiver,self.directory_binding\n                before=(SafeZipReceiver.durable_result(original_receiver)\n                    if type(original_receiver) is SafeZipReceiver else None)\n                try:\n                    result=original_receiver.receive(resource.path,request['taskId'],self.cancelled,\n                        progress=file_progress,expected_files=request['fileCount'],\n                        expected_bytes=request['totalSize'],archive_resource=resource)\n                except BaseException:\n                    # Only a new same-request publication from this bound call.\n                    # Keep the original failure, never fabricate a peer ACK.\n                    if (before is None and self.receiver is original_receiver and\n                            self.directory_binding is original_binding and\n                            type(original_receiver) is SafeZipReceiver and\n                            original_receiver.directory_binding is original_binding):\n                        saved=SafeZipReceiver.durable_result(original_receiver)\n                        if (saved is not None and saved['taskId']==request['taskId'] and\n                                saved['fileCount']==request['fileCount'] and\n                                saved['totalSize']==request['totalSize']):\n                            self.local_commit_result=saved\n                    raise\n",
+          "before": "                result=self.receiver.receive(resource.path,request['taskId'],self.cancelled,\n                    progress=file_progress,expected_files=request['fileCount'],\n                    expected_bytes=request['totalSize'],archive_resource=resource)\n",
+          "count": 1,
+          "name": "mta_transport_business_1"
+        }
+      ],
+      "source": [
+        "candidate/receive-directory-clock-v2/runtime/mta_transport.py",
+        40223,
+        "171efb7cdfabbe4ea826afc03df6b401d1ee2b55cf23810e1fc7fb7b11f89826"
+      ]
+    },
+    {
+      "candidate": [
+        "candidate/receive-durable-state-v1/runtime/mta_client_control_frame.py",
+        21203,
+        "66eae58a95eaf8344934d15aca2685de1c176b8408a56786995e9f9078c6032c"
+      ],
+      "name": "mta_client_control_frame",
+      "proof": [
+        "candidate/receive-durable-state-v1/exactsource-control-bridge-delta.json",
+        4478,
+        "41b1cd371fb5908e0292c42e6debc6b0238e2ca7195eb78922534c40bbcff4db"
+      ],
+      "replacements": [
+        {
+          "after": "                payload['outcome'] not in ('committed', 'saved_failed', 'refused', 'confirmation_timeout',\n                    'cancelled', 'unavailable', 'failed') or type(payload['peer_ack_verified']) is not bool or\n                not _uint(payload['file_count'], 0, 256) or\n                not _uint(payload['total_size'], 0, 512 * 1024 * 1024) or\n                payload['task_id'] != '' and not _task(payload['task_id']) or\n                payload['outcome'] not in ('committed', 'saved_failed') and\n                    (payload['file_count'] != 0 or payload['total_size'] != 0 or payload['peer_ack_verified'])):\n            _fail('invalid_frame')\n        if payload['outcome'] == 'saved_failed' and (sequence == 0 or payload['task_id'] == '' or\n                payload['file_count'] == 0 or payload['peer_ack_verified'] is not False):\n            _fail('invalid_frame')\n",
+          "before": "                payload['outcome'] not in ('committed', 'refused', 'confirmation_timeout',\n                    'cancelled', 'unavailable', 'failed') or type(payload['peer_ack_verified']) is not bool or\n                not _uint(payload['file_count'], 0, 256) or\n                not _uint(payload['total_size'], 0, 512 * 1024 * 1024) or\n                payload['task_id'] != '' and not _task(payload['task_id']) or\n                payload['outcome'] != 'committed' and\n                    (payload['file_count'] != 0 or payload['total_size'] != 0 or payload['peer_ack_verified'])):\n            _fail('invalid_frame')\n",
+          "count": 1,
+          "name": "saved_failed_result_contract"
+        }
+      ],
+      "source": [
+        "candidate/client-integrated-v37/runtime/mta_client_control_frame.py",
+        20942,
+        "d1a8fce91ab705524f14edac8d81e8d391c0cddbf8f4ac96ee7a6446c0512278"
+      ]
+    },
+    {
+      "candidate": [
+        "candidate/receive-durable-state-v1/runtime/mta_client_executor.py",
+        124794,
+        "3882f633913567905c501c888a7ae80dba55615ee2f5ab9b297d016f469f6fcc"
+      ],
+      "name": "mta_client_executor",
+      "proof": [
+        "candidate/receive-durable-state-v1/executor-exactsource-delta.json",
+        8762,
+        "2bfc151c9203df0403aad08349079b473fd64907e954ccb112c370268138083f"
+      ],
+      "replacements": [
+        {
+          "after": "        self.receive_failure_original, self.receive_terminal_failures = None, []\n        self._saved_failure_originals = None\n        self._saved_failure_emit_attempted = False\n",
+          "before": "        self.receive_failure_original, self.receive_terminal_failures = None, []\n",
+          "count": 1,
+          "name": "mta_client_executor_business_0"
+        },
+        {
+          "after": "    def _retain_saved_failure(self, failure, owner, receiver, until):\n        \"\"\"Original failed bound receive facts only; no active authority/IO.\"\"\"\n        modules = self.deployment.modules\n        ticket, prompt, decision = self.receive_ticket, self.receive_prompt, self.receive_decision\n        if (self._saved_failure_originals is not None or self._rx_terminal or\n                self.receive_failure_original is not failure or self.receive_outcome != 'accepted' or\n                ticket is None or ticket['unknown'] or ticket['returned'] is not owner or\n                ticket['receiver'] is not receiver or type(owner) is not modules['mta_client_transfer'].ClientTransferOwner or\n                owner.receiver is not receiver or owner.executor is not self or owner.input is not self.input or\n                type(receiver) is not modules['mta_storage'].SafeZipReceiver or\n                receiver.directory_binding is not self.deployment.receive_directory_binding or\n                receiver._bound_failure is not failure or\n                type(prompt) is not modules['mta_client_control_frame'].ReceivePrompt or\n                prompt.binding is not self.input.binding or\n                type(decision) is not modules['mta_client_control_frame'].ReceiveDecision or\n                decision._decoder is not self.input.decoder or\n                decision is not self.input.decoder._claimed_receive_decision or\n                decision.prompt is not prompt or decision.accepted is not True or\n                self.receive_request is None):\n            return False\n        transport = owner.transport\n        if (type(transport) is not modules['mta_transport'].ReceiverTransport or\n                owner.transport_ticket['returned'] is not transport or\n                owner.transport_ticket['complete'] is not True or\n                transport.receiver is not receiver or\n                transport.directory_binding is not receiver.directory_binding):\n            return False\n        durable = modules['mta_storage'].SafeZipReceiver.durable_result(receiver)\n        saved = transport.local_commit_result\n        if (type(saved) is not dict or saved != durable or saved.get('peer_ack_verified') is not False or\n                saved.get('taskId') != self.receive_request['taskId'] or saved.get('taskId') != prompt.task_id or\n                saved.get('fileCount') != self.receive_request['fileCount'] or saved.get('fileCount') != prompt.file_count or\n                saved.get('totalSize') != self.receive_request['totalSize'] or saved.get('totalSize') != prompt.total_size or\n                not _finite(until, 0, 1e12) or not _finite(transport.deadline, 0, 1e12)):\n            return False\n        retained = dict(saved)\n        retained['files'] = list(saved['files'])\n        self.receive_ticket['result'] = self.receive_result = retained\n        self.receive_outcome = 'saved_failed'\n        self._saved_failure_originals = (failure, owner, receiver, transport, prompt, decision,\n            retained, min(float(until), float(transport.deadline)))\n        return True\n\n    def _emit_saved_failure(self):\n        \"\"\"One narrow diagnostic write, never a cancel/RF/restore grant.\n\n        Cancel cannot erase durable bytes. This path does not call cancel\n        callbacks, only after original accepted-task publication was retained.\n        Original cap/pipe identity/PIPE_BUF/sequence/terminal bounds remain.\n        One <=50ms ready poll bounds diagnostics before original cleanup.\n        \"\"\"\n        if self._saved_failure_emit_attempted: _fail('already_attempted')\n        self._saved_failure_emit_attempted = True\n        proof = self._saved_failure_originals\n        if proof is None or len(proof) != 8: _fail('control_invalid')\n        failure, owner, receiver, transport, prompt, decision, result, until = proof\n        if (self.receive_failure_original is not failure or self.receive_outcome != 'saved_failed' or\n                self.receive_result is not result or self.receive_ticket['result'] is not result or\n                self.receive_ticket['returned'] is not owner or self.receive_ticket['receiver'] is not receiver or\n                owner.transport is not transport or owner.receiver is not receiver or\n                transport.receiver is not receiver or receiver._bound_failure is not failure or\n                self.receive_prompt is not prompt or self.receive_decision is not decision or\n                decision.accepted is not True or decision.prompt is not prompt):\n            _fail('control_invalid')\n        codec, binding = self.deployment.modules['mta_client_control_frame'], self.input.binding\n        if self._rx_terminal or len(self.receive_events) >= codec.MAX_RX_EVENTS: _fail('control_invalid')\n        if any(event['sent'] is not True or type(event['write_result']) is not int or\n                event['write_result'] != len(event['wire']) for event in self.receive_events):\n            _fail('control_invalid')\n        payload = {'outcome': 'saved_failed', 'task_id': result['taskId'],\n            'file_count': result['fileCount'], 'total_size': result['totalSize'], 'peer_ack_verified': False}\n        frame = codec.encode_receive_event(binding, len(self.receive_events), 'result', payload)\n        ticket = {'kind': 'result', 'wire': frame, 'write_attempted': False, 'write_result': None, 'sent': False}\n        self.receive_events.append(ticket)\n        if self.output_metadata is None:\n            self.output_metadata = _meta(self.io.fstat(1))\n            if not stat.S_ISFIFO(self.output_metadata[2]) or not _uint(self.io.pipe_buf(1), codec.MAX_RX_FRAME):\n                _fail('pipe_unknown')\n        if self._now() >= until: _fail('deadline')\n        if _meta(self.io.fstat(1))[:6] != self.output_metadata[:6]: _fail('pipe_unknown')\n        remaining = until - self._now()\n        if remaining <= 0: _fail('deadline')\n        if not self.io.ready_write(1, min(.05, remaining)): _fail('pipe_unknown')\n        if self._now() >= until or _meta(self.io.fstat(1))[:6] != self.output_metadata[:6]: _fail('pipe_unknown')\n        ticket['write_attempted'] = True\n        ticket['write_result'] = self.io.write(1, frame)\n        if type(ticket['write_result']) is not int or ticket['write_result'] != len(frame) or \\\n                self._now() >= until or _meta(self.io.fstat(1))[:6] != self.output_metadata[:6]:\n            _fail('control_invalid')\n        ticket['sent'] = self._rx_terminal = True\n\n    def _run_native_receive(self):\n",
+          "before": "    def _run_native_receive(self):\n",
+          "count": 1,
+          "name": "mta_client_executor_business_1"
+        },
+        {
+          "after": "        self.receive_ticket['unknown'] = False\n        saved_cap = min(until, owner.deadline)\n        try:\n            result = owner.run(self._confirm_receive,\n",
+          "before": "        self.receive_ticket['unknown'] = False\n        try:\n            result = owner.run(self._confirm_receive,\n",
+          "count": 1,
+          "name": "mta_client_executor_business_2"
+        },
+        {
+          "after": "            self.receive_failure_original = failure\n            try:\n                if self._retain_saved_failure(failure, owner, receiver, saved_cap):\n                    self._emit_saved_failure()\n            except BaseException as terminal_failure:\n                self.receive_terminal_failures.append(terminal_failure)\n            if self.receive_outcome == 'saved_failed':\n                raise  # Saved bytes do not suppress the original receive failure.\n            if (self.receive_outcome in ('refused', 'confirmation_timeout') and\n",
+          "before": "            self.receive_failure_original = failure\n            if (self.receive_outcome in ('refused', 'confirmation_timeout') and\n",
+          "count": 1,
+          "name": "mta_client_executor_business_3"
+        },
+        {
+          "after": "            if payload['outcome'] in ('committed', 'saved_failed'):\n                ticket = self.receive_reply_ticket\n",
+          "before": "            if payload['outcome'] == 'committed':\n                ticket = self.receive_reply_ticket\n",
+          "count": 1,
+          "name": "mta_client_executor_business_4"
+        }
+      ],
+      "source": [
+        "candidate/formal-receive-profile-classification-clock-v1/runtime/mta_client_executor.py",
+        117765,
+        "d7f67463aa6587bb512bfae188e1cb1fffd2eb3763de93081912b99c473906cf"
+      ]
+    },
+    {
+      "candidate": [
+        "candidate/receive-durable-state-v1/runtime/mta_client_state_bridge.py",
+        21356,
+        "239e353c336b678638502d1a3dd612e6ce5110c005b1a0228f697d3af56cdc29"
+      ],
+      "name": "mta_client_state_bridge",
+      "proof": [
+        "candidate/receive-durable-state-v1/exactsource-control-bridge-delta.json",
+        4478,
+        "41b1cd371fb5908e0292c42e6debc6b0238e2ca7195eb78922534c40bbcff4db"
+      ],
+      "replacements": [
+        {
+          "after": "                'filesDone': self.result['file_count'] if self.result is not None and self.result['outcome'] in ('committed', 'saved_failed') else 0,\n",
+          "before": "                'filesDone': self.result['file_count'] if self.result is not None and self.result['outcome'] == 'committed' else 0,\n",
+          "count": 1,
+          "name": "saved_failed_project_file_count"
+        },
+        {
+          "after": "                'localCommitVerified': self.result is not None and self.result['outcome'] in ('committed', 'saved_failed'),\n",
+          "before": "                'localCommitVerified': self.result is not None and self.result['outcome'] == 'committed',\n",
+          "count": 1,
+          "name": "saved_failed_project_local_commit"
+        },
+        {
+          "after": "        if self.result is not None and self.result['outcome'] in ('failed', 'saved_failed'): _fail('receive_failed')\n",
+          "before": "        if self.result is not None and self.result['outcome'] == 'failed': _fail('receive_failed')\n",
+          "count": 1,
+          "name": "saved_failed_run_is_failure"
+        },
+        {
+          "after": "                'local_commit_verified': result is not None and result['outcome'] in ('committed', 'saved_failed'),\n",
+          "before": "                'local_commit_verified': result is not None and result['outcome'] == 'committed',\n",
+          "count": 1,
+          "name": "saved_failed_status_local_commit"
+        }
+      ],
+      "source": [
+        "candidate/formal-receive-profile-classification-clock-v1/runtime/mta_client_state_bridge.py",
+        21284,
+        "849613b9e62cffdca6fe91ed6a9ba787b6c9b93a53b1a6e4df704b03d1a5b962"
+      ]
+    }
+  ],
+  "evidence": "MECHANICAL_READBACK_NOT_SOURCE_CHECKED",
+  "guards": {
+    "business_changed_roles": 5,
+    "cleanup_seconds": 60,
+    "device_tested": false,
+    "filecenter_cap": 131072,
+    "filecenter_count": 9,
+    "gui_changed": false,
+    "historical_verifier_called": false,
+    "native_changed": false,
+    "ordinary_changed_roles": 8,
+    "ordinary_count": 35,
+    "owner_seconds": 600,
+    "payload_cap": 4194304,
+    "prepare_seconds": 120,
+    "private_changed_roles": 4,
+    "private_count": 35,
+    "resource_gates_changed": false,
+    "role_count": 75,
+    "source_cap": 2097152,
+    "startup_seconds": 10,
+    "target_line_cap": 256
+  },
+  "manifests": [
+    {
+      "candidate": [
+        "host/formal_receive_durable_state_v1_definition_manifest.json",
+        7952,
+        "2c9883367f8d61e0936ae7bf82841de04a59753795b908aada7ace5656bc6ebd"
+      ],
+      "changes": [
+        {
+          "after": {
+            "bytes": 56595,
+            "module": "mta_storage",
+            "path": "candidate/formal-receive-durable-state-v1/runtime/mta_storage.py",
+            "sha256": "365490e2dfe8a2c65d2b38fc8ae1a49747d09ed3b127677e9fe61e69866052d0"
+          },
+          "before": {
+            "bytes": 55562,
+            "module": "mta_storage",
+            "path": "candidate/receive-directory-fd-v1/runtime/mta_storage.py",
+            "sha256": "ea3d3df1177019125c9b3124b8ebaf33196dd1013db95ac24580e1fe1a96c8d1"
+          },
+          "name": "mta_storage"
+        },
+        {
+          "after": {
+            "bytes": 41435,
+            "module": "mta_transport",
+            "path": "candidate/formal-receive-durable-state-v1/runtime/mta_transport.py",
+            "sha256": "9b05ef49059e9b06536de32186e7de1cfd531461d3e096eb266d49f760069f8e"
+          },
+          "before": {
+            "bytes": 40223,
+            "module": "mta_transport",
+            "path": "candidate/receive-directory-clock-v2/runtime/mta_transport.py",
+            "sha256": "171efb7cdfabbe4ea826afc03df6b401d1ee2b55cf23810e1fc7fb7b11f89826"
+          },
+          "name": "mta_transport"
+        },
+        {
+          "after": {
+            "bytes": 21203,
+            "module": "mta_client_control_frame",
+            "path": "candidate/formal-receive-durable-state-v1/runtime/mta_client_control_frame.py",
+            "sha256": "66eae58a95eaf8344934d15aca2685de1c176b8408a56786995e9f9078c6032c"
+          },
+          "before": {
+            "bytes": 20942,
+            "module": "mta_client_control_frame",
+            "path": "candidate/client-integrated-v37/runtime/mta_client_control_frame.py",
+            "sha256": "d1a8fce91ab705524f14edac8d81e8d391c0cddbf8f4ac96ee7a6446c0512278"
+          },
+          "name": "mta_client_control_frame"
+        },
+        {
+          "after": {
+            "bytes": 124768,
+            "module": "mta_client_executor",
+            "path": "candidate/formal-receive-durable-state-v1/runtime/mta_client_executor.py",
+            "sha256": "e9c18a3368cd1e10641e8ddf7cae1e98cfacad858917d1a7084531ba67873008"
+          },
+          "before": {
+            "bytes": 117765,
+            "module": "mta_client_executor",
+            "path": "candidate/formal-receive-profile-classification-clock-v1/runtime/mta_client_executor.py",
+            "sha256": "d7f67463aa6587bb512bfae188e1cb1fffd2eb3763de93081912b99c473906cf"
+          },
+          "name": "mta_client_executor"
+        },
+        {
+          "after": {
+            "bytes": 21356,
+            "module": "mta_client_state_bridge",
+            "path": "candidate/formal-receive-durable-state-v1/runtime/mta_client_state_bridge.py",
+            "sha256": "d7d01552fa007d807ea8cd9d8e972e15ebbbc13013fa9175e7ac53904254bc35"
+          },
+          "before": {
+            "bytes": 21284,
+            "module": "mta_client_state_bridge",
+            "path": "candidate/formal-receive-profile-classification-clock-v1/runtime/mta_client_state_bridge.py",
+            "sha256": "849613b9e62cffdca6fe91ed6a9ba787b6c9b93a53b1a6e4df704b03d1a5b962"
+          },
+          "name": "mta_client_state_bridge"
+        },
+        {
+          "after": {
+            "bytes": 97757,
+            "module": "mta_client_receive_factory",
+            "path": "candidate/formal-receive-durable-state-v1/runtime/mta_client_receive_factory.py",
+            "sha256": "6db5950043ba9fac63712ad6af4ece5062d805714f6b04136ce04af95cb8e2af"
+          },
+          "before": {
+            "bytes": 97809,
+            "module": "mta_client_receive_factory",
+            "path": "candidate/formal-receive-profile-classification-clock-v1/runtime/mta_client_receive_factory.py",
+            "sha256": "8f37fcbfaaeedb7a0b86704c7a0368d1b23e93365423eeb5ff67e583f3e57549"
+          },
+          "name": "mta_client_receive_factory"
+        },
+        {
+          "after": {
+            "bytes": 19695,
+            "module": "mta_client_receive_boot",
+            "path": "candidate/formal-receive-durable-state-v1/runtime/mta_client_receive_boot.py",
+            "sha256": "9d7dea20a0544d8b43ddfaebcc80cc579072cc9ae14863f001576a2f20e0d3a1"
+          },
+          "before": {
+            "bytes": 19747,
+            "module": "mta_client_receive_boot",
+            "path": "candidate/formal-receive-profile-classification-clock-v1/runtime/mta_client_receive_boot.py",
+            "sha256": "e3ee7b5d3644f4ccddb67348c40b2f5a8bf6fc575b7769773dd9473126572c7c"
+          },
+          "name": "mta_client_receive_boot"
+        },
+        {
+          "after": {
+            "bytes": 107024,
+            "module": "mta_client_service_owner",
+            "path": "candidate/formal-receive-durable-state-v1/runtime/mta_client_service_owner.py",
+            "sha256": "1bd7a77f22216e0b8653973f4d86a15e620de8088a17a8e851226a785777074d"
+          },
+          "before": {
+            "bytes": 107076,
+            "module": "mta_client_service_owner",
+            "path": "candidate/formal-receive-profile-classification-clock-v1/runtime/mta_client_service_owner.py",
+            "sha256": "de6d01dad6cde8f731a90b02e8af6f73956d02eb5b2143b3e24f6ef788a7e860"
+          },
+          "name": "mta_client_service_owner"
+        }
+      ],
+      "private": false,
+      "source": [
+        "host/formal_receive_profile_classification_clock_v1_definition_manifest.json",
+        8004,
+        "e67fb9d0d0643c0c7f7796639aa38af455d00a1e5d62f393a11d94192df427d4"
+      ]
+    },
+    {
+      "candidate": [
+        "host/formal_receive_durable_state_v1_private_source_manifest.json",
+        8169,
+        "7a11e023d97b5b54235e6cdf7d1a014f814b4ff5192a40e503d693d8a234cc0d"
+      ],
+      "changes": [
+        {
+          "after": {
+            "bytes": 56595,
+            "module": "mta_storage",
+            "path": "candidate/formal-receive-durable-state-v1/runtime/mta_storage.py",
+            "sha256": "365490e2dfe8a2c65d2b38fc8ae1a49747d09ed3b127677e9fe61e69866052d0"
+          },
+          "before": {
+            "bytes": 55562,
+            "module": "mta_storage",
+            "path": "candidate/receive-directory-fd-v1/runtime/mta_storage.py",
+            "sha256": "ea3d3df1177019125c9b3124b8ebaf33196dd1013db95ac24580e1fe1a96c8d1"
+          },
+          "name": "mta_storage"
+        },
+        {
+          "after": {
+            "bytes": 41435,
+            "module": "mta_transport",
+            "path": "candidate/formal-receive-durable-state-v1/runtime/mta_transport.py",
+            "sha256": "9b05ef49059e9b06536de32186e7de1cfd531461d3e096eb266d49f760069f8e"
+          },
+          "before": {
+            "bytes": 40223,
+            "module": "mta_transport",
+            "path": "candidate/receive-directory-clock-v2/runtime/mta_transport.py",
+            "sha256": "171efb7cdfabbe4ea826afc03df6b401d1ee2b55cf23810e1fc7fb7b11f89826"
+          },
+          "name": "mta_transport"
+        },
+        {
+          "after": {
+            "bytes": 21203,
+            "module": "mta_client_control_frame",
+            "path": "candidate/formal-receive-durable-state-v1/runtime/mta_client_control_frame.py",
+            "sha256": "66eae58a95eaf8344934d15aca2685de1c176b8408a56786995e9f9078c6032c"
+          },
+          "before": {
+            "bytes": 20942,
+            "module": "mta_client_control_frame",
+            "path": "candidate/client-integrated-v37/runtime/mta_client_control_frame.py",
+            "sha256": "d1a8fce91ab705524f14edac8d81e8d391c0cddbf8f4ac96ee7a6446c0512278"
+          },
+          "name": "mta_client_control_frame"
+        },
+        {
+          "after": {
+            "bytes": 124768,
+            "module": "mta_client_executor",
+            "path": "candidate/formal-receive-durable-state-v1/runtime/mta_client_executor.py",
+            "sha256": "e9c18a3368cd1e10641e8ddf7cae1e98cfacad858917d1a7084531ba67873008"
+          },
+          "before": {
+            "bytes": 117765,
+            "module": "mta_client_executor",
+            "path": "candidate/formal-receive-profile-classification-clock-v1/runtime/mta_client_executor.py",
+            "sha256": "d7f67463aa6587bb512bfae188e1cb1fffd2eb3763de93081912b99c473906cf"
+          },
+          "name": "mta_client_executor"
+        }
+      ],
+      "private": true,
+      "source": [
+        "host/formal_receive_profile_classification_clock_v1_private_source_manifest.json",
+        8161,
+        "36c7ae14fa432ed9590951c67a26f570cf77fa508ca6d31520c4cf11412aa05f"
+      ]
+    }
+  ],
+  "mechanical": [
+    {
+      "candidate": [
+        "candidate/formal-receive-durable-state-v1/runtime/mta_storage.py",
+        56595,
+        "365490e2dfe8a2c65d2b38fc8ae1a49747d09ed3b127677e9fe61e69866052d0"
+      ],
+      "name": "mta_storage",
+      "replacements": [],
+      "source": [
+        "candidate/receive-durable-result-v1/runtime/mta_storage.py",
+        56595,
+        "365490e2dfe8a2c65d2b38fc8ae1a49747d09ed3b127677e9fe61e69866052d0"
+      ]
+    },
+    {
+      "candidate": [
+        "candidate/formal-receive-durable-state-v1/runtime/mta_transport.py",
+        41435,
+        "9b05ef49059e9b06536de32186e7de1cfd531461d3e096eb266d49f760069f8e"
+      ],
+      "name": "mta_transport",
+      "replacements": [],
+      "source": [
+        "candidate/receive-durable-result-v1/runtime/mta_transport.py",
+        41435,
+        "9b05ef49059e9b06536de32186e7de1cfd531461d3e096eb266d49f760069f8e"
+      ]
+    },
+    {
+      "candidate": [
+        "candidate/formal-receive-durable-state-v1/runtime/mta_client_control_frame.py",
+        21203,
+        "66eae58a95eaf8344934d15aca2685de1c176b8408a56786995e9f9078c6032c"
+      ],
+      "name": "mta_client_control_frame",
+      "replacements": [],
+      "source": [
+        "candidate/receive-durable-state-v1/runtime/mta_client_control_frame.py",
+        21203,
+        "66eae58a95eaf8344934d15aca2685de1c176b8408a56786995e9f9078c6032c"
+      ]
+    },
+    {
+      "candidate": [
+        "candidate/formal-receive-durable-state-v1/runtime/mta_client_executor.py",
+        124768,
+        "e9c18a3368cd1e10641e8ddf7cae1e98cfacad858917d1a7084531ba67873008"
+      ],
+      "name": "mta_client_executor",
+      "replacements": [
+        {
+          "after": "p011-mta-rx-durable-v1",
+          "before": "p011-mta-receive-profile-classification-clock-v1",
+          "count": 1,
+          "name": "isolation_root"
+        },
+        {
+          "after": "66eae58a95eaf8344934d15aca2685de1c176b8408a56786995e9f9078c6032c",
+          "before": "d1a8fce91ab705524f14edac8d81e8d391c0cddbf8f4ac96ee7a6446c0512278",
+          "count": 1,
+          "name": "mta_client_control_frame_sha"
+        }
+      ],
+      "source": [
+        "candidate/receive-durable-state-v1/runtime/mta_client_executor.py",
+        124794,
+        "3882f633913567905c501c888a7ae80dba55615ee2f5ab9b297d016f469f6fcc"
+      ]
+    },
+    {
+      "candidate": [
+        "candidate/formal-receive-durable-state-v1/runtime/mta_client_state_bridge.py",
+        21356,
+        "d7d01552fa007d807ea8cd9d8e972e15ebbbc13013fa9175e7ac53904254bc35"
+      ],
+      "name": "mta_client_state_bridge",
+      "replacements": [
+        {
+          "after": "e9c18a3368cd1e10641e8ddf7cae1e98cfacad858917d1a7084531ba67873008",
+          "before": "d7f67463aa6587bb512bfae188e1cb1fffd2eb3763de93081912b99c473906cf",
+          "count": 1,
+          "name": "mta_client_executor_sha"
+        },
+        {
+          "after": "66eae58a95eaf8344934d15aca2685de1c176b8408a56786995e9f9078c6032c",
+          "before": "d1a8fce91ab705524f14edac8d81e8d391c0cddbf8f4ac96ee7a6446c0512278",
+          "count": 1,
+          "name": "mta_client_control_frame_sha"
+        }
+      ],
+      "source": [
+        "candidate/receive-durable-state-v1/runtime/mta_client_state_bridge.py",
+        21356,
+        "239e353c336b678638502d1a3dd612e6ce5110c005b1a0228f697d3af56cdc29"
+      ]
+    },
+    {
+      "candidate": [
+        "candidate/formal-receive-durable-state-v1/runtime/mta_client_receive_factory.py",
+        97757,
+        "6db5950043ba9fac63712ad6af4ece5062d805714f6b04136ce04af95cb8e2af"
+      ],
+      "name": "mta_client_receive_factory",
+      "replacements": [
+        {
+          "after": "p011-mta-rx-durable-v1",
+          "before": "p011-mta-receive-profile-classification-clock-v1",
+          "count": 2,
+          "name": "isolation_root"
+        },
+        {
+          "after": "7a11e023d97b5b54235e6cdf7d1a014f814b4ff5192a40e503d693d8a234cc0d",
+          "before": "36c7ae14fa432ed9590951c67a26f570cf77fa508ca6d31520c4cf11412aa05f",
+          "count": 1,
+          "name": "private_manifest_sha"
+        },
+        {
+          "after": "e9c18a3368cd1e10641e8ddf7cae1e98cfacad858917d1a7084531ba67873008",
+          "before": "d7f67463aa6587bb512bfae188e1cb1fffd2eb3763de93081912b99c473906cf",
+          "count": 1,
+          "name": "mta_client_executor_sha"
+        },
+        {
+          "after": "66eae58a95eaf8344934d15aca2685de1c176b8408a56786995e9f9078c6032c",
+          "before": "d1a8fce91ab705524f14edac8d81e8d391c0cddbf8f4ac96ee7a6446c0512278",
+          "count": 2,
+          "name": "mta_client_control_frame_sha"
+        },
+        {
+          "after": "('mta_client_executor', 124768, F_SHA)",
+          "before": "('mta_client_executor', 117765, F_SHA)",
+          "count": 1,
+          "name": "executor_symbolic_tuple"
+        },
+        {
+          "after": "('mta_client_control_frame', 21203, '66eae58a95eaf8344934d15aca2685de1c176b8408a56786995e9f9078c6032c')",
+          "before": "('mta_client_control_frame', 20942, '66eae58a95eaf8344934d15aca2685de1c176b8408a56786995e9f9078c6032c')",
+          "count": 1,
+          "name": "codec_symbolic_source_tuple"
+        },
+        {
+          "after": "('mta_storage', 56595, '365490e2dfe8a2c65d2b38fc8ae1a49747d09ed3b127677e9fe61e69866052d0')",
+          "before": "('mta_storage', 55562, 'ea3d3df1177019125c9b3124b8ebaf33196dd1013db95ac24580e1fe1a96c8d1')",
+          "count": 1,
+          "name": "mta_storage_source_tuple"
+        },
+        {
+          "after": "('mta_transport', 41435, '9b05ef49059e9b06536de32186e7de1cfd531461d3e096eb266d49f760069f8e')",
+          "before": "('mta_transport', 40223, '171efb7cdfabbe4ea826afc03df6b401d1ee2b55cf23810e1fc7fb7b11f89826')",
+          "count": 1,
+          "name": "mta_transport_source_tuple"
+        }
+      ],
+      "source": [
+        "candidate/formal-receive-profile-classification-clock-v1/runtime/mta_client_receive_factory.py",
+        97809,
+        "8f37fcbfaaeedb7a0b86704c7a0368d1b23e93365423eeb5ff67e583f3e57549"
+      ]
+    },
+    {
+      "candidate": [
+        "candidate/formal-receive-durable-state-v1/runtime/mta_client_receive_boot.py",
+        19695,
+        "9d7dea20a0544d8b43ddfaebcc80cc579072cc9ae14863f001576a2f20e0d3a1"
+      ],
+      "name": "mta_client_receive_boot",
+      "replacements": [
+        {
+          "after": "p011-mta-rx-durable-v1",
+          "before": "p011-mta-receive-profile-classification-clock-v1",
+          "count": 2,
+          "name": "isolation_root"
+        },
+        {
+          "after": "7a11e023d97b5b54235e6cdf7d1a014f814b4ff5192a40e503d693d8a234cc0d",
+          "before": "36c7ae14fa432ed9590951c67a26f570cf77fa508ca6d31520c4cf11412aa05f",
+          "count": 1,
+          "name": "private_manifest_sha"
+        },
+        {
+          "after": "e9c18a3368cd1e10641e8ddf7cae1e98cfacad858917d1a7084531ba67873008",
+          "before": "d7f67463aa6587bb512bfae188e1cb1fffd2eb3763de93081912b99c473906cf",
+          "count": 1,
+          "name": "mta_client_executor_sha"
+        },
+        {
+          "after": "('mta_client_executor', 124768, F37_SHA)",
+          "before": "('mta_client_executor', 117765, F37_SHA)",
+          "count": 2,
+          "name": "executor_symbolic_tuple"
+        },
+        {
+          "after": "('mta_storage', 56595, '365490e2dfe8a2c65d2b38fc8ae1a49747d09ed3b127677e9fe61e69866052d0')",
+          "before": "('mta_storage', 55562, 'ea3d3df1177019125c9b3124b8ebaf33196dd1013db95ac24580e1fe1a96c8d1')",
+          "count": 1,
+          "name": "mta_storage_source_tuple"
+        },
+        {
+          "after": "('mta_transport', 41435, '9b05ef49059e9b06536de32186e7de1cfd531461d3e096eb266d49f760069f8e')",
+          "before": "('mta_transport', 40223, '171efb7cdfabbe4ea826afc03df6b401d1ee2b55cf23810e1fc7fb7b11f89826')",
+          "count": 1,
+          "name": "mta_transport_source_tuple"
+        },
+        {
+          "after": "('mta_client_control_frame', 21203, '66eae58a95eaf8344934d15aca2685de1c176b8408a56786995e9f9078c6032c')",
+          "before": "('mta_client_control_frame', 20942, 'd1a8fce91ab705524f14edac8d81e8d391c0cddbf8f4ac96ee7a6446c0512278')",
+          "count": 1,
+          "name": "mta_client_control_frame_source_tuple"
+        },
+        {
+          "after": "('mta_client_receive_factory', 97757, '6db5950043ba9fac63712ad6af4ece5062d805714f6b04136ce04af95cb8e2af')",
+          "before": "('mta_client_receive_factory', 97809, '8f37fcbfaaeedb7a0b86704c7a0368d1b23e93365423eeb5ff67e583f3e57549')",
+          "count": 1,
+          "name": "mta_client_receive_factory_source_tuple"
+        },
+        {
+          "after": "('mta_client_state_bridge', 21356, 'd7d01552fa007d807ea8cd9d8e972e15ebbbc13013fa9175e7ac53904254bc35')",
+          "before": "('mta_client_state_bridge', 21284, '849613b9e62cffdca6fe91ed6a9ba787b6c9b93a53b1a6e4df704b03d1a5b962')",
+          "count": 1,
+          "name": "mta_client_state_bridge_source_tuple"
+        }
+      ],
+      "source": [
+        "candidate/formal-receive-profile-classification-clock-v1/runtime/mta_client_receive_boot.py",
+        19747,
+        "e3ee7b5d3644f4ccddb67348c40b2f5a8bf6fc575b7769773dd9473126572c7c"
+      ]
+    },
+    {
+      "candidate": [
+        "candidate/formal-receive-durable-state-v1/runtime/mta_client_service_owner.py",
+        107024,
+        "1bd7a77f22216e0b8653973f4d86a15e620de8088a17a8e851226a785777074d"
+      ],
+      "name": "mta_client_service_owner",
+      "replacements": [
+        {
+          "after": "p011-mta-rx-durable-v1",
+          "before": "p011-mta-receive-profile-classification-clock-v1",
+          "count": 2,
+          "name": "isolation_root"
+        },
+        {
+          "after": "BOOT_PIN = (19695, '9d7dea20a0544d8b43ddfaebcc80cc579072cc9ae14863f001576a2f20e0d3a1')",
+          "before": "BOOT_PIN = (19747, 'e3ee7b5d3644f4ccddb67348c40b2f5a8bf6fc575b7769773dd9473126572c7c')",
+          "count": 1,
+          "name": "boot_pin"
+        }
+      ],
+      "source": [
+        "candidate/formal-receive-profile-classification-clock-v1/runtime/mta_client_service_owner.py",
+        107076,
+        "de6d01dad6cde8f731a90b02e8af6f73956d02eb5b2143b3e24f6ef788a7e860"
+      ]
+    },
+    {
+      "candidate": [
+        "candidate/formal-receive-durable-state-v1/runtime/mta_formal_receive_session.py",
+        79202,
+        "38b7345454df94b1f5742d8c2f6a91a4cd8d0b1262909d4deacea2d48456008e"
+      ],
+      "name": "mta_formal_receive_session",
+      "replacements": [
+        {
+          "after": "p011-mta-rx-durable-v1",
+          "before": "p011-mta-receive-profile-classification-clock-v1",
+          "count": 2,
+          "name": "isolation_root"
+        },
+        {
+          "after": "('mta_storage', 56595, '365490e2dfe8a2c65d2b38fc8ae1a49747d09ed3b127677e9fe61e69866052d0')",
+          "before": "('mta_storage', 55562, 'ea3d3df1177019125c9b3124b8ebaf33196dd1013db95ac24580e1fe1a96c8d1')",
+          "count": 2,
+          "name": "mta_storage_source_tuple"
+        },
+        {
+          "after": "('mta_transport', 41435, '9b05ef49059e9b06536de32186e7de1cfd531461d3e096eb266d49f760069f8e')",
+          "before": "('mta_transport', 40223, '171efb7cdfabbe4ea826afc03df6b401d1ee2b55cf23810e1fc7fb7b11f89826')",
+          "count": 2,
+          "name": "mta_transport_source_tuple"
+        },
+        {
+          "after": "('mta_client_control_frame', 21203, '66eae58a95eaf8344934d15aca2685de1c176b8408a56786995e9f9078c6032c')",
+          "before": "('mta_client_control_frame', 20942, 'd1a8fce91ab705524f14edac8d81e8d391c0cddbf8f4ac96ee7a6446c0512278')",
+          "count": 2,
+          "name": "mta_client_control_frame_source_tuple"
+        },
+        {
+          "after": "('mta_client_executor', 124768, 'e9c18a3368cd1e10641e8ddf7cae1e98cfacad858917d1a7084531ba67873008')",
+          "before": "('mta_client_executor', 117765, 'd7f67463aa6587bb512bfae188e1cb1fffd2eb3763de93081912b99c473906cf')",
+          "count": 2,
+          "name": "mta_client_executor_source_tuple"
+        },
+        {
+          "after": "('mta_client_state_bridge', 21356, 'd7d01552fa007d807ea8cd9d8e972e15ebbbc13013fa9175e7ac53904254bc35')",
+          "before": "('mta_client_state_bridge', 21284, '849613b9e62cffdca6fe91ed6a9ba787b6c9b93a53b1a6e4df704b03d1a5b962')",
+          "count": 1,
+          "name": "mta_client_state_bridge_source_tuple"
+        },
+        {
+          "after": "('mta_client_receive_factory', 97757, '6db5950043ba9fac63712ad6af4ece5062d805714f6b04136ce04af95cb8e2af')",
+          "before": "('mta_client_receive_factory', 97809, '8f37fcbfaaeedb7a0b86704c7a0368d1b23e93365423eeb5ff67e583f3e57549')",
+          "count": 1,
+          "name": "mta_client_receive_factory_source_tuple"
+        },
+        {
+          "after": "('mta_client_receive_boot', 19695, '9d7dea20a0544d8b43ddfaebcc80cc579072cc9ae14863f001576a2f20e0d3a1')",
+          "before": "('mta_client_receive_boot', 19747, 'e3ee7b5d3644f4ccddb67348c40b2f5a8bf6fc575b7769773dd9473126572c7c')",
+          "count": 1,
+          "name": "mta_client_receive_boot_source_tuple"
+        },
+        {
+          "after": "('mta_client_service_owner', 107024, '1bd7a77f22216e0b8653973f4d86a15e620de8088a17a8e851226a785777074d')",
+          "before": "('mta_client_service_owner', 107076, 'de6d01dad6cde8f731a90b02e8af6f73956d02eb5b2143b3e24f6ef788a7e860')",
+          "count": 1,
+          "name": "mta_client_service_owner_source_tuple"
+        }
+      ],
+      "source": [
+        "candidate/formal-receive-profile-classification-clock-v1/runtime/mta_formal_receive_session.py",
+        79254,
+        "3fe23e4e9d9e1c9900985ee04153ce4b479ca1f2bc194458b91a702cd4f8258f"
+      ]
+    }
+  ],
+  "root": {
+    "after": "p011-mta-rx-durable-v1",
+    "before": "p011-mta-receive-profile-classification-clock-v1"
+  },
+  "schema": "p011-receive-durable-mechanical-source-delta-v1",
+  "totals": {
+    "filecenter_bytes": 113690,
+    "payload_bytes": 4191752,
+    "payload_remaining": 2552
+  }
+}
